@@ -1,0 +1,253 @@
+"""Two-phase ePAV document processing: a local-only fetch phase that never
+touches archive.org, and a separate upload phase that does nothing else.
+
+Motivation, measured this session: doing fetch+process+upload together in
+one pass against a fresh archive.org credential sustained a ~65% 503
+'Slow Down' failure rate over two hours -- not a transient warm-up effect,
+a real throughput ceiling. Nashville's own ePAV portal (documents.nashville
+.gov), by contrast, was reliable all session. Splitting the two lets the
+fast, reliable side run to completion immediately, and the slow, rate-
+limited side drain the resulting queue at whatever pace archive.org
+actually sustains -- repeatedly, safely, on a schedule (see
+scripts/upload_pending.py), rather than racing the whole batch through a
+single one-shot run that loses most of its attempts to throttling.
+
+archive.org item identifiers are deterministic (nashville-epav-contract-
+<token>), so archive_url/full_text_url are computed and written into
+assertions.jsonl/surveillance-flags.jsonl/contract-ledger.jsonl/
+epav-fetched.jsonl during the LOCAL phase, before the real upload has
+happened -- those pointers are already correct, they just don't resolve
+until upload_now() actually pushes the bytes."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import sys
+import time
+from pathlib import Path
+
+from epav_client import EPAV, is_destruction_notice
+from archive_upload import upload_item
+from extract_text import extract_pdf_pages, clean_pdf_bytes
+from eoreader_pass import read_document, summarize_referents
+import company_index
+import boilerplate
+import surveillance_flag
+import contract_extract
+import crossref
+
+ROOT = Path(__file__).resolve().parent.parent
+LOCAL_CACHE = ROOT / "data" / ".epav-local"
+EPAV_FETCHED = ROOT / "data" / "epav-fetched.jsonl"
+REFERENTS = ROOT / "data" / "referents.jsonl"
+ASSERTIONS = ROOT / "data" / "assertions.jsonl"
+PAGE_SIGHTINGS = ROOT / "data" / "page-sightings.jsonl"
+SURVEILLANCE_FLAGS = ROOT / "data" / "surveillance-flags.jsonl"
+CONTRACT_LEDGER = ROOT / "data" / "contract-ledger.jsonl"
+EOWORK = ROOT / "data" / ".eowork"
+
+
+def already_fetched(token: str) -> bool:
+    if not EPAV_FETCHED.exists():
+        return False
+    with EPAV_FETCHED.open() as fh:
+        for line in fh:
+            if f'"epav_token": "{token}"' in line:
+                return True
+    return False
+
+
+def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referents_out=None) -> dict:
+    """Everything except the actual archive.org upload. Returns the fetched
+    record (also appended to EPAV_FETCHED)."""
+    token = row["token"]
+    contract_number = row["contract_number"]
+    party = row["contracting_party"]
+    dept = row["department"]
+    desc = row["description"]
+    detail_url = api.detail_url(token)
+
+    data = api.fetch_document(token)
+    if not data:
+        raise RuntimeError(f"failed to fetch document for token {token}")
+    data = clean_pdf_bytes(data)
+
+    identifier = f"nashville-epav-contract-{token}"
+    archive_url = f"https://archive.org/details/{identifier}"
+
+    cache_dir = LOCAL_CACHE / token
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    (cache_dir / "source.pdf").write_bytes(data)
+
+    page_context = {
+        "doc_key": f"epav:{token}",
+        "epav_token": token,
+        "contract_number": contract_number,
+        "archive_url": archive_url,
+        "intro_date": None,
+    }
+    pages = extract_pdf_pages(data)
+    novel_pages, page_records = boilerplate.classify_pages(pages, page_index, page_context)
+    for rec in page_records:
+        boilerplate.append_sighting(PAGE_SIGHTINGS, rec["hash"], page_context)
+
+    full_text = "\n\n".join(pages)
+    destroyed = is_destruction_notice(full_text)
+    (cache_dir / "extracted-text.txt").write_text(full_text)
+    full_text_url = f"https://archive.org/download/{identifier}/extracted-text.txt" if full_text.strip() else None
+
+    referents_entry = {
+        "epav_token": token,
+        "contract_number": contract_number,
+        "archive_url": archive_url,
+        "full_text_url": full_text_url,
+        "destroyed_per_retention_schedule": destroyed,
+        "pages": page_records,
+    }
+
+    fetched = {
+        "epav_token": token,
+        "contract_number": contract_number,
+        "status": row["status"],
+        "contracting_party": party,
+        "department": dept,
+        "description": desc,
+        "expiration_date": row["expiration_date"],
+        "source_department_query": row.get("source_department_query"),
+        "epav_url": detail_url,
+        "identifier": identifier,
+        "archive_url": archive_url,
+        "destroyed_per_retention_schedule": destroyed,
+        "local_pdf": str(cache_dir / "source.pdf"),
+        "local_text": str(cache_dir / "extracted-text.txt"),
+        "local_eoreader7": None,
+        "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+
+    if destroyed:
+        if referents_out is not None:
+            referents_out.write(json.dumps(referents_entry) + "\n")
+            referents_out.flush()
+        EPAV_FETCHED.parent.mkdir(parents=True, exist_ok=True)
+        with EPAV_FETCHED.open("a") as f:
+            f.write(json.dumps(fetched) + "\n")
+        return fetched
+
+    try:
+        ledger_rows = contract_extract.extract_contract_rows(full_text, identifier)
+        if ledger_rows:
+            with CONTRACT_LEDGER.open("a") as cl:
+                for lr in ledger_rows:
+                    lr["epav_token"] = token
+                    lr["contract_number"] = contract_number
+                    lr["archive_url"] = archive_url
+                    cl.write(json.dumps(lr) + "\n")
+    except Exception as e:  # noqa: BLE001 - additive, never blocks the fetch
+        print(f"    contract_extract on {token} FAILED: {e}", file=sys.stderr)
+
+    novel_text = "\n\n".join(novel_pages)
+    eo_workdir = EOWORK / identifier
+    result = read_document(novel_text, identifier, eo_workdir) if novel_pages else None
+    if result:
+        for key, ext in (("main_path", "eoreader7.json"), ("fold_path", "eoreader7.fold.json"), ("log_path", "eoreader7.log.json")):
+            p = result[key]
+            if p.exists():
+                (cache_dir / ext).write_bytes(p.read_bytes())
+        fetched["local_eoreader7"] = str(cache_dir)
+        summary = summarize_referents(result)
+        referents_entry.update(summary)
+        giver = result["main"].get("declared", {}).get("giver") or "reader:eoreader7-cli"
+        company_index.append_assertions(ASSERTIONS, summary["hyperedges"], page_context, giver)
+
+        try:
+            legistar_matches = crossref.legistar_matches_for(legistar_api, party) if legistar_api else []
+        except Exception:  # noqa: BLE001 - best-effort
+            legistar_matches = []
+        fetched["legistar_matches"] = legistar_matches
+
+        try:
+            verdict = surveillance_flag.flag_document(result["main"], title=desc or contract_number, text=full_text, file=contract_number)
+            verdict["epav_token"], verdict["archive_url"] = token, archive_url
+            with SURVEILLANCE_FLAGS.open("a") as sf:
+                sf.write(json.dumps(verdict) + "\n")
+            if verdict["label"] == "surveillance":
+                print(f"    SURVEILLANCE FLAG: {contract_number} score={verdict['score']}", file=sys.stderr)
+        except Exception as e:  # noqa: BLE001
+            print(f"    surveillance_flag FAILED: {e}", file=sys.stderr)
+
+    if referents_out is not None:
+        referents_out.write(json.dumps(referents_entry) + "\n")
+        referents_out.flush()
+
+    EPAV_FETCHED.parent.mkdir(parents=True, exist_ok=True)
+    with EPAV_FETCHED.open("a") as f:
+        f.write(json.dumps(fetched) + "\n")
+    return fetched
+
+
+def upload_now(fetched: dict, access_key: str, secret_key: str, delay: float) -> dict:
+    """Reads the locally-cached files for one fetch_local() record and
+    performs the real archive.org uploads. Returns the final manifest
+    record on success; raises on failure (retried internally by
+    upload_item(), then surfaced to the caller)."""
+    identifier = fetched["identifier"]
+    token = fetched["epav_token"]
+    contract_number = fetched["contract_number"]
+    party = fetched["contracting_party"]
+    detail_url = fetched["epav_url"]
+
+    pdf_bytes = Path(fetched["local_pdf"]).read_bytes()
+    title_bits = f"{contract_number} — {party}" if party else contract_number
+    resp = upload_item(
+        identifier,
+        f"{token}.pdf",
+        pdf_bytes,
+        {
+            "title": f"Metro Nashville Contract {title_bits}"[:2000],
+            "description": f"{fetched.get('description') or 'Contract'} — {fetched.get('department') or ''} — Metro Nashville contract {contract_number}, archived from {detail_url}",
+            "subject": "Metro Nashville;contracts;procurement;ePAV",
+            "creator": "Metro Nashville Government (via ePAV / Metro Clerk)",
+            "source": detail_url,
+            "external-identifier": f"urn:nashville-epav:contract:{token}",
+        },
+        access_key,
+        secret_key,
+    )
+    resp.raise_for_status()
+    time.sleep(delay)
+
+    text_path = Path(fetched["local_text"])
+    if text_path.exists() and text_path.stat().st_size > 0:
+        r3 = upload_item(identifier, "extracted-text.txt", text_path.read_bytes(), {}, access_key, secret_key)
+        r3.raise_for_status()
+        time.sleep(delay)
+
+    if fetched.get("local_eoreader7"):
+        cache_dir = Path(fetched["local_eoreader7"])
+        for fname in ("eoreader7.json", "eoreader7.fold.json", "eoreader7.log.json"):
+            p = cache_dir / fname
+            if p.exists():
+                r2 = upload_item(identifier, fname, p.read_bytes(), {}, access_key, secret_key)
+                r2.raise_for_status()
+                time.sleep(delay)
+
+    record = {
+        "epav_token": token,
+        "contract_number": contract_number,
+        "status": fetched["status"],
+        "contracting_party": party,
+        "department": fetched["department"],
+        "description": fetched.get("description"),
+        "expiration_date": fetched.get("expiration_date"),
+        "source_department_query": fetched.get("source_department_query"),
+        "epav_url": detail_url,
+        "legistar_matches": fetched.get("legistar_matches", []),
+        "archive_id": identifier,
+        "archive_url": fetched["archive_url"],
+        "sha256": hashlib.sha256(pdf_bytes).hexdigest(),
+        "bytes": len(pdf_bytes),
+        "destroyed_per_retention_schedule": fetched.get("destroyed_per_retention_schedule", False),
+        "archived_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    return record

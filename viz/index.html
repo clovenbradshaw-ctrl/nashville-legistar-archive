@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legistar Holograph</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page:        #f9f9f7;
+    --surface:     #fcfcfb;
+    --ink:         #0b0b0b;
+    --ink-2:       #52514e;
+    --ink-muted:   #898781;
+    --hairline:    #e1e0d9;
+    --border:      rgba(11,11,11,0.10);
+    --chip-bg:     #ffffff;
+    --s1: #2a78d6; /* blue */
+    --s2: #eb6834; /* orange */
+    --s3: #1baf7a; /* aqua */
+    --s4: #eda100; /* yellow */
+    --s5: #e87ba4; /* magenta */
+    --s6: #008300; /* green */
+    --s7: #4a3aa7; /* violet */
+    --s8: #e34948; /* red */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page:      #0d0d0d;
+      --surface:   #1a1a19;
+      --ink:       #ffffff;
+      --ink-2:     #c3c2b7;
+      --ink-muted: #898781;
+      --hairline:  #2c2c2a;
+      --border:    rgba(255,255,255,0.10);
+      --chip-bg:   #232322;
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+      --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page:      #0d0d0d;
+    --surface:   #1a1a19;
+    --ink:       #ffffff;
+    --ink-2:     #c3c2b7;
+    --ink-muted: #898781;
+    --hairline:  #2c2c2a;
+    --border:    rgba(255,255,255,0.10);
+    --chip-bg:   #232322;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 16px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+  header { display: flex; flex-direction: column; gap: 2px; }
+  h1 { font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--ink-2); font-size: 13px; margin: 0; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .toggles {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 12px;
+  }
+  .chip {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--chip-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 11px 5px 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 12.5px;
+    line-height: 1.3;
+    transition: opacity .15s;
+  }
+  .chip.off { opacity: 0.4; }
+  .chip .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip .lbl { font-weight: 600; }
+  .chip .date { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  .toggles-actions { display: flex; gap: 10px; padding: 0 12px 10px; }
+  .toggles-actions button {
+    background: none; border: none; color: var(--ink-2); font-size: 12px;
+    cursor: pointer; padding: 0; text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .stage { position: relative; height: min(62vh, 560px); overflow: hidden; border-radius: 12px; }
+  svg { width: 100%; height: 100%; display: block; cursor: grab; }
+  svg:active { cursor: grabbing; }
+  .empty-msg {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--ink-muted); font-size: 13px; text-align: center; padding: 24px; pointer-events: none;
+  }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 14px; padding: 10px 14px;
+    font-size: 11.5px; color: var(--ink-2); border-top: 1px solid var(--hairline);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .legend .swatch { width: 9px; height: 9px; border-radius: 50%; }
+  .legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ink); background: transparent; }
+
+  .detail {
+    padding: 12px 14px;
+    font-size: 12.5px;
+    min-height: 74px;
+  }
+  .detail .ph { color: var(--ink-muted); }
+  .detail .node-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .detail .badge {
+    display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .02em;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 5px; margin-left: 6px;
+    background: var(--hairline); color: var(--ink-2); vertical-align: 2px;
+  }
+  .detail table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+  .detail td { padding: 3px 8px 3px 0; vertical-align: top; border-top: 1px solid var(--hairline); font-size: 12px; }
+  .detail td.rel { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink-2); white-space: nowrap; }
+  .detail td.src { color: var(--ink-muted); font-size: 11px; white-space: nowrap; }
+  .detail a { color: var(--s1); text-decoration: none; }
+  .detail a:hover { text-decoration: underline; }
+
+  footer { color: var(--ink-muted); font-size: 11.5px; text-align: center; padding: 4px 0 0; }
+
+  .node circle { stroke-width: 1.5px; }
+  .node text {
+    font-size: 9.5px; fill: var(--ink); paint-order: stroke; stroke: var(--surface);
+    stroke-width: 2.5px; pointer-events: none; font-weight: 600;
+  }
+  .link { stroke-linecap: round; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Legistar Holograph</h1>
+    <p class="sub">Believed assertions eoreader7 pulled from Nashville Legistar contracts &mdash; toggle a contract to see what it touches, and what it shares with the others.</p>
+  </header>
+
+  <div class="panel">
+    <div class="toggles" id="toggles"></div>
+    <div class="toggles-actions">
+      <button id="allBtn" type="button">All on</button>
+      <button id="noneBtn" type="button">All off</button>
+      <button id="spinBtn" type="button">Pause</button>
+      <button id="flatBtn" type="button">Flat</button>
+    </div>
+  </div>
+
+  <div class="panel stage" id="stage">
+    <svg id="svg"></svg>
+    <div class="empty-msg" id="emptyMsg" hidden>No contracts selected.</div>
+  </div>
+
+  <div class="panel legend" id="legend"></div>
+
+  <div class="panel detail" id="detail">
+    <span class="ph">Click a node to see what's been asserted about it, and which contract(s) it came from.</span>
+  </div>
+
+  <footer>Every edge is a believed assertion eoreader7 extracted from real contract text &mdash; not a verified fact. Source: data/assertions.jsonl.</footer>
+</div>
+
+<script>
+(async function () {
+  const SLOTS = ['--s1','--s2','--s3','--s4','--s5','--s6','--s7','--s8'];
+  const root = document.documentElement;
+  const cssVar = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+
+  let data;
+  try {
+    data = await (await fetch('holograph-data.json')).json();
+  } catch (e) {
+    document.getElementById('stage').innerHTML = '<div class="empty-msg">Could not load holograph-data.json.</div>';
+    return;
+  }
+
+  const matterIds = Object.keys(data.matters).map(Number).sort((a, b) => a - b);
+  const colorOf = {};
+  matterIds.forEach((mid, i) => { colorOf[mid] = SLOTS[i % SLOTS.length]; });
+  const active = new Set(matterIds);
+
+  // ---- toggles ----
+  const togglesEl = document.getElementById('toggles');
+  matterIds.forEach((mid) => {
+    const m = data.matters[mid];
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.innerHTML = `<span class="dot" style="background:var(${colorOf[mid]})"></span><span class="lbl">${m.file}</span><span class="date">${m.date || ''}</span>`;
+    chip.title = m.title;
+    chip.addEventListener('click', () => {
+      if (active.has(mid)) active.delete(mid); else active.add(mid);
+      chip.classList.toggle('off', !active.has(mid));
+      layoutDirty = true;
+    });
+    chip.dataset.mid = mid;
+    togglesEl.appendChild(chip);
+  });
+  document.getElementById('allBtn').addEventListener('click', () => {
+    matterIds.forEach((mid) => active.add(mid));
+    document.querySelectorAll('.chip').forEach((c) => c.classList.remove('off'));
+    layoutDirty = true;
+  });
+  document.getElementById('noneBtn').addEventListener('click', () => {
+    active.clear();
+    document.querySelectorAll('.chip').forEach((c) => c.classList.add('off'));
+    layoutDirty = true;
+  });
+  let spin = true, flat = false;
+  const spinBtn = document.getElementById('spinBtn'), flatBtn = document.getElementById('flatBtn');
+  spinBtn.addEventListener('click', () => { spin = !spin; spinBtn.textContent = spin ? 'Pause' : 'Rotate'; });
+  flatBtn.addEventListener('click', () => { flat = !flat; flatBtn.textContent = flat ? '3D' : 'Flat'; });
+
+  // ---- legend ----
+  const legendEl = document.getElementById('legend');
+  matterIds.forEach((mid) => {
+    const m = data.matters[mid];
+    const s = document.createElement('span');
+    s.innerHTML = `<span class="swatch" style="background:var(${colorOf[mid]})"></span>${m.file}`;
+    legendEl.appendChild(s);
+  });
+  const shared = document.createElement('span');
+  shared.innerHTML = `<span class="ring"></span>shared across active contracts`;
+  legendEl.appendChild(shared);
+
+  // ---- orbital layout -- adapted from Fold Explorer v7's Orbit component:
+  // a hub/planet/moon hierarchy by tie strength, not a force simulation.
+  // Planets are the hub's direct neighbors (closer = more shared edges);
+  // moons are a planet's own further neighbors, attached to whichever
+  // planet ties them most; height encodes each node's earliest active
+  // contract date (newer sits higher); a slow spin runs unless hovering.
+  const svgEl = document.getElementById('svg');
+  const stageEl = document.getElementById('stage');
+  const GA = 2.399963229728653; // golden angle -- even angular spread
+  let hubOverride = null, hoverId = null, layoutDirty = true;
+  let layout = { nodes: [], edges: [] };
+  const anim = {}; // id -> {r,a,h,o,ph}
+
+  function hashAngle(s) { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return (Math.abs(h) % 1000) / 1000 * Math.PI * 2; }
+
+  function touchedInfo() {
+    const touched = new Map();
+    data.edges.filter((e) => active.has(e.matter_id)).forEach((e) => {
+      [e.source, e.target].forEach((id) => { if (!touched.has(id)) touched.set(id, new Set()); touched.get(id).add(e.matter_id); });
+    });
+    return touched;
+  }
+
+  function computeLayout() {
+    const edges = data.edges.filter((e) => active.has(e.matter_id));
+    const adj = new Map();
+    const bump = (a, b) => { if (!adj.has(a)) adj.set(a, new Map()); adj.get(a).set(b, (adj.get(a).get(b) || 0) + 1); };
+    const touched = touchedInfo();
+    edges.forEach((e) => { bump(e.source, e.target); bump(e.target, e.source); });
+    const ids = [...touched.keys()];
+    if (!ids.length) return { nodes: [], edges: [] };
+
+    let hub = hubOverride && touched.has(hubOverride) ? hubOverride : null;
+    if (!hub) {
+      let best = null, bestW = -1;
+      ids.forEach((id) => { const w = [...(adj.get(id) || new Map()).values()].reduce((a, b) => a + b, 0); if (w > bestW) { bestW = w; best = id; } });
+      hub = best;
+    }
+
+    const dateOf = (id) => { const ds = [...touched.get(id)].map((mid) => data.matters[mid]?.date).filter(Boolean).sort(); return ds[0] || null; };
+    const allDates = ids.map(dateOf).filter(Boolean).sort();
+    const dMin = allDates[0], dMax = allDates[allDates.length - 1];
+    const hOf = (id) => { const d = dateOf(id); if (!d || !dMin || dMin === dMax) return 0; const t = (Date.parse(d) - Date.parse(dMin)) / (Date.parse(dMax) - Date.parse(dMin)); return (t - 0.5) * 130; };
+
+    const hubNbrs = adj.get(hub) || new Map();
+    const planetIds = [...hubNbrs.keys()].sort((a, b) => hubNbrs.get(b) - hubNbrs.get(a));
+    const maxW = Math.max(1, ...planetIds.map((id) => hubNbrs.get(id)));
+    const used = new Set([hub, ...planetIds]);
+    const moonOf = new Map();
+    planetIds.forEach((pid) => {
+      (adj.get(pid) || new Map()).forEach((w, nid) => {
+        if (used.has(nid)) return;
+        const cur = moonOf.get(nid);
+        if (!cur || w > cur.w) moonOf.set(nid, { parent: pid, w });
+      });
+    });
+    moonOf.forEach((v, id) => used.add(id));
+
+    const nodes = [{ id: hub, center: true, r: 0, a: 0, h: 0, parent: null }];
+    let lastR = 0;
+    planetIds.forEach((pid, i) => {
+      const wc = hubNbrs.get(pid);
+      let r = 78 + Math.pow(1 - wc / maxW, 1.1) * 250;
+      r = Math.max(r, lastR + 17); lastR = r;
+      nodes.push({ id: pid, r: Math.min(r, 360), a: i * GA, h: hOf(pid), parent: null });
+    });
+    const mi = {};
+    moonOf.forEach((info, id) => {
+      const k = mi[info.parent] = (mi[info.parent] || 0) + 1;
+      nodes.push({ id, r: 14 + k * 9, a: k * 2.1 + hashAngle(id), h: 0, parent: info.parent });
+    });
+
+    return { nodes, edges: edges.filter((e) => used.has(e.source) && used.has(e.target)) };
+  }
+
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+  let lastT = 0;
+  function loop(t) {
+    const dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 0;
+    lastT = t;
+    const k = 1 - Math.pow(0.03, dt);
+    if (layoutDirty) { layout = computeLayout(); layoutDirty = false; }
+    document.getElementById('emptyMsg').hidden = layout.nodes.length > 0;
+    const byId = new Map(layout.nodes.map((n) => [n.id, n]));
+    layout.nodes.forEach((n) => {
+      const c = anim[n.id] || (anim[n.id] = { r: n.r + (n.parent ? 20 : 140), a: n.a, h: n.h, o: 0, ph: 0 });
+      let da = n.a - c.a; da = Math.atan2(Math.sin(da), Math.cos(da));
+      c.r += (n.r - c.r) * k; c.a += da * k; c.h += (n.h - c.h) * k; c.o += (1 - c.o) * k;
+      if (spin && hoverId == null) c.ph += dt * (n.parent ? 0.55 * (30 / (c.r + 10)) : 0.09 * (120 / (c.r + 120)));
+    });
+    if (layout.nodes.length) draw(byId);
+    else while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+    requestAnimationFrame(loop);
+  }
+
+  function draw(byId) {
+    const rect = stageEl.getBoundingClientRect();
+    const W = rect.width || 800, H = rect.height || 560, cx = W / 2, cy = H / 2 + 10, FOC = 1100;
+    const elev = flat ? Math.PI / 2 : 0.55, se = Math.sin(elev), ce = Math.cos(elev);
+    const pr = (x, y, hh) => { const z = y * ce + hh * se; const s = FOC / (FOC - z); return { x: cx + x * s, y: cy + (y * se - hh * ce) * s, z, s }; };
+
+    const memo = {};
+    const world = (id) => {
+      if (memo[id]) return memo[id];
+      const n = byId.get(id), c = anim[id];
+      if (!n || !c) return null;
+      if (n.center) return (memo[id] = { x: 0, y: 0, h: 0 });
+      const base = n.parent ? world(n.parent) : { x: 0, y: 0, h: 0 };
+      if (!base) return null;
+      const ang = c.a + c.ph;
+      return (memo[id] = { x: base.x + Math.cos(ang) * c.r, y: base.y + Math.sin(ang) * c.r, h: base.h + (n.parent ? 0 : c.h) });
+    };
+    const P = {};
+    layout.nodes.forEach((n) => { const w = world(n.id), c = anim[n.id]; if (!w || !c) return; P[n.id] = { ...pr(w.x, w.y, w.h), o: c.o, w }; });
+
+    const hv = hoverId;
+    const nb = new Set();
+    if (hv) layout.edges.forEach((e) => { if (e.source === hv) nb.add(e.target); if (e.target === hv) nb.add(e.source); });
+    const fam = new Set();
+    if (hv) { fam.add(hv); const hn = byId.get(hv); if (hn && hn.parent) fam.add(hn.parent); layout.nodes.forEach((n) => { if (n.parent === hv) fam.add(n.id); }); }
+
+    while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+    svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const bg = el('rect', { x: 0, y: 0, width: W, height: H, fill: 'transparent' });
+    bg.addEventListener('click', () => { hubOverride = null; layoutDirty = true; });
+    svgEl.appendChild(bg);
+    const gRings = el('g', { style: 'pointer-events:none' });
+    const gLines = el('g', { style: 'pointer-events:none' });
+    svgEl.appendChild(gRings); svgEl.appendChild(gLines);
+
+    layout.nodes.forEach((n) => {
+      if (n.center) return;
+      const c = anim[n.id]; if (!c) return;
+      const baseW = n.parent ? world(n.parent) : { x: 0, y: 0, h: 0 };
+      if (!baseW) return;
+      const on = hv && fam.has(n.id);
+      const pts = [];
+      for (let j = 0; j <= 72; j++) { const a2 = (j / 72) * Math.PI * 2; const q = pr(baseW.x + Math.cos(a2) * c.r, baseW.y + Math.sin(a2) * c.r, n.parent ? baseW.h : c.h); pts.push(`${q.x.toFixed(1)},${q.y.toFixed(1)}`); }
+      gRings.appendChild(el('polyline', {
+        points: pts.join(' '), fill: 'none',
+        stroke: on ? cssVar('--ink') : cssVar('--hairline'),
+        'stroke-width': n.parent ? 0.7 : 1,
+        'stroke-dasharray': n.parent ? '2 3' : 'none',
+        opacity: (c.o * (n.parent ? 0.7 : on ? 0.9 : 0.55)).toFixed(2),
+      }));
+    });
+
+    if (hv) layout.edges.forEach((e) => {
+      if (e.source !== hv && e.target !== hv) return;
+      const a1 = P[e.source], b1 = P[e.target]; if (!a1 || !b1) return;
+      gLines.appendChild(el('line', { x1: a1.x.toFixed(1), y1: a1.y.toFixed(1), x2: b1.x.toFixed(1), y2: b1.y.toFixed(1), stroke: cssVar(colorOf[e.matter_id]) || cssVar('--ink'), 'stroke-width': (1 + (a1.s + b1.s) / 2 * 0.6).toFixed(2), 'stroke-linecap': 'round', opacity: 0.8 }));
+    });
+
+    const order = layout.nodes.filter((n) => P[n.id]).sort((a, b) => P[a.id].z - P[b.id].z);
+    const touched = touchedInfo();
+    order.forEach((n) => {
+      const q = P[n.id];
+      const activeMatters = [...(touched.get(n.id) || [])].sort((a, b) => a - b);
+      const nodeInfo = data.nodes.find((x) => x.id === n.id) || {};
+      const deg = data.edges.filter((e) => active.has(e.matter_id) && (e.source === n.id || e.target === n.id)).length;
+      const baseR = 4.5 + Math.min(deg, 12) * 1.15;
+      const r = (n.center ? baseR * 1.3 : baseR) * q.s;
+      const depth = flat ? 1 : 0.6 + 0.4 * Math.max(0, Math.min(1, (q.z + 350) / 700));
+      const isH = hv === n.id;
+      const dim = hv && !isH && !nb.has(n.id) && !fam.has(n.id) && !n.center;
+      const grp = el('g', { style: `cursor:pointer;opacity:${(q.o * depth * (dim ? 0.25 : 1)).toFixed(3)}` });
+      grp.addEventListener('mouseenter', () => { hoverId = n.id; });
+      grp.addEventListener('mouseleave', () => { hoverId = null; });
+      grp.addEventListener('click', (ev) => { ev.stopPropagation(); hubOverride = n.center ? null : n.id; layoutDirty = true; showDetail(n.id, activeMatters); });
+      if (n.center) grp.appendChild(el('circle', { cx: q.x.toFixed(1), cy: q.y.toFixed(1), r: (r + 10).toFixed(1), fill: cssVar('--hairline'), stroke: cssVar('--ink-2'), 'stroke-width': 1.5, opacity: 0.6 }));
+      const fillColor = activeMatters.length ? cssVar(colorOf[activeMatters[0]]) : cssVar('--ink-muted');
+      grp.appendChild(el('circle', { cx: q.x.toFixed(1), cy: q.y.toFixed(1), r: r.toFixed(1), fill: fillColor, stroke: activeMatters.length > 1 ? cssVar('--ink') : (isH ? cssVar('--ink') : 'transparent'), 'stroke-width': activeMatters.length > 1 ? 2.5 : (isH ? 2 : 1.5) }));
+      const showL = n.center || isH || (hv ? (nb.has(n.id) || fam.has(n.id)) : (nodeInfo.org || !n.parent));
+      if (showL) {
+        const label = n.id.length > 24 ? n.id.slice(0, 23) + '…' : n.id;
+        const t = el('text', { x: q.x.toFixed(1), y: (q.y + r + (n.parent ? 10 : 13)).toFixed(1), 'text-anchor': 'middle' });
+        t.textContent = label;
+        grp.appendChild(t);
+      }
+      const title = el('title', {}); title.textContent = n.id; grp.appendChild(title);
+      svgEl.appendChild(grp);
+    });
+  }
+
+  function showDetail(id, activeMatters) {
+    const edges = data.edges.filter((e) => active.has(e.matter_id) && (e.source === id || e.target === id));
+    const rows = edges.map((e) => {
+      const m = data.matters[e.matter_id];
+      const other = e.source === id ? e.target : e.source;
+      const arrow = e.source === id ? `&rarr; ${escapeHtml(other)}` : `&larr; ${escapeHtml(other)}`;
+      return `<tr><td class="rel">${escapeHtml(e.relation || '')}</td><td>${arrow}</td><td class="src">${m ? m.file : e.matter_id}</td></tr>`;
+    }).join('');
+    const sharedBadge = activeMatters.length > 1 ? `<span class="badge">shared &times; ${activeMatters.length}</span>` : '';
+    document.getElementById('detail').innerHTML = `
+      <div class="node-name">${escapeHtml(id)}${sharedBadge}</div>
+      <table><tbody>${rows || '<tr><td class="ph" colspan="3">No assertions among the active contracts.</td></tr>'}</tbody></table>
+    `;
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
