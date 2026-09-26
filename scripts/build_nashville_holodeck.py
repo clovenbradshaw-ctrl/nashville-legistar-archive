@@ -36,15 +36,25 @@ LEDGER = OUT / "ledger"
 
 CONTRACT_LEDGER = ROOT / "data" / "contract-ledger.jsonl"
 EPAV_MANIFEST = ROOT / "data" / "epav-manifest.jsonl"
+EPAV_FETCHED = ROOT / "data" / "epav-fetched.jsonl"
 LOCAL_CACHE = ROOT / "data" / ".epav-local"
 
 
 def load_manifest() -> dict:
+    """Merges epav-manifest.jsonl (confirmed uploaded) with epav-fetched.jsonl
+    as a metadata fallback for documents the two-phase pipeline has already
+    fetched and ledgered but not yet uploaded -- those have real
+    contract_number/contracting_party/department/epav_url already, just no
+    archive_id/sha256/archived_at yet. Manifest entries win when both exist."""
     by_token = {}
+    if EPAV_FETCHED.exists():
+        for line in EPAV_FETCHED.open():
+            r = json.loads(line)
+            by_token[r["epav_token"]] = r
     if EPAV_MANIFEST.exists():
         for line in EPAV_MANIFEST.open():
             r = json.loads(line)
-            by_token[r["epav_token"]] = r
+            by_token[r["epav_token"]] = {**by_token.get(r["epav_token"], {}), **r}
     return by_token
 
 
