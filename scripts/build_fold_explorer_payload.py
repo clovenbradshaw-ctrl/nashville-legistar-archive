@@ -23,7 +23,33 @@ ROOT = Path(__file__).resolve().parent.parent
 EPAV_MANIFEST = ROOT / "data" / "epav-manifest.jsonl"
 EPAV_FETCHED = ROOT / "data" / "epav-fetched.jsonl"
 LOCAL_CACHE = ROOT / "data" / ".epav-local"
-OUT = Path("/Users/mlacy/Documents/3.0/fold-explorer/nashville-payload.json")
+FOLD_EXPLORER = Path("/Users/mlacy/Documents/3.0/fold-explorer")
+OUT = FOLD_EXPLORER / "nashville-payload.json"
+PDF_DIR = FOLD_EXPLORER / "pdfs"
+
+
+def fetch_pdf_bytes(token: str, rec: dict) -> bytes | None:
+    """Same-origin copy is required: archive.org's download endpoint sends
+    no access-control-allow-origin header (confirmed via curl), so a direct
+    cross-origin fetch(pdfSrc) from the app's own localhost origin would be
+    blocked by CORS. Copying the bytes into fold-explorer/pdfs/ avoids that."""
+    local = LOCAL_CACHE / token / "source.pdf"
+    if local.exists():
+        return local.read_bytes()
+    identifier = rec.get("archive_id")
+    if not identifier:
+        return None
+    url = f"https://archive.org/download/{identifier}/{token}.pdf"
+    for attempt in range(3):
+        try:
+            r = requests.get(url, timeout=60, allow_redirects=True)
+        except requests.RequestException:
+            time.sleep(2 * (attempt + 1))
+            continue
+        if r.status_code == 200:
+            return r.content
+        time.sleep(2 * (attempt + 1))
+    return None
 
 
 def load_records() -> dict:
@@ -64,6 +90,8 @@ def main() -> None:
     docs = []
     skipped_destroyed = 0
     skipped_no_text = 0
+    no_pdf = 0
+    PDF_DIR.mkdir(parents=True, exist_ok=True)
     for token, rec in records.items():
         if rec.get("destroyed_per_retention_schedule"):
             skipped_destroyed += 1
@@ -79,7 +107,7 @@ def main() -> None:
         exp = rec.get("expiration_date") or ""
         if len(exp) >= 4 and exp[-4:].isdigit():
             year = int(exp[-4:])
-        docs.append({
+        doc = {
             "id": "nash-" + token,
             "title": title,
             "year": year,
@@ -89,12 +117,19 @@ def main() -> None:
             "pages": None,
             "text": text,
             "note": f"Metro Nashville contract {contract_number}, {rec.get('department', '')} — via nashville-legistar-archive · {rec.get('archive_url', '')}",
-        })
+        }
+        pdf_bytes = fetch_pdf_bytes(token, rec)
+        if pdf_bytes:
+            (PDF_DIR / f"{token}.pdf").write_bytes(pdf_bytes)
+            doc["pdfSrc"] = f"pdfs/{token}.pdf"
+        else:
+            no_pdf += 1
+        docs.append(doc)
 
     OUT.write_text(json.dumps(docs))
     total_chars = sum(len(d["text"]) for d in docs)
     print(f"wrote {len(docs)} docs ({total_chars:,} chars, {OUT.stat().st_size:,} bytes) -> {OUT}", file=sys.stderr)
-    print(f"skipped: {skipped_destroyed} destroyed-stub, {skipped_no_text} no text available", file=sys.stderr)
+    print(f"skipped: {skipped_destroyed} destroyed-stub, {skipped_no_text} no text available, {no_pdf} no PDF bytes available", file=sys.stderr)
 
 
 if __name__ == "__main__":
