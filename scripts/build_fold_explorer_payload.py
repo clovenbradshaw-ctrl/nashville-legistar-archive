@@ -19,6 +19,9 @@ from pathlib import Path
 
 import requests
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+from extract_text import make_searchable_pdf
+
 ROOT = Path(__file__).resolve().parent.parent
 EPAV_MANIFEST = ROOT / "data" / "epav-manifest.jsonl"
 EPAV_FETCHED = ROOT / "data" / "epav-fetched.jsonl"
@@ -118,12 +121,20 @@ def main() -> None:
             "text": text,
             "note": f"Metro Nashville contract {contract_number}, {rec.get('department', '')} — via nashville-legistar-archive · {rec.get('archive_url', '')}",
         }
-        pdf_bytes = fetch_pdf_bytes(token, rec)
-        if pdf_bytes:
-            (PDF_DIR / f"{token}.pdf").write_bytes(pdf_bytes)
-            doc["pdfSrc"] = f"pdfs/{token}.pdf"
+        pdf_path = PDF_DIR / f"{token}.pdf"
+        if pdf_path.exists():
+            doc["pdfSrc"] = f"pdfs/{token}.pdf"  # already built (and made searchable) by a prior run
         else:
-            no_pdf += 1
+            pdf_bytes = fetch_pdf_bytes(token, rec)
+            if pdf_bytes:
+                try:
+                    pdf_bytes = make_searchable_pdf(pdf_bytes)
+                except Exception as e:  # noqa: BLE001 - never blocks; falls back to the original scan
+                    print(f"    make_searchable_pdf FAILED for {token}: {e}", file=sys.stderr)
+                pdf_path.write_bytes(pdf_bytes)
+                doc["pdfSrc"] = f"pdfs/{token}.pdf"
+            else:
+                no_pdf += 1
         docs.append(doc)
 
     OUT.write_text(json.dumps(docs))
