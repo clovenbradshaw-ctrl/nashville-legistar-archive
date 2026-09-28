@@ -113,13 +113,19 @@ _ROW_RE = re.compile(
     re.DOTALL,
 )
 
-_DESTRUCTION_NOTICE_RE = re.compile(r"destroyed.{0,20}GRS\s*102", re.IGNORECASE | re.DOTALL)
+_DESTRUCTION_NOTICE_RE = re.compile(
+    r"destroyed.{0,20}GRS\s*102"
+    r"|disposed\s+of\s+pursuant\s+to\s+authorized\s+records\s+disposition",
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def is_destruction_notice(text: str) -> bool:
     """True when the archived file is a records-destruction stub, not the
-    real contract -- a real, confirmed case (contract 15387), not a
-    hypothetical one."""
+    real contract. Two wordings, both real, confirmed cases rather than
+    hypothetical ones: "destroyed per GRS 102/RDA 287" (contract 15387) and
+    "CONTRACT DISPOSED OF PURSUANT TO AUTHORIZED RECORDS DISPOSITION
+    SCHEDULE" (contracts 15099 and 15490, Arts Commission)."""
     return bool(_DESTRUCTION_NOTICE_RE.search(text or ""))
 
 

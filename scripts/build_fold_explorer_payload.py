@@ -15,9 +15,12 @@ from __future__ import annotations
 import json
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
+
+PDF_WORKERS = 6  # each document's fetch+OCR is independent I/O/subprocess-bound work
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from extract_text import make_searchable_pdf
@@ -88,13 +91,29 @@ def fetch_text(token: str, rec: dict) -> str | None:
     return None
 
 
+def build_pdf(token: str, rec: dict) -> tuple[str, bool]:
+    """Runs in a worker thread. Returns (token, has_pdf)."""
+    pdf_path = PDF_DIR / f"{token}.pdf"
+    if pdf_path.exists():
+        return token, True  # already built (and made searchable) by a prior run
+    pdf_bytes = fetch_pdf_bytes(token, rec)
+    if not pdf_bytes:
+        return token, False
+    try:
+        pdf_bytes = make_searchable_pdf(pdf_bytes)
+    except Exception as e:  # noqa: BLE001 - never blocks; falls back to the original scan
+        print(f"    make_searchable_pdf FAILED for {token}: {e}", file=sys.stderr)
+    pdf_path.write_bytes(pdf_bytes)
+    return token, True
+
+
 def main() -> None:
     records = load_records()
-    docs = []
+    docs_by_token = {}
     skipped_destroyed = 0
     skipped_no_text = 0
-    no_pdf = 0
     PDF_DIR.mkdir(parents=True, exist_ok=True)
+
     for token, rec in records.items():
         if rec.get("destroyed_per_retention_schedule"):
             skipped_destroyed += 1
@@ -110,7 +129,7 @@ def main() -> None:
         exp = rec.get("expiration_date") or ""
         if len(exp) >= 4 and exp[-4:].isdigit():
             year = int(exp[-4:])
-        doc = {
+        docs_by_token[token] = {
             "id": "nash-" + token,
             "title": title,
             "year": year,
@@ -121,22 +140,23 @@ def main() -> None:
             "text": text,
             "note": f"Metro Nashville contract {contract_number}, {rec.get('department', '')} — via nashville-legistar-archive · {rec.get('archive_url', '')}",
         }
-        pdf_path = PDF_DIR / f"{token}.pdf"
-        if pdf_path.exists():
-            doc["pdfSrc"] = f"pdfs/{token}.pdf"  # already built (and made searchable) by a prior run
-        else:
-            pdf_bytes = fetch_pdf_bytes(token, rec)
-            if pdf_bytes:
-                try:
-                    pdf_bytes = make_searchable_pdf(pdf_bytes)
-                except Exception as e:  # noqa: BLE001 - never blocks; falls back to the original scan
-                    print(f"    make_searchable_pdf FAILED for {token}: {e}", file=sys.stderr)
-                pdf_path.write_bytes(pdf_bytes)
-                doc["pdfSrc"] = f"pdfs/{token}.pdf"
+
+    no_pdf = 0
+    done = 0
+    total = len(docs_by_token)
+    with ThreadPoolExecutor(max_workers=PDF_WORKERS) as pool:
+        futures = {pool.submit(build_pdf, token, records[token]): token for token in docs_by_token}
+        for fut in as_completed(futures):
+            token, has_pdf = fut.result()
+            done += 1
+            if has_pdf:
+                docs_by_token[token]["pdfSrc"] = f"pdfs/{token}.pdf"
             else:
                 no_pdf += 1
-        docs.append(doc)
+            if done % 20 == 0 or done == total:
+                print(f"  {done}/{total} PDFs processed", file=sys.stderr)
 
+    docs = list(docs_by_token.values())
     OUT.write_text(json.dumps(docs))
     total_chars = sum(len(d["text"]) for d in docs)
     print(f"wrote {len(docs)} docs ({total_chars:,} chars, {OUT.stat().st_size:,} bytes) -> {OUT}", file=sys.stderr)
