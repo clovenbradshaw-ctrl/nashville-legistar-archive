@@ -5,89 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Metro Contract DB — live feed</title>
 <style>
-  :root { --bg:#0f1016; --panel:#171924; --ink:#dbe2ea; --dim:#7d8592; --line:#262a38; }
+  :root { --bg:#0f1016; --panel:#171924; --ink:#dbe2ea; --dim:#7d8592; --line:#262a38;
+          --blue:#8ab4ff; --orange:#ffb454; --green:#7fd67f; --red:#ff7b72; --violet:#c8b4ff; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
-  header { position:sticky; top:0; display:flex; gap:12px; align-items:center; padding:10px 16px;
-           background:rgba(15,16,22,.92); border-bottom:1px solid var(--line); z-index:5; }
+  header { position:sticky; top:0; display:flex; gap:14px; align-items:center; padding:10px 16px;
+           background:rgba(15,16,22,.94); border-bottom:1px solid var(--line); z-index:5; flex-wrap:wrap; }
   header h1 { font-size:15px; margin:0; font-weight:600; }
   #state { color:var(--dim); font-size:12px; }
-  #conn { margin-left:auto; color:var(--dim); font-size:12px; }
   label { color:var(--dim); font-size:12px; display:flex; gap:6px; align-items:center; }
-  #feed { padding:12px 16px; list-style:none; margin:0; }
-  #feed li { display:grid; grid-template-columns:112px 150px 1fr; gap:10px; padding:3px 0;
-             border-bottom:1px solid rgba(38,42,56,.5); align-items:baseline; }
-  .at { color:var(--dim); font-size:12px; }
-  .kind { font-size:12px; font-weight:700; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
-  .d { color:var(--ink); overflow-wrap:anywhere; }
-  .k-fetched      .kind,.k-destroyed-stub .kind { color:#8ab4ff; }
-  .k-gap          .kind { color:#ffb454; }
-  .k-uploaded     .kind { color:#7fd67f; }
-  .k-upload-failed .kind,.k-fetch-failed .kind { color:#ff7b72; }
-  .k-dropped-local-pdf .kind,.k-missing-home .kind { color:#c8b4ff; }
-  .k-qc .kind { color:#79c0ff; }
-  .k-verdict .kind { color:#a5d6ff; }
-  .k-falsify-run .kind,.k-legislation .kind { color:#ffa28b; }
-  .empty { color:var(--dim); padding:32px; text-align:center; }
-  #autoscroll { accent-color:#7fd67f; }
+  #autoscroll { accent-color:var(--green); }
+  .now { margin:12px 16px 4px; max-width:1100px; }
+  .now h2 { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); margin:0 0 6px; }
+  .now .prose p { margin:2px 0; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:10px; max-width:1100px; margin:0 16px 10px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; }
+  .card h3 { margin:0 0 6px; font-size:13px; }
+  .card .stat { font-size:22px; font-weight:700; }
+  .card .sub { color:var(--dim); font-size:12px; }
+  .card ul { margin:6px 0 0; padding-left:14px; }
+  .card li { font-size:12px; }
+  .feed { padding:4px 16px 16px; max-width:1100px; list-style:none; margin:0 auto; }
+  .feed li { padding:3px 0; border-bottom:1px solid rgba(38,42,56,.5); }
+  .feed .time { color:var(--dim); font-size:12px; }
+  .feed .line { margin-left:6px; }
+  .feed b { color:var(--blue); font-weight:700; }
+  .feed .warn { color:var(--orange); }
+  .feed .err { color:var(--red); }
+  .feed .ok { color:var(--green); }
+  .empty { color:var(--dim); padding:24px 16px; text-align:center; }
 </style>
 </head>
 <body>
 <header>
-  <h1>Metro Contract DB · live feed</h1>
+  <h1>Metro Contract DB · live</h1>
   <span id="state">connecting…</span>
   <label><input type="checkbox" id="autoscroll" checked> autoscroll</label>
-  <span id="conn"></span>
 </header>
-<ul id="feed"><li class="empty">waiting for events…</li></ul>
+
+<section class="now">
+  <h2>What's going on</h2>
+  <div class="prose" id="prose"><p class="empty">waiting for snapshot…</p></div>
+</section>
+
+<div class="cards" id="cards"></div>
+
+<ul class="feed" id="feed"><li class="empty">waiting for events…</li></ul>
+
 <script>
+  const feedUrl = new URLSearchParams(location.search).get('feed') || '/live/stream';
+  const roundupUrl = new URLSearchParams(location.search).get('roundup') || '/roundup';
   const feedEl = document.getElementById('feed');
   const stateEl = document.getElementById('state');
-  const connEl = document.getElementById('conn');
+  const proseEl = document.getElementById('prose');
+  const cardsEl = document.getElementById('cards');
   const autoscroll = document.getElementById('autoscroll');
 
-  // Same-origin /live/stream on the public vhost; override with ?feed= for
-  // tunnel previews (e.g. ?feed=http://localhost:8099/stream).
-  const feedUrl = new URLSearchParams(location.search).get('feed') || '/live/stream';
-
-  const KIND_COLOR = {
-    fetched:'contract fetched', gap:'enumeration gap', uploaded:'uploaded → archive.org',
-    'dropped-local-pdf':'local pdf dropped', 'upload-failed':'upload failed',
-    'fetch-failed':'fetch failed', 'missing-home':'no durable home',
-    'destroyed-stub':'records-destruction stub', qc:'qc', verdict:'completeness verdict',
-    'falsify-run':'falsify run', legislation:'legislation change'
-  };
   function esc(s){ return String(s ?? '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c])); }
-  function localTime(iso){
-    const d = new Date(iso);
-    const p = n => String(n).padStart(2,'0');
-    return `${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+  function localTime(iso){ const d=new Date(iso); const p=n=>String(n).padStart(2,'0');
+    return `${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`; }
+  function kindClass(kind){
+    if (['upload-failed','fetch-failed','missing-home'].includes(kind)) return 'err';
+    if (['gap','qc'].includes(kind)) return 'warn';
+    if (['uploaded','dropped-local-pdf','qc-run'].includes(kind)) return 'ok';
+    return '';
   }
-  function add(ev){
-    const li = document.createElement('li');
-    li.className = 'k-' + ev.kind;
-    const label = KIND_COLOR[ev.kind] || ev.kind;
-    const {at, kind, ...rest} = ev;
-    li.innerHTML = `<span class="at">${localTime(at)}</span>
-                    <span class="kind">${esc(label)}</span>
-                    <span class="d">${esc(JSON.stringify(rest))}</span>`;
-    const first = feedEl.firstElementChild;
+  function summarize(ev){
+    const tok=ev.epav_token||''; const num=ev.contract_number||''; const name=ev.department||ev.subject||'';
+    const c = num ? `contract ${num}` : `token ${tok}`;
+    switch (ev.kind){
+      case 'fetched': return `<b>Fetched</b> ${c}${name ? ' — '+name : ''}: PDF + text + read staged, waiting for upload.`;
+      case 'destroyed-stub': return `<b>Destruction stub</b> ${c}${name? ' — '+name:''}: official record says destroyed per GRS 102/RDA 287. Kept as the record of its destruction.`;
+      case 'gap': return `<span>Enumeration gap</span> for ${ev.subject||''}: a shard is still capped at 1000 rows and can't be subdivided — surfaced, not dropped.`;
+      case 'uploaded': return `<span class=ok><b>Uploaded</b> ${c}</span> → <span class=ok>archive.org</span> ${ev.archive_url||''} and recorded in the manifest.`;
+      case 'dropped-local-pdf': return `<span class=ok>archive.org confirmed ${c}</span> — local PDF deleted, durable copy now remote.`;
+      case 'missing-home': return `<span class=err><b>DATA-INVARIANT</b> ${c}: neither manifest record nor local PDF — no durable copy.</span> Surfaced to QC.`;
+      case 'upload-failed': return `<span class=err><b>Upload failed</b> ${c}: ${esc((ev.error||'').slice(0,100))}</span> — queued, retried next drain.`;
+      case 'fetch-failed': return `<span class=err><b>Fetch failed</b>: ${esc((ev.error||'').slice(0,100))}</span> — enumeration retries.`;
+      case 'qc': return `<span class=warn><b>QC ${ev.grade}</b> on ${ev.check} for ${ev.subject||''} (${ev.n||0} finding(s)).</span>`;
+      case 'qc-run': return `<span class=ok><b>QC run:</b> ${ev.checks} checks, ${ev.defects} defect(s), ${ev.suspicious} suspicious.</span>`;
+      case 'verdict': return `<b>Completeness ${ev.standing}</b> for ${ev.subject||''}: ${esc(ev.reason||'')}.`;
+      case 'falsify-run': return `<b>Falsification round:</b> ${['complete','incomplete','contested','unexamined'].map(k=>`${k} ${ev[k]??0}`).join(', ')}.`;
+      case 'legislation': return `<b>Legistar:</b> matter ${ev.matter_file||''} is ${ev.change||'changed'} — associated legislation moved.`;
+      case 'roundup': return `<b>ROUNDUP (${ev.range||'?'}):</b> acquired ${ev.contracts} contract(s), uploaded ${ev.uploaded}. ` +
+        `Departments: ${Object.entries(ev.departments||{}).slice(0,3).map(([k,v])=>`${k} (${v})`).join(', ')||'none'}. ` +
+        `Vendors: ${Object.entries(ev.vendors||{}).slice(0,3).map(([k,v])=>`${k} (${v})`).join(', ')||'none'}.`;
+      default: return `${esc(ev.kind)}: ${esc(JSON.stringify(ev).slice(0,200))}`;
+    }
+  }
+  function addLine(ev){
+    const li=document.createElement('li');
+    li.innerHTML = `<span class="time">${localTime(ev.at)}</span><span class="line ${kindClass(ev.kind)}">${summarize(ev)}</span>`;
+    const first=feedEl.firstElementChild;
     if (first && first.classList.contains('empty')) first.remove();
     feedEl.prepend(li);
-    while (feedEl.children.length > 400) feedEl.lastElementChild.remove();
-    if (autoscroll.checked) window.scrollTo(0, 0);
-    return li;
+    while (feedEl.children.length>500) feedEl.lastElementChild.remove();
+    if (autoscroll.checked) window.scrollTo(0,0);
   }
+  function renderSnapshot(s){ if(!s.prose) return;
+    proseEl.innerHTML = s.prose.map(p=>`<p>${esc(p)}</p>`).join(''); }
+  function renderCards(data){
+    if (!data || !data.periods) return;
+    cardsEl.innerHTML='';
+    for (const [range,p] of Object.entries(data.periods)){
+      const deps=Object.entries(p.departments||{}).slice(0,4);
+      const vends=Object.entries(p.vendors||{}).slice(0,4);
+      const card=document.createElement('div'); card.className='card'; card.innerHTML=`
+        <h3>${esc(p.range)}</h3>
+        <div class="stat">${p.contracts} <span style="font-size:12px;color:var(--dim)">contracts</span></div>
+        <div class="sub">${p.uploaded} uploaded to archive.org in this window</div>
+        ${deps.length?`<ul>${deps.map(([k,v])=>`<li>${esc(k)} — ${v}</li>`).join('')}</ul>`:''}
+        ${vends.length?`<ul>${vends.map(([k,v])=>`<li>${esc(k)} — ${v}</li>`).join('')}</ul>`:''}`;
+      cardsEl.appendChild(card);
+    }
+  }
+  function loadRoundup(){ fetch(roundupUrl).then(r=>r.json()).then(renderCards).catch(()=>{}); }
 
-  let count = 0;
+  let count=0;
   function connect(){
-    connEl.textContent = feedUrl + ' — ' + (count ? `${count} events, ` : '') + 'connected';
-    const es = new EventSource(feedUrl);
-    es.onopen = () => { stateEl.textContent = 'live'; };
-    es.onerror = () => { stateEl.textContent = 'reconnecting…'; setTimeout(() => { try{es.close()}catch(e){}; connect(); }, 2000); };
-    es.addEventListener('ready', () => { stateEl.textContent = 'streaming (backlog shown)'; });
-    es.onmessage = e => { count++; add(JSON.parse(e.data)); };
+    const es=new EventSource(feedUrl);
+    es.onopen=()=>{ stateEl.textContent='live · '+(count?count+' events · ':'')+feedUrl; };
+    es.onerror=()=>{ stateEl.textContent='reconnecting…'; setTimeout(()=>{try{es.close()}catch(e){};connect();},2000); };
+    es.addEventListener('ready',()=>{ stateEl.textContent='streaming (backlog) · '+feedUrl; loadRoundup(); });
+    es.addEventListener('snapshot',e=>{ try{ renderSnapshot(JSON.parse(e.data)); }catch(err){} });
+    es.onmessage=e=>{ try{ const ev=JSON.parse(e.data); count++; addLine(ev);
+      if (ev.kind==='roundup') loadRoundup(); }catch(err){} };
   }
+  loadRoundup();
   connect();
 </script>
 </body>
