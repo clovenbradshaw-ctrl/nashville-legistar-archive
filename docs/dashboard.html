@@ -67,7 +67,7 @@
     <div class="card"><h3>Quality control</h3><div id="qc"></div></div>
   </section>
 
-  <div class="card"><h3>Recent activity</h3><ul class="feed" id="feed"><li class="dim">waiting…</li></ul></div>
+  <div class="card"><h3>Recent activity · <a href="live.html" style="font-size:11px">true realtime stream →</a></h3><ul class="feed" id="feed"><li class="dim">waiting…</li></ul></div>
 
   <div class="foot" id="foot">…</div>
 </main>
@@ -105,8 +105,15 @@
       case 'falsify-run': return t(ev.at)+`Falsification round: ${['complete','incomplete','contested','unexamined'].map(k=>`${ev[k]??0} ${k}`).join(', ')}.`;
       case 'missing': return t(ev.at)+`Missing check ${esc(ev.department)}: <b>${ev.missing||0}</b> contract(s) the portal still shows we don't hold.`;
       case 'legislation': return t(ev.at)+`Legistar: matter ${esc(ev.matter_file||'')} ${ev.change||'changed'}.`;
+      case 'heartbeat': return t(ev.at)+`scanning… ${ev.newly_fetched||0} fetched this run · ${ev.staged||0} staged total · ${ev.scanned||0} scanned.`;
       case 'roundup': return t(ev.at)+`<b>Roundup:</b> ${ev.contracts} pulled, ${ev.uploaded} archived in this window.`;
-      default: return t(ev.at)+`${esc(ev.kind)}: ${esc(cap(JSON.stringify(ev)))}`;
+      case 'oversight': return t(ev.at)+`<span class="g-amber badge">heal</span> ${esc(ev.kind)} → ${esc(ev.unit||ev.control||'')}`.replace('→  →','→ '+esc(ev.reason||'')).slice(0,120);
+      default: {
+        const pick = Object.entries(ev).filter(([k,v])=>['string','number','boolean'].includes(typeof v))
+                     .filter(([k])=>!['schema','kind','at'].includes(k)).slice(0,6)
+                     .map(([k,v])=>`${k}=${esc(v)}`).join(' · ');
+        return t(ev.at)+`${esc(ev.kind)}: ${pick||''}`;
+      }
     }
   }
 
@@ -141,12 +148,18 @@
     }).join('');
 
     const md = st.missing||{};
-    const tops = md.top_departments||[];
-    $('missing').innerHTML = tops.length
-      ? `<table><tr><th>Department</th><th>missing</th><th>standing</th></tr>` +
-        tops.map(r=>`<tr><td>${esc(r.department)}</td><td><b>${r.missing}</b></td><td>${(STANDING[r.standing]?`<span class="badge ${STANDING[r.standing][0]}">${STANDING[r.standing][1]}</span>`:esc(r.standing))}</td></tr>`).join('') +
-        `</table><div style="color:var(--dim);font-size:12px;margin-top:8px">${md.missing_total??'?'} total still shown by the portal that we don't hold.</div>`
-      : `<div class="dim">No missing estimate yet — the recount hasn't run on any department.</div>`;
+    const all = md.all_departments||[];
+    const counts = md.standing_counts||{};
+    $('missing').innerHTML = `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+        <span style="color:var(--dim);font-size:12px">all ${all.length} department(s) — unexamined = not crawled yet, never called complete</span>
+        <span style="font-size:12px">${Object.entries(counts).map(([k,v])=>`<span class="badge ${(STANDING[k]||[])[0]||'g-gray'}">${k} ${v}</span>`).join(' ')}</span></div>
+      <div style="max-height:340px;overflow:auto;margin-top:6px">` +
+      (all.length
+        ? `<table><tr><th>Department</th><th>missing</th><th>standing</th></tr>` +
+          all.map(r=>`<tr><td>${esc(r.department)}</td><td><b>${r.missing||0}</b></td><td>${(STANDING[r.standing]?`<span class="badge ${STANDING[r.standing][0]}">${STANDING[r.standing][1]}</span>`:esc(r.standing))}</td></tr>`).join('') +
+          `</table>`
+        : `<div class="dim">No missing estimate yet — the recount hasn't run on any department.</div>`) +
+      `</div><div style="color:var(--dim);font-size:12px;margin-top:8px">${md.missing_total??'?'} total still shown by the portal that we don't hold (deep-recounded counts; —caps declared).</div>`;
 
     const vc = st.verdicts||{};
     const vTotal = Object.values(vc).reduce((a,b)=>a+b,0)||0;

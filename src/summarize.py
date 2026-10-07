@@ -190,34 +190,50 @@ def state_summary(root: Path | None = None) -> dict:
                 for r in sorted(md, key=lambda x: -(x.get("missing") or 0))[:8]
                 if r.get("missing")
             ],
+            # every department, not just the top handful -- the audit answers
+            # "ALL departments" (unexamined = not crawled yet, not zero)
+            "all_departments": [
+                {"department": r.get("department"), "missing": r.get("missing", 0), "standing": r.get("standing")}
+                for r in sorted(md, key=lambda x: (-(x.get("missing") or 0), x.get("department")))
+            ],
         }
     except Exception:  # noqa: BLE001 - the summary survives a missing-module failure
         missing = {}
 
+    try:
+        p24 = period_summary("24h", 24)
+    except Exception:  # noqa: BLE001
+        p24 = {"contracts": 0, "uploaded": 0, "departments": {}, "vendors": {}, "by_day": {}}
+
     if not fetched_rows:
         phase = "booting — the first exhaustive enumeration has not produced documents yet"
     elif pending:
-        phase = f"catching up: {pending} contract(s) staged and waiting on the archive.org drain; {uploaded} already archived"
+        phase = f"we're pulling faster than archive.org can take it right now ({pending} staged)"
     else:
-        phase = "in sync: everything staged has been uploaded to archive.org"
+        phase = "in sync: everything staged has been archived"
 
     pulled_accounted = uploaded + pending  # all-time: every archived one + what's staged today
     prose = [
-        f"All-time project totals: {pulled_accounted} contract(s) pulled and accounted for "
-        f"({uploaded} uploaded to archive.org — including earlier sessions' work — and {pending} staged "
-        f"right now, {deployed} with small files on GitHub). {phase}.",
+        f"Where we are: {pulled_accounted} contracts pulled all-time "
+        f"({uploaded} archived on archive.org, {deployed} small-file sets on GitHub — earlier sessions' work included); "
+        f"{pending} staged and waiting on the drain. In the last 24h: {p24['contracts']} pulled, {p24['uploaded']} archived. {phase}.",
     ]
     if open_gaps:
-        prose.append(f"{len(open_gaps)} unresolved enumeration gap(s) — completeness verdicts will stay contested until they close.")
-    elif staged:
-        prose.append("No unresolved enumeration gaps: every capped shard has been subdivided to the point of disclosure.")
+        prose.append(
+            f"{len(open_gaps)} department(s) still sit behind the portal's 1,000-row search wall "
+            f"(the enumeration gaps) — completeness stays contested there until the deep lane subdivides past the cap."
+        )
     if vc:
-        prose.append("Completeness verdicts: " + ", ".join(f"{k} {v}" for k, v in vc.items()) + ".")
+        prose.append(
+            "Completeness verdicts across departments: "
+            + ", ".join(f"{vc.get(k, 0)} {k}" for k in ("complete", "incomplete", "contested", "unexamined"))
+            + " (unexamined means not crawled yet — never counted as a pass)."
+        )
     if qc_grades:
         worst = "clean" if not qc_grades.get("defect") and not qc_grades.get("suspicious") else "flagging problems"
-        prose.append(f"Last QC pass: {worst} ({qc_grades.get('ok',0)} ok, {qc_grades.get('suspicious',0)} suspicious, {qc_grades.get('defect',0)} defects).")
+        prose.append(f"Last QC pass: {worst} ({qc_grades.get('ok',0)} clean, {qc_grades.get('suspicious',0)} suspicious, {qc_grades.get('defect',0)} defect).")
     if adopted:
-        prose.append(f"The pipeline has learned {len(adopted)} rule(s) from recurring problems (e.g. {adopted[0].get('class','')}:{adopted[0].get('probe','')}); {len(conceded)} rule(s) conceded by the proteasome as no longer evidenced.")
+        prose.append(f"The pipeline has learned {len(adopted)} rule(s) from recurring problems; {len(conceded)} conceded by the proteasome as no longer evidenced.")
     if changes:
         prose.append(f"{changes} legislation change(s) tracked from Legistar.")
     if missing:
@@ -230,6 +246,9 @@ def state_summary(root: Path | None = None) -> dict:
             )
         else:
             prose.append(f"Missing: {mt} contract(s) surfaced by the recount — every studied department is complete or unexamined.")
+    oversight = _jsonl(q("oversight", "actions.jsonl"))
+    if oversight:
+        prose.append(f"Self-healing: {len(oversight)} oversight action(s) on record (restart/ream/timer arms, fetch pauses on disk pressure) — each with a falsifying control.")
     prose.append("Note: every total here is the live picture at this moment — they grow as the crawl discovers and archives more contracts.")
 
     return {
@@ -243,6 +262,8 @@ def state_summary(root: Path | None = None) -> dict:
         "qc": dict(qc_grades),
         "rules": {"adopted": len(adopted), "conceded": len(conceded)},
         "missing": missing,
+        "last24h": {"pulled": p24.get("contracts", 0), "archived": p24.get("uploaded", 0)},
+        "oversight": {"n": len(oversight), "latest": oversight[-6:]},
         "prose": prose,
         "latest": [event_summary(ev) for ev in events[-5:]],
     }
