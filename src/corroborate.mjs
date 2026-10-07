@@ -17,9 +17,17 @@
 import { readFileSync, writeFileSync, appendFileSync, existsSync, readdirSync } from "node:fs";
 import path from "node:path";
 
-const FOLD = "/Users/mlacy/Documents/3.0/the-fold/";
-const NATIVE = "/Users/mlacy/Documents/3.0/eoreader7/native/";
+const FOLD = process.env.NLA_FOLD_PATH || "/Users/mlacy/Documents/3.0/the-fold/";
+const NATIVE = process.env.NLA_EOREADER7_NATIVE || "/Users/mlacy/Documents/3.0/eoreader7/native/";
 const OLLAMA = "http://localhost:11434", MODEL = "gemma2:2b";
+
+// Best-effort dependency guard: machines without the the-fold/eoreader7
+// checkouts (e.g. the hyphae VM) skip corroboration with a clean message
+// instead of a traceback -- this pass is additive and never blocks archiving.
+if (!existsSync(`${FOLD}hypergraph.js`) || !existsSync(`${NATIVE}organs/index.js`)) {
+  console.error(`corroborate.mjs: the-fold/eoreader7-native checkouts not found (FOLD=${FOLD} NATIVE=${NATIVE}) — skipping this run; set NLA_FOLD_PATH/NLA_EOREADER7_NATIVE where they live`);
+  process.exit(0);
+}
 
 const { makeRelationReader } = await import(`${FOLD}hypergraph.js`);
 const { makeNotesText } = await import(`${FOLD}hyperlexicon.js`);

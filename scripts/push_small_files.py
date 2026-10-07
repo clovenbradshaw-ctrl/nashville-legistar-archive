@@ -61,22 +61,29 @@ def main(argv=None) -> int:
     LOCK.parent.mkdir(parents=True, exist_ok=True)
     LOCK.touch()
     try:
-        st = git("status", "--porcelain", *SMALL_PATHS)
+        # git add aborts on a pathspec that does not exist, so only ever
+        # stage paths present on this machine -- a path that is not there
+        # yet (e.g. data/legislation before its first poll) is simply not
+        # part of this round.
+        present = [p for p in SMALL_PATHS if (ROOT / p).exists()]
+        st = git("status", "--porcelain", *present)
         changed = [l for l in st.stdout.splitlines() if l.strip()]
         if not changed:
             print("push_small_files: nothing changed; skipping", file=sys.stderr)
             return 0
 
-        git("add", *SMALL_PATHS)
+        git("add", *present)
         msg = f"pipeline: publish {len(changed)} small-file change(s) — {time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}"
         c = git("commit", "-m", msg)
-        if c.returncode != 0 and "nothing to commit" not in c.stdout + c.stderr:
-            print(f"push_small_files: commit failed: {c.stderr[-500:]}", file=sys.stderr)
-            return 1
+        if c.returncode != 0:
+            combined = (c.stdout + c.stderr).strip()
+            if "nothing to commit" not in combined:
+                print(f"push_small_files: commit failed: {combined[-500:]}", file=sys.stderr)
+                return 1
 
         p = git("push", "origin", "main")
         if p.returncode != 0:
-            print(f"push_small_files: push failed (staged locally, retry next run): {p.stderr[-500:]}", file=sys.stderr)
+            print(f"push_small_files: push failed (staged locally, retry next run): {(p.stdout + p.stderr)[-500:]}", file=sys.stderr)
             return 1
         print(f"push_small_files: pushed {len(changed)} change(s) to origin/main", file=sys.stderr)
         return 0
