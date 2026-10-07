@@ -55,6 +55,25 @@
 <main>
   <section class="now" id="now"><h2>What's going on</h2><p class="dim">waiting…</p></section>
 
+  <details class="card" style="margin-bottom:12px;font-size:13px">
+    <summary style="cursor:pointer;color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em">What this all means — the ledger / glossary</summary>
+    <dl style="display:grid;grid-template-columns:180px 1fr;gap:4px 12px;margin:10px 0 0">
+      <dt style="color:var(--dim)">Pulled (all-time)</dt><dd>every contract ever accounted for — archived + currently staged, including earlier sessions' work.</dd>
+      <dt style="color:var(--dim)">Uploaded to archive.org</dt><dd>the durable originals (PDF + text) that now live forever on archive.org.</dd>
+      <dt style="color:var(--dim)">Staged now</dt><dd>pulled on the VM but waiting on the rate-limited archive.org drain.</dd>
+      <dt style="color:var(--dim)">Small files on GitHub</dt><dd>extracted text + reads + ledgers stored in this repo and queryable from this site.</dd>
+      <dt style="color:var(--dim)">Enumeration gaps</dt><dd>a department's search hit the portal's 1,000-row cap, so it can't be called complete yet — the deep lane subdivides (party → description → contract #) to measure past it.</dd>
+      <dt style="color:var(--dim)">Missing (recount)</dt><dd>tokens a fresh search shows that we don't hold yet — concrete, fetchable misses; a lower bound, never a guess.</dd>
+      <dt style="color:var(--dim)">Completeness verdicts</dt><dd>complete / incomplete / contested / <b>unexamined</b> (= not crawled yet — never counted as a pass). Colors: green / red / amber / gray.</dd>
+      <dt style="color:var(--dim)">Falsifying control</dt><dd>the exact condition that would prove a verdict, gap, or learned rule wrong — everything we assert carries one; an assertion with no control is refused.</dd>
+      <dt style="color:var(--dim)">QC grades</dt><dd>ok / suspicious / defect. A defect is a real problem surfaced (e.g. no durable home). "Exit 1" was a verdict, not a crash — QC now completes clean.</dd>
+      <dt style="color:var(--dim)">Rules learned / conceded</dt><dd>recurring failures become derived rules with a half-life; the proteasome concedes rules that outlived their evidence.</dd>
+      <dt style="color:var(--dim)">Roundups</dt><dd>period counts (24h / 7d / 30d) split by department and vendor — what was pulled and archived, from which agencies and who the vendors are.</dd>
+      <dt style="color:var(--dim)">Oversight / heal</dt><dd>self-healing actions: restarted daemons, re-armed timers, fetch paused/resumed on disk pressure, stagnation detected — each with a falsifying control.</dd>
+      <dt style="color:var(--dim)">Oversize routing</dt><dd>files over 20MB are routed to archive.org instead of GitHub; the repo is capped at 1.4GB — the data-budget guard.</dd>
+    </dl>
+  </details>
+
   <section class="grid stats" id="stats"></section>
 
   <section class="grid cols">
