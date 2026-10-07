@@ -1,23 +1,23 @@
 {
   "schema": "LiveSummary@1",
-  "at": "2026-10-07T19:06:05Z",
+  "at": "2026-10-07T19:08:31Z",
   "state": {
     "counts": {
-      "fetched": 283,
-      "staged": 283,
-      "pending": 242,
+      "fetched": 287,
+      "staged": 287,
+      "pending": 246,
       "uploaded": 255,
-      "pulled_accounted": 497,
-      "deployed": 283,
+      "pulled_accounted": 501,
+      "deployed": 287,
       "gaps": 123,
       "legislation_changes": 0,
       "missing_total": 7679
     },
-    "phase": "we're pulling faster than archive.org can take it right now (242 staged)",
+    "phase": "we're pulling faster than archive.org can take it right now (246 staged)",
     "verdicts": {
-      "unexamined": 6071,
-      "complete": 77,
-      "incomplete": 92
+      "complete": 3,
+      "unexamined": 114,
+      "incomplete": 3
     },
     "qc": {
       "defect": 10,
@@ -98,7 +98,7 @@
       ]
     },
     "last24h": {
-      "pulled": 283,
+      "pulled": 287,
       "archived": 41
     },
     "oversight": {
@@ -106,9 +106,9 @@
       "latest": []
     },
     "prose": [
-      "Where we are: 497 contracts pulled all-time (255 archived on archive.org, 283 small-file sets on GitHub \u2014 earlier sessions' work included); 242 staged and waiting on the drain. In the last 24h: 283 pulled, 41 archived. we're pulling faster than archive.org can take it right now (242 staged).",
+      "Where we are: 501 contracts pulled all-time (255 archived on archive.org, 287 small-file sets on GitHub \u2014 earlier sessions' work included); 246 staged and waiting on the drain. In the last 24h: 287 pulled, 41 archived. we're pulling faster than archive.org can take it right now (246 staged).",
       "123 department(s) still sit behind the portal's 1,000-row search wall (the enumeration gaps) \u2014 completeness stays contested there until the deep lane subdivides past the cap.",
-      "Completeness verdicts across departments: 77 complete, 92 incomplete, 0 contested, 6071 unexamined (unexamined means not crawled yet \u2014 never counted as a pass).",
+      "Completeness verdicts across departments: 3 complete, 3 incomplete, 0 contested, 114 unexamined (unexamined means not crawled yet \u2014 never counted as a pass).",
       "Last QC pass: flagging problems (32 clean, 0 suspicious, 10 defect).",
       "Missing: recount found 7679 contract(s) the portal still shows that we don't hold yet \u2014 FINANCE \u22122464; WATER SERVICES \u22122432; FILM OFFICE \u22121332; GENERAL SERVICES \u22121062; FIRE \u2212354; AFFORDABLE HOUSING \u221235. Every count is a concrete lower bound; caps are declared, never hidden.",
       "Note: every total here is the live picture at this moment \u2014 they grow as the crawl discovers and archives more contracts."
@@ -118,10 +118,10 @@
     "24h": {
       "range": "24h",
       "hours": 24,
-      "contracts": 283,
+      "contracts": 287,
       "uploaded": 41,
       "departments": {
-        "AIRPORT AUTHORITY": 178,
+        "AIRPORT AUTHORITY": 182,
         "AFFORDABLE HOUSING": 95,
         "AGRICULTURAL EXTENSION": 7,
         "FILM OFFICE": 3
@@ -139,16 +139,16 @@
         "HERTZ CORP": 3
       },
       "by_day": {
-        "2026-10-07": 283
+        "2026-10-07": 287
       }
     },
     "168h": {
       "range": "168h",
       "hours": 168,
-      "contracts": 283,
+      "contracts": 287,
       "uploaded": 41,
       "departments": {
-        "AIRPORT AUTHORITY": 178,
+        "AIRPORT AUTHORITY": 182,
         "AFFORDABLE HOUSING": 95,
         "AGRICULTURAL EXTENSION": 7,
         "FILM OFFICE": 3
@@ -166,16 +166,16 @@
         "HERTZ CORP": 3
       },
       "by_day": {
-        "2026-10-07": 283
+        "2026-10-07": 287
       }
     },
     "720h": {
       "range": "720h",
       "hours": 720,
-      "contracts": 283,
+      "contracts": 287,
       "uploaded": 255,
       "departments": {
-        "AIRPORT AUTHORITY": 178,
+        "AIRPORT AUTHORITY": 182,
         "AFFORDABLE HOUSING": 95,
         "AGRICULTURAL EXTENSION": 7,
         "FILM OFFICE": 3
@@ -193,22 +193,22 @@
         "HERTZ CORP": 3
       },
       "by_day": {
-        "2026-10-07": 283
+        "2026-10-07": 287
       }
     }
   },
   "roundup": {
     "schema": "Roundup@1",
     "kind": "roundup",
-    "at": "2026-10-07T19:06:05Z",
+    "at": "2026-10-07T19:08:30Z",
     "range_hours": 24,
-    "since": "2026-10-07T19:06:05Z",
+    "since": "2026-10-07T19:08:30Z",
     "range": "24h",
     "hours": 24,
-    "contracts": 283,
+    "contracts": 287,
     "uploaded": 41,
     "departments": {
-      "AIRPORT AUTHORITY": 178,
+      "AIRPORT AUTHORITY": 182,
       "AFFORDABLE HOUSING": 95,
       "AGRICULTURAL EXTENSION": 7,
       "FILM OFFICE": 3
@@ -226,270 +226,10 @@
       "HERTZ CORP": 3
     },
     "by_day": {
-      "2026-10-07": 283
+      "2026-10-07": 287
     }
   },
   "recent": [
-    {
-      "schema": "LiveEvent@1",
-      "kind": "read",
-      "at": "2026-10-07T18:33:06Z",
-      "epav_token": "LyvOaQ6A",
-      "contract_number": "2024-R12-WFBCDC",
-      "department": "AFFORDABLE HOUSING"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "subject": "AFFORDABLE HOUSING",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "subject": "AGRICULTURAL EXTENSION",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "subject": "AIRPORT AUTHORITY",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "subject": "FILM OFFICE",
-      "standing": "incomplete",
-      "reason": "standing capped-shard gap(s) for this department"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "subject": "FINANCE",
-      "standing": "incomplete",
-      "reason": "standing capped-shard gap(s) for this department"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "subject": "WATER SERVICES",
-      "standing": "incomplete",
-      "reason": "standing capped-shard gap(s) for this department"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T18:33:15Z",
-      "run_id": "20261007T183315Z",
-      "standing": "unexamined",
-      "n_unexamined": 114,
-      "subject": "MULTIPLE",
-      "reason": "114 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
-      "departments": [
-        "ARENA",
-        "ARTS COMMISSION",
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
-        "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
-        "CLERK AND MASTER",
-        "CODES ADMINISTRATION",
-        "COMMUNITY ACCESS TV",
-        "COMMUNITY CORRECTIONS",
-        "COMMUNITY EDUCATION COMMISSION",
-        "COMMUNITY OVERSIGHT BOARD",
-        "CONSTELLATION ENERGY SOURCE",
-        "CONVENTION CENTER AUTHORITY",
-        "COUNTY CLERK",
-        "CRIMINAL COURT CLERK",
-        "CRIMINAL JUSTICE PLANNING",
-        "DATA PROCESSING",
-        "DISTRICT ATTORNEY",
-        "DISTRICT ENERGY SYSTEM",
-        "DOWNTOWN PARTNERSHIP",
-        "DRUG COURT",
-        "DRUG POLICY OFFICE",
-        "EAST BANK DEVELOPMENT AUTHORITY",
-        "ECONOMIC DEVELOPMENT",
-        "ELECTION COMMISSION",
-        "ELECTRIC POWER BOARD",
-        "EMERGENCY COMMAND CENTER",
-        "EMERGENCY COMMUNICATIONS DISTRICT",
-        "EMPLOYEE ASSISTANCE",
-        "EMPLOYEE BENEFIT BD TRUST FND",
-        "EMPLOYEE BENEFIT BOARD",
-        "ENERGY PROD FACILITY",
-        "FAIRGROUNDS",
-        "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
-        "FAMILY SAFETY OFFICE",
-        "FARMERS MARKET",
-        "FIRE",
-        "FRANCHISE",
-        "GENERAL SERVICES",
-        "GENERAL SESSIONS COURT",
-        "HEALTH",
-        "HEALTH AND EDUCATIONAL FACILITIES BOARD",
-        "HISTORICAL COMMISSION",
-        "HOSPITAL AUTHORITY",
-        "HOSPITALS",
-        "HOUSING TRUST FUND COMMISSION",
-        "HUMAN RELATIONS COMMISSION",
-        "HUMAN RESOURCES",
-        "INDUSTRIAL DEVELOPMENT BOARD",
-        "INFORMATION TECHNOLOGY SERVICES",
-        "INTERNAL AUDIT",
-        "JEAN CROWE ADVOCACY CENTER",
-        "JIS",
-        "JUVENILE COURT",
-        "JUVENILE COURT CLERK",
-        "JUVENILE JUSTICE CENTER",
-        "LEGAL DEPARTMENT",
-        "LOCAL WORKFORCE DEVELOPMENT AREA 9",
-        "LOCAL WORKFORCE INVESTMENT BOARD",
-        "MAYORS OFFICE",
-        "MAYORS OFFICE CHILDREN AND YOUTH",
-        "MAYORS YOUTH COUNCIL",
-        "MDHA",
-        "MEDICAL EXAMINER",
-        "METRA",
-        "METRO ACTION COMMISSION",
-        "METRO CLERK",
-        "METRO COUNCIL",
-        "METRO NASHVILLE PUBLIC SCHOOLS",
-        "METRO WIDE",
-        "METROPOLITAN GOVERNMENT",
-        "MUNICIPAL AUDITORIUM",
-        "MUSIC CITY CENTER",
-        "NASHVILLE CAREER ADVANCEMENT CENTER",
-        "NASHVILLE CITY OF",
-        "NASHVILLE CONVENTION CENTER",
-        "NASHVILLE ELECTRIC SERVICE",
-        "NDOT",
-        "OFFICE OF EMERGENCY MANAGEMENT",
-        "OFFICE OF HOMELESS SERVICES",
-        "PARKS AND RECREATION",
-        "PARTNERSHIP 2000",
-        "PLANNING COMMISSION",
-        "POLICE",
-        "PORT AUTHORITY",
-        "PROBATE COURT CLERK",
-        "PUBLIC DEFENDER",
-        "PUBLIC LIBRARY",
-        "PUBLIC PROPERTY",
-        "PUBLIC WORKS",
-        "PURCHASING",
-        "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
-        "REGISTER OF DEEDS",
-        "SHERIFF",
-        "SOCIAL SERVICES",
-        "SOIL AND WATER CONSERVATION",
-        "SPORTS AUTHORITY",
-        "STADIUM",
-        "STAHLMAN",
-        "STATE TRIAL COURT",
-        "TAXI/WRECKER BOARD",
-        "TELECOMMUNICATIONS",
-        "TENNESSEE STATE FAIR",
-        "THERMAL TRANSFER CORP",
-        "TOURISM COMMISSION",
-        "TRAFFIC AND PARKING",
-        "TRANSIT AUTHORITY",
-        "TRANSPORTATION LICENSING COMMISSION",
-        "TRUSTEE",
-        "WASTE SERVICES"
-      ]
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "read",
-      "at": "2026-10-07T18:33:52Z",
-      "epav_token": "lj7bBxD7",
-      "contract_number": "399403",
-      "department": "AFFORDABLE HOUSING"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-07T18:34:24Z",
-      "epav_token": "LDVKEojk",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-LDVKEojk/LDVKEojk.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T18:35:37Z",
-      "epav_token": "A6OqoOjJ",
-      "contract_number": "A-00-021",
-      "department": "AIRPORT AUTHORITY"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T18:35:37Z",
-      "scanned": 11,
-      "newly_fetched": 111,
-      "staged": 179,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T18:35:41Z",
-      "epav_token": "byxPwayR",
-      "contract_number": "A-00-023",
-      "department": "AIRPORT AUTHORITY"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "roundup",
-      "at": "2026-10-07T18:35:43Z",
-      "range_hours": 24,
-      "since": "2026-10-07T18:35:43Z",
-      "range": "24h",
-      "hours": 24,
-      "contracts": 180,
-      "uploaded": 25,
-      "departments": {
-        "AFFORDABLE HOUSING": 95,
-        "AIRPORT AUTHORITY": 75,
-        "AGRICULTURAL EXTENSION": 7,
-        "FILM OFFICE": 3
-      },
-      "vendors": {
-        "BE A HELPING HAND FOUNDATION": 6,
-        "WOODBINE COMMUNITY ORGANIZATION": 5,
-        "WESTMINSTER HOME CONNECTION": 4,
-        "URBAN HOUSING SOLUTIONS": 4,
-        "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 4,
-        "REBUILDING TOGETHER NASHVILLE": 3,
-        "NASHVILLE HOUSING FUND": 3,
-        "HERTZ CORP": 3,
-        "SOUTHWEST AIRLINES": 3,
-        "VARIOUS": 2
-      },
-      "by_day": {
-        "2026-10-07": 180
-      }
-    },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
@@ -4847,6 +4587,265 @@
       },
       "by_day": {
         "2026-10-07": 283
+      }
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "subject": "AFFORDABLE HOUSING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "subject": "AGRICULTURAL EXTENSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "subject": "AIRPORT AUTHORITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "subject": "FILM OFFICE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "subject": "FINANCE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "subject": "WATER SERVICES",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T19:06:15Z",
+      "run_id": "20261007T190615Z",
+      "standing": "unexamined",
+      "n_unexamined": 114,
+      "subject": "MULTIPLE",
+      "reason": "114 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "departments": [
+        "ARENA",
+        "ARTS COMMISSION",
+        "ASSESSOR OF PROPERTY",
+        "AUDIT COMMITTEE",
+        "BEAUTIFICATION COMMISSION",
+        "BEER BOARD",
+        "CARING FOR CHILDREN",
+        "CHANCERY COURT",
+        "CIRCUIT COURT CLERK",
+        "CLERK AND MASTER",
+        "CODES ADMINISTRATION",
+        "COMMUNITY ACCESS TV",
+        "COMMUNITY CORRECTIONS",
+        "COMMUNITY EDUCATION COMMISSION",
+        "COMMUNITY OVERSIGHT BOARD",
+        "CONSTELLATION ENERGY SOURCE",
+        "CONVENTION CENTER AUTHORITY",
+        "COUNTY CLERK",
+        "CRIMINAL COURT CLERK",
+        "CRIMINAL JUSTICE PLANNING",
+        "DATA PROCESSING",
+        "DISTRICT ATTORNEY",
+        "DISTRICT ENERGY SYSTEM",
+        "DOWNTOWN PARTNERSHIP",
+        "DRUG COURT",
+        "DRUG POLICY OFFICE",
+        "EAST BANK DEVELOPMENT AUTHORITY",
+        "ECONOMIC DEVELOPMENT",
+        "ELECTION COMMISSION",
+        "ELECTRIC POWER BOARD",
+        "EMERGENCY COMMAND CENTER",
+        "EMERGENCY COMMUNICATIONS DISTRICT",
+        "EMPLOYEE ASSISTANCE",
+        "EMPLOYEE BENEFIT BD TRUST FND",
+        "EMPLOYEE BENEFIT BOARD",
+        "ENERGY PROD FACILITY",
+        "FAIRGROUNDS",
+        "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
+        "FAMILY SAFETY OFFICE",
+        "FARMERS MARKET",
+        "FIRE",
+        "FRANCHISE",
+        "GENERAL SERVICES",
+        "GENERAL SESSIONS COURT",
+        "HEALTH",
+        "HEALTH AND EDUCATIONAL FACILITIES BOARD",
+        "HISTORICAL COMMISSION",
+        "HOSPITAL AUTHORITY",
+        "HOSPITALS",
+        "HOUSING TRUST FUND COMMISSION",
+        "HUMAN RELATIONS COMMISSION",
+        "HUMAN RESOURCES",
+        "INDUSTRIAL DEVELOPMENT BOARD",
+        "INFORMATION TECHNOLOGY SERVICES",
+        "INTERNAL AUDIT",
+        "JEAN CROWE ADVOCACY CENTER",
+        "JIS",
+        "JUVENILE COURT",
+        "JUVENILE COURT CLERK",
+        "JUVENILE JUSTICE CENTER",
+        "LEGAL DEPARTMENT",
+        "LOCAL WORKFORCE DEVELOPMENT AREA 9",
+        "LOCAL WORKFORCE INVESTMENT BOARD",
+        "MAYORS OFFICE",
+        "MAYORS OFFICE CHILDREN AND YOUTH",
+        "MAYORS YOUTH COUNCIL",
+        "MDHA",
+        "MEDICAL EXAMINER",
+        "METRA",
+        "METRO ACTION COMMISSION",
+        "METRO CLERK",
+        "METRO COUNCIL",
+        "METRO NASHVILLE PUBLIC SCHOOLS",
+        "METRO WIDE",
+        "METROPOLITAN GOVERNMENT",
+        "MUNICIPAL AUDITORIUM",
+        "MUSIC CITY CENTER",
+        "NASHVILLE CAREER ADVANCEMENT CENTER",
+        "NASHVILLE CITY OF",
+        "NASHVILLE CONVENTION CENTER",
+        "NASHVILLE ELECTRIC SERVICE",
+        "NDOT",
+        "OFFICE OF EMERGENCY MANAGEMENT",
+        "OFFICE OF HOMELESS SERVICES",
+        "PARKS AND RECREATION",
+        "PARTNERSHIP 2000",
+        "PLANNING COMMISSION",
+        "POLICE",
+        "PORT AUTHORITY",
+        "PROBATE COURT CLERK",
+        "PUBLIC DEFENDER",
+        "PUBLIC LIBRARY",
+        "PUBLIC PROPERTY",
+        "PUBLIC WORKS",
+        "PURCHASING",
+        "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
+        "REGISTER OF DEEDS",
+        "SHERIFF",
+        "SOCIAL SERVICES",
+        "SOIL AND WATER CONSERVATION",
+        "SPORTS AUTHORITY",
+        "STADIUM",
+        "STAHLMAN",
+        "STATE TRIAL COURT",
+        "TAXI/WRECKER BOARD",
+        "TELECOMMUNICATIONS",
+        "TENNESSEE STATE FAIR",
+        "THERMAL TRANSFER CORP",
+        "TOURISM COMMISSION",
+        "TRAFFIC AND PARKING",
+        "TRANSIT AUTHORITY",
+        "TRANSPORTATION LICENSING COMMISSION",
+        "TRUSTEE",
+        "WASTE SERVICES"
+      ]
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T19:07:28Z",
+      "epav_token": "3y90aRje",
+      "contract_number": "2024-R13-LDC",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T19:07:52Z",
+      "epav_token": "3y9L0rje",
+      "contract_number": "A-95-293",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T19:07:55Z",
+      "epav_token": "aD2PK7yM",
+      "contract_number": "A-95-306",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T19:07:58Z",
+      "epav_token": "7yWmOKDw",
+      "contract_number": "A-95-295",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T19:08:01Z",
+      "epav_token": "byxPxnyR",
+      "contract_number": "A-95-290",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "upload-failed",
+      "at": "2026-10-07T19:08:13Z",
+      "epav_token": "3y90aRje",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-3y90aRje/3y90aRje.pdf"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "roundup",
+      "at": "2026-10-07T19:08:30Z",
+      "range_hours": 24,
+      "since": "2026-10-07T19:08:30Z",
+      "range": "24h",
+      "hours": 24,
+      "contracts": 287,
+      "uploaded": 41,
+      "departments": {
+        "AIRPORT AUTHORITY": 182,
+        "AFFORDABLE HOUSING": 95,
+        "AGRICULTURAL EXTENSION": 7,
+        "FILM OFFICE": 3
+      },
+      "vendors": {
+        "BE A HELPING HAND FOUNDATION": 6,
+        "WOODBINE COMMUNITY ORGANIZATION": 5,
+        "U S GOVT FAA": 5,
+        "WESTMINSTER HOME CONNECTION": 4,
+        "URBAN HOUSING SOLUTIONS": 4,
+        "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 4,
+        "SOUTHWEST AIRLINES": 4,
+        "REBUILDING TOGETHER NASHVILLE": 3,
+        "NASHVILLE HOUSING FUND": 3,
+        "HERTZ CORP": 3
+      },
+      "by_day": {
+        "2026-10-07": 287
       }
     }
   ]
