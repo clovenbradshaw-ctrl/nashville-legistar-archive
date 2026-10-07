@@ -32,6 +32,18 @@ def main() -> int:
     ledger = None if args.no_write else ROOT / "data" / "qc" / "reports.jsonl"
     reports = qcmod.default_run(ROOT, run_id, ledger_path=ledger)
 
+    # Learning engagement: every defect/suspicious is a recurrence under
+    # (qc, check) in the derived-rules ledger, so a check that keeps firing
+    # mints a rule with a control and a half-life -- and the proteasome
+    # concedes it once it stops being evidenced.
+    try:
+        import learning
+        for rep in reports:
+            if rep.grade in ("defect", "suspicious"):
+                learning.observe("qc", rep.check)
+    except Exception as e:  # noqa: BLE001 - audit runs even if learning is wounded
+        print(f"  learning.observe failed: {e}", file=sys.stderr)
+
     n_defect = n_susp = 0
     for rep in reports:
         tag = rep.grade.upper()
