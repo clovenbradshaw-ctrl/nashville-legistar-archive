@@ -70,6 +70,13 @@ def main() -> None:
                 break
 
     print(f"done: {done} new document(s) fetched locally -> {epav_pipeline.EPAV_FETCHED}", file=sys.stderr)
+    # push the small files (deployed/ + ledgers) to GitHub regardless of
+    # archive.org health -- the two storages are independent legs
+    try:
+        import push_small_files
+        push_small_files.main(["run"])
+    except Exception as e:  # noqa: BLE001 - a fetch is never blocked by a push
+        print(f"  push_small_files FAILED (retry on next run): {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
