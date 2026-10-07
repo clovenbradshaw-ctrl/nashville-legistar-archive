@@ -51,5 +51,5 @@ def roundup(*, hours: int = 24, since: str | None = None) -> dict:
     ROUNDUPS.parent.mkdir(parents=True, exist_ok=True)
     with ROUNDUPS.open("a") as f:
         f.write(json.dumps(line) + "\n")
-    event("roundup", **{k: v for k, v in line.items() if k not in ("schema",)})
+    event("roundup", **{k: v for k, v in line.items() if k not in ("schema", "kind")})
     return line
