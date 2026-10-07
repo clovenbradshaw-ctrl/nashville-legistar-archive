@@ -118,12 +118,15 @@
     const c = st.counts||{};
     const q = st.qc||{}; const r = st.rules||{};
     $('stats').innerHTML = [
-      ['Fetched', c.fetched], ['Uploaded to archive.org', c.uploaded], ['Staged for GitHub', c.deployed],
+      ['Pulled (all-time)', c.pulled_accounted ?? c.fetched],
+      ['Uploaded to archive.org (all-time)', c.uploaded],
+      ['Staged now (pending upload)', c.pending],
+      ['Small files on GitHub', c.deployed],
       ['Missing (recount)', c.missing_total||0],
       ['Open enumeration gaps', c.gaps, c.gaps?'g-red':'g-green'],
-      ['QC', (q.defect?'defects ':'')+(q.suspicious?'suspicious ':'')+(q.ok?'ok':'clean')],
       ['Rules learned', r.adopted], ['Conceded by proteasome', r.conceded]
-    ].map(([l,n,b])=>`<div class="stat"><div class="n ${b==='g-red'?'g-red':''}">${n}</div><div class="l">${l}</div></div>`).join('');
+    ].map(([l,n,b])=>`<div class="stat"><div class="n ${b==='g-red'?'g-red':''}">${n}</div><div class="l">${l}</div></div>`).join('')
+      + `<div class="card" style="grid-column:1/-1;font-size:12px;color:var(--dim)">Totals are live and change over time — the crawl discovers and archives more contracts continuously. “All-time” includes the project's earlier sessions' work.</div>`;
 
     const ps = s.periods||{};
     $('roundups').innerHTML = Object.entries(ps).map(([k,p])=>{

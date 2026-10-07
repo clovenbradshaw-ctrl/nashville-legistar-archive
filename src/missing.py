@@ -83,8 +83,9 @@ def estimate_from_sample(novel: int, slice_count: int, space: int = 26) -> dict:
 
 
 class Missing:
-    def __init__(self, *, live: bool = False):
+    def __init__(self, *, live: bool = False, deep: bool = False):
         self.live = live
+        self.deep = deep
         self._api = None
 
     def api(self) -> EPAV:
@@ -92,11 +93,50 @@ class Missing:
             self._api = EPAV(delay=0.3)
         return self._api
 
+    def _has_residual_cap(self, dept: str) -> bool:
+        return any(dept in g.get("subject", "") and g.get("kind") == "capped-shard" for g in _gaps())
+
+    def analyze_deep(self, dept: str, held: set[str]) -> dict:
+        """Complete-list recount for a department that exceeds the 1000-row
+        cap: drive the portal's full axis-recurse (Contracting Party A-Z0-9 ->
+        Description -> Contract Number digits) so discovery is measured past
+        the cap instead of reported as a bound. Any shard still at the cap
+        after every axis is a recorded residual gap -- so even here 'missing'
+        can be a lower bound, but it is no longer just 'someone hit 1000'."""
+        api = self.api()
+        tokens: set[str] = set()
+        for row in api.iter_department_exhaustive(dept):
+            tok = row.get("token")
+            if tok:
+                tokens.add(tok)
+        discovered = tokens - held
+        residual = self._has_residual_cap(dept)
+        n = len(discovered)
+        if n:
+            standing, reason = "incomplete", f"deep recount surfaced {n} token(s) past the cap that we don't hold"
+        elif residual:
+            standing, reason = "incomplete", "deep recount complete except residual capped shards (remaining bound recorded as gaps)"
+        else:
+            standing, reason = "complete", "deep recount found everything the portal holds, already held"
+        return {
+            "standing": standing, "missing": n, "reason": reason,
+            "estimate": {"method": "deep exhaustive", "estimate": None,
+                         "falsifying": "another deep recount of this department yields no token we don't hold"},
+            "held": len(held), "recount": len(tokens), "deep": True,
+            "discovered_sample": sorted(discovered)[:10],
+        }
+
     def analyze(self, dept: str, held: set[str]) -> dict:
         gaps_open = any(dept in g.get("subject", "") for g in _gaps())
         if not self.live:
             s, n, reason = standing_missing(dept, held=held, caps=gaps_open)
             return {"standing": s, "missing": n, "reason": reason, "estimate": None}
+
+        # deep means deep: the exhaustive axis-recurse runs for the department
+        # outright (not only when a gap was pre-recorded) so the recount is
+        # actually measured past the 1000-row cap.
+        if self.deep:
+            return self.analyze_deep(dept, held)
 
         api = self.api()
         rows = api.search(department=dept)
@@ -137,6 +177,7 @@ class Missing:
             "reason": r["reason"],
             "estimate": r["estimate"],
             "held": r.get("held"), "recount": r.get("recount"),
+            "deep": r.get("deep", False),
             "discovered_sample": r.get("discovered_sample", []),
         }
         MISSING.parent.mkdir(parents=True, exist_ok=True)
@@ -198,7 +239,8 @@ if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--live", action="store_true")
+    ap.add_argument("--deep", action="store_true", help="deep-exhaustive recount for capped departments")
     ap.add_argument("--limit", type=int, default=None)
     a = ap.parse_args()
-    print(json.dumps(Missing(live=a.live).run(limit=a.limit), indent=2))
+    print(json.dumps(Missing(live=a.live, deep=a.deep).run(limit=a.limit), indent=2))
     print(f"reports -> {MISSING}")

@@ -155,8 +155,11 @@ def state_summary(root: Path | None = None) -> dict:
     root = Path(root) if root else ROOT
     q = lambda *p: root.joinpath("data", *p)
 
-    fetched = _cnt(q("epav-fetched.jsonl"))
-    uploaded = _cnt(q("epav-manifest.jsonl"))
+    fetched_rows = _jsonl(q("epav-fetched.jsonl"))
+    man_tokens = {m.get("epav_token") for m in _jsonl(q("epav-manifest.jsonl"))}
+    staged = len(fetched_rows)                      # the current VM queue
+    pending = sum(1 for r in fetched_rows if (r.get("epav_token") or "") not in man_tokens)
+    uploaded = len(man_tokens)                       # all-time archive.org manifest
     deployed = len([p for p in q("deployed").iterdir()]) if q("deployed").is_dir() else 0
     gaps = _jsonl(q("gaps.jsonl"))
     open_gaps = [g for g in gaps if g.get("kind") == "capped-shard"]
@@ -191,19 +194,22 @@ def state_summary(root: Path | None = None) -> dict:
     except Exception:  # noqa: BLE001 - the summary survives a missing-module failure
         missing = {}
 
-    if not fetched:
+    if not fetched_rows:
         phase = "booting — the first exhaustive enumeration has not produced documents yet"
-    elif uploaded < fetched:
-        phase = f"fetching faster than uploading: {fetched - uploaded} contract(s) staged locally, waiting on the archive.org drain"
+    elif pending:
+        phase = f"catching up: {pending} contract(s) staged and waiting on the archive.org drain; {uploaded} already archived"
     else:
-        phase = "in sync: everything fetched has been uploaded to archive.org"
+        phase = "in sync: everything staged has been uploaded to archive.org"
 
+    pulled_accounted = uploaded + pending  # all-time: every archived one + what's staged today
     prose = [
-        f"Held {fetched} contract(s) in the ledger; {uploaded} uploaded to archive.org ({deployed} with small files staged for GitHub). {phase}.",
+        f"All-time project totals: {pulled_accounted} contract(s) pulled and accounted for "
+        f"({uploaded} uploaded to archive.org — including earlier sessions' work — and {pending} staged "
+        f"right now, {deployed} with small files on GitHub). {phase}.",
     ]
     if open_gaps:
         prose.append(f"{len(open_gaps)} unresolved enumeration gap(s) — completeness verdicts will stay contested until they close.")
-    elif fetched:
+    elif staged:
         prose.append("No unresolved enumeration gaps: every capped shard has been subdivided to the point of disclosure.")
     if vc:
         prose.append("Completeness verdicts: " + ", ".join(f"{k} {v}" for k, v in vc.items()) + ".")
@@ -224,9 +230,12 @@ def state_summary(root: Path | None = None) -> dict:
             )
         else:
             prose.append(f"Missing: {mt} contract(s) surfaced by the recount — every studied department is complete or unexamined.")
+    prose.append("Note: every total here is the live picture at this moment — they grow as the crawl discovers and archives more contracts.")
 
     return {
-        "counts": {"fetched": fetched, "uploaded": uploaded, "deployed": deployed,
+        "counts": {"fetched": staged, "staged": staged, "pending": pending,
+                   "uploaded": uploaded, "pulled_accounted": pulled_accounted,
+                   "deployed": deployed,
                    "gaps": len(open_gaps), "legislation_changes": changes,
                    "missing_total": missing.get("missing_total", 0)},
         "phase": phase,
