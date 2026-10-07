@@ -1,0 +1,37 @@
+{
+  "schema": "RoleConfig@1",
+  "language": "arb",
+  "provenance": {
+    "builder": "eoreader7 native/scripts/build-role-config.mjs",
+    "source": "/private/tmp/claude-501/-Users-mlacy-Documents-3-0/34a16147-406d-48c2-a66f-39ae5917e1f1/scratchpad/treebanks/arb-train.conllu",
+    "min_volume": 20,
+    "null_draws": 200,
+    "null_alpha": 0.05,
+    "null_seed": 1,
+    "note": "position stats and marker candidates are both derived mechanically from this treebank's own gold dependency annotations — never hand-typed or asserted from general linguistic knowledge. A marker candidate is admitted only when its real precision beats the (1-alpha) quantile of a within-sentence role-label shuffle (II.23), never a fixed ratio — and (S122) that quantile is the MAX-STATISTIC across every eligible closed-class candidate tried, not a per-candidate null, so the admitted marker is significant against the whole search, not merely against itself."
+  },
+  "object": {
+    "total": 6799,
+    "before": 10,
+    "after": 6789,
+    "dominantSide": "after",
+    "reliability": 0.998529195469922,
+    "usable": true,
+    "marker": null
+  },
+  "subject": {
+    "total": 13933,
+    "before": 6416,
+    "after": 7517,
+    "dominantSide": "after",
+    "reliability": 0.5395105146056126,
+    "usable": false,
+    "marker": {
+      "form": "لان",
+      "hits": 21,
+      "total": 24,
+      "precision": 0.875,
+      "nullCeiling": 0.22727272727272727
+    }
+  }
+}

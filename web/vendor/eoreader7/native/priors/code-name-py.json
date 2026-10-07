@@ -1,0 +1,2193 @@
+{
+ "schema": "CodeNamePrior@1",
+ "language": "py",
+ "provenance": {
+  "giver": "per-language split of the CodeNamePrior@1 measurement (recipes identical to live_priors build-code-name-prior.mjs; sum-checked against the blended tally: 4819 attestations in exactly one split)",
+  "source": "/Users/mlacy/Documents/3.0/live_priors/09-source-code",
+  "builder": "eoreader7 native/scripts/build-code-name-prior-split.mjs",
+  "familyFiles": 3,
+  "familyRepos": 3,
+  "note": "genericity is a fact about this language's own codebases: repos counts only repos attested through this family's extensions. Thin families (one repo) attest nothing at floor 2 — every name admitted, disclosed, never a silent skip."
+ },
+ "counts": {
+  "files": 3,
+  "repos": 3,
+  "totalBytes": 388206,
+  "distinctNames": 310,
+  "totalDeclarations": 430,
+  "namesAtOrAboveGenericFloor": 5
+ },
+ "names": {
+  "_make_timedelta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "remove_ctx": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "wrapper": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "add_ctx": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Flask": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__init_subclass__": {
+   "repos": 2,
+   "files": 2,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__init__": {
+   "repos": 3,
+   "files": 3,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_send_file_max_age": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "send_static_file": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "open_resource": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "open_instance_resource": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "create_jinja_environment": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "create_url_adapter": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "raise_routing_exception": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "update_template_context": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "make_shell_context": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "run": {
+   "repos": 2,
+   "files": 2,
+   "kinds": [
+    "function"
+   ]
+  },
+  "test_client": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "CustomClient": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "test_cli_runner": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "handle_http_exception": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "handle_user_exception": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "handle_exception": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "log_exception": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "dispatch_request": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "full_dispatch_request": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "finalize_request": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "make_default_options_response": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ensure_sync": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "async_to_sync": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "url_for": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "make_response": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "preprocess_request": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "process_response": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "do_teardown_request": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "do_teardown_appcontext": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "app_context": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "request_context": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "test_request_context": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "wsgi_app": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__call__": {
+   "repos": 3,
+   "files": 3,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_type_convert": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_type_check": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_is_param_expr": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_should_unflatten_callable_args": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_type_repr": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_collect_type_parameters": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_check_generic_specialization": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_unpack_args": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_deduplicate": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_flatten_literal_params": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_clear_caches": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_tp_cache": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "decorator": {
+   "repos": 2,
+   "files": 2,
+   "kinds": [
+    "function"
+   ]
+  },
+  "inner": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_rebuild_generic_alias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_eval_type": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_Final": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_NotIterable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__iter__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_SpecialForm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__getattr__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__mro_entries__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__repr__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__reduce__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__or__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__ror__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__instancecheck__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__subclasscheck__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__getitem__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_TypedCacheSpecialForm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_TypeFormForm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_AnyMeta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Any": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__new__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "NoReturn": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stop": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Never": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "never_call_me": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "int_or_str": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Self": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Foo": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "return_self": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "LiteralString": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "run_query": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "caller": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ClassVar": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Starship": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Final": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Connection": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "FastConnector": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Optional": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Literal": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "validate_simple": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "open_helper": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "TypeAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Concatenate": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "TypeGuard": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "is_str_list": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "func1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "TypeForm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "cast": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "TypeIs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Parent": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Child": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Unrelated": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "is_parent": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_make_forward_ref": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "evaluate_forward_ref": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_is_unpacked_typevartuple": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_is_typevar_like": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_typevar_subst": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_typevartuple_prepare_subst": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_paramspec_subst": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_paramspec_prepare_subst": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_generic_class_getitem": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_generic_init_subclass": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_is_dunder": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_BaseGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__setattr__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__dir__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_GenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "C": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__eq__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__hash__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "A": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_determine_new_args": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_make_substitution": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "copy_with": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_SpecialGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_CallableGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_CallableType": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__getitem_inner__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_TupleType": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_UnionGenericAliasMeta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_UnionGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_value_and_type_iter": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_LiteralGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_ConcatenateGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Unpack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Bar": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Movie": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "foo": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_UnpackGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__typing_unpacked_tuple_args__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__typing_is_unpacked_typevartuple__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_TypingEllipsis": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_get_protocol_attrs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_no_init_or_replace_init": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_caller": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_allow_reckless_class_checks": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_lazy_load_getattr_static": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_pickle_psargs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_pickle_pskwargs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_type_check_issubclass_arg_1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_ProtocolMeta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_proto_hook": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Protocol": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Proto": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "meth": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "func": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GenProto": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_AnnotatedAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Annotated": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runtime_checkable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Closable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "close": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "assert_type": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "greet": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_type_hints": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_add_type_params_to_scope": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_strip_annotations": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_origin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_args": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "is_typeddict": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "assert_never": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "no_type_check": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_overload_dummy": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "overload": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "utf8": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_overloads": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "clear_overloads": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "final": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Base": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "done": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Sub": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Leaf": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Other": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "disjoint_base": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Disjoint1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Disjoint2": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Disjoint3": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "User": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "BasicUser": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "ProUser": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "TeamUser": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "new_user": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsInt": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__int__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsFloat": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__float__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsComplex": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__complex__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsBytes": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__bytes__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsIndex": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__index__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsAbs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__abs__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SupportsRound": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__round__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_make_nmtuple": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_make_eager_annotate": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "annotate": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "NamedTupleMeta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "NamedTuple": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Employee": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "_namedtuple_mro_entries": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_get_typeddict_qualifiers": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_TypedDictMeta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "__annotate__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "TypedDict": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Point2D": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "body": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "DatabaseUser": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Point3D": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "Required": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "NotRequired": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ReadOnly": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mutate_movie": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "NewType": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "name_by_id": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Dummy": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "IO": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "mode": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "name": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "closed": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "fileno": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "flush": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "isatty": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "read": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "readable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "readline": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "readlines": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "seek": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "seekable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "tell": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "truncate": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "writable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "write": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "writelines": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__enter__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "__exit__": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "BinaryIO": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "TextIO": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "buffer": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "encoding": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "errors": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "line_buffering": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newlines": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "reveal_type": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_IdentityCallable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "dataclass_transform": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "create_model": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "CustomerModel": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "ModelBase": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "ModelMeta": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "override": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "method": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "is_protocol": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_protocol_members": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_DeprecatedGenericAlias": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "FastAPI": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "read_items": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Item": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "build_middleware_stack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "openapi": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "setup": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "swagger_ui_html": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "swagger_ui_redirect": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "redoc_html": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "add_api_route": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "frontend": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "api_route": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "add_api_websocket_route": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "websocket": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "websocket_endpoint": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "include_router": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "put": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "replace_item": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "post": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "create_item": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "delete": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "delete_item": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "options": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_item_options": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "head": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "get_items_headers": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "patch": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "update_item": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "trace": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "trace_item": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "websocket_route": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "on_event": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "middleware": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "add_process_time_header": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "exception_handler": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "UnicornException": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "class"
+   ]
+  },
+  "unicorn_exception_handler": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  }
+ },
+ "builtAt": "2026-09-18T15:43:48.378Z"
+}

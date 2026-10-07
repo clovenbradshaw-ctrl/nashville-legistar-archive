@@ -1,0 +1,55 @@
+{
+  "schema": "ProcliticPrior@1",
+  "language": "arb",
+  "provenance": {
+    "giver": "Universal Dependencies — https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-PADT/master/ar_padt-ud-train.conllu (train split), human-annotated gold treebank — multi-word-token split convention",
+    "license": "CC BY-SA 4.0",
+    "source": "https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-PADT/master/ar_padt-ud-train.conllu",
+    "builder": "eoreader7 native/scripts/build-proclitic-prior.mjs",
+    "mwt_ranges_read": 30459,
+    "min_count": 100,
+    "note": "derived mechanically from the treebank's own multi-word-token split — each entry is a single letter the treebank annotates as its own token (DET/ADP/CCONJ/AUX/etc.) fused with no space onto the token that followed it in the source text, tallied by character across every UPOS role it was annotated with. Never a hand-typed list of articles/prepositions.",
+    "excluded_multichar_forms_at_or_above_min_count": [
+      {
+        "form": "أن",
+        "n": 504
+      },
+      {
+        "form": "في",
+        "n": 312
+      },
+      {
+        "form": "علي",
+        "n": 237
+      },
+      {
+        "form": "من",
+        "n": 229
+      },
+      {
+        "form": "إن",
+        "n": 183
+      },
+      {
+        "form": "نفس",
+        "n": 116
+      }
+    ]
+  },
+  "proclitics": [
+    "و",
+    "ل",
+    "ب",
+    "س",
+    "ف",
+    "ك"
+  ],
+  "counts": {
+    "و": 12632,
+    "ل": 5520,
+    "ب": 4630,
+    "س": 716,
+    "ف": 487,
+    "ك": 151
+  }
+}

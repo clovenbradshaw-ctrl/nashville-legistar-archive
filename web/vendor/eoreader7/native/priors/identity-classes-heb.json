@@ -1,0 +1,108 @@
+{
+  "schema": "IdentityClosedClasses@1",
+  "language": "heb",
+  "provenance": {
+    "giver": "Universal Dependencies — https://github.com/UniversalDependencies/UD_Hebrew-HTB (train split), human-annotated gold treebank",
+    "license": "CC BY-SA 4.0",
+    "source": "https://github.com/UniversalDependencies/UD_Hebrew-HTB",
+    "builder": "eoreader7 native/scripts/build-identity-closed-classes.mjs",
+    "min_count": 20,
+    "note": "determiners = forms this treebank tags DET at or above min_count; copula = forms tagged AUX the same way. Mechanical derivation from the same received POSPrior@1 this project's other priors come from — never a hand-typed word list. DISCLOSED GAP: a zero-copula ('nominal sentence') present-tense identity has no overt token to tag, so this class cannot cover it in any language."
+  },
+  "determiners": [
+    "ה",
+    "כל",
+    "כמה",
+    "רוב",
+    "מספר",
+    "שום",
+    "הרבה"
+  ],
+  "determinerCounts": {
+    "ה": {
+      "DET": 11428,
+      "SCONJ": 645,
+      "X": 9
+    },
+    "כל": {
+      "DET": 445
+    },
+    "כמה": {
+      "DET": 104
+    },
+    "רוב": {
+      "DET": 32,
+      "NOUN": 10
+    },
+    "מספר": {
+      "VERB": 5,
+      "NOUN": 13,
+      "DET": 30
+    },
+    "שום": {
+      "DET": 27,
+      "NOUN": 1,
+      "PROPN": 1
+    },
+    "הרבה": {
+      "DET": 25,
+      "VERB": 3,
+      "ADV": 18
+    }
+  },
+  "copula": [
+    "היה",
+    "היו",
+    "אינו",
+    "היתה",
+    "להיות",
+    "יהיה",
+    "אינה",
+    "אינם",
+    "תהיה",
+    "אינן",
+    "יהיו"
+  ],
+  "copulaCounts": {
+    "היה": {
+      "AUX": 277,
+      "VERB": 25,
+      "X": 1
+    },
+    "היו": {
+      "AUX": 108,
+      "VERB": 41
+    },
+    "אינו": {
+      "AUX": 100
+    },
+    "היתה": {
+      "AUX": 97,
+      "VERB": 20
+    },
+    "להיות": {
+      "AUX": 72
+    },
+    "יהיה": {
+      "AUX": 65,
+      "VERB": 21
+    },
+    "אינה": {
+      "AUX": 55
+    },
+    "אינם": {
+      "AUX": 49
+    },
+    "תהיה": {
+      "VERB": 11,
+      "AUX": 34
+    },
+    "אינן": {
+      "AUX": 24
+    },
+    "יהיו": {
+      "VERB": 15,
+      "AUX": 20
+    }
+  }
+}

@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Fold · Chat</title>
+<style>
+  /* LibreChat-style tokens: a white surface, a white sidebar + icon rail, and
+     the brand's blue→violet→teal gradient. Dark mode mirrors its charcoal. */
+  :root {
+    --bg: #ffffff; --side: #ffffff; --side2: #f0f0f2; --line: #e5e5e8; --line2: #d9d9de;
+    --ink: #141416; --ink2: #44444e; --mut: #71717c; --dim: #9c9ca6;
+    --acc: #7c5cff; --acc-deep: #6a48f0; --acc-soft: #efeaff;
+    --acc-grad: linear-gradient(135deg, #3b82f6, #8b5cf6 48%, #22c1a4);
+    --ok: #1a8f3f; --ok-soft: #e6f4ea; --bad: #d33;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 10px 34px rgba(0,0,0,.07);
+  }
+  html[data-theme="dark"] {
+    --bg: #17171a; --side: #1c1c20; --side2: #29292e; --line: #2e2e33; --line2: #3a3a40;
+    --ink: #f4f4f6; --ink2: #c9c9d2; --mut: #92929d; --dim: #6c6c77;
+    --acc: #9b82ff; --acc-deep: #ac97ff; --acc-soft: #262038;
+    --acc-grad: linear-gradient(135deg, #4b8ff5, #9b82ff 48%, #2fd0b0);
+    --ok: #56d364; --ok-soft: #142a1a; --bad: #f87171;
+    --shadow: 0 1px 2px rgba(0,0,0,.5), 0 10px 34px rgba(0,0,0,.6);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { font: 14.5px/1.55 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  textarea { font: inherit; }
+  .app { display: flex; height: 100vh; overflow: hidden; }
+
+  /* ---------------- icon rail (LibreChat's narrow navigation strip) ---------------- */
+  .rail { width: 54px; flex: none; background: var(--side); border-right: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; padding: 10px 0; gap: 4px; }
+  .rail button { width: 38px; height: 38px; border: none; background: transparent; border-radius: 10px; display: grid; place-items: center; color: var(--ink2); }
+  .rail button:hover { background: var(--side2); color: var(--ink); }
+  .rail button.on { background: var(--side2); color: var(--ink); }
+  .rail .divider { width: 26px; height: 1px; background: var(--line); margin: 4px 0; }
+  .rail .sp { flex: 1; }
+  .rail .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--acc-grad); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13px; box-shadow: 0 0 0 2px var(--side), 0 0 0 3.5px var(--line); }
+  .rail svg { width: 20px; height: 20px; }
+
+  /* ---------------- chat sidebar (LibreChat's conversation drawer) ---------------- */
+  .side { width: 300px; flex: none; background: var(--side); border-right: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; }
+  .side.hide { display: none; }
+  .side-top { padding: 12px 12px 6px; }
+  .models { display: flex; flex-direction: column; gap: 2px; }
+  .tier { display: flex; align-items: baseline; gap: 8px; padding: 10px 10px 3px; }
+  .tier.clickable { cursor: pointer; border-radius: 8px; user-select: none; }
+  .tier.clickable:hover { background: var(--side2); }
+  .tier-caret { font-size: 10px; color: var(--mut); width: 10px; }
+  .tier-count { font-size: 10px; color: var(--dim); background: var(--side2); border-radius: 999px; padding: 0 6px; }
+  .tier-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
+  .tier-note { font-size: 11px; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .model { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; color: var(--ink2); }
+  .model:hover { background: var(--side2); }
+  .model.on { background: var(--side2); color: var(--ink); font-weight: 600; }
+  .model .pdot { width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--acc-grad); }
+  .model .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .model .seal { margin-left: auto; font-size: 10px; color: var(--ok); border: 1px solid var(--ok); border-radius: 999px; padding: 0 6px; }
+
+  .side-scroll { flex: 1; overflow-y: auto; padding: 6px 8px 12px; }
+  .sec { margin-top: 10px; }
+  .sec-head { display: flex; align-items: center; gap: 6px; padding: 6px 8px; color: var(--ink2); font-size: 13px; font-weight: 600; }
+  .sec-head .caret { color: var(--mut); font-size: 11px; }
+  .sec-head .grow { flex: 1; }
+  .sec-head button { border: none; background: transparent; color: var(--mut); font-size: 15px; display: grid; place-items: center; }
+  .sec-head button:hover { color: var(--ink); }
+  .sec-head svg { width: 16px; height: 16px; }
+  .folder { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 9px; color: var(--ink2); }
+  .folder:hover { background: var(--side2); }
+  .folder.on { background: var(--side2); color: var(--ink); }
+  .folder svg { width: 16px; height: 16px; color: var(--mut); }
+  /* a project you can actually work in: the row selects it, a `⋯` manages it,
+     and the subtitle names the folder + the preset that rides every session in
+     it (Claude's "a project is a folder + instructions you start both from"). */
+  .project { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 9px; color: var(--ink2); cursor: pointer; }
+  .project:hover { background: var(--side2); }
+  .project.on { background: var(--side2); color: var(--ink); }
+  .project .pico { width: 26px; height: 26px; flex: none; border-radius: 8px; background: var(--acc-grad); display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 700; }
+  .project .pmeta { min-width: 0; flex: 1; }
+  .project .pname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; font-size: 13.5px; }
+  .project .psub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11.5px; color: var(--mut); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .project .pmenu { margin-left: auto; border: none; background: transparent; color: var(--mut); opacity: 0; }
+  .project:hover .pmenu { opacity: 1; }
+  /* a folder chip on a message: the working directory the turn was bound to */
+  .chip.folderchip { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--ink2); background: var(--side2); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; margin-right: 6px; }
+  .group { margin-top: 10px; }
+  .group-label { padding: 4px 10px; color: var(--dim); font-size: 12px; font-weight: 500; }
+  .chat { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 9px; color: var(--ink2); }
+  .chat:hover { background: var(--side2); }
+  .chat.on { background: var(--side2); color: var(--ink); }
+  .chat .cicon { width: 16px; height: 16px; border-radius: 5px; flex: none; background: var(--acc-grad); opacity: .8; }
+  .chat .cicon.glyph { background: transparent; opacity: 1; display: grid; place-items: center; }
+  .chat .cicon.glyph svg { width: 16px; height: 16px; }
+  .chat .ct { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .chat .menu { margin-left: auto; opacity: 0; border: none; background: transparent; color: var(--mut); }
+  .chat:hover .menu { opacity: 1; }
+  .empty-hint { padding: 8px 10px; color: var(--dim); font-size: 12.5px; }
+
+  /* collapsible section headers */
+  .sec-head { cursor: pointer; border-radius: 8px; }
+  .sec-head:hover { background: var(--side2); }
+  .sec-head .caret { transition: transform .15s ease; }
+  .sec.collapsed .caret { transform: rotate(-90deg); }
+  .sec.collapsed .sec-body { display: none; }
+
+  /* popup menu (chat actions) */
+  .pop { position: fixed; z-index: 60; background: var(--bg); border: 1px solid var(--line2); border-radius: 12px; box-shadow: var(--shadow); padding: 5px; min-width: 190px; }
+  .pop button { display: flex; align-items: center; gap: 9px; width: 100%; text-align: left; border: none; background: transparent; color: var(--ink2); padding: 8px 10px; border-radius: 8px; font-size: 13.5px; }
+  .pop button:hover { background: var(--side2); color: var(--ink); }
+  .pop button.danger { color: var(--bad); }
+  .pop button.danger:hover { background: var(--bad); color: #fff; }
+  .pop .sep { height: 1px; background: var(--line); margin: 5px 4px; }
+
+  /* inline dialogs (replace native prompt) */
+  .dialog-sheet { width: min(420px, calc(100vw - 32px)); }
+  .dialog-sheet .field input { width: 100%; padding: 10px 12px; border: 1px solid var(--line2); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; }
+  .dialog-sheet .field input:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
+  .btn.danger { background: var(--bad); border-color: var(--bad); color: #fff; }
+  .btn.danger:hover { filter: brightness(1.06); }
+  .choose-list { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .choose-item { display: flex; align-items: center; width: 100%; text-align: left; border: none; background: transparent; color: var(--ink2); padding: 10px 12px; border-radius: 10px; font-size: 14px; }
+  .choose-item:hover { background: var(--side2); color: var(--ink); }
+  .choose-item.danger { color: var(--bad); }
+  .choose-item.danger:hover { background: var(--bad); color: #fff; }
+
+  /* ---------------- main ---------------- */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
+  .topbar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; }
+  .pill { display: flex; align-items: center; gap: 9px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; background: var(--bg); font-weight: 600; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
+  .pill:hover { background: var(--side); }
+  .pill .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--acc-grad); }
+  .agentbar { display: flex; gap: 2px; background: var(--side2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .agentbtn { border: none; background: transparent; color: var(--mut); border-radius: 999px; padding: 5px 14px; font-size: 12.5px; font-weight: 600; }
+  .agentbtn.on { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .webtoggle-old { display: none; }
+  .curmodel { border: none; background: transparent; color: var(--mut); font-size: 12.5px; font-weight: 600; padding: 7px 10px; border-radius: 999px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .curmodel:hover { background: var(--side2); color: var(--ink); }
+  .curmodel:empty { display: none; }
+  .iconbtn { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; background: var(--bg); display: grid; place-items: center; color: var(--ink2); }
+  .iconbtn:hover { background: var(--side2); }
+  .iconbtn.on { background: var(--acc); color: #fff; }
+  .iconbtn .groundglyph { font-size: 19px; font-weight: 600; line-height: 1; }
+  .topbar .sp { flex: 1; }
+  .topavatar { width: 34px; height: 34px; border-radius: 50%; background: var(--acc-grad); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+  .sealbadge { font-size: 11px; padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+  .seal-on { color: var(--ok); background: var(--ok-soft); border: 1px solid var(--ok); }
+  .seal-off { color: var(--mut); background: var(--side2); border: 1px solid var(--line); }
+
+  .stage { padding: 0 18px; height: 16px; font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--mut); }
+
+  .thread { flex: 1; overflow-y: auto; padding: 20px 0 8px; }
+  .thread .col { max-width: 768px; margin: 0 auto; padding: 0 20px; display: flex; flex-direction: column; gap: 22px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 14px; }
+  .av { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #fff; background: var(--acc-grad); }
+  .msg.user .av { border-radius: 50%; background: var(--side2); color: var(--ink2); box-shadow: inset 0 0 0 1px var(--line2); }
+  .msg .av.topic svg { width: 17px; height: 17px; }
+  .body { min-width: 0; white-space: pre-wrap; word-break: break-word; }
+  .msg.assistant .body { color: var(--ink); }
+  .sealed-body { border-left: 2px solid var(--ok); padding-left: 10px; }
+  /* rendered markdown: the model's words become markup, never code */
+  .body .md { white-space: normal; line-height: 1.6; }
+  .md p { margin: .35em 0; }
+  .md h1, .md h2, .md h3, .md h4, .md h5, .md h6 { margin: .75em 0 .3em; line-height: 1.25; font-weight: 650; letter-spacing: -.01em; }
+  .md h1 { font-size: 1.45em; } .md h2 { font-size: 1.3em; } .md h3 { font-size: 1.16em; }
+  .md h4, .md h5, .md h6 { font-size: 1.05em; }
+  .md ul, .md ol { margin: .4em 0; padding-left: 1.5em; }
+  .md li { margin: .16em 0; }
+  .md li > ul, .md li > ol { margin: .2em 0; }
+  .md blockquote { margin: .55em 0; padding: .15em .9em; border-left: 3px solid var(--line2); color: var(--mut); }
+  .md code { font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--side2); border: 1px solid var(--line); border-radius: 5px; padding: 0 4px; }
+  .md pre.md-code { margin: .6em 0; background: var(--side2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; overflow-x: auto; }
+  .md pre.md-code code { display: block; background: none; border: 0; padding: 0; }
+  .md a { color: var(--acc-deep); }
+  .md a:hover { text-decoration: underline; }
+  .md hr { border: 0; border-top: 1px solid var(--line2); margin: .85em 0; }
+  .md img { max-width: 100%; border-radius: 8px; }
+  .md .md-table { overflow-x: auto; }
+  .md table { border-collapse: collapse; margin: .5em 0; width: 100%; font-size: 13.5px; }
+  .md th, .md td { border: 1px solid var(--line2); padding: 5px 9px; text-align: left; }
+  .md th { background: var(--side2); }
+  .live::after { content: "▍"; color: var(--acc); animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .art { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 10px 0; background: var(--side); }
+  .art-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--side2); }
+  .art-title { font-weight: 600; font-size: 13px; }
+  .art-kind { font-size: 11px; color: var(--mut); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; }
+  .art-sp { flex: 1; }
+  .art-btn { background: var(--bg); border: 1px solid var(--line); color: var(--mut); border-radius: 8px; font-size: 12px; padding: 3px 9px; }
+  .art-btn:hover { color: var(--ink); }
+  .art-inner iframe { width: 100%; height: 340px; border: 0; background: #fff; }
+  .art-code { margin: 0; padding: 12px 14px; font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; white-space: pre; }
+  .art-note { font-size: 12px; color: var(--mut); padding: 4px 14px 12px; }
+  .actions { display: flex; gap: 12px; margin-top: 8px; opacity: 0; transition: opacity .15s; }
+  .msg:hover .actions { opacity: 1; }
+  .act { background: transparent; border: none; color: var(--mut); font-size: 12px; padding: 0; }
+  .act:hover { color: var(--acc-deep); text-decoration: underline; }
+
+  /* the transparency block: the grounding record on a message */
+  .disclosure { margin-top: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--side); font-size: 12.5px; overflow: hidden; }
+  .disclosure[hidden] { display: none; }
+  /* The whole per-turn disclosure is collapsible and starts collapsed: the head
+     is the clickable summary line; the panel holds everything and is hidden
+     unless .open. */
+  .disc-head { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; border: 0; background: none; cursor: pointer; font: inherit; padding: 9px 12px; color: var(--ink2); }
+  .disc-head:hover { background: var(--side2); }
+  .disc-caret { color: var(--dim); transition: transform .15s ease; display: inline-block; }
+  .disclosure.open .disc-caret { transform: rotate(90deg); }
+  .disc-title { font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
+  .disc-sub { font-size: 12px; color: var(--dim); white-space: nowrap; }
+  .disc-line { margin-left: auto; font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+  .disc-panel { display: none; padding: 2px 12px 12px; }
+  .disclosure.open .disc-panel { display: block; }
+  .disc-label { font-weight: 600; color: var(--ink2); margin: 8px 0 3px; }
+  .disc-sources, .disc-ungrounded { display: flex; flex-direction: column; gap: 3px; }
+  .disc-source { display: flex; gap: 8px; align-items: baseline; }
+  .disc-ref { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acc-deep); background: var(--acc-soft); border-radius: 5px; padding: 0 5px; white-space: nowrap; }
+  .disc-text { color: var(--mut); overflow: hidden; text-overflow: ellipsis; }
+  .disc-bad { margin-top: 6px; color: #b45309; }
+  html[data-theme="dark"] .disc-bad { color: #f0b429; }
+  .disc-ok { margin-top: 6px; color: var(--ok); }
+  .disc-foot { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); }
+
+  /* the facing page: the turn as a book spread — SOURCES left, RESPONSE right.
+     When a turn carries material the facing page IS the answer. */
+  .facing { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 14px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .facing.answer { background: var(--side); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px 12px; }
+  .face-sources, .face-response { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .face-source { border-left: 2px solid var(--acc-soft); padding: 2px 0 2px 8px; }
+  .face-n { font: 700 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acc-deep); margin-right: 6px; }
+  .face-addr { font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); }
+  .face-snip { margin-top: 3px; color: var(--mut); }
+  .face-sent { display: flex; flex-direction: column; gap: 2px; }
+  .face-tag { font: 700 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acc-deep); background: var(--acc-soft); border-radius: 6px; padding: 1px 5px; margin-right: 5px; cursor: pointer; align-self: flex-start; }
+  .face-tag:hover { background: var(--acc); color: #fff; }
+  .face-tag.m { color: var(--dim); background: transparent; cursor: default; }
+  .face-tag.m:hover { background: transparent; color: var(--dim); }
+  .face-text { color: var(--ink2); }
+  .face-sent.m .face-text { color: var(--mut); }
+  .face-ground { font: 10.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); }
+  /* the bottom sheet a source chip opens (mobile) */
+  .face-sheet-addr { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); margin: 10px 0 6px; }
+  .face-sheet-snip { color: var(--ink2); line-height: 1.55; }
+  /* mobile: the spread becomes the tagged response — a [S#] chip opens the
+     source's verbatim snip in the bottom sheet; no side-by-side columns. */
+  @media (max-width: 720px) {
+    .facing.answer { display: block; }
+    .facing.answer .face-sources { display: none; }
+    .facing.answer .face-response { gap: 9px; }
+    .facing.answer .face-sent { flex-direction: row; align-items: flex-start; gap: 7px; }
+    .facing.answer .face-ground { display: none; }
+  }
+
+  /* ---------------- welcome (LibreChat's centered logo + name + composer) ---------------- */
+  .welcome { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0 20px 3vh; }
+  .welcome .mark { width: 46px; height: 46px; border-radius: 50%; background: var(--acc-grad); display: grid; place-items: center; color: #fff; font: 700 20px/1 Inter, system-ui, sans-serif; margin-bottom: 12px; }
+  .welcome h1 { font: 700 34px/1.15 Inter, system-ui, sans-serif; margin: 0; letter-spacing: -.02em; }
+  .welcome p { color: var(--mut); margin: 2px 0 0; font-size: 15px; }
+  .welcome .composer-wrap { width: 100%; margin-top: 26px; }
+
+  .composer-wrap { padding: 0 20px 8px; }
+  .composer { max-width: 768px; margin: 0 auto; border: 1px solid var(--line2); border-radius: 18px; background: var(--bg); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 4px; padding: 12px 12px 10px 14px; transition: border-color .15s, box-shadow .15s; }
+  .composer:focus-within { border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc), var(--shadow); }
+  .composer textarea { border: none; outline: none; resize: none; background: transparent; color: var(--ink); font: inherit; padding: 4px 2px 2px; max-height: 200px; }
+  .composer textarea::placeholder { color: var(--dim); }
+  .composer .tools { display: flex; align-items: center; gap: 6px; }
+  .composer .tools .sp { flex: 1; }
+  .composer .cbtn { width: 36px; height: 36px; border: none; border-radius: 50%; background: transparent; color: var(--mut); display: grid; place-items: center; }
+  .composer .cbtn:hover { background: var(--side2); color: var(--ink); }
+  .composer .cbtn.web.on { background: var(--acc); color: #fff; }
+  .composer .cbtn.web.on:hover { background: var(--acc); color: #fff; }
+  .composer .cbtn.send { background: var(--ink); color: var(--bg); }
+  html[data-theme="dark"] .composer .cbtn.send { background: var(--acc-grad); color: #fff; }
+  .composer .cbtn.send:hover { background: var(--acc-deep); color: #fff; }
+  .composer .cbtn.send:disabled { background: var(--side2); color: var(--dim); }
+  .composer svg { width: 19px; height: 19px; }
+
+  .footer { text-align: center; color: var(--dim); font-size: 12.5px; padding: 6px 0 12px; }
+  .footer a { color: var(--dim); }
+  .footer a:hover { color: var(--acc-deep); }
+
+  .drawer { border-top: 1px solid var(--line); padding: 14px 20px; max-height: 42vh; overflow-y: auto; font-size: 13px; }
+  .drawer h3 { margin: 0 0 6px; font-size: 13px; color: var(--mut); }
+  .invariant { color: var(--ok); }
+  .ledger { border-collapse: collapse; margin-top: 10px; width: 100%; font-size: 12px; }
+  .ledger th, .ledger td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
+  .ledger th { color: var(--mut); }
+  .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 9px 18px; border-radius: 11px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; box-shadow: var(--shadow); }
+  .toast.show { opacity: .95; }
+
+  /* ---------------- settings ---------------- */
+  .modal { position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.35); }
+  .modal[hidden] { display: none; }
+  .sheet { width: min(560px, calc(100vw - 32px)); max-height: 84vh; overflow-y: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 22px 18px; }
+  .sheet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .sheet-head h2 { font: 700 18px/1.2 Inter, system-ui, sans-serif; margin: 0; letter-spacing: -.01em; }
+  .sheet-head .grow { flex: 1; }
+  .sheet-close { width: 32px; height: 32px; border: none; background: transparent; color: var(--mut); border-radius: 8px; display: grid; place-items: center; }
+  .sheet-close:hover { background: var(--side2); color: var(--ink); }
+  .sheet-close svg { width: 18px; height: 18px; }
+  .field { margin: 14px 0; }
+  .field label { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink2); margin-bottom: 5px; }
+  .field .hint { font-size: 12px; color: var(--dim); margin-top: 5px; }
+  .field input[type="text"], .field select { width: 100%; padding: 9px 11px; border: 1px solid var(--line2); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; }
+  .field input[type="text"]:focus, .field select:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
+  .field .models { border: 1px solid var(--line); border-radius: 12px; padding: 4px 4px 6px; }
+  .field .tier { padding: 9px 8px 3px; }
+  .keyrow { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+  .keyrow .keyname { width: 78px; flex: none; font-size: 13px; font-weight: 600; color: var(--ink2); }
+  .keyrow input { flex: 1; padding: 8px 10px; border: 1px solid var(--line2); border-radius: 9px; background: var(--bg); color: var(--ink); font: inherit; }
+  .keyrow input:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
+  .keyrow .btn { padding: 8px 12px; }
+  .keyrow.saved { background: color-mix(in srgb, var(--ok) 12%, transparent); border-radius: 9px; }
+  .keyrow .btn.saved { background: var(--ok); color: #fff; border-color: var(--ok); }
+  .keyrow .btn.err { border-color: #dc2626; color: #dc2626; }
+  .seg { display: inline-flex; gap: 2px; background: var(--side2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .seg button { border: none; background: transparent; color: var(--mut); border-radius: 999px; padding: 6px 16px; font-size: 13px; font-weight: 600; }
+  .seg button.on { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .field .row { display: flex; align-items: center; gap: 10px; }
+  .field .row .grow { flex: 1; }
+  .btn { padding: 9px 16px; border-radius: 10px; border: 1px solid var(--line2); background: var(--bg); color: var(--ink); font-weight: 600; font-size: 13.5px; }
+  .btn:hover { background: var(--side2); }
+  .btn.primary { background: var(--acc); border-color: var(--acc); color: #fff; }
+  .btn.primary:hover { background: var(--acc-deep); }
+  .sheet-foot { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+  .sheet-foot .grow { flex: 1; }
+  .about { font-size: 12.5px; color: var(--mut); }
+  .about b { color: var(--ink2); }
+  @media (max-width: 720px) { .side { display: none; } .side.show { display: flex; position: absolute; z-index: 20; height: 100%; } .welcome h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="rail">
+    <button id="railToggle" title="Toggle sidebar" class="on">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+    </button>
+    <div class="divider"></div>
+    <button id="railNew" title="New chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+    </button>
+    <button id="railSearch" title="Search chats">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <button id="railEvidence" title="Evidence — who did the work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+    </button>
+    <button id="railTheme" title="Theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <div class="sp"></div>
+    <button id="railSettings" title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+    </button>
+    <div class="avatar" title="The Fold">F</div>
+  </nav>
+
+  <aside class="side" id="side">
+    <div class="side-scroll">
+      <div class="sec" data-sec="projects">
+        <div class="sec-head"><span class="caret">⌄</span><span>Projects</span><span class="grow"></span><button id="projNewProject" title="New project">＋</button><button id="projAdd" title="New session in a project">▶</button></div>
+        <div class="sec-body" id="projects"></div>
+      </div>
+      <div class="sec" data-sec="chats">
+        <div class="sec-head"><span class="caret">⌄</span><span>Chats</span><span class="grow"></span><button id="chatNew" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></div>
+        <div class="sec-body" id="chats"></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="agentbar" id="agentSlot"></div>
+      <div class="sp"></div>
+      <div class="agentbar" id="engagementSlot"></div>
+      <button class="iconbtn" id="topFocus" title="Focus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+      </button>
+      <button class="iconbtn" id="topNew" title="New chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+      </button>
+      <button class="iconbtn" id="groundToggle" title="Grounding — show this thread's disclosure"><span class="groundglyph" aria-hidden="true">⟂</span></button>
+      <div class="topavatar" title="The Fold">F</div>
+    </div>
+
+    <div class="welcome" id="welcome">
+      <div class="mark">F</div>
+      <h1>What can I help with?</h1>
+      <p id="welcomeSub"></p>
+    </div>
+    <div class="thread" id="thread" style="display:none"><div class="col" id="threadCol"></div></div>
+    <div class="stage" id="stage"></div>
+
+    <div class="composer-wrap" id="composerWrap">
+      <form class="composer" id="composer">
+        <textarea id="input" rows="1" placeholder="Message the fold"></textarea>
+        <div class="tools">
+          <button type="button" class="cbtn" id="attach" title="Attach (coming soon)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.4 11.05l-9.19 9.19a5 5 0 0 1-7.07-7.07l9.19-9.19a3.5 3.5 0 0 1 4.95 4.95l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <div class="sp"></div>
+          <button type="button" class="cbtn web" id="webToggle" title="Search the web for this message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+          </button>
+          <button type="button" class="cbtn" id="mic" title="Voice (coming soon)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          </button>
+          <button type="submit" class="cbtn send" id="send" title="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="footer" id="footer">The Fold · chat <span id="ver"></span> · models routed by heimdall · <a href="#" id="footEvidence">evidence</a></div>
+    <section class="drawer" id="drawer" style="display:none"></section>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="settingsModal" hidden>
+  <div class="sheet" role="dialog" aria-label="Settings">
+    <div class="sheet-head">
+      <h2>Settings</h2>
+      <div class="grow"></div>
+      <button class="sheet-close" id="settingsClose" title="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="field">
+      <label for="setBridge">Heimdall bridge</label>
+      <div class="row">
+        <input type="text" id="setBridge" placeholder="http://localhost:8790" autocomplete="off" spellcheck="false" style="flex:1">
+        <button type="button" class="btn" id="bridgeDetect">Detect</button>
+      </div>
+      <div class="hint" id="bridgeStatus">Looking for heimdall…</div>
+    </div>
+
+    <div class="field">
+      <label>API keys</label>
+      <div class="hint" style="margin:0 0 8px">Entered here, stored on <b>this machine</b> beside `heimdall key` — never in this page, never sent to an outside model.</div>
+      <div class="keyrow"><span class="keyname">Anthropic</span><input type="password" id="keyAnthropic" placeholder="sk-ant-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="anthropic">Save</button></div>
+      <div class="keyrow"><span class="keyname">OpenAI</span><input type="password" id="keyOpenai" placeholder="sk-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="openai">Save</button></div>
+      <div class="hint" id="keyStatus">No provider keys saved on this machine yet.</div>
+    </div>
+
+    <div class="field">
+      <label>Models</label>
+      <div class="models" id="models"></div>
+      <div class="hint">Each tier is a different trust boundary — an outside model is sealed-external, the reading only.</div>
+    </div>
+
+    <div class="field">
+      <label for="setPreset">Preset</label>
+      <select id="setPreset"></select>
+      <div class="hint">The system prompt each new turn carries.</div>
+    </div>
+
+    <div class="field">
+      <label>Theme</label>
+      <div class="row">
+        <div class="seg" id="setTheme">
+          <button data-theme="light">Light</button>
+          <button data-theme="dark">Dark</button>
+        </div>
+        <div class="grow"></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Default engagement</label>
+      <div class="row">
+        <div class="seg" id="setMode">
+          <button data-mode="chat">Chat</button>
+          <button data-mode="code">Code</button>
+        </div>
+        <div class="grow"></div>
+      </div>
+      <div class="hint">Chat answers from the routed models; Code dispatches the same turn through the conductor (read → derive → execute → retain). Both share the project's folder and thread.</div>
+    </div>
+
+    <div class="field">
+      <label>Transparency</label>
+      <div class="row">
+        <div class="seg" id="setTransparency">
+          <button data-transparency="1">On</button>
+          <button data-transparency="0">Off</button>
+        </div>
+        <div class="grow"></div>
+      </div>
+      <div class="hint">On: every answer carries its grounding record — addressed sources, what is not in the material, and the on-record line. The topbar toggle shows/hides a single thread's disclosure; this switch is the global default.</div>
+    </div>
+
+    <div class="about" id="setAbout"></div>
+
+    <div class="sheet-foot">
+      <div class="grow"></div>
+      <button class="btn" id="settingsCancel">Cancel</button>
+      <button class="btn primary" id="settingsSave">Save</button>
+    </div>
+  </div>
+</div>
+<script type="module">
+  import { mount } from "./fold-chat.js";
+  mount(document.querySelector(".app"));
+</script>
+</body>
+</html>

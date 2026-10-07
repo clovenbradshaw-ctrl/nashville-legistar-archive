@@ -1,0 +1,43 @@
+{
+  "schema": "RoleConfig@1",
+  "language": "eng",
+  "provenance": {
+    "builder": "eoreader7 native/scripts/build-role-config.mjs",
+    "source": "/private/tmp/claude-501/-Users-mlacy-Documents-3-0/e67ceb5a-ccd2-4be2-ab89-50afeba1e60a/scratchpad/en_ewt-ud-trainplusdev.conllu",
+    "min_volume": 20,
+    "null_draws": 200,
+    "null_alpha": 0.05,
+    "null_seed": 1,
+    "note": "position stats and marker candidates are both derived mechanically from this treebank's own gold dependency annotations — never hand-typed or asserted from general linguistic knowledge. A marker candidate is admitted only when its real precision beats the (1-alpha) quantile of a within-sentence role-label shuffle (II.23), never a fixed ratio — and (S122) that quantile is the MAX-STATISTIC across every eligible closed-class candidate tried, not a per-candidate null, so the admitted marker is significant against the whole search, not merely against itself."
+  },
+  "object": {
+    "total": 11825,
+    "before": 404,
+    "after": 11421,
+    "dominantSide": "after",
+    "reliability": 0.9658350951374207,
+    "usable": true,
+    "marker": {
+      "form": "any",
+      "precision": 0.2964071856287425,
+      "nullCeiling": 0.18518518518518517,
+      "volume": 334,
+      "recall": 0.008372093023255815
+    }
+  },
+  "subject": {
+    "total": 19513,
+    "before": 18801,
+    "after": 712,
+    "dominantSide": "before",
+    "reliability": 0.9635115051504125,
+    "usable": true,
+    "marker": {
+      "form": "'m",
+      "hits": 222,
+      "total": 222,
+      "precision": 1,
+      "nullCeiling": 0.2631578947368421
+    }
+  }
+}

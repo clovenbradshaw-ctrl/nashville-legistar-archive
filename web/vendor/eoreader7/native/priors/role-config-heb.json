@@ -1,0 +1,43 @@
+{
+  "schema": "RoleConfig@1",
+  "language": "heb",
+  "provenance": {
+    "builder": "eoreader7 native/scripts/build-role-config.mjs",
+    "source": "/private/tmp/claude-501/-Users-mlacy-Documents-3-0/34a16147-406d-48c2-a66f-39ae5917e1f1/scratchpad/treebanks/heb-train.conllu",
+    "min_volume": 20,
+    "null_draws": 200,
+    "null_alpha": 0.05,
+    "null_seed": 1,
+    "note": "position stats and marker candidates are both derived mechanically from this treebank's own gold dependency annotations — never hand-typed or asserted from general linguistic knowledge. A marker candidate is admitted only when its real precision beats the (1-alpha) quantile of a within-sentence role-label shuffle (II.23), never a fixed ratio — and (S122) that quantile is the MAX-STATISTIC across every eligible closed-class candidate tried, not a per-candidate null, so the admitted marker is significant against the whole search, not merely against itself."
+  },
+  "object": {
+    "total": 3325,
+    "before": 114,
+    "after": 3211,
+    "dominantSide": "after",
+    "reliability": 0.9657142857142857,
+    "usable": true,
+    "marker": {
+      "form": "את_",
+      "precision": 0.9813084112149533,
+      "nullCeiling": 0.14814814814814814,
+      "volume": 214,
+      "recall": 0.06315789473684211
+    }
+  },
+  "subject": {
+    "total": 7589,
+    "before": 5397,
+    "after": 2192,
+    "dominantSide": "before",
+    "reliability": 0.7111608907629464,
+    "usable": true,
+    "marker": {
+      "form": "אינו",
+      "hits": 37,
+      "total": 100,
+      "precision": 0.37,
+      "nullCeiling": 0.21739130434782608
+    }
+  }
+}

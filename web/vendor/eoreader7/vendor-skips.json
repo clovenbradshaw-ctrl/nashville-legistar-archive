@@ -1,0 +1,548 @@
+{
+  "at": "2026-10-04T00:46:17.434Z",
+  "src": "/Users/mlacy/Documents/3.0/khora",
+  "copied": 1883,
+  "skipped": 108,
+  "skips": [
+    {
+      "rel": "organs/analysis-store.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/arm-charter.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/askshape.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/book-editor.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/claim-deriver.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/claim-relevance.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/code-build.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/code-form.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/code-goal-lint.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/coding-policy-learner.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/coding-policy-trial.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/coding-policy.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/composed-fixer.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/correction-rule.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/current-facts.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/ethos.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/gemma2-tokenizer.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/ground-cite.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/hard-read.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/hora.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/ingest.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/lang-competency.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/lang-validators.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/long-form.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/look-screen.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/look.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/martial.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/mnemonic-pipeline-fixtures.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/mnemonic.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/privacy.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/reasoning-record.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/skill-relations.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/skill-toggles.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/skill-usage.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/skills-index.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/solon.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/talk-build.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/tschichold-look.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/audio/material.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/build/code-anchor-log.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/build/music-medium.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/build/podcast-app-ledger.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/code/anchors.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/code/code-time.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/code/py-engine.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/image/material.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/image/screen-read.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/image/screen-sidecar.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/sources/folder-index.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/sources/npm-parts.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/sources/wiki-summary.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/text/code-structure.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/text/relations-case-marked.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/video/material.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/color-name-space.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/for-whom.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/foreclosing-kinds.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/kleene-up.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/moral-shadow.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/online-mouths.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/prior-query.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/revisions.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/antistrauss.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/arrow-gate.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/canon-ground.mjs",
+      "import": "from \"node:",
+      "why": "node builtin, but ALL importers defer it behind an isNode guard — ported, browser never resolves it"
+    },
+    {
+      "rel": "the-fold/code-hunt.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/code-loop.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/eot-notation.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/eot-run.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/expertise.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/fiction-pipeline.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/form-priors.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/form-referent.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/healing-loop.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/kind-memory.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/lesson-atoms.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/parameter-induction.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/pdf-read.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/phase-report.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/pipeline-run.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/pos-prior.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/prior-resonance.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/priors-ground.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/prose-prior.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/reader-bundle.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/sandboxed-agent.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/speaker-model.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/bench-demo.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/bench.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/block-gate.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/block-ground.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/block-layout.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/block-native.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/block-surface.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/expertise-surface.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/holodeck.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook-learn.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook-run.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook-store.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook-surface.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook-swarm.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook-workspace.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/notebook.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/podcast-app-codegen.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/podcast-app-council.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/podcast-app-server.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/podcast-run.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/surface/skills-surface.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    }
+  ]
+}

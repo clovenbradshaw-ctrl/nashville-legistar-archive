@@ -82,6 +82,15 @@ def main() -> None:
             out.flush()
             done += 1
             print(f"  uploaded {record['contract_number']} ({record['epav_token']}) — {record['department']}", file=sys.stderr)
+            # Deletion invariant: the durable home (archive.org) is on the
+            # manifest record ABOVE; only now drop the large local copy.
+            try:
+                import routing
+                dropped = routing.delete_large_after_upload(Path(fetched["local_pdf"]).parent)
+                if dropped:
+                    print(f"  dropped local PDF for {record['epav_token']}", file=sys.stderr)
+            except Exception as e:  # noqa: BLE001 - manifest already written; stays durable
+                print(f"  delete_large_after_upload FAILED: {e}", file=sys.stderr)
 
     if done:
         fold_pipeline.fold_and_lint_now(
@@ -89,6 +98,13 @@ def main() -> None:
             eowork_dir=ROOT / "data" / ".eowork", corroborate_mjs=CORROBORATE_MJS, corroborated_path=CORROBORATED,
             corroborate_budget=CORROBORATE_BUDGET,
         )
+        # Small files go to GitHub: promote already happened at fetch time, so
+        # this only stages + commits the deltas (deployed/, manifests, ledgers).
+        try:
+            import push_small_files
+            push_small_files.main(["run"])
+        except Exception as e:  # noqa: BLE001 - never block the upload drain
+            print(f"  push_small_files FAILED (retry on next schedule): {e}", file=sys.stderr)
     print(f"done: {done}/{len(pending[: args.limit])} uploaded this run, {len(pending) - done} still pending", file=sys.stderr)
 
 

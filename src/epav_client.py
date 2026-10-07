@@ -41,6 +41,8 @@ from typing import Iterator, Optional
 
 import requests
 
+import gaps as gaps_ledger
+
 BASE = "http://documents.nashville.gov"
 FORM_URL = f"{BASE}/Request/Form/Contracts"
 SEARCH_URL = f"{BASE}/Request/Search"
@@ -127,6 +129,20 @@ def is_destruction_notice(text: str) -> bool:
     "CONTRACT DISPOSED OF PURSUANT TO AUTHORIZED RECORDS DISPOSITION
     SCHEDULE" (contracts 15099 and 15490, Arts Commission)."""
     return bool(_DESTRUCTION_NOTICE_RE.search(text or ""))
+
+
+def live_departments() -> list[str]:
+    """The Department/Agency options (Index3) read fresh off the live search
+    form. The acquisition's DEPARTMENTS constant is only a snapshot; the
+    completeness audit compares the two every run so a department added or
+    renamed on the portal is caught, never silently left out. The form's
+    select carries an empty placeholder option, which is dropped here."""
+    r = requests.get(FORM_URL, timeout=60)
+    r.raise_for_status()
+    m = re.search(r'<select[^>]*name="Index3"[^>]*>(.*?)</select>', r.text, re.DOTALL)
+    if not m:
+        return []
+    return [o.strip() for o in re.findall(r'<option[^>]*value="([^"]*)"', m.group(1)) if o.strip()]
 
 
 def _clean(cell: str) -> str:
@@ -254,6 +270,7 @@ class EPAV:
                         f"not further resolved",
                         file=sys.stderr,
                     )
+                    self._record_residual_gap(department, filters, len(rows))
                 return
             yield from emit(rows)
             axis_name, alphabet = axes[axis_idx]
@@ -262,21 +279,38 @@ class EPAV:
 
         yield from recurse({}, 0)
 
+    @staticmethod
+    def _record_residual_gap(department: str, filters: dict, rows: int) -> None:
+        """A shard still at the site's cap after every enumeration axis is a
+        declared gap on the record -- never silently dropped. Its falsifying
+        control: a later search of the same shard returning under the cap with
+        every token already held concedes this gap."""
+        gaps_ledger.record_gap(
+            kind="capped-shard",
+            subject=f"department={department!r} filters={filters!r}",
+            detail=f"still returned {rows} rows (the site's {RESULT_CAP}-row cap) with no further axis to try",
+            falsifying=(
+                "a plain re-search of this exact shard returns fewer than "
+                f"{RESULT_CAP} rows and every token it returns is already in the fetched ledger"
+            ),
+        )
+
     def iter_all(self, *, departments: Optional[list[str]] = None) -> Iterator[dict]:
         """Walks every department, yielding every row (deduped by token)
         plus which department query found it. A department that returns
-        RESULT_CAP rows is logged to stderr as truncated -- disclosed, not
-        hidden, and not yet auto-partitioned further."""
+        RESULT_CAP rows is recorded as a gap (its plain search was capped and
+        needs exhaustive partitioning) -- disclosed, never hidden."""
         seen_tokens: set[str] = set()
         for dept in departments or DEPARTMENTS:
             rows = self.search(department=dept)
             if len(rows) >= RESULT_CAP:
                 print(
                     f"WARNING: department {dept!r} returned {len(rows)} rows "
-                    f"(server cap) -- likely truncated, needs further "
-                    f"partitioning (not yet implemented)",
+                    f"(server cap) -- needs the --exhaustive walk, recorded "
+                    f"as a gap",
                     file=sys.stderr,
                 )
+                self._record_residual_gap(dept, {}, len(rows))
             for row in rows:
                 if row["token"] in seen_tokens:
                     continue

@@ -1,0 +1,52 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>seeding holodeck…</title>
+<script>
+// Seed a richer workspace and open the app. Same-origin, so localStorage carries.
+const t = (s) => s.replace(/\n\s+/g, ' ').trim();
+const docs = [
+  { id: 'seed-committee', title: 'Committee minutes', type: 'Minutes', format: 'txt', text: t(`
+The Metropolitan Homelessness Commission met on September 23, 2025. Nathan Scarlett presented the Continuum of Care report.
+Nathan Scarlett said the Homeless Management Information System is the designated lead system. The Commission will adopt the report in October 2025.
+Desawn Reed asked whether the Commission will fund the system next year. Desawn Reed said the Continuum of Care needs 2.4 million dollars in 2026.
+The Commission voted 9 to 3 to submit the report to the Metro Council. Angela Hubbard chairs the Coordinated Entry committee.
+Angela Hubbard reported that 4500 people experience homelessness in Nashville each year. Darnell Foster directs the Outreach program.
+Darnell Foster said the Outreach program served 1200 households in 2024. Jasmine Carter manages the data for the Homeless Management Information System.
+`) },
+  { id: 'seed-council', title: 'Council letter', type: 'Letter', format: 'txt', text: t(`
+The Metro Council asked the Office of Homeless Services to explain the contract. The Office of Homeless Services reported the Strobel House contract was void.
+Nathan Scarlett said the Strobel House contract requires authorization from the Metro Council. Councilmember Welsch requested an audit of the Office of Homeless Services in a letter dated March 14, 2025.
+The Office of Homeless Services confirmed the Strobel House contract was void and that the Office of Homeless Services will repay 500000 dollars to the Metro Council.
+Marcus Tipton signed the letter for the Metro Council. Marcus Tipton said the Office of Homeless Services must respond within 30 days.
+`) },
+  { id: 'seed-audit', title: 'Audit summary', type: 'Report', format: 'txt', text: t(`
+The audit found the Office of Homeless Services did not comply with federal requirements. The Office of Homeless Services scored 52 percent non-compliance on the 2023 federal review.
+The audit recommends the Metro Council require a corrective action plan from the Office of Homeless Services. Nathan Scarlett said the audit requires a response from the Office of Homeless Services by June 2025.
+Desawn Reed said the Continuum of Care will review the audit. The audit examined 3200 files and 14 contracts across 3 programs.
+The Office of Homeless Services operates the Homeless Management Information System and the Coordinated Entry program. The audit covers fiscal years 2021 through 2023.
+`) },
+  { id: 'seed-budget', title: 'Budget memo', type: 'Memo', format: 'txt', text: t(`
+The Office of Homeless Services requested 8.5 million dollars for fiscal year 2026. Angela Hubbard presented the budget to the Metro Council on November 5, 2025.
+Angela Hubbard said the Coordinated Entry program needs 3.1 million dollars and the Outreach program needs 1.8 million dollars. Darnell Foster defended the Outreach program budget.
+The Metro Council allocated 7.2 million dollars to the Office of Homeless Services. The Office of Homeless Services will reduce the Homeless Management Information System budget by 400000 dollars.
+Jasmine Carter warned that the reduction will delay the data migration. Nathan Scarlett said the Office of Homeless Services will absorb the cut.
+`) },
+  { id: 'seed-provider', title: 'Provider notes', type: 'Note', format: 'txt', text: t(`
+The Nashville Rescue Mission opened a new shelter with 250 beds in January 2024. The Nashville Rescue Mission served 900 guests last winter.
+The Room in the Inn program coordinated 40 congregations in 2025. Nathan Scarlett visited the Room in the Inn program in February 2025.
+The Safe Haven Family Shelter reported 180 families served in 2024. Angela Hubbard praised the Safe Haven Family Shelter for its 92 percent housing placement rate.
+Darnell Foster said the Outreach program refers guests to the Nashville Rescue Mission and the Safe Haven Family Shelter.
+`) },
+  { id: 'seed-transcript', title: 'Public comment transcript', type: 'Transcript', format: 'txt', text: t(`
+Desawn Reed spoke during public comment. Desawn Reed said the Metro Council has not funded the Continuum of Care since 2022.
+Nathan Scarlett acknowledged the concern. Nathan Scarlett said the Office of Homeless Services will report to the Metro Council in April 2026.
+Marcus Tipton said the audit of the Office of Homeless Services is incomplete. Jasmine Carter said the Homeless Management Information System data shows 5200 unique clients in 2025.
+Angela Hubbard closed the meeting. Angela Hubbard scheduled the next meeting for December 10, 2025.
+`) },
+];
+try {
+  localStorage.setItem('fold-explorer-added', JSON.stringify({ custom: docs }));
+  localStorage.setItem('holodeck-purged-legacy', '1');
+} catch (e) {}
+location.replace('index.html');
+</script>

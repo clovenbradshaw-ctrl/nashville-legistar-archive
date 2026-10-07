@@ -36,6 +36,7 @@ import boilerplate
 import surveillance_flag
 import contract_extract
 import crossref
+import routing
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCAL_CACHE = ROOT / "data" / ".epav-local"
@@ -126,6 +127,21 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
     }
 
     if destroyed:
+        try:
+            routing.promote_small_artifacts(
+                identifier,
+                text=full_text,
+                pdf_bytes=len(data),
+                record={
+                    "epav_token": token, "contract_number": contract_number,
+                    "department": dept, "status": row.get("status"),
+                    "expiration_date": row.get("expiration_date"),
+                    "description": desc,
+                    "source_department_query": row.get("source_department_query"),
+                },
+            )
+        except Exception as e:  # noqa: BLE001 - additive, never blocks the fetch
+            print(f"    promote_small_artifacts (stub) on {token} FAILED: {e}", file=sys.stderr)
         if referents_out is not None:
             referents_out.write(json.dumps(referents_entry) + "\n")
             referents_out.flush()
@@ -145,6 +161,31 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
                     cl.write(json.dumps(lr) + "\n")
     except Exception as e:  # noqa: BLE001 - additive, never blocks the fetch
         print(f"    contract_extract on {token} FAILED: {e}", file=sys.stderr)
+
+    # Small artifacts take the GitHub branch (two-tier routing, see
+    # routing.py): extracted text + eoreader7 reads are promoted into the
+    # committed data/deployed/ tree now; only the PDF later goes to
+    # archive.org. This is the durable small-file home the upload phase no
+    # longer uploads to archive.org.
+    try:
+        reads_dir = cache_dir if fetched.get("local_eoreader7") else None
+        routing.promote_small_artifacts(
+            identifier,
+            text=full_text,
+            reads_dir=reads_dir,
+            pdf_bytes=len(data),
+            record={
+                "epav_token": token,
+                "contract_number": contract_number,
+                "department": dept,
+                "status": row.get("status"),
+                "expiration_date": row.get("expiration_date"),
+                "description": desc,
+                "source_department_query": row.get("source_department_query"),
+            },
+        )
+    except Exception as e:  # noqa: BLE001 - additive, never blocks the fetch
+        print(f"    promote_small_artifacts on {token} FAILED: {e}", file=sys.stderr)
 
     novel_text = "\n\n".join(novel_pages)
     eo_workdir = EOWORK / identifier
@@ -217,20 +258,12 @@ def upload_now(fetched: dict, access_key: str, secret_key: str, delay: float) ->
     resp.raise_for_status()
     time.sleep(delay)
 
-    text_path = Path(fetched["local_text"])
-    if text_path.exists() and text_path.stat().st_size > 0:
-        r3 = upload_item(identifier, "extracted-text.txt", text_path.read_bytes(), {}, access_key, secret_key)
-        r3.raise_for_status()
-        time.sleep(delay)
-
-    if fetched.get("local_eoreader7"):
-        cache_dir = Path(fetched["local_eoreader7"])
-        for fname in ("eoreader7.json", "eoreader7.fold.json", "eoreader7.log.json"):
-            p = cache_dir / fname
-            if p.exists():
-                r2 = upload_item(identifier, fname, p.read_bytes(), {}, access_key, secret_key)
-                r2.raise_for_status()
-                time.sleep(delay)
+    # Two-tier routing: the PDF is the only thing archive.org holds. The
+    # extracted text + eoreader7 reads were promoted to data/deployed/ at
+    # fetch time (routing.promote_small_artifacts) and go to GitHub.
+    # NOTE: the caller must append this record to the manifest BEFORE calling
+    # routing.delete_large_after_upload -- the deletion invariant is "local
+    # copy dropped only after the durable home is on the record".
 
     record = {
         "epav_token": token,

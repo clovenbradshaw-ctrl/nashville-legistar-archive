@@ -1,0 +1,34 @@
+{
+  "fold-workspace": "1",
+  "account": "scores-patch-points",
+  "host": "github.com",
+  "legacy-accounts": ["clovenbradshaw-ctrl"],
+  "url-renames": { "eoreader7": "khora", "live_priors": "ethos" },
+  "derivations": {
+    "repo": "https://{host}/{account}/{name}",
+    "raw": "https://raw.githubusercontent.com/{account}/{name}/{ref}",
+    "pages": "https://{account}.github.io/{name}",
+    "clone": "https://{host}/{account}/{name}.git",
+    "npm": "github:{account}/{name}"
+  },
+  "repos": {
+    "the-fold": { "role": "chat", "dir": "the-fold" },
+    "holodeck": { "role": "surface", "dir": "holodeck" },
+    "penelope": { "role": "keeper", "dir": "penelope" },
+    "khora": { "role": "perceiver", "dir": "khora", "legacyDir": "eoreader7" },
+    "ethos": { "role": "corpus", "dir": "ethos", "legacyDir": "live_priors" },
+    "heimdall": { "role": "watcher", "dir": "heimdall" },
+    "janus": { "role": "reasoner", "dir": "janus", "closure": true, "mark": true },
+    "opencode-fold": { "role": "code-lane", "dir": "opencode-fold" }
+  },
+  "legacy-repos": {
+    "note": "Frozen copies on the legacy account. Never clone, import from, or link to these.",
+    "clovenbradshaw-ctrl/the-fold-legacy": "scores-patch-points/the-fold + scores-patch-points/holodeck",
+    "clovenbradshaw-ctrl/holodeck-legacy": "scores-patch-points/holodeck",
+    "clovenbradshaw-ctrl/heimdall-legacy": "scores-patch-points/heimdall",
+    "clovenbradshaw-ctrl/penelope-legacy": "scores-patch-points/penelope",
+    "clovenbradshaw-ctrl/eoreader7-legacy": "scores-patch-points/khora",
+    "clovenbradshaw-ctrl/live_priors-legacy": "scores-patch-points/ethos",
+    "clovenbradshaw-ctrl/opencode-fold-legacy": "scores-patch-points/opencode-fold"
+  }
+}

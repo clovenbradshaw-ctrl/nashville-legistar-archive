@@ -1,0 +1,148 @@
+{
+  "schema": "IdentityClosedClasses@1",
+  "language": "arb",
+  "provenance": {
+    "giver": "Universal Dependencies — https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-PADT/master/ar_padt-ud-train.conllu (train split), human-annotated gold treebank",
+    "license": "CC BY-SA 4.0",
+    "source": "https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-PADT/master/ar_padt-ud-train.conllu",
+    "builder": "eoreader7 native/scripts/build-identity-closed-classes.mjs",
+    "min_count": 20,
+    "note": "determiners = forms this treebank tags DET at or above min_count; copula = forms tagged AUX the same way. Mechanical derivation from the same received POSPrior@1 this project's other priors come from — never a hand-typed word list. DISCLOSED GAP: a zero-copula ('nominal sentence') present-tense identity has no overt token to tag, so this class cannot cover it in any language."
+  },
+  "determiners": [
+    "التي",
+    "ما",
+    "الذي",
+    "هذه",
+    "هذا",
+    "ذلك",
+    "التى",
+    "الذين",
+    "ذٰلك",
+    "هٰذا",
+    "من",
+    "تلك",
+    "الذى",
+    "هٰذه",
+    "هؤلاء"
+  ],
+  "determinerCounts": {
+    "التي": {
+      "DET": 1047,
+      "X": 48
+    },
+    "ما": {
+      "DET": 818,
+      "AUX": 55,
+      "PART": 2,
+      "INTJ": 1,
+      "X": 4
+    },
+    "الذي": {
+      "DET": 551,
+      "X": 46
+    },
+    "هذه": {
+      "DET": 529,
+      "X": 24
+    },
+    "هذا": {
+      "DET": 497,
+      "X": 27
+    },
+    "ذلك": {
+      "DET": 232,
+      "X": 59
+    },
+    "التى": {
+      "DET": 142,
+      "X": 12
+    },
+    "الذين": {
+      "DET": 128,
+      "X": 14
+    },
+    "ذٰلك": {
+      "DET": 127
+    },
+    "هٰذا": {
+      "DET": 97
+    },
+    "من": {
+      "ADP": 4244,
+      "DET": 85
+    },
+    "تلك": {
+      "DET": 79,
+      "X": 6
+    },
+    "الذى": {
+      "DET": 76,
+      "X": 4
+    },
+    "هٰذه": {
+      "DET": 74
+    },
+    "هؤلاء": {
+      "DET": 31,
+      "X": 10
+    }
+  },
+  "copula": [
+    "س",
+    "قد",
+    "كان",
+    "يكون",
+    "تكون",
+    "سوف",
+    "ليس",
+    "ما",
+    "كانت",
+    "ليست"
+  ],
+  "copulaCounts": {
+    "س": {
+      "AUX": 830,
+      "PART": 5,
+      "X": 2
+    },
+    "قد": {
+      "AUX": 325,
+      "PART": 129
+    },
+    "كان": {
+      "VERB": 277,
+      "AUX": 89
+    },
+    "يكون": {
+      "AUX": 71,
+      "VERB": 70
+    },
+    "تكون": {
+      "VERB": 57,
+      "AUX": 69
+    },
+    "سوف": {
+      "AUX": 67
+    },
+    "ليس": {
+      "AUX": 66,
+      "VERB": 49
+    },
+    "ما": {
+      "DET": 818,
+      "AUX": 55,
+      "PART": 2,
+      "INTJ": 1,
+      "X": 4
+    },
+    "كانت": {
+      "VERB": 184,
+      "AUX": 52
+    },
+    "ليست": {
+      "AUX": 25,
+      "VERB": 8
+    }
+  }
+}

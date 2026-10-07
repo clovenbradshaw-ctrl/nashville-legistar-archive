@@ -1,0 +1,45 @@
+{
+  "$comment": "A LANGUAGE prior. Data only, no code. Staged here for transfer to eoPriors; nothing in packages/ may hardcode any of it.",
+  "schema": "AbbreviationPrior@2",
+  "language": "en",
+  "provenance": {
+    "source": "the legacy engine bin/priors/lang/en.json — hand-curated English abbreviation list, measured against Pride and Prejudice and Frankenstein (see notes below)",
+    "built_by": "hand-authored, staged for eventual transfer to eoPriors"
+  },
+  "attested": {
+    "period": "This list is NOT one period. Its measurement claim (see notes below) is anchored to two specific early-19th-century British novels (Pride and Prejudice 1813, Frankenstein 1818), and the punctuation convention that measurement validates — a title abbreviation takes a trailing period — genuinely held in BOTH British and American usage of that era. But the list itself was hand-extended well past that period: several entries are attested only much later and would not plausibly occur in either source novel. The clearest case: 'Mx' (a gender-neutral title) has no attestation before 1977 (Pat Kite, 'Single Parent' magazine) and did not see real usage until the 2000s-2010s (Merriam-Webster added it in 2016) — it was never measured against the two 19th-century texts this file cites, and could not have been, since it did not exist yet. Business-register entries ('Assn', 'Dept', 'Corp', 'Univ', 'approx') are similarly modern-register additions, plausible in later or business/administrative prose, not verified against either source novel. This file conflates 'measured against two specific 1810s British novels' with 'includes ~130 tokens spanning early-19th-century literary register through 21st-century usage' — both are true, but they are not the same claim, and only the former was actually measured (see notes: 'Mr. Collins' / 'Mr. Darcy' counts).",
+    "basis": "Grounded 2026-08-19: this file's own pre-existing notes (measurement claim, Pride and Prejudice 1813 / Frankenstein 1818) plus a direct web check on 'Mx' (Merriam-Webster Wordplay, dictionary.com, Nonbinary Wiki — converging on first print use 1977, mainstream adoption 2000s-2010s). Not independently checked item-by-item for all ~130 entries — 'Mx' is reported as the clearest, most decisively dated example, not as an exhaustive audit.",
+    "confidence": "high for 'Mx' specifically (multiple independent sources converge on 1977/2000s-2010s); low/unaudited for the other ~129 individual entries' own attestation dates"
+  },
+  "region": {
+    "scope": "regional-variation-documented, at the level of PUNCTUATION CONVENTION rather than the abbreviated forms themselves",
+    "detail": "The abbreviated FORMS in this list (Mr, Mrs, Dr, Capt, etc.) are shared across American and British English — this is not a vocabulary difference. What varies regionally is whether the trailing period this file exists to recognize is actually WRITTEN: American English consistently periods these ('Mr.', 'Dr.', 'Capt.'); modern British English selectively omits the period specifically for CONTRACTIONS that end in the same letter as the unabbreviated word ('Mr', 'Mrs', 'Dr', 'St' — no period) while still perioding abbreviations that do NOT end in the same letter ('Prof.', 'Capt.', 'Gen.', 'Sgt.' — period kept even in British usage). Crucially, this British no-period convention is itself dated: 'the omission of full-stops in the U.K. is a modernism, not part of traditional Standard English, as traditionally both varieties used periods after these abbreviated titles' — meaning this file's own measurement source (two early-19th-century British novels) predates that modernism and would write 'Mr.' WITH a period, consistent with this list's whole design (a list of tokens that take a trailing period). A modern British text that already omits the period on 'Mr'/'Mrs'/'Dr'/'St' has no period for this mechanism to misread in the first place — the regional variation mostly matters for whether the abbreviation-detector is even invoked, not for whether its answer would be wrong.",
+    "basis": "WebSearch, converging across UNR's Writing & Speaking Center, Proofed, Daily Writing Tips, and Wikipedia's 'Mr.' article — the 'traditionally both varieties used periods... a modernism' framing is Daily Writing Tips' own stated conclusion, corroborated by the general BrE/AmE punctuation-convention sources listed alongside it. Not verified against a primary historical corpus (e.g. a direct count of period-vs-no-period 'Mr' in 20th-century British newspapers) — resting on secondary style-guide/reference sources, consistent with the informal register of the sources themselves."
+  },
+  "notes": [
+    "abbreviations: tokens that take a trailing period without ending a sentence.",
+    "Consumed by packages/engine/perceiver/text/spans.js::splitSentences via options.abbreviations.",
+    "Without this, 'Mr. Darcy' is split into two sentences and every titled name is severed from its title — measured: 'Mr. Collins' occurred in 0 of Pride and Prejudice's sentences against 145 occurrences in the file.",
+    "The engine's derived fallback is a floor, not a substitute: it repaired 13 sentences on Frankenstein and 0 on Pride and Prejudice, where 'Mr. Darcy' went 0 -> 0 derived but 0 -> 249 with this file. That is why this exists rather than relying on derivation.",
+    "Roman numerals are included because chapter numerals ('CHAPTER XVIII.') otherwise split a heading from the text beneath it.",
+    "This list is English. A Basque or Russian prior is a different file, not an extension of this one.",
+    "Added 2026-08-19 (schema AbbreviationPrior@2): the `attested`/`region` blocks above are the grounded answer to 'chronologically stamped, regional when possible', applied at the level this list's own structure actually supports — a whole-file characterization (this list spans a wider historical register than its own measurement source, and the punctuation convention it recognizes is dated/regional in a specific, cited way) rather than a per-token audit of all ~130 entries, which was judged disproportionate to what a flat trailing-period detector needs. Where a genuinely per-item distinction matters most concretely — Roman numerals and format artifacts ('No', 'Vol', 'pp') carry no sociolinguistic region or period at all, they are typographic convention — that is named here rather than forcing every entry through the same regional/chronological frame."
+  ],
+  "abbreviations": [
+    "Mr", "Mrs", "Ms", "Mx", "Dr", "Prof", "Rev", "Fr", "Sr", "Jr",
+    "St", "Ste", "Messrs", "Mme", "Mlle", "M",
+    "Capt", "Col", "Gen", "Lt", "Maj", "Sgt", "Cpl", "Adm", "Cmdr",
+    "Hon", "Esq", "Gov", "Pres", "Supt", "Insp",
+    "etc", "vs", "viz", "cf", "eg", "ie", "al", "ca", "approx",
+    "Inc", "Ltd", "Co", "Corp", "Dept", "Univ", "Assn", "Bros",
+    "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sept", "Sep", "Oct", "Nov", "Dec",
+    "Mon", "Tues", "Tue", "Wed", "Thurs", "Thu", "Fri", "Sat", "Sun",
+    "No", "Nos", "Vol", "Ed", "Eds", "pp", "Fig", "Figs", "Ch", "Sec", "Art",
+    "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+    "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
+    "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX",
+    "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
+    "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L",
+    "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX", "LXI"
+  ]
+}

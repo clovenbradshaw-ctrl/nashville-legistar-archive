@@ -1,0 +1,16 @@
+{
+  "schema": "FoldArchives@1",
+  "note": "The gate list the anchor loop (DEF → EVA → REC) declares. Data, not code: edit here, or set localStorage hd:archives to a person's own {\"gates\":[…]} list. Each gate is a Memento (RFC 7089) timegate; {url} is the target. replay: 'wayback-id' strips the Wayback toolbar, 'none' returns the memento as served.",
+  "updated": "2026-10-02",
+  "gates": [
+    { "id": "archive.today", "label": "archive.today", "timegate": "https://archive.ph/timemap/link/{url}", "replay": "none" },
+    { "id": "wayback", "label": "Internet Archive Wayback", "timegate": "https://web.archive.org/web/timemap/link/{url}", "replay": "wayback-id" },
+    { "id": "arquivo.pt", "label": "Arquivo.pt", "timegate": "https://arquivo.pt/wayback/timemap/link/{url}", "replay": "none" },
+    { "id": "ukwa", "label": "UK Web Archive", "timegate": "https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}", "replay": "none" },
+    { "id": "loc", "label": "Library of Congress", "timegate": "https://webarchive.loc.gov/all/timemap/link/{url}", "replay": "none" },
+    { "id": "swap", "label": "Stanford Web Archive", "timegate": "https://swap.stanford.edu/was/*/timemap/link/{url}", "replay": "none" },
+    { "id": "bawa", "label": "National Library of Australia (Trove)", "timegate": "https://webarchive.nla.gov.au/awa/timemap/link/{url}", "replay": "none" },
+    { "id": "vefsafn", "label": "Iceland (Vefsafn)", "timegate": "https://vefsafn.is/is/timemap/link/{url}", "replay": "none" },
+    { "id": "pt", "label": "Arquivo.pt (alternate)", "timegate": "https://arquivo.pt/timemap/link/{url}", "replay": "none" }
+  ]
+}

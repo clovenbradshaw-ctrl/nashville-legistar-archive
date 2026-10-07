@@ -1,0 +1,24 @@
+{
+  "schema": "FoldVendorRef@1",
+  "name": "opencode-fold",
+  "kind": "vendored-by-reference",
+  "why": "opencode is the Fold's execution substrate (the CLI/coding mouth). It is a white-label fork of opencode, vendored BY REFERENCE rather than byte-copied: the tree is ~560MB and already carries its own upstream-tracking discipline, so pinning the repo+commit here is the honest record. The bytes are not duplicated into the fold.",
+  "repo": "scores-patch-points/opencode-fold",
+  "pinnedCommit": "f33899a21",
+  "license": "MIT",
+  "upstream": {
+    "repo": "anomalyco/opencode",
+    "branch": "dev",
+    "pinnedCommit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+    "note": "opencode-fold tracks this; update via its own UPSTREAM.md (git fetch upstream dev; git merge upstream/dev), never by editing vendor bytes here."
+  },
+  "brandContract": "scores-patch-points/opencode-fold UPSTREAM.md + brand/manifest.json — the entire white-label patch and its falsifying control.",
+  "roleInTheFold": "Machine organ behind heimdall. Coding is dispatched through the heimdall bridge (POST /api/code -> opencode-lane.js -> a local `opencode serve`), and opencode's OWN model calls point back at the bridge's /v1, so every inference choice stays heimdall's (best/safest/cheapest).",
+  "update": [
+    "cd ../opencode-fold && git fetch upstream dev && git merge upstream/dev",
+    "re-apply the brand files on conflict, bump brand/manifest.json pinnedCommit + version",
+    "git push origin dev",
+    "bump pinnedCommit here to the new opencode-fold HEAD"
+  ],
+  "falsifyingControl": "if the fold byte-vendors opencode's tree (a vendor/ copy growing to MB) instead of referencing it, this contract is broken"
+}

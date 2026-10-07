@@ -1,0 +1,58 @@
+{
+  "schema": "EOLayoutRules@1",
+  "rules": [
+    {
+      "name": "box_diagram",
+      "signals": [
+        "box_drawing"
+      ],
+      "settle": "cv",
+      "foundVia": "received",
+      "note": "box-drawing marks a diagram the flat layer cannot hold — look"
+    },
+    {
+      "name": "table_tuple",
+      "signals": [
+        "table_rows"
+      ],
+      "settle": "table_tuple",
+      "foundVia": "received",
+      "note": "pipe/bar-delimited rows — a table at the page grain"
+    },
+    {
+      "name": "column_merge",
+      "signals": [
+        "wide_whitespace_runs"
+      ],
+      "settle": "column_merge",
+      "foundVia": "received",
+      "note": "wide whitespace runs — a columned page; the settle's own band check confirms real gutters or reads flat, disclosed"
+    },
+    {
+      "name": "column_merge_short",
+      "signals": [
+        "wide_whitespace_runs",
+        "narrow_column"
+      ],
+      "settle": "column_merge",
+      "foundVia": "received",
+      "note": "wide whitespace + narrow lines — columned data"
+    },
+    {
+      "name": "column_merge_subline",
+      "signals": [
+        "wide_whitespace_runs",
+        "sub_sentence_lines"
+      ],
+      "settle": "column_merge",
+      "foundVia": "received",
+      "note": "wide whitespace with sub-sentence lines — a columned layout"
+    },
+    {
+      "name": "prose",
+      "signals": [],
+      "settle": "prose",
+      "foundVia": "received"
+    }
+  ]
+}

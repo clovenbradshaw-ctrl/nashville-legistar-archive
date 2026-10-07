@@ -1,0 +1,2368 @@
+{
+ "schema": "CodeNamePrior@1",
+ "language": "go",
+ "provenance": {
+  "giver": "per-language split of the CodeNamePrior@1 measurement (recipes identical to live_priors build-code-name-prior.mjs; sum-checked against the blended tally: 4819 attestations in exactly one split)",
+  "source": "/Users/mlacy/Documents/3.0/live_priors/09-source-code",
+  "builder": "eoreader7 native/scripts/build-code-name-prior-split.mjs",
+  "familyFiles": 4,
+  "familyRepos": 3,
+  "note": "genericity is a fact about this language's own codebases: repos counts only repos attested through this family's extensions. Thin families (one repo) attest nothing at floor 2 — every name admitted, disclosed, never a silent skip."
+ },
+ "counts": {
+  "files": 4,
+  "repos": 3,
+  "totalBytes": 431920,
+  "distinctNames": 335,
+  "totalDeclarations": 349,
+  "namesAtOrAboveGenericFloor": 2
+ },
+ "names": {
+  "String": {
+   "repos": 2,
+   "files": 2,
+   "kinds": [
+    "function"
+   ]
+  },
+  "unmarshal": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "marshal": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mixKey": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mixHash": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Clear": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "init": {
+   "repos": 2,
+   "files": 2,
+   "kinds": [
+    "function"
+   ]
+  },
+  "CreateMessageInitiation": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ConsumeMessageInitiation": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "CreateMessageResponse": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ConsumeMessageResponse": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "BeginSymmetricSession": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ReceivedWithKeypair": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "NewOutboundElement": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "clearPointers": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SendKeepalive": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SendHandshakeInitiation": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SendHandshakeResponse": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SendHandshakeCookie": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "keepKeyFreshSending": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RoutineReadFromTUN": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "StagePackets": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SendStagedPackets": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "FlushStagedPackets": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "calculatePaddingSize": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RoutineEncryption": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RoutineSequentialSender": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "main_main": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "main": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "os_beforeExit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runExitHooks": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "forcegchelper": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Gosched": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goschedguarded": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goschedIfBusy": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gopark": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goparkunlock": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goready": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "acquireSudog": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "releaseSudog": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badmcall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badmcall2": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badreflectcall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badmorestackg0": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badmorestackgsignal": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badctxt": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "switchToCrashStack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "switchToCrashStack0": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "lockedOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "allgadd": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "allGsSnapshot": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "atomicAllG": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "atomicAllGIndex": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "forEachG": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "forEachGRace": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "cpuinit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "getGodebugEarly": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "schedinit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "dumpgstatus": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "checkmcount": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mReserveID": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mcommoninit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mProfStackInit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "makeProfStackFP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "makeProfStack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pprof_makeProfStack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "becomeSpinning": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "snapshotAllp": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "clearAllpSnapshot": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "hasCgoOnStack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ready": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "freezetheworld": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "readgstatus": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "casfrom_Gscanstatus": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "castogscanstatus": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "casgstatus": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "casGToWaiting": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "casGToWaitingForSuspendG": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "casGToPreemptScan": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "casGFromPreempted": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "isGC": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stopTheWorld": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "startTheWorld": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stopTheWorldGC": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "startTheWorldGC": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stopTheWorldWithSema": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "startTheWorldWithSema": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "usesLibcall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mStackIsSystemAllocated": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mstart": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mstart0": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mstart1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mstartm0": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mPark": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mexit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "forEachP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "forEachPInternal": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runSafePointFn": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "allocm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "needm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "needAndBindM": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newextram": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "oneNewExtraM": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "dropm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "cgoBindM": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "getm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "lockextra": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "unlockextra": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "getExtraM": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "putExtraM": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "addExtraM": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newm1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "startTemplateThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "templateThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stopm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mspinning": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "startm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "handoffp": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "wakep": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stoplockedm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "startlockedm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gcstopm": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "execute": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "findRunnable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pollWork": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "stealWork": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "checkRunqsNoP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "checkTimersNoP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "checkIdleGCNoP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "wakeNetPoller": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "resetspinning": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "injectglist": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "schedule": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "dropg": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "parkunlock_c": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "park_m": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goschedImpl": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gosched_m": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goschedguarded_m": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gopreempt_m": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "preemptPark": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goyield": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goyield_m": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goexit1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goexit0": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gdestroy": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "save": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "reentersyscall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "entersyscall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "entersyscallWakeSysmon": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "entersyscallHandleGCWait": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "entersyscallblock": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "exitsyscall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "exitsyscallTryGetP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "exitsyscallNoP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "addGSyscallNoP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "decGSyscallNoP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syscall_runtime_BeforeFork": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syscall_runtime_AfterFork": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syscall_runtime_AfterForkInChild": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syscall_runtime_BeforeExec": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syscall_runtime_AfterExec": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "malg": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newproc": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newproc1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "saveAncestors": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gfput": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gfget": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gfpurge": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Breakpoint": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "dolockOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "LockOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "lockOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "dounlockOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "UnlockOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "unlockOSThread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "badunlockosthread": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gcount": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "goroutineleakcount": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mcount": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_System": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_ExternalCode": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_LostExternalCode": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_GC": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_LostSIGPROFDuringAtomic64": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_LostContendedRuntimeLock": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "_VDSO": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sigprof": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "setcpuprofilerate": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "destroy": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "procresize": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "acquirep": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "acquirepNoTrace": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "wirep": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "releasep": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "releasepNoTrace": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "incidlelocked": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "checkdead": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sysmon": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "retake": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "setBlockOnExitSyscall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gcstopP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "takeP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "releaseP": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "resume": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "preemptall": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "preemptone": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "schedtrace": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "defaultGOMAXPROCSUpdateEnable": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "updateMaxProcsGoroutine": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sysmonUpdateGOMAXPROCS": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "schedEnableUser": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "schedEnabled": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mput": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mget": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "mgetSpecific": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "globrunqput": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "globrunqputhead": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "globrunqputbatch": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "globrunqget": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "globrunqgetbatch": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "read": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "set": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "clear": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "any": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "resize": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pidleput": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pidleget": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pidlegetSpinning": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqempty": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqput": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqputslow": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqputbatch": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqget": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqdrain": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqgrab": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "runqsteal": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "empty": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "push": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pushBack": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pushBackAll": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pop": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "popList": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "pushAll": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "setMaxThreads": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "procPin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "procUnpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sync_runtime_procPin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sync_runtime_procUnpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sync_atomic_runtime_procPin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sync_atomic_runtime_procUnpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "internal_sync_runtime_canSpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "internal_sync_runtime_doSpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sync_runtime_canSpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "sync_runtime_doSpin": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "reset": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "start": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "done": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "next": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "position": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "gcd": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "doInit": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "doInit1": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "getContainerEtcHostsPath": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newCrashLoopBackOff": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "makePodSourceConfig": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "PreInitRuntimeService": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "newNodeHasSyncedFunc": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "NewMainKubelet": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListPodStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListPodCPUAndMemoryStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "PodCPUAndMemoryStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListPodStatsAndUpdateCPUNanoCoreUsage": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ImageFsStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetCgroupStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetCgroupCPUAndMemoryStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RootFsStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RlimitStats": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "setupDataDirs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "StartGarbageCollection": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "initializeModules": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "initializeRuntimeDependentModules": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "Run": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SyncPod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SyncTerminatingPod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "preserveDataFromBeforeStopping": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SyncTerminatingRuntimePod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SyncTerminatedPod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "getPodsToSync": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "deletePod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "rejectPod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "recordAdmissionRejection": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syncLoop": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syncLoopIteration": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "handleProbeSync": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "HandlePodAdditions": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "HandlePodUpdates": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "recordResizeOperations": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "recordPodLevelResourceResizeOperations": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "recordContainerResizeOperations": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "recordVolumeResizeOperations": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "resizeOperationForResources": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "HandlePodRemoves": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "HandlePodReconcile": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "HandlePodSyncs": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "LatestLoopEntryTime": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "SyncLoopHealthCheck": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "updateRuntimeUp": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetConfiguration": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "BirthCry": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListenAndServe": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListenAndServeReadOnly": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetActivePods": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetPods": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetPodByName": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListenAndServePodResources": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListenAndServePods": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "cleanUpContainersInPod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "fastStatusUpdateOnce": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "CheckpointContainer": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListMetricDescriptors": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "ListPodSandboxMetrics": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "supportLocalStorageCapacityIsolation": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "isSyncPodWorthy": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "PrepareDynamicResources": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "UnprepareDynamicResources": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "tryReconcileMirrorPods": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "fastStaticPodsRegistration": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RequestPodReinspect": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "RequestPodRelist": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "syncPodNow": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "OnPodSandboxReady": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "getAllocatedPod": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  },
+  "GetPodByUID": {
+   "repos": 1,
+   "files": 1,
+   "kinds": [
+    "function"
+   ]
+  }
+ },
+ "builtAt": "2026-09-18T15:43:48.370Z"
+}

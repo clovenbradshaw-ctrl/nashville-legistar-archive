@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "the fold — capture",
+  "version": "0.1.0",
+  "description": "Hands the page you are looking at back to the fold's reading surface. Auto-captures pages the fold opens as <url>#fold-capture, and captures the current tab from the toolbar. It only reads a page when the fold asked for it or you pressed the button.",
+  "permissions": ["scripting", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_idle", "all_frames": false }
+  ],
+  "action": { "default_title": "Capture this page into the fold" }
+}
