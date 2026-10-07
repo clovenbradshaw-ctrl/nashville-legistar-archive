@@ -29,6 +29,7 @@ import live  # noqa: E402
 import routing  # noqa: E402
 import surveillance_flag  # noqa: E402
 from eoreader_pass import read_document, summarize_referents  # noqa: E402
+from extract_text import extract_pdf_pages  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 REFERENTS = ROOT / "data" / "referents.jsonl"
@@ -78,9 +79,27 @@ def main() -> None:
         token = rec["epav_token"]
         identifier = rec["identifier"]
         txt_path = ROOT / "data" / "deployed" / identifier / "extracted-text.txt"
-        if not txt_path.is_file():
+        text = ""
+        if txt_path.is_file():
+            text = txt_path.read_text(errors="replace")
+        # The sweep lane extracts text-layer only (no OCR). A contract whose
+        # staged text is nearly empty is almost certainly a scan: re-extract
+        # from the cached pdf WITH OCR here, and re-promote the real text.
+        if len(text.strip()) < 200:
+            pdf = epav_pipeline.resolve_local(rec, "local_pdf")
+            if pdf is not None and pdf.is_file():
+                pages = extract_pdf_pages(pdf.read_bytes(), ocr=True)
+                text = "\n\n".join(pages)
+                text = text or ""
+                txt_path.parent.mkdir(parents=True, exist_ok=True)
+                txt_path.write_text(text, encoding="utf-8")
+                routing.promote_small_artifacts(identifier, text=text,
+                                                record={"epav_token": token,
+                                                        "contract_number": rec.get("contract_number"),
+                                                        "department": rec.get("department")})
+        if not text.strip():
+            live.event("read-failed", epav_token=token, department=rec.get("department"), reason="no text")
             return
-        text = txt_path.read_text(errors="replace")
         eo_workdir = epav_pipeline.EOWORK / identifier
         result = read_document(text, identifier, eo_workdir)
         if not result:
