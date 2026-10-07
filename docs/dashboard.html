@@ -151,7 +151,7 @@
     const all = md.all_departments||[];
     const counts = md.standing_counts||{};
     $('missing').innerHTML = `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
-        <span style="color:var(--dim);font-size:12px">all ${all.length} department(s) — unexamined = not crawled yet, never called complete</span>
+        <span style="color:var(--dim);font-size:12px">${all.length} department(s) measured so far — the daily missing-audit fills in the rest; unexamined = not crawled yet, never called complete</span>
         <span style="font-size:12px">${Object.entries(counts).map(([k,v])=>`<span class="badge ${(STANDING[k]||[])[0]||'g-gray'}">${k} ${v}</span>`).join(' ')}</span></div>
       <div style="max-height:340px;overflow:auto;margin-top:6px">` +
       (all.length

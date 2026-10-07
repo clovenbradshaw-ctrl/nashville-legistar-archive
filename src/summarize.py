@@ -164,7 +164,12 @@ def state_summary(root: Path | None = None) -> dict:
     gaps = _jsonl(q("gaps.jsonl"))
     open_gaps = [g for g in gaps if g.get("kind") == "capped-shard"]
     verdicts = _jsonl(q("verdicts.jsonl"))
-    vc = Counter(v.get("standing") for v in verdicts[-8000:]) if verdicts else {}
+    vc = Counter()
+    if verdicts:
+        latest_v = {}
+        for v in verdicts[-20000:]:
+            latest_v[v.get("subject")] = v.get("standing")
+        vc = Counter(latest_v.values())
     qc = _jsonl(q("qc", "reports.jsonl"))
     qc_grades = Counter(r.get("grade") for r in qc[-8000:])
     events = _jsonl(q("live", "events.jsonl"))
