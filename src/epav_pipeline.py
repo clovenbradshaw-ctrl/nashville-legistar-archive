@@ -81,7 +81,7 @@ def already_fetched(token: str) -> bool:
     return False
 
 
-def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referents_out=None) -> dict:
+def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referents_out=None, deep_reads: bool = True) -> dict:
     """Everything except the actual archive.org upload. Returns the fetched
     record (also appended to EPAV_FETCHED)."""
     token = row["token"]
@@ -190,7 +190,7 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
     # archive.org. This is the durable small-file home the upload phase no
     # longer uploads to archive.org.
     try:
-        reads_dir = cache_dir if fetched.get("local_eoreader7") else None
+        reads_dir = cache_dir if (deep_reads and fetched.get("local_eoreader7")) else None
         routing.promote_small_artifacts(
             identifier,
             text=full_text,
@@ -209,35 +209,36 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
     except Exception as e:  # noqa: BLE001 - additive, never blocks the fetch
         print(f"    promote_small_artifacts on {token} FAILED: {e}", file=sys.stderr)
 
-    novel_text = "\n\n".join(novel_pages)
-    eo_workdir = EOWORK / identifier
-    result = read_document(novel_text, identifier, eo_workdir) if novel_pages else None
-    if result:
-        for key, ext in (("main_path", "eoreader7.json"), ("fold_path", "eoreader7.fold.json"), ("log_path", "eoreader7.log.json")):
-            p = result[key]
-            if p.exists():
-                (cache_dir / ext).write_bytes(p.read_bytes())
-        fetched["local_eoreader7"] = rel(cache_dir)
-        summary = summarize_referents(result)
-        referents_entry.update(summary)
-        giver = result["main"].get("declared", {}).get("giver") or "reader:eoreader7-cli"
-        company_index.append_assertions(ASSERTIONS, summary["hyperedges"], page_context, giver)
+    if deep_reads:
+        novel_text = "\n\n".join(novel_pages)
+        eo_workdir = EOWORK / identifier
+        result = read_document(novel_text, identifier, eo_workdir) if novel_pages else None
+        if result:
+            for key, ext in (("main_path", "eoreader7.json"), ("fold_path", "eoreader7.fold.json"), ("log_path", "eoreader7.log.json")):
+                p = result[key]
+                if p.exists():
+                    (cache_dir / ext).write_bytes(p.read_bytes())
+            fetched["local_eoreader7"] = rel(cache_dir)
+            summary = summarize_referents(result)
+            referents_entry.update(summary)
+            giver = result["main"].get("declared", {}).get("giver") or "reader:eoreader7-cli"
+            company_index.append_assertions(ASSERTIONS, summary["hyperedges"], page_context, giver)
 
-        try:
-            legistar_matches = crossref.legistar_matches_for(legistar_api, party) if legistar_api else []
-        except Exception:  # noqa: BLE001 - best-effort
-            legistar_matches = []
-        fetched["legistar_matches"] = legistar_matches
+            try:
+                legistar_matches = crossref.legistar_matches_for(legistar_api, party) if legistar_api else []
+            except Exception:  # noqa: BLE001 - best-effort
+                legistar_matches = []
+            fetched["legistar_matches"] = legistar_matches
 
-        try:
-            verdict = surveillance_flag.flag_document(result["main"], title=desc or contract_number, text=full_text, file=contract_number)
-            verdict["epav_token"], verdict["archive_url"] = token, archive_url
-            with SURVEILLANCE_FLAGS.open("a") as sf:
-                sf.write(json.dumps(verdict) + "\n")
-            if verdict["label"] == "surveillance":
-                print(f"    SURVEILLANCE FLAG: {contract_number} score={verdict['score']}", file=sys.stderr)
-        except Exception as e:  # noqa: BLE001
-            print(f"    surveillance_flag FAILED: {e}", file=sys.stderr)
+            try:
+                verdict = surveillance_flag.flag_document(result["main"], title=desc or contract_number, text=full_text, file=contract_number)
+                verdict["epav_token"], verdict["archive_url"] = token, archive_url
+                with SURVEILLANCE_FLAGS.open("a") as sf:
+                    sf.write(json.dumps(verdict) + "\n")
+                if verdict["label"] == "surveillance":
+                    print(f"    SURVEILLANCE FLAG: {contract_number} score={verdict['score']}", file=sys.stderr)
+            except Exception as e:  # noqa: BLE001
+                print(f"    surveillance_flag FAILED: {e}", file=sys.stderr)
 
     if referents_out is not None:
         referents_out.write(json.dumps(referents_entry) + "\n")
