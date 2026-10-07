@@ -55,6 +55,14 @@
 <script>
   const feedUrl = new URLSearchParams(location.search).get('feed') || '/live/stream';
   const roundupUrl = new URLSearchParams(location.search).get('roundup') || '/roundup';
+  // When served from GitHub Pages there is no SSE backend -- fall back to
+  // polling the committed audit summary via raw.githubusercontent. Force with
+  // ?mode=live (the tunneled realtime view) or ?mode=audit (the Pages view).
+  const isPages = location.hostname === 'clovenbradshaw-ctrl.github.io';
+  const mode = new URLSearchParams(location.search).get('mode');
+  const audit = mode === 'audit' || (mode !== 'live' && isPages);
+  const RAW = (new URLSearchParams(location.search).get('raw') ||
+               'https://raw.githubusercontent.com/clovenbradshaw-ctrl/nashville-legistar-archive/main').replace(/\/$/, '');
   const feedEl = document.getElementById('feed');
   const stateEl = document.getElementById('state');
   const proseEl = document.getElementById('prose');
@@ -122,6 +130,20 @@
   function loadRoundup(){ fetch(roundupUrl).then(r=>r.json()).then(renderCards).catch(()=>{}); }
 
   let count=0;
+  function startAudit(){
+    async function poll(){
+      try{
+        const r = await fetch(RAW + '/data/live/summary.json');
+        const s = await r.json();
+        stateEl.textContent = 'audit · polled ' + (s.at||'?') + ' · ' + RAW + '/data/live/summary.json';
+        if (s.state && s.state.prose) renderSnapshot(s.state);
+        if (s.periods) renderCards(s.periods);
+        if (s.recent && s.recent.length){ feedEl.innerHTML=''; for (const ev of s.recent) addLine(ev); }
+      }catch(err){ stateEl.textContent = 'audit fetch failed — retrying in 30s'; }
+    }
+    poll();
+    setInterval(poll, 30000);
+  }
   function connect(){
     const es=new EventSource(feedUrl);
     es.onopen=()=>{ stateEl.textContent='live · '+(count?count+' events · ':'')+feedUrl; };
@@ -132,7 +154,7 @@
       if (ev.kind==='roundup') loadRoundup(); }catch(err){} };
   }
   loadRoundup();
-  connect();
+  if (audit) startAudit(); else connect();
 </script>
 </body>
 </html>

@@ -90,30 +90,49 @@ class H(BaseHTTPRequestHandler):
             if not EVENTS.exists():
                 EVENTS.parent.mkdir(parents=True, exist_ok=True)
                 EVENTS.touch()
+            import os
             import summarize
             ticks = 0
-            with open(EVENTS) as fh:
-                fh.seek(0, 2)
-                while True:
-                    line = fh.readline()
-                    if line:
-                        self.wfile.write(f"data: {line}\n\n".encode())
+            fstat = os.stat(EVENTS)
+            fh = open(EVENTS)
+            fh.seek(0, 2)
+            ino, pos = fstat.st_ino, fh.tell()
+            while True:
+                # Rotation-safe: scripts/trim.py truncates events.jsonl via
+                # atomic replace (new inode); a changed inode or a file that
+                # shrank under us means the log was rotated -- reopen rather
+                # than keep streaming into a dead inode.
+                try:
+                    cur = os.stat(EVENTS)
+                    if cur.st_ino != ino or cur.st_size < pos:
+                        fh.close()
+                        fh = open(EVENTS)
+                        fh.seek(0, 2)
+                        ino, pos = os.stat(EVENTS).st_ino, fh.tell()
+                        self.wfile.write(b'data: {"kind":"system","note":"live log rotated/trimmed"}\n\n')
                         self.wfile.flush()
-                        ticks = 0
                         continue
-                    # EOF: lightweight keep-alive, plus a state snapshot every
-                    # 30s so the page's "what's going on" panel stays honest
-                    self.wfile.write(b": ping\n\n")
-                    ticks += 1
-                    if ticks % 2 == 0:
-                        try:
-                            snap = summarize.state_summary()
-                            self.wfile.write(f"event: snapshot\ndata: {json.dumps(snap)}\n\n".encode())
-                        except Exception:  # noqa: BLE001 - a snapshot is adornment
-                            pass
+                except FileNotFoundError:
+                    pass
+                line = fh.readline()
+                if line:
+                    self.wfile.write(f"data: {line}\n\n".encode())
                     self.wfile.flush()
-                    time.sleep(15)
-                    fh.seek(fh.tell())
+                    ticks = 0
+                    pos = fh.tell()
+                    continue
+                # EOF: lightweight keep-alive, plus a state snapshot every
+                # 30s so the page's "what's going on" panel stays honest
+                self.wfile.write(b": ping\n\n")
+                ticks += 1
+                if ticks % 2 == 0:
+                    try:
+                        snap = summarize.state_summary()
+                        self.wfile.write(f"event: snapshot\ndata: {json.dumps(snap)}\n\n".encode())
+                    except Exception:  # noqa: BLE001 - a snapshot is adornment
+                        pass
+                self.wfile.flush()
+                time.sleep(15)
         except (BrokenPipeError, ConnectionResetError):
             pass
 

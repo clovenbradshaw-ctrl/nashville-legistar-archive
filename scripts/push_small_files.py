@@ -41,7 +41,9 @@ SMALL_PATHS = [
     "data/manifest.jsonl",
     "data/gaps.jsonl",
     "data/verdicts.jsonl",
-    "data/live",
+    "data/live/summary.json",
+    "data/live/recent.jsonl",
+    "data/live/roundups.jsonl",
     "data/learning",
     "data/legislation",
 ]
