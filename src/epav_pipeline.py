@@ -110,7 +110,7 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
         "archive_url": archive_url,
         "intro_date": None,
     }
-    pages = extract_pdf_pages(data)
+    pages = extract_pdf_pages(data, ocr=deep_reads)  # sweep lane: text layer only; OCR belongs to the read lane
     novel_pages, page_records = boilerplate.classify_pages(pages, page_index, page_context)
     for rec in page_records:
         boilerplate.append_sighting(PAGE_SIGHTINGS, rec["hash"], page_context)
