@@ -18,11 +18,26 @@ the index stays small without losing the signal that actually matters."""
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
-_SCANNER_SRC = "/Users/mlacy/Documents/3.0/legistar-surveillance-scanner/src"
-if _SCANNER_SRC not in sys.path:
+_SCANNER_SRC = (
+    Path(os.environ.get("LEGISTAR_SCANNER_SRC", "")).resolve().as_posix()
+    if os.environ.get("LEGISTAR_SCANNER_SRC")
+    else next(
+        (
+            p
+            for p in (
+                "/mnt/watch/legistar-surveillance-scanner/src",
+                "/Users/mlacy/Documents/3.0/legistar-surveillance-scanner/src",
+            )
+            if Path(p).is_dir()
+        ),
+        None,
+    )
+)
+if _SCANNER_SRC and _SCANNER_SRC not in sys.path:
     sys.path.insert(0, _SCANNER_SRC)
 import classify  # noqa: E402
 
