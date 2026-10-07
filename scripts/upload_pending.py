@@ -73,6 +73,13 @@ def main() -> None:
     done = 0
     with EPAV_MANIFEST.open("a") as out:
         for fetched in pending[: args.limit]:
+            pdf = epav_pipeline.resolve_local(fetched, "local_pdf")
+            if pdf is None or not pdf.is_file():
+                # The durable-home invariant is being violated; keep the row
+                # in the queue so the QC durable_home check surfaces it --
+                # do not spam-retry an upload that has no bytes to send.
+                print(f"  {fetched['epav_token']} local pdf missing on this machine — left in queue for QC (durable_home)", file=sys.stderr)
+                continue
             try:
                 record = epav_pipeline.upload_now(fetched, access_key, secret_key, args.delay)
             except Exception as e:  # noqa: BLE001 - log and keep going; stays pending for next invocation
@@ -86,9 +93,11 @@ def main() -> None:
             # manifest record ABOVE; only now drop the large local copy.
             try:
                 import routing
-                dropped = routing.delete_large_after_upload(Path(fetched["local_pdf"]).parent)
-                if dropped:
-                    print(f"  dropped local PDF for {record['epav_token']}", file=sys.stderr)
+                pdf = epav_pipeline.resolve_local(fetched, "local_pdf")
+                if pdf is not None:
+                    dropped = routing.delete_large_after_upload(pdf.parent)
+                    if dropped:
+                        print(f"  dropped local PDF for {record['epav_token']}", file=sys.stderr)
             except Exception as e:  # noqa: BLE001 - manifest already written; stays durable
                 print(f"  delete_large_after_upload FAILED: {e}", file=sys.stderr)
 

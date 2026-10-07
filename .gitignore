@@ -4,3 +4,6 @@ __pycache__/
 .venv/
 data/.eowork/
 data/.epav-local/
+# the fetch queue is regenerable working state (enumeration rebuilds it); the
+# durable records are the manifests/ledgers/deployed tree which stay committed
+data/epav-fetched.jsonl

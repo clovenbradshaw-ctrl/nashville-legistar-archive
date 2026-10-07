@@ -17,7 +17,12 @@ archive.org item identifiers are deterministic (nashville-epav-contract-
 assertions.jsonl/surveillance-flags.jsonl/contract-ledger.jsonl/
 epav-fetched.jsonl during the LOCAL phase, before the real upload has
 happened -- those pointers are already correct, they just don't resolve
-until upload_now() actually pushes the bytes."""
+until upload_now() actually pushes the bytes.
+
+PORTABILITY: local cache paths (local_pdf/local_text/local_eoreader7) are
+stored RELATIVE to the repo root so the fetched ledger never carries
+machine-specific absolute paths -- it is committed to GitHub and read on
+whichever machine runs the fetch/upload phases (see resolve_local)."""
 
 from __future__ import annotations
 
@@ -37,6 +42,23 @@ import surveillance_flag
 import contract_extract
 import crossref
 import routing
+
+
+def resolve_local(rec: dict, key: str) -> Path | None:
+    """Resolve a stored relative (or absolute) local cache path to an actual
+    path on this machine. A relative path is made against the repo root; an
+    absolute path that does not exist here (e.g. a stale row from another
+    machine) resolves to a non-existent path the caller must treat as
+    missing, not as a silent home."""
+    raw = rec.get(key) or ""
+    if not raw:
+        return None
+    p = Path(raw)
+    return p if p.is_absolute() else Path(ROOT, p)
+
+
+def rel(p: Path) -> str:
+    return str(p.relative_to(ROOT)) if p.is_absolute() and p.is_relative_to(ROOT) else str(p)
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCAL_CACHE = ROOT / "data" / ".epav-local"
@@ -120,8 +142,8 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
         "identifier": identifier,
         "archive_url": archive_url,
         "destroyed_per_retention_schedule": destroyed,
-        "local_pdf": str(cache_dir / "source.pdf"),
-        "local_text": str(cache_dir / "extracted-text.txt"),
+"local_pdf": rel(cache_dir / "source.pdf"),
+        "local_text": rel(cache_dir / "extracted-text.txt"),
         "local_eoreader7": None,
         "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
@@ -195,7 +217,7 @@ def fetch_local(api: EPAV, row: dict, legistar_api, page_index: dict, *, referen
             p = result[key]
             if p.exists():
                 (cache_dir / ext).write_bytes(p.read_bytes())
-        fetched["local_eoreader7"] = str(cache_dir)
+        fetched["local_eoreader7"] = rel(cache_dir)
         summary = summarize_referents(result)
         referents_entry.update(summary)
         giver = result["main"].get("declared", {}).get("giver") or "reader:eoreader7-cli"
@@ -237,8 +259,11 @@ def upload_now(fetched: dict, access_key: str, secret_key: str, delay: float) ->
     contract_number = fetched["contract_number"]
     party = fetched["contracting_party"]
     detail_url = fetched["epav_url"]
+    pdf_path = resolve_local(fetched, "local_pdf")
+    if pdf_path is None or not pdf_path.is_file():
+        raise RuntimeError(f"local pdf for {token} is not present on this machine ({pdf_path})")
 
-    pdf_bytes = Path(fetched["local_pdf"]).read_bytes()
+    pdf_bytes = pdf_path.read_bytes()
     title_bits = f"{contract_number} — {party}" if party else contract_number
     resp = upload_item(
         identifier,

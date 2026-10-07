@@ -27,7 +27,8 @@ LOCK = ROOT / "data" / ".push.lock"
 # big files (PDFs) never live under these paths.
 SMALL_PATHS = [
     "data/deployed",
-    "data/epav-fetched.jsonl",
+    # the reproduction of the fetch queue is excluded: it is regenerable
+    # working state, not a durable record, and carries machine cache paths
     "data/epav-manifest.jsonl",
     "data/contract-ledger.jsonl",
     "data/assertions.jsonl",
