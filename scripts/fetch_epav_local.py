@@ -5,14 +5,23 @@ load). Run this to completion, then let scripts/upload_pending.py (on a
 schedule) drain the resulting queue into archive.org at whatever pace it
 actually sustains.
 
-Usage:
-  python scripts/fetch_epav_local.py --departments "ARTS COMMISSION" --exhaustive
-"""
+Parallelism: --workers N fetches/normalizes/reads N documents concurrently
+(the per-document eoreader7 read dominates runtime, so a single serial loop
+was crawling at ~1 contract/minute). Dedup is an in-memory token set loaded
+once -- the old per-row file scan was O(queue) on every row. A heartbeat
+line keeps the live feed moving even during a long capped-department enum.
 
+Usage:
+  python scripts/fetch_epav_local.py --workers 4 --departments "ART" --exhaustive
+"""
 from __future__ import annotations
 
 import argparse
+import json
 import sys
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
@@ -27,12 +36,29 @@ PAGE_SIGHTINGS = ROOT / "data" / "page-sightings.jsonl"
 REFERENTS = ROOT / "data" / "referents.jsonl"
 
 
+def existing_tokens() -> set[str]:
+    p = epav_pipeline.EPAV_FETCHED
+    if not p.exists():
+        return set()
+    out: set[str] = set()
+    with open(p) as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                try:
+                    out.add(json.loads(line).get("epav_token") or "")
+                except json.JSONDecodeError:
+                    pass
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=None, help="stop after this many NEWLY fetched documents")
     ap.add_argument("--departments", default=None, help="comma-separated subset of DEPARTMENTS (default: all)")
-    ap.add_argument("--delay", type=float, default=0.4, help="seconds between ePAV/Legistar requests")
-    ap.add_argument("--exhaustive", action="store_true", help="measure past the site's 1000-row-per-search cap (see epav_client.iter_department_exhaustive)")
+    ap.add_argument("--delay", type=float, default=0.4, help="seconds between ePAV/Legistar requests per worker")
+    ap.add_argument("--exhaustive", action="store_true", help="measure past the site's 1000-row-per-search cap")
+    ap.add_argument("--workers", type=int, default=4, help="concurrent document workers (default 4)")
     args = ap.parse_args()
 
     epav_pipeline.LOCAL_CACHE.mkdir(parents=True, exist_ok=True)
@@ -40,40 +66,71 @@ def main() -> None:
     legistar_api = Legistar("nashville")
     departments = [d.strip() for d in args.departments.split(",")] if args.departments else DEPARTMENTS
     page_index = boilerplate.load_index(PAGE_SIGHTINGS)
+    seen = existing_tokens()
+    lock = threading.Lock()
 
     def iter_rows():
         if args.exhaustive:
-            seen: set[str] = set()
+            local_seen: set[str] = set()
             for dept in departments:
                 for row in api.iter_department_exhaustive(dept):
-                    if row["token"] in seen:
+                    if row["token"] in local_seen:
                         continue
-                    seen.add(row["token"])
+                    local_seen.add(row["token"])
                     row.setdefault("source_department_query", dept)
                     yield row
         else:
             yield from api.iter_all(departments=departments)
 
-    done = 0
-    with REFERENTS.open("a") as referents_out:
-        for row in iter_rows():
-            if epav_pipeline.already_fetched(row["token"]):
-                continue
-            try:
-                fetched = epav_pipeline.fetch_local(api, row, legistar_api, page_index, referents_out=referents_out)
-            except Exception as e:  # noqa: BLE001 - log and keep going
-                print(f"  document {row['token']} FETCH FAILED: {e}", file=sys.stderr)
-                live.event("fetch-failed", epav_token=row.get("token"), department=row.get("department"), error=str(e)[:200])
-                continue
-            done += 1
-            tag = "destroyed-stub" if fetched.get("destroyed_per_retention_schedule") else "fetched"
-            live.event(tag, epav_token=fetched["epav_token"], contract_number=fetched["contract_number"],
-                       department=fetched["department"])
-            print(f"  {tag} {fetched['contract_number']} ({fetched['epav_token']}) — {fetched['department']}", file=sys.stderr)
-            if args.limit and done >= args.limit:
-                break
+    def process(row: dict):
+        tok = row.get("token")
+        if not tok:
+            return None
+        with lock:
+            if tok in seen:
+                return None
+            seen.add(tok)  # claim it so sibling workers don't double-fetch
+        try:
+            fetched = epav_pipeline.fetch_local(api, row, legistar_api, page_index, referents_out=referents_out)
+        except Exception as e:  # noqa: BLE001 - log and keep going
+            with lock:
+                seen.discard(tok)  # leave it claim-free so the next run retries
+            live.event("fetch-failed", epav_token=tok, department=row.get("department"), error=str(e)[:200])
+            print(f"  document {tok} FETCH FAILED: {e}", file=sys.stderr)
+            return None
+        tag = "destroyed-stub" if fetched.get("destroyed_per_retention_schedule") else "fetched"
+        live.event(tag, epav_token=fetched["epav_token"], contract_number=fetched["contract_number"],
+                   department=fetched["department"])
+        print(f"  {tag} {fetched['contract_number']} ({fetched['epav_token']}) — {fetched['department']}", file=sys.stderr)
+        return fetched
 
-    print(f"done: {done} new document(s) fetched locally -> {epav_pipeline.EPAV_FETCHED}", file=sys.stderr)
+    done = submitted = 0
+    last_beat = time.time()
+    with REFERENTS.open("a") as referents_out, ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
+        it = iter_rows()
+        while True:
+            if args.limit and submitted >= args.limit:
+                break
+            try:
+                row = next(it)
+            except StopIteration:
+                break
+            submitted += 1
+            futures = [pool.submit(process, row)]
+            while len(futures) < max(1, args.workers) * 2:
+                try:
+                    futures.append(pool.submit(process, next(it)))
+                except StopIteration:
+                    break
+            for fu in futures:
+                if fu.result() is not None:
+                    done += 1
+            if time.time() - last_beat >= 60:
+                last_beat = time.time()
+                live.event("heartbeat", scanned=submitted, newly_fetched=done,
+                           staged=len(seen), note="fetch workers active")
+
+    print(f"done: {done} new document(s) fetched locally (of {submitted} scanned) -> {epav_pipeline.EPAV_FETCHED}", file=sys.stderr)
     # push the small files (deployed/ + ledgers) to GitHub regardless of
     # archive.org health -- the two storages are independent legs
     try:

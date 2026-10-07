@@ -64,7 +64,10 @@ def main() -> int:
         live.event("qc-run", run_id=run_id, checks=len(reports), defects=n_defect, suspicious=n_susp)
     except Exception:  # noqa: BLE001 - reporting never breaks the audit
         pass
-    return 1 if n_defect else 0
+    # Completing the audit is not a crash: defects/suspicious are the VERDICT,
+    # delivered in the report + the live feed, not a reason to exit nonzero
+    # (which systemd then mislabels as a failed unit).
+    return 0
 
 
 if __name__ == "__main__":
