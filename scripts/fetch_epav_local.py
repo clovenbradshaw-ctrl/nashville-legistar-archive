@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 import threading
 import time
@@ -62,6 +63,19 @@ def main() -> None:
     ap.add_argument("--fast", action="store_true",
                     help="skip the slow eoreader7 read during acquire (scripts/read_backfill.py drains reads later)")
     args = ap.parse_args()
+
+    # Self-preservation gates: don't fill the disk while uploads lag.
+    pause = ROOT / "data" / ".pause-fetch"
+    if pause.exists():
+        live.event("skip-fetch", reason="pause flag set (oversight: disk at the hard watermark)")
+        print("fetch: paused by oversight (data/.pause-fetch present) — standing down", file=sys.stderr)
+        return
+    du = shutil.disk_usage(ROOT)
+    used = du.used / du.total
+    if used >= 0.88:
+        live.event("skip-fetch", reason="disk at hard watermark", disk_used=round(used, 3))
+        print(f"fetch: {used:.1%} disk used on this volume — standing down until the drain catches up", file=sys.stderr)
+        return
 
     epav_pipeline.LOCAL_CACHE.mkdir(parents=True, exist_ok=True)
     api = EPAV(delay=args.delay)
