@@ -146,6 +146,7 @@ class Falsify:
         VERDICTS.parent.mkdir(parents=True, exist_ok=True)
         controls = standing_controls()
         raised = []
+        unexamined = []
         for v in verdicts:
             control = controls.get(v["standing"])
             if not control:  # a verdict with no falsifying control is refused
@@ -163,9 +164,24 @@ class Falsify:
             raised.append(line)
             with VERDICTS.open("a") as f:
                 f.write(json.dumps(line) + "\n")
+            if v["standing"] == "unexamined":
+                unexamined.append(v["subject"])
+                continue
             try:
                 live.event("verdict", run_id=run_id, subject=v["subject"], standing=v["standing"], reason=v["reason"])
             except Exception:  # noqa: BLE001 - ledger append outlives a feed event
+                pass
+        if unexamined:
+            # One calm line for the whole untouched set, not a wall of them.
+            try:
+                live.event(
+                    "verdict", run_id=run_id, standing="unexamined",
+                    n_unexamined=len(unexamined),
+                    subject="MULTIPLE",
+                    reason=f"{len(unexamined)} department(s) not yet examined — nothing pulled from them, not counted complete",
+                    departments=unexamined,
+                )
+            except Exception:  # noqa: BLE001
                 pass
         return raised
 

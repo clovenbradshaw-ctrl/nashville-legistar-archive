@@ -79,8 +79,17 @@ def event_summary(ev: dict) -> str:
     if kind == "qc-run":
         return f"[{t}] QC run done: {d.get('checks',0)} checks, {d.get('defects',0)} defect(s), {d.get('suspicious',0)} suspicious."
     if kind == "verdict":
+        if d.get("standing") == "unexamined":
+            if d.get("subject") == "MULTIPLE":
+                return (f"[{t}] {d.get('n_unexamined', len(d.get('departments', [])))} department(s) "
+                        f"not examined yet (nothing pulled from them — not counted complete).")
+            return f"[{t}] Not examined yet: {d.get('subject','')} — nothing pulled from it, so it can't be called complete."
         v = d.get("standing", "?")
-        return f"[{t}] Completeness verdict for {d.get('subject','')}: {v} ({d.get('reason','')})."
+        if v == "complete":
+            return f"[{t}] Scanned {d.get('subject','')} — every token the portal still shows we already hold. Lower bound checks out."
+        if v == "incomplete":
+            return f"[{t}] {d.get('subject','')} has holes ({d.get('reason','')})."
+        return f"[{t}] {d.get('subject','')} is {v}: {d.get('reason','')}."
     if kind == "falsify-run":
         cts = ", ".join(f"{k}={v}" for k, v in d.items() if k in ("complete", "incomplete", "contested", "unexamined"))
         return f"[{t}] Falsification round finished: {cts}."
@@ -89,12 +98,15 @@ def event_summary(ev: dict) -> str:
     if kind == "roundup":
         top = list(d.get("departments", {}).items())[:3]
         vtops = list(d.get("vendors", {}).items())[:3]
-        return (f"[{t}] ROUNDUP ({d.get('range','')}/{d.get('hours','')}h): "
-                f"acquired {d.get('contracts',0)} contract(s), uploaded {d.get('uploaded',0)}. "
-                f"Departments: {', '.join(f'{k} ({v})' for k, v in top) or 'none'}. "
-                f"Vendors: {', '.join(f'{k} ({v})' for k, v in vtops) or 'none'}.")
+        return (f"[{t}] Roundup — last {d.get('hours', d.get('range','?'))}h: pulled {d.get('contracts',0)} contract(s), "
+                f"archived {d.get('uploaded',0)}. Busiest departments: " +
+                (", ".join(f"{k.lower()} ({v})" for k, v in top) or "none") + ". "
+                f"Top vendors: " + (", ".join(f"{k.lower()} ({v})" for k, v in vtops) or "none") + ".")
     if kind == "snapshot":
         return f"[{t}] State snapshot: {d.get('prose','')}"
+    if kind == "missing":
+        return (f"[{t}] Missing check {d.get('department','')}: {d.get('standing','?')} — "
+                f"{d.get('missing',0)} contract(s) the portal still shows we don't hold yet.")
     return f"[{t}] {kind}: {json.dumps(d)[:200]}"
 
 
@@ -162,6 +174,23 @@ def state_summary(root: Path | None = None) -> dict:
     conceded = [v for v in rules.values() if v.get("standing") == "conceded"]
     changes = _cnt(q("legislation", "changes.jsonl"))
 
+    missing = {}
+    try:
+        from missing import latest_per_department
+        md = list(latest_per_department().values())
+        missing_total = sum(r.get("missing", 0) for r in md if r.get("standing") == "incomplete")
+        missing = {
+            "standing_counts": dict(Counter(r.get("standing") for r in md)),
+            "missing_total": missing_total,
+            "top_departments": [
+                {"department": r.get("department"), "missing": r.get("missing", 0), "standing": r.get("standing")}
+                for r in sorted(md, key=lambda x: -(x.get("missing") or 0))[:8]
+                if r.get("missing")
+            ],
+        }
+    except Exception:  # noqa: BLE001 - the summary survives a missing-module failure
+        missing = {}
+
     if not fetched:
         phase = "booting — the first exhaustive enumeration has not produced documents yet"
     elif uploaded < fetched:
@@ -185,14 +214,26 @@ def state_summary(root: Path | None = None) -> dict:
         prose.append(f"The pipeline has learned {len(adopted)} rule(s) from recurring problems (e.g. {adopted[0].get('class','')}:{adopted[0].get('probe','')}); {len(conceded)} rule(s) conceded by the proteasome as no longer evidenced.")
     if changes:
         prose.append(f"{changes} legislation change(s) tracked from Legistar.")
+    if missing:
+        mt = missing.get("missing_total", 0)
+        tops = missing.get("top_departments", [])
+        if tops:
+            prose.append(
+                f"Missing: recount found {mt} contract(s) the portal still shows that we don't hold yet — "
+                + "; ".join(f"{d['department']} −{d['missing']}" for d in tops) + ". Every count is a concrete lower bound; caps are declared, never hidden."
+            )
+        else:
+            prose.append(f"Missing: {mt} contract(s) surfaced by the recount — every studied department is complete or unexamined.")
 
     return {
         "counts": {"fetched": fetched, "uploaded": uploaded, "deployed": deployed,
-                   "gaps": len(open_gaps), "legislation_changes": changes},
+                   "gaps": len(open_gaps), "legislation_changes": changes,
+                   "missing_total": missing.get("missing_total", 0)},
         "phase": phase,
         "verdicts": dict(vc),
         "qc": dict(qc_grades),
         "rules": {"adopted": len(adopted), "conceded": len(conceded)},
+        "missing": missing,
         "prose": prose,
         "latest": [event_summary(ev) for ev in events[-5:]],
     }
