@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 JOBS = [
     ("data/live/events.jsonl", 4000),
     ("data/live/roundups.jsonl", 1000),
+    ("data/missing.jsonl", 20000),
     ("docs/holodeck.http.log", 2000),
 ]
 
