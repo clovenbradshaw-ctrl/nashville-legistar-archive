@@ -21,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 import epav_pipeline
 import fold_pipeline
+import live
 from fold_pipeline import load_env_file
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -79,16 +80,32 @@ def main() -> None:
                 # in the queue so the QC durable_home check surfaces it --
                 # do not spam-retry an upload that has no bytes to send.
                 print(f"  {fetched['epav_token']} local pdf missing on this machine — left in queue for QC (durable_home)", file=sys.stderr)
+                live.event("missing-home", epav_token=fetched["epav_token"], contract_number=fetched.get("contract_number"))
                 continue
             try:
                 record = epav_pipeline.upload_now(fetched, access_key, secret_key, args.delay)
             except Exception as e:  # noqa: BLE001 - log and keep going; stays pending for next invocation
                 print(f"  {fetched['epav_token']} UPLOAD FAILED (will retry next run): {e}", file=sys.stderr)
+                live.event("upload-failed", epav_token=fetched["epav_token"], error=str(e)[:200])
                 continue
             out.write(json.dumps(record) + "\n")
             out.flush()
             done += 1
             print(f"  uploaded {record['contract_number']} ({record['epav_token']}) — {record['department']}", file=sys.stderr)
+            live.event("uploaded", epav_token=record["epav_token"], contract_number=record["contract_number"],
+                       department=record["department"], archive_url=record["archive_url"])
+            # Deletion invariant: the durable home (archive.org) is on the
+            # manifest record ABOVE; only now drop the large local copy.
+            try:
+                import routing
+                pdf = epav_pipeline.resolve_local(fetched, "local_pdf")
+                if pdf is not None:
+                    dropped = routing.delete_large_after_upload(pdf.parent)
+                    if dropped:
+                        print(f"  dropped local PDF for {record['epav_token']}", file=sys.stderr)
+                        live.event("dropped-local-pdf", epav_token=record["epav_token"])
+            except Exception as e:  # noqa: BLE001 - manifest already written; stays durable
+                print(f"  delete_large_after_upload FAILED: {e}", file=sys.stderr)
             # Deletion invariant: the durable home (archive.org) is on the
             # manifest record ABOVE; only now drop the large local copy.
             try:

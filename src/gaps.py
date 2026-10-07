@@ -15,6 +15,8 @@ import json
 import time
 from pathlib import Path
 
+import live
+
 ROOT = Path(__file__).resolve().parent.parent
 GAPS = ROOT / "data" / "gaps.jsonl"
 
@@ -37,6 +39,10 @@ def record_gap(*, kind: str, subject: str, detail: str | None = None, falsifying
     GAPS.parent.mkdir(parents=True, exist_ok=True)
     with GAPS.open("a") as f:
         f.write(json.dumps(line) + "\n")
+    try:
+        live.event("gap", kind=kind, subject=subject, detail=detail)
+    except Exception:  # noqa: BLE001 - the gap is recorded regardless
+        pass
     return line
 
 

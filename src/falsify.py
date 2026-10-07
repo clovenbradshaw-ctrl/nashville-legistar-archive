@@ -26,6 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import gaps as gaps_ledger  # noqa: E402
+import live  # noqa: E402
 from epav_client import DEPARTMENTS, RESULT_CAP, EPAV, live_departments  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -162,6 +163,10 @@ class Falsify:
             raised.append(line)
             with VERDICTS.open("a") as f:
                 f.write(json.dumps(line) + "\n")
+            try:
+                live.event("verdict", run_id=run_id, subject=v["subject"], standing=v["standing"], reason=v["reason"])
+            except Exception:  # noqa: BLE001 - ledger append outlives a feed event
+                pass
         return raised
 
     def pass_round(self, *, limit: int | None = None, run_id: str) -> dict:
