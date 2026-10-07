@@ -22,13 +22,14 @@ from urllib.parse import urlparse, parse_qs
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 EVENTS = ROOT / "data" / "live" / "events.jsonl"
+ROUNDUPS = ROOT / "data" / "live" / "roundups.jsonl"
 BACKLOG = 50
 
 
-def last_lines(n: int) -> list[str]:
-    if not EVENTS.exists():
+def last_lines(path: pathlib.Path, n: int) -> list[str]:
+    if not path.exists():
         return []
-    with open(EVENTS) as f:
+    with open(path) as f:
         tail = f.readlines()
     return [l for l in tail[-n:] if l.strip()]
 
@@ -61,10 +62,18 @@ class H(BaseHTTPRequestHandler):
             return
         if u.path == "/tail":
             n = int(parse_qs(u.query).get("n", ["100"])[0])
-            self._send_json({"events": [json.loads(l) for l in last_lines(n)]})
+            self._send_json({"events": [json.loads(l) for l in last_lines(EVENTS, n)]})
+            return
+        if u.path == "/roundup":
+            q = parse_qs(u.query)
+            import summarize
+            hours = [int(v) for v in q.get("hours", ["24,168,720"])[0].split(",") if v.strip()]
+            periods = {f"{h}h": summarize.period_summary(f"{h}h", h) for h in hours}
+            rounds = [json.loads(l) for l in last_lines(ROUNDUPS, 5)]
+            self._send_json({"periods": periods, "roundups": rounds})
             return
         if u.path != "/stream":
-            self._send_json({"ok": False, "error": "use /stream"}, 404)
+            self._send_json({"ok": False, "error": "use /stream, /tail, /roundup, /health"}, 404)
             return
 
         self.send_response(200)
@@ -72,7 +81,7 @@ class H(BaseHTTPRequestHandler):
         self._cors()
         self.end_headers()
         try:
-            backlog = last_lines(BACKLOG)
+            backlog = last_lines(EVENTS, BACKLOG)
             for line in backlog:
                 self.wfile.write(f"data: {line}\n\n".encode())
             self.wfile.write(b"event: ready\ndata: {}\n\n")
@@ -81,19 +90,49 @@ class H(BaseHTTPRequestHandler):
             if not EVENTS.exists():
                 EVENTS.parent.mkdir(parents=True, exist_ok=True)
                 EVENTS.touch()
-            with open(EVENTS) as fh:
-                fh.seek(0, 2)
-                while True:
-                    line = fh.readline()
-                    if line:
-                        self.wfile.write(f"data: {line}\n\n".encode())
+            import os
+            import summarize
+            ticks = 0
+            fstat = os.stat(EVENTS)
+            fh = open(EVENTS)
+            fh.seek(0, 2)
+            ino, pos = fstat.st_ino, fh.tell()
+            while True:
+                # Rotation-safe: scripts/trim.py truncates events.jsonl via
+                # atomic replace (new inode); a changed inode or a file that
+                # shrank under us means the log was rotated -- reopen rather
+                # than keep streaming into a dead inode.
+                try:
+                    cur = os.stat(EVENTS)
+                    if cur.st_ino != ino or cur.st_size < pos:
+                        fh.close()
+                        fh = open(EVENTS)
+                        fh.seek(0, 2)
+                        ino, pos = os.stat(EVENTS).st_ino, fh.tell()
+                        self.wfile.write(b'data: {"kind":"system","note":"live log rotated/trimmed"}\n\n')
                         self.wfile.flush()
                         continue
-                    # EOF: keep-alive every 15s, then re-pick up anything new
-                    self.wfile.write(b": ping\n\n")
+                except FileNotFoundError:
+                    pass
+                line = fh.readline()
+                if line:
+                    self.wfile.write(f"data: {line}\n\n".encode())
                     self.wfile.flush()
-                    time.sleep(15)
-                    fh.seek(fh.tell())
+                    ticks = 0
+                    pos = fh.tell()
+                    continue
+                # EOF: lightweight keep-alive, plus a state snapshot every
+                # 30s so the page's "what's going on" panel stays honest
+                self.wfile.write(b": ping\n\n")
+                ticks += 1
+                if ticks % 2 == 0:
+                    try:
+                        snap = summarize.state_summary()
+                        self.wfile.write(f"event: snapshot\ndata: {json.dumps(snap)}\n\n".encode())
+                    except Exception:  # noqa: BLE001 - a snapshot is adornment
+                        pass
+                self.wfile.flush()
+                time.sleep(15)
         except (BrokenPipeError, ConnectionResetError):
             pass
 
