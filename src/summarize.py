@@ -161,6 +161,23 @@ def state_summary(root: Path | None = None) -> dict:
     pending = sum(1 for r in fetched_rows if (r.get("epav_token") or "") not in man_tokens)
     uploaded = len(man_tokens)                       # all-time archive.org manifest
     deployed = len([p for p in q("deployed").iterdir()]) if q("deployed").is_dir() else 0
+
+    # The processing ladder: pulled -> archived -> read -> small-files-on-GitHub.
+    # "Fully processed" = the whole circle: PDF on archive.org (manifest) AND the
+    # deployed set is complete (extracted text + eoreader7 read) on GitHub.
+    read_done = 0
+    full_ids: set[str] = set()
+    deployed_dir = q("deployed")
+    if deployed_dir.is_dir():
+        for d in deployed_dir.iterdir():
+            if not d.is_dir():
+                continue
+            if (d / "eoreader7.json").is_file():
+                read_done += 1
+            if (d / "eoreader7.json").is_file() and (d / "extracted-text.txt").is_file():
+                full_ids.add(d.name)
+    man_ids = {f"nashville-epav-contract-{t}" for t in man_tokens if t}
+    fully_processed = len(man_ids & full_ids)
     gaps = _jsonl(q("gaps.jsonl"))
     open_gaps = [g for g in gaps if g.get("kind") == "capped-shard"]
     verdicts = _jsonl(q("verdicts.jsonl"))
@@ -241,6 +258,11 @@ def state_summary(root: Path | None = None) -> dict:
         prose.append(f"The pipeline has learned {len(adopted)} rule(s) from recurring problems; {len(conceded)} conceded by the proteasome as no longer evidenced.")
     if changes:
         prose.append(f"{changes} legislation change(s) tracked from Legistar.")
+    prose.append(
+        f"Processing ladder: {fully_processed} of {pulled_accounted} pulled are fully processed — "
+        f"PDF archived on archive.org, text extracted, read by eoreader7, small files on GitHub "
+        f"({uploaded} archived, {read_done} read)."
+    )
     if missing:
         mt = missing.get("missing_total", 0)
         tops = missing.get("top_departments", [])
@@ -259,7 +281,8 @@ def state_summary(root: Path | None = None) -> dict:
     return {
         "counts": {"fetched": staged, "staged": staged, "pending": pending,
                    "uploaded": uploaded, "pulled_accounted": pulled_accounted,
-                   "deployed": deployed,
+                   "deployed": deployed, "read_done": read_done,
+                   "fully_processed": fully_processed,
                    "gaps": len(open_gaps), "legislation_changes": changes,
                    "missing_total": missing.get("missing_total", 0)},
         "phase": phase,
