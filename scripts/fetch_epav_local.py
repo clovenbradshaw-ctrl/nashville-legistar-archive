@@ -20,6 +20,7 @@ from epav_client import EPAV, DEPARTMENTS
 from legistar_client import Legistar
 import boilerplate
 import epav_pipeline
+import live
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE_SIGHTINGS = ROOT / "data" / "page-sightings.jsonl"
@@ -62,9 +63,12 @@ def main() -> None:
                 fetched = epav_pipeline.fetch_local(api, row, legistar_api, page_index, referents_out=referents_out)
             except Exception as e:  # noqa: BLE001 - log and keep going
                 print(f"  document {row['token']} FETCH FAILED: {e}", file=sys.stderr)
+                live.event("fetch-failed", epav_token=row.get("token"), department=row.get("department"), error=str(e)[:200])
                 continue
             done += 1
             tag = "destroyed-stub" if fetched.get("destroyed_per_retention_schedule") else "fetched"
+            live.event(tag, epav_token=fetched["epav_token"], contract_number=fetched["contract_number"],
+                       department=fetched["department"])
             print(f"  {tag} {fetched['contract_number']} ({fetched['epav_token']}) — {fetched['department']}", file=sys.stderr)
             if args.limit and done >= args.limit:
                 break

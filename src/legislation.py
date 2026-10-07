@@ -26,6 +26,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
+import live  # noqa: E402
 from legistar_client import Legistar  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -115,6 +116,10 @@ def poll(*, limit: int | None = None, client: str = "nashville") -> dict:
         }
         append(OBSERVATIONS, line)
         append(CHANGES, line)
+        try:
+            live.event("legislation", matter_id=line["matter_id"], matter_file=line["matter_file"], change=change)
+        except Exception:  # noqa: BLE001 - a change is recorded regardless
+            pass
         state[mid] = {"file": file_no, "title": title, "sha": sig,
                       "attachment_sha": att_sig, "n_attachments": n_att, "observed_at": now}
         if change == "new":

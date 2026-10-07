@@ -38,7 +38,9 @@ def main() -> int:
     # concedes it once it stops being evidenced.
     try:
         import learning
+        import live
         for rep in reports:
+            live.event("qc", run_id=run_id, check=rep.check, subject=rep.subject, grade=rep.grade, n=len(rep.findings))
             if rep.grade in ("defect", "suspicious"):
                 learning.observe("qc", rep.check)
     except Exception as e:  # noqa: BLE001 - audit runs even if learning is wounded
@@ -57,6 +59,11 @@ def main() -> int:
     print(f"\nQC run {run_id}: {len(reports)} checks, "
           f"{n_defect} defect(s), {n_susp} suspicious, "
           f"ledger={'data/qc/reports.jsonl' if ledger else 'stdout-only'}")
+    try:
+        import live
+        live.event("qc-run", run_id=run_id, checks=len(reports), defects=n_defect, suspicious=n_susp)
+    except Exception:  # noqa: BLE001 - reporting never breaks the audit
+        pass
     return 1 if n_defect else 0
 
 
