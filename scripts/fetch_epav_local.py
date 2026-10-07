@@ -59,6 +59,8 @@ def main() -> None:
     ap.add_argument("--delay", type=float, default=0.4, help="seconds between ePAV/Legistar requests per worker")
     ap.add_argument("--exhaustive", action="store_true", help="measure past the site's 1000-row-per-search cap")
     ap.add_argument("--workers", type=int, default=4, help="concurrent document workers (default 4)")
+    ap.add_argument("--fast", action="store_true",
+                    help="skip the slow eoreader7 read during acquire (scripts/read_backfill.py drains reads later)")
     args = ap.parse_args()
 
     epav_pipeline.LOCAL_CACHE.mkdir(parents=True, exist_ok=True)
@@ -91,7 +93,8 @@ def main() -> None:
                 return None
             seen.add(tok)  # claim it so sibling workers don't double-fetch
         try:
-            fetched = epav_pipeline.fetch_local(api, row, legistar_api, page_index, referents_out=referents_out)
+            fetched = epav_pipeline.fetch_local(api, row, legistar_api, page_index, referents_out=referents_out,
+                                                deep_reads=not args.fast)
         except Exception as e:  # noqa: BLE001 - log and keep going
             with lock:
                 seen.discard(tok)  # leave it claim-free so the next run retries
