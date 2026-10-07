@@ -1,29 +1,29 @@
 {
   "schema": "LiveSummary@1",
-  "at": "2026-10-07T21:40:00Z",
+  "at": "2026-10-07T22:40:00Z",
   "state": {
     "counts": {
-      "fetched": 1443,
-      "staged": 1443,
-      "pending": 1157,
-      "uploaded": 286,
-      "pulled_accounted": 1443,
-      "deployed": 1443,
+      "fetched": 1847,
+      "staged": 1847,
+      "pending": 1544,
+      "uploaded": 303,
+      "pulled_accounted": 1847,
+      "deployed": 1847,
       "read_done": 0,
       "fully_processed": 0,
       "gaps": 124,
       "legislation_changes": 0,
       "missing_total": 7679
     },
-    "phase": "we're pulling faster than archive.org can take it right now (1157 staged)",
+    "phase": "we're pulling faster than archive.org can take it right now (1544 staged)",
     "verdicts": {
-      "complete": 4,
+      "complete": 10,
       "incomplete": 4,
-      "unexamined": 112
+      "unexamined": 106
     },
     "qc": {
-      "defect": 22,
-      "ok": 55
+      "defect": 28,
+      "ok": 63
     },
     "rules": {
       "adopted": 0,
@@ -100,28 +100,12 @@
       ]
     },
     "last24h": {
-      "pulled": 1443,
-      "archived": 72
+      "pulled": 1847,
+      "archived": 89
     },
     "oversight": {
-      "n": 6,
+      "n": 8,
       "latest": [
-        {
-          "schema": "OversightAction@1",
-          "at": "2026-10-07T19:30:07Z",
-          "kind": "stagnation",
-          "pending": 280,
-          "uploaded": 255,
-          "falsifying": "the pending queue shrinks or uploads advance on a later pass"
-        },
-        {
-          "schema": "OversightAction@1",
-          "at": "2026-10-07T19:45:07Z",
-          "kind": "stagnation",
-          "pending": 310,
-          "uploaded": 255,
-          "falsifying": "the pending queue shrinks or uploads advance on a later pass"
-        },
         {
           "schema": "OversightAction@1",
           "at": "2026-10-07T20:30:07Z",
@@ -153,17 +137,33 @@
           "pending": 994,
           "uploaded": 286,
           "falsifying": "the pending queue shrinks or uploads advance on a later pass"
+        },
+        {
+          "schema": "OversightAction@1",
+          "at": "2026-10-07T21:45:07Z",
+          "kind": "stagnation",
+          "pending": 1242,
+          "uploaded": 286,
+          "falsifying": "the pending queue shrinks or uploads advance on a later pass"
+        },
+        {
+          "schema": "OversightAction@1",
+          "at": "2026-10-07T22:30:08Z",
+          "kind": "stagnation",
+          "pending": 1527,
+          "uploaded": 303,
+          "falsifying": "the pending queue shrinks or uploads advance on a later pass"
         }
       ]
     },
     "prose": [
-      "Where we are: 1443 contracts pulled all-time (286 archived on archive.org, 1443 small-file sets on GitHub \u2014 earlier sessions' work included); 1157 staged and waiting on the drain. In the last 24h: 1443 pulled, 72 archived. we're pulling faster than archive.org can take it right now (1157 staged).",
+      "Where we are: 1847 contracts pulled all-time (303 archived on archive.org, 1847 small-file sets on GitHub \u2014 earlier sessions' work included); 1544 staged and waiting on the drain. In the last 24h: 1847 pulled, 89 archived. we're pulling faster than archive.org can take it right now (1544 staged).",
       "124 department(s) still sit behind the portal's 1,000-row search wall (the enumeration gaps) \u2014 completeness stays contested there until the deep lane subdivides past the cap.",
-      "Completeness verdicts across departments: 4 complete, 4 incomplete, 0 contested, 112 unexamined (unexamined means not crawled yet \u2014 never counted as a pass).",
-      "Last QC pass: flagging problems (55 clean, 0 suspicious, 22 defect).",
-      "Processing ladder: 0 of 1443 pulled are fully processed \u2014 PDF archived on archive.org, text extracted, read by eoreader7, small files on GitHub (286 archived, 0 read).",
+      "Completeness verdicts across departments: 10 complete, 4 incomplete, 0 contested, 106 unexamined (unexamined means not crawled yet \u2014 never counted as a pass).",
+      "Last QC pass: flagging problems (63 clean, 0 suspicious, 28 defect).",
+      "Processing ladder: 0 of 1847 pulled are fully processed \u2014 PDF archived on archive.org, text extracted, read by eoreader7, small files on GitHub (303 archived, 0 read).",
       "Missing: recount found 7679 contract(s) the portal still shows that we don't hold yet \u2014 FINANCE \u22122464; WATER SERVICES \u22122432; FILM OFFICE \u22121332; GENERAL SERVICES \u22121062; FIRE \u2212354; AFFORDABLE HOUSING \u221235. Every count is a concrete lower bound; caps are declared, never hidden.",
-      "Self-healing: 6 oversight action(s) on record (restart/ream/timer arms, fetch pauses on disk pressure) \u2014 each with a falsifying control.",
+      "Self-healing: 8 oversight action(s) on record (restart/ream/timer arms, fetch pauses on disk pressure) \u2014 each with a falsifying control.",
       "Note: every total here is the live picture at this moment \u2014 they grow as the crawl discovers and archives more contracts."
     ]
   },
@@ -171,292 +171,1496 @@
     "24h": {
       "range": "24h",
       "hours": 24,
-      "contracts": 1443,
-      "uploaded": 72,
+      "contracts": 1847,
+      "uploaded": 89,
       "departments": {
-        "ARTS COMMISSION": 731,
-        "AIRPORT AUTHORITY": 599,
+        "ARTS COMMISSION": 998,
+        "AIRPORT AUTHORITY": 644,
         "AFFORDABLE HOUSING": 95,
+        "CIRCUIT COURT CLERK": 34,
+        "ASSESSOR OF PROPERTY": 33,
+        "CARING FOR CHILDREN": 19,
         "ARENA": 8,
-        "AGRICULTURAL EXTENSION": 7,
-        "FILM OFFICE": 3
+        "AGRICULTURAL EXTENSION": 7
       },
       "vendors": {
-        "NASHVILLE SYMPHONY ASSOC": 24,
-        "GLOBAL EDUCATION CENTER": 15,
-        "NASHVILLE CHILDRENS THEATRE": 14,
-        "BELCOURT THEATRE": 13,
-        "CIRCLE PLAYERS": 13,
-        "SOUTHERN WORD": 13,
-        "HEALING ARTS PROJECT": 13,
-        "ALIAS CHAMBER ENSEMBLE": 12,
-        "STREET THEATRE CO": 11,
-        "CHINESE ARTS ALLIANCE OF NASHVILLE": 11
+        "NASHVILLE SYMPHONY ASSOC": 25,
+        "ROOKER RICHARD": 24,
+        "GLOBAL EDUCATION CENTER": 19,
+        "CHINESE ARTS ALLIANCE OF NASHVILLE": 18,
+        "SOUTHERN WORD": 17,
+        "NASHVILLE BALLET": 16,
+        "ALIAS CHAMBER ENSEMBLE": 16,
+        "HEALING ARTS PROJECT": 16,
+        "BELCOURT THEATRE": 15,
+        "CIRCLE PLAYERS": 15
       },
       "by_day": {
-        "2026-10-07": 1443
+        "2026-10-07": 1847
       }
     },
     "168h": {
       "range": "168h",
       "hours": 168,
-      "contracts": 1443,
-      "uploaded": 72,
+      "contracts": 1847,
+      "uploaded": 89,
       "departments": {
-        "ARTS COMMISSION": 731,
-        "AIRPORT AUTHORITY": 599,
+        "ARTS COMMISSION": 998,
+        "AIRPORT AUTHORITY": 644,
         "AFFORDABLE HOUSING": 95,
+        "CIRCUIT COURT CLERK": 34,
+        "ASSESSOR OF PROPERTY": 33,
+        "CARING FOR CHILDREN": 19,
         "ARENA": 8,
-        "AGRICULTURAL EXTENSION": 7,
-        "FILM OFFICE": 3
+        "AGRICULTURAL EXTENSION": 7
       },
       "vendors": {
-        "NASHVILLE SYMPHONY ASSOC": 24,
-        "GLOBAL EDUCATION CENTER": 15,
-        "NASHVILLE CHILDRENS THEATRE": 14,
-        "BELCOURT THEATRE": 13,
-        "CIRCLE PLAYERS": 13,
-        "SOUTHERN WORD": 13,
-        "HEALING ARTS PROJECT": 13,
-        "ALIAS CHAMBER ENSEMBLE": 12,
-        "STREET THEATRE CO": 11,
-        "CHINESE ARTS ALLIANCE OF NASHVILLE": 11
+        "NASHVILLE SYMPHONY ASSOC": 25,
+        "ROOKER RICHARD": 24,
+        "GLOBAL EDUCATION CENTER": 19,
+        "CHINESE ARTS ALLIANCE OF NASHVILLE": 18,
+        "SOUTHERN WORD": 17,
+        "NASHVILLE BALLET": 16,
+        "ALIAS CHAMBER ENSEMBLE": 16,
+        "HEALING ARTS PROJECT": 16,
+        "BELCOURT THEATRE": 15,
+        "CIRCLE PLAYERS": 15
       },
       "by_day": {
-        "2026-10-07": 1443
+        "2026-10-07": 1847
       }
     },
     "720h": {
       "range": "720h",
       "hours": 720,
-      "contracts": 1443,
-      "uploaded": 286,
+      "contracts": 1847,
+      "uploaded": 303,
       "departments": {
-        "ARTS COMMISSION": 731,
-        "AIRPORT AUTHORITY": 599,
+        "ARTS COMMISSION": 998,
+        "AIRPORT AUTHORITY": 644,
         "AFFORDABLE HOUSING": 95,
+        "CIRCUIT COURT CLERK": 34,
+        "ASSESSOR OF PROPERTY": 33,
+        "CARING FOR CHILDREN": 19,
         "ARENA": 8,
-        "AGRICULTURAL EXTENSION": 7,
-        "FILM OFFICE": 3
+        "AGRICULTURAL EXTENSION": 7
       },
       "vendors": {
-        "NASHVILLE SYMPHONY ASSOC": 24,
-        "GLOBAL EDUCATION CENTER": 15,
-        "NASHVILLE CHILDRENS THEATRE": 14,
-        "BELCOURT THEATRE": 13,
-        "CIRCLE PLAYERS": 13,
-        "SOUTHERN WORD": 13,
-        "HEALING ARTS PROJECT": 13,
-        "ALIAS CHAMBER ENSEMBLE": 12,
-        "STREET THEATRE CO": 11,
-        "CHINESE ARTS ALLIANCE OF NASHVILLE": 11
+        "NASHVILLE SYMPHONY ASSOC": 25,
+        "ROOKER RICHARD": 24,
+        "GLOBAL EDUCATION CENTER": 19,
+        "CHINESE ARTS ALLIANCE OF NASHVILLE": 18,
+        "SOUTHERN WORD": 17,
+        "NASHVILLE BALLET": 16,
+        "ALIAS CHAMBER ENSEMBLE": 16,
+        "HEALING ARTS PROJECT": 16,
+        "BELCOURT THEATRE": 15,
+        "CIRCLE PLAYERS": 15
       },
       "by_day": {
-        "2026-10-07": 1443
+        "2026-10-07": 1847
       }
     }
   },
   "roundup": {
     "schema": "Roundup@1",
     "kind": "roundup",
-    "at": "2026-10-07T21:40:00Z",
+    "at": "2026-10-07T22:40:00Z",
     "range_hours": 24,
-    "since": "2026-10-07T21:40:00Z",
+    "since": "2026-10-07T22:40:00Z",
     "range": "24h",
     "hours": 24,
-    "contracts": 1443,
-    "uploaded": 72,
+    "contracts": 1847,
+    "uploaded": 89,
     "departments": {
-      "ARTS COMMISSION": 731,
-      "AIRPORT AUTHORITY": 599,
+      "ARTS COMMISSION": 998,
+      "AIRPORT AUTHORITY": 644,
       "AFFORDABLE HOUSING": 95,
+      "CIRCUIT COURT CLERK": 34,
+      "ASSESSOR OF PROPERTY": 33,
+      "CARING FOR CHILDREN": 19,
       "ARENA": 8,
-      "AGRICULTURAL EXTENSION": 7,
-      "FILM OFFICE": 3
+      "AGRICULTURAL EXTENSION": 7
     },
     "vendors": {
-      "NASHVILLE SYMPHONY ASSOC": 24,
-      "GLOBAL EDUCATION CENTER": 15,
-      "NASHVILLE CHILDRENS THEATRE": 14,
-      "BELCOURT THEATRE": 13,
-      "CIRCLE PLAYERS": 13,
-      "SOUTHERN WORD": 13,
-      "HEALING ARTS PROJECT": 13,
-      "ALIAS CHAMBER ENSEMBLE": 12,
-      "STREET THEATRE CO": 11,
-      "CHINESE ARTS ALLIANCE OF NASHVILLE": 11
+      "NASHVILLE SYMPHONY ASSOC": 25,
+      "ROOKER RICHARD": 24,
+      "GLOBAL EDUCATION CENTER": 19,
+      "CHINESE ARTS ALLIANCE OF NASHVILLE": 18,
+      "SOUTHERN WORD": 17,
+      "NASHVILLE BALLET": 16,
+      "ALIAS CHAMBER ENSEMBLE": 16,
+      "HEALING ARTS PROJECT": 16,
+      "BELCOURT THEATRE": 15,
+      "CIRCLE PLAYERS": 15
     },
     "by_day": {
-      "2026-10-07": 1443
+      "2026-10-07": 1847
     }
   },
   "recent": [
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:10Z",
-      "epav_token": "7yWdmK6w",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
+      "kind": "read",
+      "at": "2026-10-07T22:16:13Z",
+      "epav_token": "vDN7Vpjx",
+      "contract_number": "A-89-91",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:14Z",
+      "epav_token": "4Dn0Z7yk",
+      "contract_number": "A-91-167",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:14Z",
+      "epav_token": "PDkWmVDo",
+      "contract_number": "A-89-94",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:14Z",
+      "epav_token": "qjwR2JD5",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:14Z",
+      "epav_token": "bD5Led6d",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:14Z",
+      "epav_token": "LDVX94yk",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:15Z",
+      "epav_token": "aD2PzayM",
+      "contract_number": "A-92-201",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:15Z",
+      "epav_token": "2yBP9JD1",
+      "contract_number": "A-92-195",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:15Z",
+      "epav_token": "Rjp08vjl",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:15Z",
+      "epav_token": "xym0RQjY",
+      "contract_number": "A-92-204",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "aDXo3o6q",
+      "contract_number": "A-92-203",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "MDraPo6o",
+      "contract_number": "A-92-219",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "wjYq95jZ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "5DeJkkjM",
+      "contract_number": "A-92-224",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "96ZM2RyO",
+      "contract_number": "A-92-208",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "YyzOm369",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:16Z",
+      "epav_token": "Wj4kK8DB",
+      "contract_number": "A-92-226",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:17Z",
+      "epav_token": "WD1El7DQ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:17Z",
+      "epav_token": "MD8LP8DZ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:17Z",
+      "epav_token": "xym0bQjY",
+      "contract_number": "A-93-253",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:17Z",
+      "epav_token": "a6bK73DO",
+      "contract_number": "A-94-277",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:18Z",
+      "epav_token": "lj73e9j7",
+      "contract_number": "A-93-254",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:18Z",
+      "epav_token": "YyzOx169",
+      "contract_number": "A-94-281",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:18Z",
+      "epav_token": "M6RNoY6Z",
+      "contract_number": "A-94-282",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:18Z",
+      "epav_token": "njMm9LjG",
+      "contract_number": "A-92-207",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:18Z",
+      "epav_token": "MDAJQqj7",
+      "contract_number": "A-94-263",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "Wj4kozDB",
+      "contract_number": "A-94-285",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "WD1EblDQ",
+      "contract_number": "A-94-271",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "Zj0vzL6B",
+      "contract_number": "A-94-289",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "O6dPN26E",
+      "contract_number": "A-94-287",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "A6Oqz5jJ",
+      "contract_number": "A-94-288",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "vjKAQB65",
+      "contract_number": "A-94-283",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "QyLXbZy0",
+      "contract_number": "A-95-294",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:19Z",
+      "epav_token": "3y9L0rje",
+      "contract_number": "A-95-293",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "aD2PK7yM",
+      "contract_number": "A-95-306",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "7yWmOKDw",
+      "contract_number": "A-95-295",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "byxPxnyR",
+      "contract_number": "A-95-290",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "WD1ERlDQ",
+      "contract_number": "A-95-313",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "96ZMgVyO",
+      "contract_number": "A-95-311",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "MDra8p6o",
+      "contract_number": "A-96-320",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:20Z",
+      "epav_token": "a6bKM3DO",
+      "contract_number": "A-96-319",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:21Z",
+      "epav_token": "PDkWbbDo",
+      "contract_number": "A-95-315",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:21Z",
+      "epav_token": "3y9Lmrje",
+      "contract_number": "A-96-334",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:21Z",
+      "epav_token": "aD2Px7yM",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:21Z",
+      "epav_token": "A6Oqd5jJ",
+      "contract_number": "A-96-329",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:21Z",
+      "epav_token": "aDXoXq6q",
+      "contract_number": "A-96-347",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:21Z",
+      "epav_token": "njMm40jG",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:22Z",
+      "epav_token": "byxPXnyR",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:22Z",
+      "epav_token": "PDkWeaDo",
+      "contract_number": "A-97-367",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:22Z",
+      "epav_token": "wjYqmwjZ",
+      "contract_number": "A-97-366",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:22Z",
+      "epav_token": "MDraBM6o",
+      "contract_number": "A-97-371",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:22Z",
+      "epav_token": "xym0gYjY",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:23Z",
+      "epav_token": "m63d7JD2",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:23Z",
+      "epav_token": "njMmvXjG",
+      "contract_number": "A-99-404",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:23Z",
+      "epav_token": "QyLXgYy0",
+      "contract_number": "A-98-386",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:23Z",
+      "epav_token": "O6dPKp6E",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:23Z",
+      "epav_token": "LDVXMwyk",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:24Z",
+      "epav_token": "5DeJYrjM",
+      "contract_number": "A-99-419",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:24Z",
+      "epav_token": "qDo09RjA",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:24Z",
+      "epav_token": "3DE5nXDG",
+      "contract_number": "A-99-411",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:24Z",
+      "epav_token": "LyvQ0XjA",
+      "contract_number": "A-99-428",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:25Z",
+      "epav_token": "O6dP1p6E",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:25Z",
+      "epav_token": "4DnVNlDk",
+      "contract_number": "L-87-4740",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:25Z",
+      "epav_token": "njMZlXyG",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:25Z",
+      "epav_token": "X6lbX3j2",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:25Z",
+      "epav_token": "byxPg5yR",
+      "contract_number": "A-99-426",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:26Z",
+      "epav_token": "kyPM4Y6N",
+      "contract_number": "A-99-422",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:26Z",
+      "epav_token": "vjKJrnD5",
+      "contract_number": "L-99-7250",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:26Z",
+      "epav_token": "bD5xq76d",
+      "contract_number": "A-05-134",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:26Z",
+      "epav_token": "qDo4bajA",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:27Z",
+      "epav_token": "MDr3Wpjo",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:27Z",
+      "epav_token": "M6R4mYjZ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:27Z",
+      "epav_token": "bD5x1N6d",
+      "contract_number": "A-04-116",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:27Z",
+      "epav_token": "vjKn5BD5",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:27Z",
+      "epav_token": "ajaRQQy1",
+      "contract_number": "A-04-120",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:28Z",
+      "epav_token": "YyzQJ1j9",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:28Z",
+      "epav_token": "byx5M56R",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:28Z",
+      "epav_token": "Zj0xoKjB",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:29Z",
+      "epav_token": "7yWlkM6w",
+      "contract_number": "A-05-155",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:29Z",
+      "epav_token": "3y9Q33ye",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:29Z",
+      "epav_token": "MDAXd567",
+      "contract_number": "A-05-161",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:29Z",
+      "epav_token": "LDVlm1yk",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:29Z",
+      "epav_token": "aDXl2zDq",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:30Z",
+      "epav_token": "bD5xwB6d",
+      "contract_number": "A-05-157",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:30Z",
+      "epav_token": "qDo4MZjA",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:30Z",
+      "epav_token": "ajaRGXy1",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:30Z",
+      "epav_token": "aD2LNZyM",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:31Z",
+      "epav_token": "3DqdV56r",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:31Z",
+      "epav_token": "QyLEke60",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:31Z",
+      "epav_token": "lj7xEMy7",
+      "contract_number": "A-05-163",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:31Z",
+      "epav_token": "PDk4gRjo",
+      "contract_number": "A-03-099",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:31Z",
+      "epav_token": "m633kN62",
+      "contract_number": "A-05-169",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:31Z",
+      "epav_token": "Lyval4jA",
+      "contract_number": "A-05-165",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:32Z",
+      "epav_token": "3y9Qaxye",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:32Z",
+      "epav_token": "aDXl4gDq",
+      "contract_number": "A-05-170",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:32Z",
+      "epav_token": "LyvaJQjA",
+      "contract_number": "A-05-173",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:32Z",
+      "epav_token": "3y9QMXye",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:32Z",
+      "epav_token": "m6332O62",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:33Z",
+      "epav_token": "aDXlVgDq",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:33Z",
+      "epav_token": "qDo4oBjA",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:33Z",
+      "epav_token": "vDNbVPDx",
+      "contract_number": "A-05-139",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:33Z",
+      "epav_token": "3Dqd146r",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:33Z",
+      "epav_token": "Zj0xAYjB",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:34Z",
+      "epav_token": "pygRnzj3",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:34Z",
+      "epav_token": "3y9Q2Rye",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:34Z",
+      "epav_token": "byx5ga6R",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:34Z",
+      "epav_token": "QyLERl60",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:16:34Z",
+      "epav_token": "pygkXzy3",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-pygkXzy3/pygkXzy3.pdf"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:35Z",
+      "epav_token": "7yWlv16w",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:35Z",
+      "epav_token": "kyPl2myN",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:35Z",
+      "epav_token": "m633xm62",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:35Z",
+      "epav_token": "9yQvPa6E",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:36Z",
+      "epav_token": "vjJklMy1",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:36Z",
+      "epav_token": "qjwoxVj5",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:36Z",
+      "epav_token": "Lyva0djA",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:36Z",
+      "epav_token": "2yBo1P61",
+      "contract_number": "A-04-105",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:36Z",
+      "epav_token": "O6deKmDE",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:37Z",
+      "epav_token": "LDVlg7yk",
+      "contract_number": "A-04-123",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:37Z",
+      "epav_token": "9yQvlq6E",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:37Z",
+      "epav_token": "2yBoXB61",
+      "contract_number": "A-04-108",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:37Z",
+      "epav_token": "ajaRW0y1",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:37Z",
+      "epav_token": "bD5xPE6d",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:38Z",
+      "epav_token": "Zj0x19jB",
+      "contract_number": "A-06-213",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:38Z",
+      "epav_token": "RjpBJE6l",
+      "contract_number": "A-06-216",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:38Z",
+      "epav_token": "LDVlkByk",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:38Z",
+      "epav_token": "vjJkV0y1",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:39Z",
+      "epav_token": "bD5xVA6d",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:39Z",
+      "epav_token": "Zj0xkRjB",
+      "contract_number": "A-06-223",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:39Z",
+      "epav_token": "O6de4KDE",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:39Z",
+      "epav_token": "PDk4aajo",
+      "contract_number": "A-06-226",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:39Z",
+      "epav_token": "byx5mp6R",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:40Z",
+      "epav_token": "3DqWAPyr",
+      "contract_number": "A-06-227",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:40Z",
+      "epav_token": "A6O3X86J",
+      "contract_number": "A-06-222",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:40Z",
+      "epav_token": "kyPlmOyN",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:40Z",
+      "epav_token": "wjYpMwDZ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:41Z",
+      "epav_token": "2yBoV161",
+      "contract_number": "A-06-215",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:41Z",
+      "epav_token": "A6O3Bq6J",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:41Z",
+      "epav_token": "vjKnBwD5",
+      "contract_number": "A-06-219",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:41Z",
+      "epav_token": "3DqWJ5yr",
+      "contract_number": "A-04-118",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:41Z",
+      "epav_token": "xymE1VyY",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:41Z",
+      "epav_token": "vDN3pnjx",
+      "contract_number": "A-04-126",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:42Z",
+      "epav_token": "lj7Ygx67",
+      "contract_number": "A-04-127",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:42Z",
+      "epav_token": "96ZkpaDO",
+      "contract_number": "A-04-121",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:42Z",
+      "epav_token": "3DqW5Wyr",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:42Z",
+      "epav_token": "96ZkeGDO",
+      "contract_number": "A-04-109",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:43Z",
+      "epav_token": "njMz5byG",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:43Z",
+      "epav_token": "vDN35njx",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:43Z",
+      "epav_token": "WD17G8yQ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:43Z",
+      "epav_token": "lj7YMM67",
+      "contract_number": "A-04-117",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:43Z",
+      "epav_token": "njMzYpyG",
+      "contract_number": "A-04-119",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:43Z",
+      "epav_token": "aD2qob6M",
+      "contract_number": "A-04-104",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:44Z",
+      "epav_token": "xymE0JyY",
+      "contract_number": "A-06-237",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:44Z",
+      "epav_token": "njMzYbyG",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:44Z",
+      "epav_token": "LyvWkd6A",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:44Z",
+      "epav_token": "pygZYzj3",
+      "contract_number": "A-06-239",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:45Z",
+      "epav_token": "7yWNlNjw",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:45Z",
+      "epav_token": "A6O23qyJ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:45Z",
+      "epav_token": "X6lnJLj2",
+      "contract_number": "A-06-244",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:45Z",
+      "epav_token": "M6Rm8eyZ",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:45Z",
+      "epav_token": "a6Gx8zDm",
+      "contract_number": "A-06-241",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:46Z",
+      "epav_token": "3y9nQB6e",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:46Z",
+      "epav_token": "a6bXQPjO",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:46Z",
+      "epav_token": "4DnGxljk",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:46Z",
+      "epav_token": "aDX1Zojq",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:47Z",
+      "epav_token": "YyzJ3Xy9",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:47Z",
+      "epav_token": "bD5N8djd",
+      "contract_number": "A-06-247",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:47Z",
+      "epav_token": "96Zk0zDO",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:47Z",
+      "epav_token": "M6RmVMyZ",
+      "contract_number": "L-76-1359",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:48Z",
+      "epav_token": "MD8kqL6Z",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:49Z",
+      "epav_token": "YyzJzMy9",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:49Z",
+      "epav_token": "PDkklpDo",
+      "contract_number": "A-07-252",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read-failed",
+      "at": "2026-10-07T22:16:50Z",
+      "epav_token": "MDAB9vj7",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:16:51Z",
+      "epav_token": "X6ln7nj2",
+      "contract_number": "A-07-249",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:23:14Z",
-      "epav_token": "3y9bLr6e",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:17:52Z",
+      "epav_token": "A6Oq98jJ",
+      "contract_number": "A-93-230",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:23:18Z",
-      "epav_token": "aDX2oqyq",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:21Z",
-      "epav_token": "WD1ZEljQ",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:25Z",
-      "epav_token": "wjYAqQjZ",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:28Z",
-      "epav_token": "vDNa7w6x",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:31Z",
-      "epav_token": "PDkRWb6o",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:35Z",
-      "epav_token": "aD2NPxDM",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:38Z",
-      "epav_token": "MDAdJz67",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:41Z",
-      "epav_token": "aDX2o9yq",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:45Z",
-      "epav_token": "xyme0YyY",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:48Z",
-      "epav_token": "lj7E3r67",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:51Z",
-      "epav_token": "3DqVLPjr",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:55Z",
-      "epav_token": "lj7E3a67",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:23:58Z",
-      "epav_token": "96ZXMVjO",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:02Z",
-      "epav_token": "3DqVLgjr",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:06Z",
-      "epav_token": "njMJm0yG",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:09Z",
-      "epav_token": "xyme0eyY",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:17:55Z",
+      "epav_token": "byxPApyR",
+      "contract_number": "A-93-232",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "heartbeat",
-      "at": "2026-10-07T21:24:09Z",
-      "scanned": 81,
-      "newly_fetched": 1111,
-      "staged": 1179,
+      "at": "2026-10-07T22:17:55Z",
+      "scanned": 18,
+      "newly_fetched": 21,
+      "staged": 1823,
       "note": "fetch workers active"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:24:13Z",
-      "epav_token": "njMJmXyG",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:17:58Z",
+      "epav_token": "vjJ2woj1",
+      "contract_number": "A-93-243",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T22:18:02Z",
+      "epav_token": "3DE5Q8DG",
+      "contract_number": "A-94-275",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T22:18:06Z",
+      "epav_token": "a6GoQG6m",
+      "contract_number": "A-94-276",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T22:18:12Z",
+      "epav_token": "3DqLRO6r",
+      "contract_number": "A-93-255",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -464,8 +1668,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -473,8 +1677,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -482,8 +1686,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "ARENA",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -491,8 +1695,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "ARTS COMMISSION",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -500,8 +1704,62 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -509,8 +1767,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "FINANCE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -518,8 +1776,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "subject": "WATER SERVICES",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -527,20 +1785,14 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:24:15Z",
-      "run_id": "20261007T212415Z",
+      "at": "2026-10-07T22:18:15Z",
+      "run_id": "20261007T221815Z",
       "standing": "unexamined",
-      "n_unexamined": 112,
+      "n_unexamined": 106,
       "subject": "MULTIPLE",
-      "reason": "112 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
       "departments": [
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
         "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
         "CLERK AND MASTER",
         "CODES ADMINISTRATION",
         "COMMUNITY ACCESS TV",
@@ -650,440 +1902,63 @@
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:17Z",
-      "epav_token": "Zj0MpKyB",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:20Z",
-      "epav_token": "LDVJ7wDk",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:24Z",
-      "epav_token": "MDAdZz67",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:27Z",
-      "epav_token": "kyPd5LyN",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:30Z",
-      "epav_token": "2yBdNbD1",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:34Z",
-      "epav_token": "O6dnpgjE",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:37Z",
-      "epav_token": "M6R3KMDZ",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:40Z",
-      "epav_token": "3y9bO06e",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:44Z",
-      "epav_token": "7yWdrZ6w",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:48Z",
-      "epav_token": "wjYAqwjZ",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:51Z",
-      "epav_token": "PDkRWa6o",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:55Z",
-      "epav_token": "WD1ZE3jQ",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:24:58Z",
-      "epav_token": "QyL0J8y0",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:02Z",
-      "epav_token": "vDNa7A6x",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:05Z",
-      "epav_token": "96ZXMzjO",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:09Z",
-      "epav_token": "m631Oxj2",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "upload-failed",
-      "at": "2026-10-07T21:25:12Z",
-      "epav_token": "J7yWP16w",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-J7yWP16w/J7yWP16w.pdf"
+      "at": "2026-10-07T22:18:54Z",
+      "epav_token": "3y90aRje",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-3y90aRje/3y90aRje.pdf"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:25:13Z",
-      "epav_token": "pygb1gj3",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:19:56Z",
+      "epav_token": "wjYqxQjZ",
+      "contract_number": "A-95-314",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:16Z",
-      "epav_token": "aja1moj1",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "read-failed",
+      "at": "2026-10-07T22:20:19Z",
+      "epav_token": "7yWOg1yw",
+      "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:20Z",
-      "epav_token": "qDoBl26A",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:21:12Z",
+      "epav_token": "vjJ2Evj1",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:23Z",
-      "epav_token": "Zj0MXoyB",
-      "contract_number": "358726",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:21:12Z",
+      "epav_token": "MDAJ7qj7",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:27Z",
-      "epav_token": "byxwORjR",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:21:12Z",
+      "epav_token": "bD5L4N6d",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:30Z",
-      "epav_token": "3DEdM76G",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:34Z",
-      "epav_token": "aD2NrEDM",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:37Z",
-      "epav_token": "lj7EdJ67",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:41Z",
-      "epav_token": "3DqVe3jr",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:44Z",
-      "epav_token": "aDX2aQyq",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:48Z",
-      "epav_token": "xymebmyY",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:52Z",
-      "epav_token": "MDAdQ167",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:55Z",
-      "epav_token": "Zj0MGMyB",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:25:58Z",
-      "epav_token": "3DqVK5jr",
-      "contract_number": "L-3321",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:02Z",
-      "epav_token": "MDrwvkjo",
-      "contract_number": "L-3308",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T21:26:02Z",
-      "scanned": 83,
-      "newly_fetched": 1143,
-      "staged": 1211,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:06Z",
-      "epav_token": "njMJrNyG",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:10Z",
-      "epav_token": "MDrwxojo",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:13Z",
-      "epav_token": "wjYAxgjZ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:16Z",
-      "epav_token": "M6R3xVDZ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:20Z",
-      "epav_token": "MD8GX86Z",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:24Z",
-      "epav_token": "vjK0owy5",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:27Z",
-      "epav_token": "Yyzw7369",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:31Z",
-      "epav_token": "O6dnGKjE",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:34Z",
-      "epav_token": "Wj4Yv8yB",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:37Z",
-      "epav_token": "A6OWd86J",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:41Z",
-      "epav_token": "Zj0MORyB",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:45Z",
-      "epav_token": "vDNalp6x",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:48Z",
-      "epav_token": "WD1ZRGjQ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:52Z",
-      "epav_token": "X6lK8gy2",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:55Z",
-      "epav_token": "96ZXgnjO",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:26:59Z",
-      "epav_token": "kyPdOOyN",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:03Z",
-      "epav_token": "byxwXpjR",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-07T21:27:03Z",
-      "epav_token": "g2yBvPy1",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-g2yBvPy1/g2yBvPy1.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:06Z",
-      "epav_token": "qDoB9k6A",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:10Z",
-      "epav_token": "m631gVj2",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:14Z",
-      "epav_token": "qjwwBJj5",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:21:12Z",
+      "epav_token": "ajanqQy1",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1091,8 +1966,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1100,8 +1975,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1109,8 +1984,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "ARENA",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1118,8 +1993,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "ARTS COMMISSION",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1127,8 +2002,62 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1136,8 +2065,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "FINANCE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1145,8 +2074,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "subject": "WATER SERVICES",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1154,20 +2083,14 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:27:15Z",
-      "run_id": "20261007T212715Z",
+      "at": "2026-10-07T22:21:15Z",
+      "run_id": "20261007T222115Z",
       "standing": "unexamined",
-      "n_unexamined": 112,
+      "n_unexamined": 106,
       "subject": "MULTIPLE",
-      "reason": "112 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
       "departments": [
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
         "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
         "CLERK AND MASTER",
         "CODES ADMINISTRATION",
         "COMMUNITY ACCESS TV",
@@ -1277,426 +2200,623 @@
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:17Z",
-      "epav_token": "aDX2Noyq",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:20Z",
-      "epav_token": "7yWdA96w",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:24Z",
-      "epav_token": "xymegQyY",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:27Z",
-      "epav_token": "3DqVBOjr",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:30Z",
-      "epav_token": "njMJvLyG",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:34Z",
-      "epav_token": "vDNa9b6x",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:37Z",
-      "epav_token": "pygblGj3",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:40Z",
-      "epav_token": "lj7EN967",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:44Z",
-      "epav_token": "96ZXYRjO",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:48Z",
-      "epav_token": "3y9bmP6e",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:51Z",
-      "epav_token": "Lyvw2q6A",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:55Z",
-      "epav_token": "aD2NmaDM",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T21:27:55Z",
-      "scanned": 85,
-      "newly_fetched": 1175,
-      "staged": 1243,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:27:59Z",
-      "epav_token": "wjYA15jZ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:03Z",
-      "epav_token": "lj7ENa67",
-      "contract_number": "368622",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:06Z",
-      "epav_token": "MDAdzq67",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:09Z",
-      "epav_token": "O6dn12jE",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:13Z",
-      "epav_token": "kyPd4pyN",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:16Z",
-      "epav_token": "aDX2Nqyq",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:20Z",
-      "epav_token": "2yBd14D1",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:23Z",
-      "epav_token": "PDkRrb6o",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:26Z",
-      "epav_token": "PDkR0o6o",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:30Z",
-      "epav_token": "wjYALQjZ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:33Z",
-      "epav_token": "4Dn8RPyk",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:37Z",
-      "epav_token": "aD2Nm7DM",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:40Z",
-      "epav_token": "aja1MQj1",
-      "contract_number": "368959",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:44Z",
-      "epav_token": "3DqVBgjr",
-      "contract_number": "368619",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:47Z",
-      "epav_token": "WD1ZX7jQ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:51Z",
-      "epav_token": "3DEdn86G",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:54Z",
-      "epav_token": "a6GdGGDm",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:28:58Z",
-      "epav_token": "5DeEY7DM",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:02Z",
-      "epav_token": "vjK0zBy5",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:05Z",
-      "epav_token": "Wj4YgzyB",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:08Z",
-      "epav_token": "a6bYZ3yO",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:12Z",
-      "epav_token": "kyPdrpyN",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:15Z",
-      "epav_token": "M6R3dYDZ",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "read",
+      "at": "2026-10-07T22:21:47Z",
+      "epav_token": "WD1713yQ",
+      "contract_number": "E-139",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "upload-failed",
-      "at": "2026-10-07T21:29:15Z",
-      "epav_token": "ovjJvMj1",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-ovjJvMj1/ovjJvMj1.pdf"
+      "at": "2026-10-07T22:22:21Z",
+      "epav_token": "7yWOg1yw",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-7yWOg1yw/7yWOg1yw.pdf"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:19Z",
-      "epav_token": "qDoBna6A",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:24:13Z",
+      "epav_token": "m63eQmj2",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-m63eQmj2/m63eQmj2.pdf"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:22Z",
-      "epav_token": "aja1WQj1",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "AFFORDABLE HOUSING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:26Z",
-      "epav_token": "X6lKlRy2",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "AGRICULTURAL EXTENSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:29Z",
-      "epav_token": "MDAdoq67",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "AIRPORT AUTHORITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:32Z",
-      "epav_token": "MDrw4pjo",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "ARENA",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:36Z",
-      "epav_token": "bD5kPNyd",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "ARTS COMMISSION",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:39Z",
-      "epav_token": "aD2Ne7DM",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:42Z",
-      "epav_token": "Yyzw9169",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:46Z",
-      "epav_token": "MD8GWm6Z",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "FILM OFFICE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "FINANCE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "subject": "WATER SERVICES",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:24:15Z",
+      "run_id": "20261007T222415Z",
+      "standing": "unexamined",
+      "n_unexamined": 106,
+      "subject": "MULTIPLE",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "departments": [
+        "BEER BOARD",
+        "CLERK AND MASTER",
+        "CODES ADMINISTRATION",
+        "COMMUNITY ACCESS TV",
+        "COMMUNITY CORRECTIONS",
+        "COMMUNITY EDUCATION COMMISSION",
+        "COMMUNITY OVERSIGHT BOARD",
+        "CONSTELLATION ENERGY SOURCE",
+        "CONVENTION CENTER AUTHORITY",
+        "COUNTY CLERK",
+        "CRIMINAL COURT CLERK",
+        "CRIMINAL JUSTICE PLANNING",
+        "DATA PROCESSING",
+        "DISTRICT ATTORNEY",
+        "DISTRICT ENERGY SYSTEM",
+        "DOWNTOWN PARTNERSHIP",
+        "DRUG COURT",
+        "DRUG POLICY OFFICE",
+        "EAST BANK DEVELOPMENT AUTHORITY",
+        "ECONOMIC DEVELOPMENT",
+        "ELECTION COMMISSION",
+        "ELECTRIC POWER BOARD",
+        "EMERGENCY COMMAND CENTER",
+        "EMERGENCY COMMUNICATIONS DISTRICT",
+        "EMPLOYEE ASSISTANCE",
+        "EMPLOYEE BENEFIT BD TRUST FND",
+        "EMPLOYEE BENEFIT BOARD",
+        "ENERGY PROD FACILITY",
+        "FAIRGROUNDS",
+        "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
+        "FAMILY SAFETY OFFICE",
+        "FARMERS MARKET",
+        "FIRE",
+        "FRANCHISE",
+        "GENERAL SERVICES",
+        "GENERAL SESSIONS COURT",
+        "HEALTH",
+        "HEALTH AND EDUCATIONAL FACILITIES BOARD",
+        "HISTORICAL COMMISSION",
+        "HOSPITAL AUTHORITY",
+        "HOSPITALS",
+        "HOUSING TRUST FUND COMMISSION",
+        "HUMAN RELATIONS COMMISSION",
+        "HUMAN RESOURCES",
+        "INDUSTRIAL DEVELOPMENT BOARD",
+        "INFORMATION TECHNOLOGY SERVICES",
+        "INTERNAL AUDIT",
+        "JEAN CROWE ADVOCACY CENTER",
+        "JIS",
+        "JUVENILE COURT",
+        "JUVENILE COURT CLERK",
+        "JUVENILE JUSTICE CENTER",
+        "LEGAL DEPARTMENT",
+        "LOCAL WORKFORCE DEVELOPMENT AREA 9",
+        "LOCAL WORKFORCE INVESTMENT BOARD",
+        "MAYORS OFFICE",
+        "MAYORS OFFICE CHILDREN AND YOUTH",
+        "MAYORS YOUTH COUNCIL",
+        "MDHA",
+        "MEDICAL EXAMINER",
+        "METRA",
+        "METRO ACTION COMMISSION",
+        "METRO CLERK",
+        "METRO COUNCIL",
+        "METRO NASHVILLE PUBLIC SCHOOLS",
+        "METRO WIDE",
+        "METROPOLITAN GOVERNMENT",
+        "MUNICIPAL AUDITORIUM",
+        "MUSIC CITY CENTER",
+        "NASHVILLE CAREER ADVANCEMENT CENTER",
+        "NASHVILLE CITY OF",
+        "NASHVILLE CONVENTION CENTER",
+        "NASHVILLE ELECTRIC SERVICE",
+        "NDOT",
+        "OFFICE OF EMERGENCY MANAGEMENT",
+        "OFFICE OF HOMELESS SERVICES",
+        "PARKS AND RECREATION",
+        "PARTNERSHIP 2000",
+        "PLANNING COMMISSION",
+        "POLICE",
+        "PORT AUTHORITY",
+        "PROBATE COURT CLERK",
+        "PUBLIC DEFENDER",
+        "PUBLIC LIBRARY",
+        "PUBLIC PROPERTY",
+        "PUBLIC WORKS",
+        "PURCHASING",
+        "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
+        "REGISTER OF DEEDS",
+        "SHERIFF",
+        "SOCIAL SERVICES",
+        "SOIL AND WATER CONSERVATION",
+        "SPORTS AUTHORITY",
+        "STADIUM",
+        "STAHLMAN",
+        "STATE TRIAL COURT",
+        "TAXI/WRECKER BOARD",
+        "TELECOMMUNICATIONS",
+        "TENNESSEE STATE FAIR",
+        "THERMAL TRANSFER CORP",
+        "TOURISM COMMISSION",
+        "TRAFFIC AND PARKING",
+        "TRANSIT AUTHORITY",
+        "TRANSPORTATION LICENSING COMMISSION",
+        "TRUSTEE",
+        "WASTE SERVICES"
+      ]
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:24:39Z",
+      "epav_token": "9yQZKE6E",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "heartbeat",
-      "at": "2026-10-07T21:29:46Z",
-      "scanned": 87,
-      "newly_fetched": 1207,
-      "staged": 1275,
+      "at": "2026-10-07T22:24:39Z",
+      "scanned": 20,
+      "newly_fetched": 26,
+      "staged": 1828,
       "note": "fetch workers active"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:29:50Z",
-      "epav_token": "aDX2Pqyq",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:25:07Z",
+      "epav_token": "lj73Aaj7",
+      "contract_number": "A-96-349",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:29:54Z",
-      "epav_token": "pygXgr63",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:25:13Z",
+      "epav_token": "WD1E03DQ",
+      "contract_number": "A-97-365",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:29:57Z",
-      "epav_token": "3y9alXye",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:27:00Z",
+      "epav_token": "qjw0zVy5",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-qjw0zVy5/qjw0zVy5.pdf"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:00Z",
-      "epav_token": "QyLakM60",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "AFFORDABLE HOUSING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:04Z",
-      "epav_token": "lj7EOa67",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "AGRICULTURAL EXTENSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "AIRPORT AUTHORITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "ARENA",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "ARTS COMMISSION",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "FILM OFFICE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "FINANCE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "subject": "WATER SERVICES",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:27:15Z",
+      "run_id": "20261007T222715Z",
+      "standing": "unexamined",
+      "n_unexamined": 106,
+      "subject": "MULTIPLE",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "departments": [
+        "BEER BOARD",
+        "CLERK AND MASTER",
+        "CODES ADMINISTRATION",
+        "COMMUNITY ACCESS TV",
+        "COMMUNITY CORRECTIONS",
+        "COMMUNITY EDUCATION COMMISSION",
+        "COMMUNITY OVERSIGHT BOARD",
+        "CONSTELLATION ENERGY SOURCE",
+        "CONVENTION CENTER AUTHORITY",
+        "COUNTY CLERK",
+        "CRIMINAL COURT CLERK",
+        "CRIMINAL JUSTICE PLANNING",
+        "DATA PROCESSING",
+        "DISTRICT ATTORNEY",
+        "DISTRICT ENERGY SYSTEM",
+        "DOWNTOWN PARTNERSHIP",
+        "DRUG COURT",
+        "DRUG POLICY OFFICE",
+        "EAST BANK DEVELOPMENT AUTHORITY",
+        "ECONOMIC DEVELOPMENT",
+        "ELECTION COMMISSION",
+        "ELECTRIC POWER BOARD",
+        "EMERGENCY COMMAND CENTER",
+        "EMERGENCY COMMUNICATIONS DISTRICT",
+        "EMPLOYEE ASSISTANCE",
+        "EMPLOYEE BENEFIT BD TRUST FND",
+        "EMPLOYEE BENEFIT BOARD",
+        "ENERGY PROD FACILITY",
+        "FAIRGROUNDS",
+        "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
+        "FAMILY SAFETY OFFICE",
+        "FARMERS MARKET",
+        "FIRE",
+        "FRANCHISE",
+        "GENERAL SERVICES",
+        "GENERAL SESSIONS COURT",
+        "HEALTH",
+        "HEALTH AND EDUCATIONAL FACILITIES BOARD",
+        "HISTORICAL COMMISSION",
+        "HOSPITAL AUTHORITY",
+        "HOSPITALS",
+        "HOUSING TRUST FUND COMMISSION",
+        "HUMAN RELATIONS COMMISSION",
+        "HUMAN RESOURCES",
+        "INDUSTRIAL DEVELOPMENT BOARD",
+        "INFORMATION TECHNOLOGY SERVICES",
+        "INTERNAL AUDIT",
+        "JEAN CROWE ADVOCACY CENTER",
+        "JIS",
+        "JUVENILE COURT",
+        "JUVENILE COURT CLERK",
+        "JUVENILE JUSTICE CENTER",
+        "LEGAL DEPARTMENT",
+        "LOCAL WORKFORCE DEVELOPMENT AREA 9",
+        "LOCAL WORKFORCE INVESTMENT BOARD",
+        "MAYORS OFFICE",
+        "MAYORS OFFICE CHILDREN AND YOUTH",
+        "MAYORS YOUTH COUNCIL",
+        "MDHA",
+        "MEDICAL EXAMINER",
+        "METRA",
+        "METRO ACTION COMMISSION",
+        "METRO CLERK",
+        "METRO COUNCIL",
+        "METRO NASHVILLE PUBLIC SCHOOLS",
+        "METRO WIDE",
+        "METROPOLITAN GOVERNMENT",
+        "MUNICIPAL AUDITORIUM",
+        "MUSIC CITY CENTER",
+        "NASHVILLE CAREER ADVANCEMENT CENTER",
+        "NASHVILLE CITY OF",
+        "NASHVILLE CONVENTION CENTER",
+        "NASHVILLE ELECTRIC SERVICE",
+        "NDOT",
+        "OFFICE OF EMERGENCY MANAGEMENT",
+        "OFFICE OF HOMELESS SERVICES",
+        "PARKS AND RECREATION",
+        "PARTNERSHIP 2000",
+        "PLANNING COMMISSION",
+        "POLICE",
+        "PORT AUTHORITY",
+        "PROBATE COURT CLERK",
+        "PUBLIC DEFENDER",
+        "PUBLIC LIBRARY",
+        "PUBLIC PROPERTY",
+        "PUBLIC WORKS",
+        "PURCHASING",
+        "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
+        "REGISTER OF DEEDS",
+        "SHERIFF",
+        "SOCIAL SERVICES",
+        "SOIL AND WATER CONSERVATION",
+        "SPORTS AUTHORITY",
+        "STADIUM",
+        "STAHLMAN",
+        "STATE TRIAL COURT",
+        "TAXI/WRECKER BOARD",
+        "TELECOMMUNICATIONS",
+        "TENNESSEE STATE FAIR",
+        "THERMAL TRANSFER CORP",
+        "TOURISM COMMISSION",
+        "TRAFFIC AND PARKING",
+        "TRANSIT AUTHORITY",
+        "TRANSPORTATION LICENSING COMMISSION",
+        "TRUSTEE",
+        "WASTE SERVICES"
+      ]
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:27:39Z",
+      "epav_token": "vDN7Pwjx",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:27:40Z",
+      "epav_token": "aDXoX96q",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:27:40Z",
+      "epav_token": "WD1E0lDQ",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:27:40Z",
+      "epav_token": "M6RNeY6Z",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:27:40Z",
+      "epav_token": "LyvQ2YjA",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:29:55Z",
+      "epav_token": "YyzOv169",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "heartbeat",
+      "at": "2026-10-07T22:29:55Z",
+      "scanned": 21,
+      "newly_fetched": 28,
+      "staged": 1830,
+      "note": "fetch workers active"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:30:02Z",
+      "epav_token": "aDX04aDq",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-aDX04aDq/aDX04aDq.pdf"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "durable_home",
       "subject": "epav-fetched.jsonl",
       "grade": "defect",
@@ -1705,8 +2825,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "deployed_present",
       "subject": "data/deployed/",
       "grade": "ok",
@@ -1715,8 +2835,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "text_present",
       "subject": "deployed extracted-text.txt",
       "grade": "ok",
@@ -1725,8 +2845,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "capacity_gaps",
       "subject": "data/gaps.jsonl",
       "grade": "defect",
@@ -1735,8 +2855,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "manifest_record",
       "subject": "data/epav-manifest.jsonl",
       "grade": "defect",
@@ -1745,8 +2865,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "duplicate_tokens",
       "subject": "data/epav-fetched.jsonl",
       "grade": "ok",
@@ -1755,8 +2875,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "check": "surveillance_cardinality",
       "subject": "data/surveillance-flags.jsonl",
       "grade": "ok",
@@ -1765,41 +2885,17 @@
     {
       "schema": "LiveEvent@1",
       "kind": "qc-run",
-      "at": "2026-10-07T21:30:05Z",
-      "run_id": "20261007T213005Z",
+      "at": "2026-10-07T22:30:05Z",
+      "run_id": "20261007T223005Z",
       "checks": 7,
       "defects": 3,
       "suspicious": 0
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:07Z",
-      "epav_token": "7yWg8Pyw",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:11Z",
-      "epav_token": "m63QkOj2",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:14Z",
-      "epav_token": "qjwz7oD5",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1807,8 +2903,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1816,8 +2912,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1825,8 +2921,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "ARENA",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1834,8 +2930,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "ARTS COMMISSION",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1843,8 +2939,62 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1852,8 +3002,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "FINANCE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1861,8 +3011,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "subject": "WATER SERVICES",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1870,20 +3020,14 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:30:15Z",
-      "run_id": "20261007T213015Z",
+      "at": "2026-10-07T22:30:15Z",
+      "run_id": "20261007T223015Z",
       "standing": "unexamined",
-      "n_unexamined": 112,
+      "n_unexamined": 106,
       "subject": "MULTIPLE",
-      "reason": "112 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
       "departments": [
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
         "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
         "CLERK AND MASTER",
         "CODES ADMINISTRATION",
         "COMMUNITY ACCESS TV",
@@ -1994,54 +3138,38 @@
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:30:18Z",
-      "epav_token": "LyvlmQDA",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:30:17Z",
+      "epav_token": "MD8L1LDZ",
+      "contract_number": "A-97-376",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read-failed",
-      "at": "2026-10-07T21:30:20Z",
+      "at": "2026-10-07T22:30:20Z",
       "epav_token": "4Dn7nljk",
       "department": "FILM OFFICE"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:30:21Z",
-      "epav_token": "2yBaA7j1",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:24Z",
-      "epav_token": "vjJa15D1",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:30:24Z",
+      "epav_token": "X6l0x362",
+      "contract_number": "A-97-372",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:27Z",
+      "at": "2026-10-07T22:30:27Z",
       "epav_token": "Yyzm9lj9",
       "contract_number": "L-5086",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:28Z",
-      "epav_token": "LyvlqqDA",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:29Z",
+      "at": "2026-10-07T22:30:29Z",
       "epav_token": "vjK9za65",
       "contract_number": "L-5088",
       "department": "AFFORDABLE HOUSING"
@@ -2049,7 +3177,7 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:29Z",
+      "at": "2026-10-07T22:30:29Z",
       "epav_token": "M6R9d3yZ",
       "contract_number": "L-5087",
       "department": "AFFORDABLE HOUSING"
@@ -2057,15 +3185,23 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:30Z",
+      "at": "2026-10-07T22:30:30Z",
       "epav_token": "5DekYpyM",
       "contract_number": "L-5089",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-07T22:30:31Z",
+      "epav_token": "Wj4kqLDB",
+      "contract_number": "A-97-377",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:38Z",
+      "at": "2026-10-07T22:30:37Z",
       "epav_token": "MD8PWqDZ",
       "contract_number": "L-5090",
       "department": "AFFORDABLE HOUSING"
@@ -2073,7 +3209,7 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:39Z",
+      "at": "2026-10-07T22:30:39Z",
       "epav_token": "Wj4KgXDB",
       "contract_number": "L-5091",
       "department": "AFFORDABLE HOUSING"
@@ -2081,47 +3217,23 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:41Z",
+      "at": "2026-10-07T22:30:41Z",
       "epav_token": "kyPo4wjN",
       "contract_number": "L-5092",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:42Z",
-      "epav_token": "PDkM3myo",
-      "contract_number": "374880",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:44Z",
-      "epav_token": "9yQOrRDE",
-      "contract_number": "L-3598",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:48Z",
+      "at": "2026-10-07T22:30:47Z",
       "epav_token": "O6dY1YDE",
       "contract_number": "L-5093",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:48Z",
-      "epav_token": "MDAalPD7",
-      "contract_number": "373756",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:49Z",
+      "at": "2026-10-07T22:30:48Z",
       "epav_token": "A6O98QjJ",
       "contract_number": "L-5094",
       "department": "AFFORDABLE HOUSING"
@@ -2129,40 +3241,23 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:50Z",
+      "at": "2026-10-07T22:30:50Z",
       "epav_token": "Zj0rdz6B",
       "contract_number": "L-5095",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:51Z",
-      "epav_token": "xymeYeyY",
-      "contract_number": "L-3417",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T21:30:51Z",
-      "scanned": 88,
-      "newly_fetched": 1223,
-      "staged": 1291,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:55Z",
-      "epav_token": "3y9aVPye",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "read",
+      "at": "2026-10-07T22:30:57Z",
+      "epav_token": "pygEn4D3",
+      "contract_number": "L-5097",
+      "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:59Z",
+      "at": "2026-10-07T22:30:58Z",
       "epav_token": "byxAgX6R",
       "contract_number": "L-5096",
       "department": "AFFORDABLE HOUSING"
@@ -2170,70 +3265,23 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:30:59Z",
-      "epav_token": "pygEn4D3",
-      "contract_number": "L-5097",
-      "department": "AFFORDABLE HOUSING"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:30:59Z",
-      "epav_token": "2yBaWJj1",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "read",
-      "at": "2026-10-07T21:30:59Z",
+      "at": "2026-10-07T22:30:59Z",
       "epav_token": "Lyvx00DA",
       "contract_number": "L-5098",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-07T21:31:02Z",
-      "epav_token": "0LDVP7yk",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-0LDVP7yk/0LDVP7yk.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:02Z",
-      "epav_token": "RjpkAvDl",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:06Z",
-      "epav_token": "LDVOG4jk",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:08Z",
+      "at": "2026-10-07T22:31:07Z",
       "epav_token": "3y9d2oje",
       "contract_number": "L-5099",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:09Z",
-      "epav_token": "m63QaVj2",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:11Z",
+      "at": "2026-10-07T22:31:10Z",
       "epav_token": "M6RopnDZ",
       "contract_number": "L-5328",
       "department": "AFFORDABLE HOUSING"
@@ -2241,55 +3289,31 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:12Z",
+      "at": "2026-10-07T22:31:11Z",
       "epav_token": "YyzxEXD9",
       "contract_number": "L-5327",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:13Z",
-      "epav_token": "9yQOMWDE",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:16Z",
-      "epav_token": "qDoY2kyA",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:20Z",
-      "epav_token": "ajaOdE61",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:22Z",
+      "at": "2026-10-07T22:31:22Z",
       "epav_token": "5DeZ4rjM",
       "contract_number": "L-5330",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:23Z",
-      "epav_token": "MDAaLMD7",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "read",
+      "at": "2026-10-07T22:31:22Z",
+      "epav_token": "MD88JLDZ",
+      "contract_number": "L-5331",
+      "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:23Z",
+      "at": "2026-10-07T22:31:22Z",
       "epav_token": "vjKQlM65",
       "contract_number": "L-5329",
       "department": "AFFORDABLE HOUSING"
@@ -2297,63 +3321,15 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:24Z",
-      "epav_token": "MD88JLDZ",
-      "contract_number": "L-5331",
-      "department": "AFFORDABLE HOUSING"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:27Z",
-      "epav_token": "7yWgn9yw",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:30Z",
-      "epav_token": "aDXOro6q",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:34Z",
-      "epav_token": "vjJaXoD1",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "read",
-      "at": "2026-10-07T21:31:36Z",
+      "at": "2026-10-07T22:31:36Z",
       "epav_token": "Wj4oPLDB",
       "contract_number": "L-5332",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:38Z",
-      "epav_token": "aD2JlaDM",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:41Z",
-      "epav_token": "bD5aodDd",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:41Z",
+      "at": "2026-10-07T22:31:39Z",
       "epav_token": "Yyzv5by9",
       "contract_number": "L-5981",
       "department": "AFFORDABLE HOUSING"
@@ -2361,135 +3337,54 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:43Z",
+      "at": "2026-10-07T22:31:42Z",
       "epav_token": "M6ReGRyZ",
       "contract_number": "L-5982",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:44Z",
-      "epav_token": "qjwzNJD5",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:48Z",
-      "epav_token": "QyLaAp60",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:48Z",
+      "at": "2026-10-07T22:31:47Z",
       "epav_token": "vjKGNnj5",
       "contract_number": "L-5983",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:52Z",
-      "epav_token": "xymNJQ6Y",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:55Z",
-      "epav_token": "njMOqL6G",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:31:57Z",
+      "at": "2026-10-07T22:31:55Z",
       "epav_token": "5De19qDM",
       "contract_number": "L-5984",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:31:59Z",
-      "epav_token": "PDkMQoyo",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:02Z",
-      "epav_token": "aD2Jl7DM",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:31:58Z",
+      "epav_token": "vDNPX1yx",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-vDNPX1yx/vDNPX1yx.pdf"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:02Z",
+      "at": "2026-10-07T22:32:00Z",
       "epav_token": "MD8oen6Z",
       "contract_number": "L-5985",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:06Z",
-      "epav_token": "96ZvzR6O",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:06Z",
+      "at": "2026-10-07T22:32:04Z",
       "epav_token": "Wj48mGjB",
       "contract_number": "L-5986",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:09Z",
-      "epav_token": "aDXOrq6q",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:13Z",
-      "epav_token": "MDAaLqD7",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:16Z",
-      "epav_token": "lj7a8a67",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:16Z",
-      "epav_token": "A6Oz5oyJ",
-      "contract_number": "L-5989",
-      "department": "AFFORDABLE HOUSING"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "read",
-      "at": "2026-10-07T21:32:16Z",
+      "at": "2026-10-07T22:32:14Z",
       "epav_token": "kyPReGDN",
       "contract_number": "L-5987",
       "department": "AFFORDABLE HOUSING"
@@ -2497,39 +3392,31 @@
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:32:20Z",
-      "epav_token": "WD1Qr7DQ",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:23Z",
-      "epav_token": "3DqnXgjr",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:32:14Z",
+      "epav_token": "3DE58XDG",
+      "contract_number": "A-97-369",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:25Z",
+      "at": "2026-10-07T22:32:15Z",
+      "epav_token": "A6Oz5oyJ",
+      "contract_number": "L-5989",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-07T22:32:23Z",
       "epav_token": "O6dN5RjE",
       "contract_number": "L-5988",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:26Z",
-      "epav_token": "njMOq06G",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:28Z",
+      "at": "2026-10-07T22:32:26Z",
       "epav_token": "byxx3RyR",
       "contract_number": "L-5991",
       "department": "AFFORDABLE HOUSING"
@@ -2537,160 +3424,73 @@
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:29Z",
+      "at": "2026-10-07T22:32:26Z",
       "epav_token": "Zj0zeM6B",
       "contract_number": "L-5990",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:30Z",
-      "epav_token": "vDNJMbDx",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:34Z",
-      "epav_token": "wjYOl56Z",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:38Z",
-      "epav_token": "xymNJe6Y",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:40Z",
+      "at": "2026-10-07T22:32:38Z",
       "epav_token": "pygkpgy3",
       "contract_number": "L-6003",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:41Z",
-      "epav_token": "3DqnXOjr",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:32:42Z",
+      "at": "2026-10-07T22:32:39Z",
       "epav_token": "pygk8gy3",
       "contract_number": "L-5992",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:45Z",
-      "epav_token": "lj7a8967",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:32:55Z",
+      "epav_token": "vjKAxM65",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:32:55Z",
+      "epav_token": "4Dn0vlyk",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:32:55Z",
+      "epav_token": "YyzOBX69",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "heartbeat",
-      "at": "2026-10-07T21:32:45Z",
-      "scanned": 90,
-      "newly_fetched": 1255,
-      "staged": 1323,
+      "at": "2026-10-07T22:32:55Z",
+      "scanned": 22,
+      "newly_fetched": 32,
+      "staged": 1834,
       "note": "fetch workers active"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:49Z",
-      "epav_token": "96ZvzV6O",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-07T21:32:51Z",
-      "epav_token": "aWj4BR6B",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-aWj4BR6B/aWj4BR6B.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:52Z",
-      "epav_token": "a6GaBGjm",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:56Z",
-      "epav_token": "4Dn1BP6k",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:32:59Z",
-      "epav_token": "a6bpO3jO",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:02Z",
-      "epav_token": "MDrompjo",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:06Z",
-      "epav_token": "X6lZwRj2",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:09Z",
-      "epav_token": "WD1QrlDQ",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:33:09Z",
+      "at": "2026-10-07T22:33:07Z",
       "epav_token": "LyvOaQ6A",
       "contract_number": "2024-R12-WFBCDC",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:13Z",
-      "epav_token": "vjKamB65",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -2698,8 +3498,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -2707,8 +3507,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -2716,8 +3516,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "ARENA",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -2725,8 +3525,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "ARTS COMMISSION",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -2734,8 +3534,62 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -2743,8 +3597,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "FINANCE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -2752,8 +3606,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "subject": "WATER SERVICES",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -2761,20 +3615,14 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:33:15Z",
-      "run_id": "20261007T213315Z",
+      "at": "2026-10-07T22:33:15Z",
+      "run_id": "20261007T223315Z",
       "standing": "unexamined",
-      "n_unexamined": 112,
+      "n_unexamined": 106,
       "subject": "MULTIPLE",
-      "reason": "112 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
       "departments": [
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
         "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
         "CLERK AND MASTER",
         "CODES ADMINISTRATION",
         "COMMUNITY ACCESS TV",
@@ -2884,104 +3732,8 @@
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:16Z",
-      "epav_token": "3DEaw8DG",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:20Z",
-      "epav_token": "MD8a4mjZ",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:23Z",
-      "epav_token": "wjYOlQ6Z",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:27Z",
-      "epav_token": "PDkMQbyo",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:30Z",
-      "epav_token": "M6R5YYyZ",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:33Z",
-      "epav_token": "5De2g7jM",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:37Z",
-      "epav_token": "vDNJMwDx",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:41Z",
-      "epav_token": "Yyzek1j9",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:45Z",
-      "epav_token": "kyPLmpyN",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:49Z",
-      "epav_token": "Zj0QkLyB",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:52Z",
-      "epav_token": "3y9aKrye",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:33:55Z",
-      "epav_token": "pygXOJ63",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:33:56Z",
+      "at": "2026-10-07T22:33:50Z",
       "epav_token": "lj7bBxD7",
       "contract_number": "399403",
       "department": "AFFORDABLE HOUSING"
@@ -2989,336 +3741,96 @@
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:33:59Z",
-      "epav_token": "QyLapZ60",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:33:58Z",
+      "epav_token": "WD1EX3DQ",
+      "contract_number": "A-99-407",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:35:25Z",
+      "epav_token": "wjYmarjZ",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-wjYmarjZ/wjYmarjZ.pdf"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:34:02Z",
-      "epav_token": "byxRmnDR",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:35:41Z",
+      "epav_token": "4Dn0Rlyk",
+      "contract_number": "A-99-410",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:34:05Z",
-      "epav_token": "m63QGdj2",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:35:48Z",
+      "epav_token": "pygQXAD3",
+      "contract_number": "L-354",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:08Z",
-      "epav_token": "qjwzXLD5",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:35:55Z",
+      "epav_token": "a6bKZEDO",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:12Z",
-      "epav_token": "9yQO7EDE",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:35:56Z",
+      "epav_token": "X6l0l362",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:15Z",
-      "epav_token": "2yBag4j1",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:35:56Z",
+      "epav_token": "X6lOQdy2",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:19Z",
-      "epav_token": "vjJaJvD1",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:23Z",
-      "epav_token": "LyvlAYDA",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:26Z",
-      "epav_token": "A6OaX5jJ",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:30Z",
-      "epav_token": "O6dO42yE",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:33Z",
-      "epav_token": "7yWgYKyw",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:37Z",
-      "epav_token": "Wj4QRzyB",
-      "contract_number": "L-3646",
-      "department": "ARTS COMMISSION"
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:35:56Z",
+      "epav_token": "Wj4kgLDB",
+      "department": "AIRPORT AUTHORITY",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "heartbeat",
-      "at": "2026-10-07T21:34:37Z",
-      "scanned": 92,
-      "newly_fetched": 1287,
-      "staged": 1355,
+      "at": "2026-10-07T22:35:56Z",
+      "scanned": 23,
+      "newly_fetched": 35,
+      "staged": 1837,
       "note": "fetch workers active"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:34:41Z",
-      "epav_token": "QyLkNBj0",
-      "contract_number": "408442",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:01Z",
+      "epav_token": "bD5xNN6d",
+      "contract_number": "A-05-141",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:34:45Z",
-      "epav_token": "3DE73oyG",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:48Z",
-      "epav_token": "4Dnga7jk",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:51Z",
-      "epav_token": "Wj4nG86B",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-07T21:34:52Z",
-      "epav_token": "NbD5ggyd",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-NbD5ggyd/NbD5ggyd.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:54Z",
-      "epav_token": "PDkgooDo",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:34:58Z",
-      "epav_token": "pyggaGy3",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:02Z",
-      "epav_token": "MD8rz8yZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:05Z",
-      "epav_token": "WD11m7DQ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:09Z",
-      "epav_token": "QyLk2pj0",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:12Z",
-      "epav_token": "aDX45qDq",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:16Z",
-      "epav_token": "MDA2Rqj7",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:20Z",
-      "epav_token": "njMn1PyG",
-      "contract_number": "407713",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:23Z",
-      "epav_token": "a6GMpgjm",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:27Z",
-      "epav_token": "wjYPE5DZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:30Z",
-      "epav_token": "Lyvm7qjA",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:34Z",
-      "epav_token": "byxqMp6R",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:38Z",
-      "epav_token": "3DqgZgyr",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:42Z",
-      "epav_token": "WD11mlDQ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:46Z",
-      "epav_token": "3DE7m8yG",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:49Z",
-      "epav_token": "a6bgL3DO",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:53Z",
-      "epav_token": "MDrgNpjo",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:35:57Z",
-      "epav_token": "X6lgXRy2",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:00Z",
-      "epav_token": "4Dng7Pjk",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:04Z",
-      "epav_token": "PDkgAbDo",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:08Z",
-      "epav_token": "WD118lDQ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:11Z",
-      "epav_token": "wjYPNQDZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:15Z",
-      "epav_token": "96Z9LVyO",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:11Z",
+      "epav_token": "LDVlZlyk",
+      "contract_number": "A-05-140",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3326,8 +3838,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3335,8 +3847,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3344,8 +3856,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "ARENA",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3353,8 +3865,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "ARTS COMMISSION",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3362,8 +3874,62 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3371,8 +3937,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "FINANCE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3380,8 +3946,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "subject": "WATER SERVICES",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3389,20 +3955,14 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:36:15Z",
-      "run_id": "20261007T213615Z",
+      "at": "2026-10-07T22:36:15Z",
+      "run_id": "20261007T223615Z",
       "standing": "unexamined",
-      "n_unexamined": 112,
+      "n_unexamined": 106,
       "subject": "MULTIPLE",
-      "reason": "112 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
       "departments": [
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
         "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
         "CLERK AND MASTER",
         "CODES ADMINISTRATION",
         "COMMUNITY ACCESS TV",
@@ -3513,432 +4073,95 @@
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:18Z",
-      "epav_token": "vDNEnw6x",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:25Z",
+      "epav_token": "pygR5Aj3",
+      "contract_number": "A-05-132",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:22Z",
-      "epav_token": "wjYP3QDZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:28Z",
+      "epav_token": "3y9QLBye",
+      "contract_number": "L-79-2803",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:26Z",
-      "epav_token": "njMnk0yG",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:38Z",
+      "epav_token": "X6lJnRj2",
+      "contract_number": "A-05-145",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:29Z",
-      "epav_token": "vDNEzw6x",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:44Z",
+      "epav_token": "ajaRAQy1",
+      "contract_number": "A-05-142",
+      "department": "AIRPORT AUTHORITY"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-07T22:36:48Z",
+      "epav_token": "YyzaGOj9",
+      "department": "AIRPORT AUTHORITY",
+      "error": "failed to fetch document for token YyzaGOj9"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:33Z",
-      "epav_token": "YyzZr1y9",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T21:36:33Z",
-      "scanned": 94,
-      "newly_fetched": 1319,
-      "staged": 1387,
-      "note": "fetch workers active"
+      "at": "2026-10-07T22:36:52Z",
+      "epav_token": "A6O3mr6J",
+      "contract_number": "A-05-149",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:37Z",
-      "epav_token": "PDkgqbDo",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:55Z",
+      "epav_token": "pygRaZj3",
+      "contract_number": "A-05-152",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:36:40Z",
-      "epav_token": "O6dgl2yE",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:43Z",
-      "epav_token": "A6OGo56J",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:47Z",
-      "epav_token": "Zj0NwL6B",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:50Z",
-      "epav_token": "MDrgwMjo",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:54Z",
-      "epav_token": "Wj4n9z6B",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-07T21:36:55Z",
-      "epav_token": "gajap7D1",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-gajap7D1/gajap7D1.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:36:58Z",
-      "epav_token": "X6lgK3y2",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:01Z",
-      "epav_token": "YyzZwXy9",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:05Z",
-      "epav_token": "3DE7o8yG",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:08Z",
-      "epav_token": "kyPbgpDN",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:12Z",
-      "epav_token": "4DngNPjk",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:15Z",
-      "epav_token": "MD8rvmyZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:19Z",
-      "epav_token": "vjKY0M65",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:22Z",
-      "epav_token": "5DepK76M",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:25Z",
-      "epav_token": "5DepEr6M",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:32Z",
-      "epav_token": "byxqw56R",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:36Z",
-      "epav_token": "pyggbZy3",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:39Z",
-      "epav_token": "vjJ1d1D1",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:36:59Z",
+      "epav_token": "Lyva7XjA",
+      "contract_number": "A-05-153",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "read",
-      "at": "2026-10-07T21:37:41Z",
+      "at": "2026-10-07T22:37:29Z",
       "epav_token": "3y90aRje",
       "contract_number": "2024-R13-LDC",
       "department": "AFFORDABLE HOUSING"
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:43Z",
-      "epav_token": "2yBAdbj1",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:46Z",
-      "epav_token": "RjpgwNDl",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:53Z",
-      "epav_token": "LDVeJw6k",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:55Z",
-      "epav_token": "9yQr556E",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:37:58Z",
-      "epav_token": "bD5EkeDd",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:01Z",
-      "epav_token": "ajag1m61",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:05Z",
-      "epav_token": "WD11Z3DQ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:08Z",
-      "epav_token": "PDkgRaDo",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:12Z",
-      "epav_token": "wjYPAwDZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:15Z",
-      "epav_token": "m63k1J62",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:19Z",
-      "epav_token": "LyvmwXjA",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:23Z",
-      "epav_token": "3y9lb3je",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:26Z",
-      "epav_token": "7yW8dM6w",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:30Z",
-      "epav_token": "QyLk0Yj0",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T21:38:30Z",
-      "scanned": 96,
-      "newly_fetched": 1351,
-      "staged": 1419,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:34Z",
-      "epav_token": "4Dng1ljk",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:38Z",
-      "epav_token": "M6Rl5njZ",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:41Z",
-      "epav_token": "RjpgoPDl",
-      "contract_number": "419587",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:45Z",
-      "epav_token": "a6GMaJjm",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "upload-failed",
-      "at": "2026-10-07T21:38:47Z",
-      "epav_token": "LqDoOVDA",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-LqDoOVDA/LqDoOVDA.pdf"
+      "at": "2026-10-07T22:37:52Z",
+      "epav_token": "aD2xWLyM",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-aD2xWLyM/aD2xWLyM.pdf"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "fetched",
-      "at": "2026-10-07T21:38:49Z",
-      "epav_token": "7yW8gM6w",
-      "contract_number": "366553",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:38:52Z",
-      "epav_token": "aD2dq1yM",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:00Z",
-      "epav_token": "bD5XYe6d",
-      "contract_number": "429599",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:03Z",
-      "epav_token": "MDAGBPy7",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:06Z",
-      "epav_token": "qDoxbQjA",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:09Z",
-      "epav_token": "xymxE9jY",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:13Z",
-      "epav_token": "lj77Yoj7",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
+      "at": "2026-10-07T22:38:43Z",
+      "epav_token": "qDo4EajA",
+      "contract_number": "A-04-128",
+      "department": "AIRPORT AUTHORITY"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3946,8 +4169,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3955,8 +4178,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3964,8 +4187,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "ARENA",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -3973,8 +4196,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "ARTS COMMISSION",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3982,8 +4205,62 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3991,8 +4268,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "FINANCE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -4000,8 +4277,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "subject": "WATER SERVICES",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -4009,20 +4286,14 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T21:39:15Z",
-      "run_id": "20261007T213915Z",
+      "at": "2026-10-07T22:39:15Z",
+      "run_id": "20261007T223915Z",
       "standing": "unexamined",
-      "n_unexamined": 112,
+      "n_unexamined": 106,
       "subject": "MULTIPLE",
-      "reason": "112 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "reason": "106 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
       "departments": [
-        "ASSESSOR OF PROPERTY",
-        "AUDIT COMMITTEE",
-        "BEAUTIFICATION COMMISSION",
         "BEER BOARD",
-        "CARING FOR CHILDREN",
-        "CHANCERY COURT",
-        "CIRCUIT COURT CLERK",
         "CLERK AND MASTER",
         "CODES ADMINISTRATION",
         "COMMUNITY ACCESS TV",
@@ -4132,150 +4403,46 @@
     },
     {
       "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:16Z",
-      "epav_token": "aDXg1Y6q",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:20Z",
-      "epav_token": "kyPanY6N",
-      "contract_number": "429594",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:23Z",
-      "epav_token": "3DE7aXyG",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:27Z",
-      "epav_token": "aD2Y5L6M",
-      "contract_number": "418897",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:30Z",
-      "epav_token": "a6bgpEDO",
-      "contract_number": "L-3856",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-07T21:39:30Z",
-      "scanned": 97,
-      "newly_fetched": 1367,
-      "staged": 1435,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:34Z",
-      "epav_token": "3DqxWl6r",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:38Z",
-      "epav_token": "njM0zmDG",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:41Z",
-      "epav_token": "LyvJ7dyA",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:44Z",
-      "epav_token": "96Z0k4jO",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:48Z",
-      "epav_token": "3y9M3Rye",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:51Z",
-      "epav_token": "Wj4AMryB",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:54Z",
-      "epav_token": "kyPaG16N",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-07T21:39:58Z",
-      "epav_token": "O6d0Lr6E",
-      "contract_number": "L-4068",
-      "department": "ARTS COMMISSION"
-    },
-    {
-      "schema": "LiveEvent@1",
       "kind": "roundup",
-      "at": "2026-10-07T21:40:00Z",
+      "at": "2026-10-07T22:40:00Z",
       "range_hours": 24,
-      "since": "2026-10-07T21:40:00Z",
+      "since": "2026-10-07T22:40:00Z",
       "range": "24h",
       "hours": 24,
-      "contracts": 1443,
-      "uploaded": 72,
+      "contracts": 1847,
+      "uploaded": 89,
       "departments": {
-        "ARTS COMMISSION": 731,
-        "AIRPORT AUTHORITY": 599,
+        "ARTS COMMISSION": 998,
+        "AIRPORT AUTHORITY": 644,
         "AFFORDABLE HOUSING": 95,
+        "CIRCUIT COURT CLERK": 34,
+        "ASSESSOR OF PROPERTY": 33,
+        "CARING FOR CHILDREN": 19,
         "ARENA": 8,
-        "AGRICULTURAL EXTENSION": 7,
-        "FILM OFFICE": 3
+        "AGRICULTURAL EXTENSION": 7
       },
       "vendors": {
-        "NASHVILLE SYMPHONY ASSOC": 24,
-        "GLOBAL EDUCATION CENTER": 15,
-        "NASHVILLE CHILDRENS THEATRE": 14,
-        "BELCOURT THEATRE": 13,
-        "CIRCLE PLAYERS": 13,
-        "SOUTHERN WORD": 13,
-        "HEALING ARTS PROJECT": 13,
-        "ALIAS CHAMBER ENSEMBLE": 12,
-        "STREET THEATRE CO": 11,
-        "CHINESE ARTS ALLIANCE OF NASHVILLE": 11
+        "NASHVILLE SYMPHONY ASSOC": 25,
+        "ROOKER RICHARD": 24,
+        "GLOBAL EDUCATION CENTER": 19,
+        "CHINESE ARTS ALLIANCE OF NASHVILLE": 18,
+        "SOUTHERN WORD": 17,
+        "NASHVILLE BALLET": 16,
+        "ALIAS CHAMBER ENSEMBLE": 16,
+        "HEALING ARTS PROJECT": 16,
+        "BELCOURT THEATRE": 15,
+        "CIRCLE PLAYERS": 15
       },
       "by_day": {
-        "2026-10-07": 1443
+        "2026-10-07": 1847
       }
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "upload-failed",
+      "at": "2026-10-07T22:40:00Z",
+      "epav_token": "96Z7GaDO",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-96Z7GaDO/96Z7GaDO.pdf"
     }
   ]
 }
