@@ -1,49 +1,89 @@
 {
   "schema": "LiveSummary@1",
-  "at": "2026-10-07T17:23:46Z",
+  "at": "2026-10-07T17:37:59Z",
   "state": {
     "counts": {
-      "fetched": 61,
+      "fetched": 63,
       "uploaded": 223,
-      "deployed": 62,
+      "deployed": 64,
       "gaps": 2,
-      "legislation_changes": 0
+      "legislation_changes": 0,
+      "missing_total": 4237
     },
     "phase": "in sync: everything fetched has been uploaded to archive.org",
     "verdicts": {
-      "unexamined": 2125,
-      "complete": 17,
-      "incomplete": 18
+      "unexamined": 2715,
+      "complete": 22,
+      "incomplete": 23
     },
     "qc": {
-      "defect": 4,
-      "ok": 10
+      "defect": 5,
+      "ok": 16
     },
     "rules": {
       "adopted": 0,
       "conceded": 0
     },
+    "missing": {
+      "standing_counts": {
+        "incomplete": 6
+      },
+      "missing_total": 4237,
+      "top_departments": [
+        {
+          "department": "FINANCE",
+          "missing": 1000,
+          "standing": "incomplete"
+        },
+        {
+          "department": "GENERAL SERVICES",
+          "missing": 1000,
+          "standing": "incomplete"
+        },
+        {
+          "department": "WATER SERVICES",
+          "missing": 1000,
+          "standing": "incomplete"
+        },
+        {
+          "department": "FILM OFFICE",
+          "missing": 848,
+          "standing": "incomplete"
+        },
+        {
+          "department": "FIRE",
+          "missing": 354,
+          "standing": "incomplete"
+        },
+        {
+          "department": "AFFORDABLE HOUSING",
+          "missing": 35,
+          "standing": "incomplete"
+        }
+      ]
+    },
     "prose": [
-      "Held 61 contract(s) in the ledger; 223 uploaded to archive.org (62 with small files staged for GitHub). in sync: everything fetched has been uploaded to archive.org.",
+      "Held 63 contract(s) in the ledger; 223 uploaded to archive.org (64 with small files staged for GitHub). in sync: everything fetched has been uploaded to archive.org.",
       "2 unresolved enumeration gap(s) \u2014 completeness verdicts will stay contested until they close.",
-      "Completeness verdicts: unexamined 2125, complete 17, incomplete 18.",
-      "Last QC pass: flagging problems (10 ok, 0 suspicious, 4 defects)."
+      "Completeness verdicts: unexamined 2715, complete 22, incomplete 23.",
+      "Last QC pass: flagging problems (16 ok, 0 suspicious, 5 defects).",
+      "Missing: recount found 4237 contract(s) the portal still shows that we don't hold yet \u2014 FINANCE \u22121000; GENERAL SERVICES \u22121000; WATER SERVICES \u22121000; FILM OFFICE \u2212848; FIRE \u2212354; AFFORDABLE HOUSING \u221235. Every count is a concrete lower bound; caps are declared, never hidden."
     ]
   },
   "periods": {
     "24h": {
       "range": "24h",
       "hours": 24,
-      "contracts": 61,
+      "contracts": 63,
       "uploaded": 9,
       "departments": {
-        "AFFORDABLE HOUSING": 58,
+        "AFFORDABLE HOUSING": 60,
         "FILM OFFICE": 3
       },
       "vendors": {
         "URBAN HOUSING SOLUTIONS": 4,
+        "BE A HELPING HAND FOUNDATION": 4,
         "NASHVILLE HOUSING FUND": 3,
-        "BE A HELPING HAND FOUNDATION": 3,
         "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 3,
         "VARIOUS": 2,
         "WESTMINSTER HOME CONNECTION": 2,
@@ -53,22 +93,22 @@
         "WEST NASHVILLE COMMUNITY DEV": 2
       },
       "by_day": {
-        "2026-10-07": 61
+        "2026-10-07": 63
       }
     },
     "168h": {
       "range": "168h",
       "hours": 168,
-      "contracts": 61,
+      "contracts": 63,
       "uploaded": 9,
       "departments": {
-        "AFFORDABLE HOUSING": 58,
+        "AFFORDABLE HOUSING": 60,
         "FILM OFFICE": 3
       },
       "vendors": {
         "URBAN HOUSING SOLUTIONS": 4,
+        "BE A HELPING HAND FOUNDATION": 4,
         "NASHVILLE HOUSING FUND": 3,
-        "BE A HELPING HAND FOUNDATION": 3,
         "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 3,
         "VARIOUS": 2,
         "WESTMINSTER HOME CONNECTION": 2,
@@ -78,22 +118,22 @@
         "WEST NASHVILLE COMMUNITY DEV": 2
       },
       "by_day": {
-        "2026-10-07": 61
+        "2026-10-07": 63
       }
     },
     "720h": {
       "range": "720h",
       "hours": 720,
-      "contracts": 61,
+      "contracts": 63,
       "uploaded": 223,
       "departments": {
-        "AFFORDABLE HOUSING": 58,
+        "AFFORDABLE HOUSING": 60,
         "FILM OFFICE": 3
       },
       "vendors": {
         "URBAN HOUSING SOLUTIONS": 4,
+        "BE A HELPING HAND FOUNDATION": 4,
         "NASHVILLE HOUSING FUND": 3,
-        "BE A HELPING HAND FOUNDATION": 3,
         "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 3,
         "VARIOUS": 2,
         "WESTMINSTER HOME CONNECTION": 2,
@@ -103,28 +143,28 @@
         "WEST NASHVILLE COMMUNITY DEV": 2
       },
       "by_day": {
-        "2026-10-07": 61
+        "2026-10-07": 63
       }
     }
   },
   "roundup": {
     "schema": "Roundup@1",
     "kind": "roundup",
-    "at": "2026-10-07T17:23:46Z",
+    "at": "2026-10-07T17:37:59Z",
     "range_hours": 24,
-    "since": "2026-10-07T17:23:46Z",
+    "since": "2026-10-07T17:37:59Z",
     "range": "24h",
     "hours": 24,
-    "contracts": 61,
+    "contracts": 63,
     "uploaded": 9,
     "departments": {
-      "AFFORDABLE HOUSING": 58,
+      "AFFORDABLE HOUSING": 60,
       "FILM OFFICE": 3
     },
     "vendors": {
       "URBAN HOUSING SOLUTIONS": 4,
+      "BE A HELPING HAND FOUNDATION": 4,
       "NASHVILLE HOUSING FUND": 3,
-      "BE A HELPING HAND FOUNDATION": 3,
       "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 3,
       "VARIOUS": 2,
       "WESTMINSTER HOME CONNECTION": 2,
@@ -134,168 +174,15 @@
       "WEST NASHVILLE COMMUNITY DEV": 2
     },
     "by_day": {
-      "2026-10-07": 61
+      "2026-10-07": 63
     }
   },
   "recent": [
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "MUSIC CITY CENTER",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "NASHVILLE CAREER ADVANCEMENT CENTER",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "NASHVILLE CITY OF",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "NASHVILLE CONVENTION CENTER",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "NASHVILLE ELECTRIC SERVICE",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "NDOT",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "OFFICE OF EMERGENCY MANAGEMENT",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "OFFICE OF HOMELESS SERVICES",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PARKS AND RECREATION",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PARTNERSHIP 2000",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PLANNING COMMISSION",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "POLICE",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PORT AUTHORITY",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PROBATE COURT CLERK",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PUBLIC DEFENDER",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PUBLIC LIBRARY",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
-      "subject": "PUBLIC PROPERTY",
-      "standing": "unexamined",
-      "reason": "no held tokens and no gap -- never measured"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "PUBLIC WORKS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -303,8 +190,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "PURCHASING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -312,8 +199,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -321,8 +208,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "REGISTER OF DEEDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -330,8 +217,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "SHERIFF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -339,8 +226,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "SOCIAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -348,8 +235,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "SOIL AND WATER CONSERVATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -357,8 +244,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "SPORTS AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -366,8 +253,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "STADIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -375,8 +262,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "STAHLMAN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -384,8 +271,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "STATE TRIAL COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -393,8 +280,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TAXI/WRECKER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -402,8 +289,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TELECOMMUNICATIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -411,8 +298,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TENNESSEE STATE FAIR",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -420,8 +307,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "THERMAL TRANSFER CORP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -429,8 +316,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TOURISM COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -438,8 +325,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TRAFFIC AND PARKING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -447,8 +334,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TRANSIT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -456,8 +343,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TRANSPORTATION LICENSING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -465,8 +352,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "TRUSTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -474,8 +361,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "WASTE SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -483,8 +370,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:12:15Z",
-      "run_id": "20261007T171215Z",
+      "at": "2026-10-07T17:24:15Z",
+      "run_id": "20261007T172415Z",
       "subject": "WATER SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -492,8 +379,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -501,8 +388,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -510,8 +397,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -519,8 +406,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ARENA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -528,8 +415,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ARTS COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -537,8 +424,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ASSESSOR OF PROPERTY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -546,8 +433,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "AUDIT COMMITTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -555,8 +442,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "BEAUTIFICATION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -564,8 +451,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "BEER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -573,8 +460,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CARING FOR CHILDREN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -582,8 +469,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CHANCERY COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -591,8 +478,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CIRCUIT COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -600,8 +487,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CLERK AND MASTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -609,8 +496,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CODES ADMINISTRATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -618,8 +505,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "COMMUNITY ACCESS TV",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -627,8 +514,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "COMMUNITY CORRECTIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -636,8 +523,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "COMMUNITY EDUCATION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -645,8 +532,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "COMMUNITY OVERSIGHT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -654,8 +541,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CONSTELLATION ENERGY SOURCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -663,8 +550,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CONVENTION CENTER AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -672,8 +559,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "COUNTY CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -681,8 +568,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CRIMINAL COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -690,8 +577,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "CRIMINAL JUSTICE PLANNING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -699,8 +586,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "DATA PROCESSING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -708,8 +595,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "DISTRICT ATTORNEY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -717,8 +604,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "DISTRICT ENERGY SYSTEM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -726,8 +613,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "DOWNTOWN PARTNERSHIP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -735,8 +622,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "DRUG COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -744,8 +631,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "DRUG POLICY OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -753,8 +640,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "EAST BANK DEVELOPMENT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -762,8 +649,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ECONOMIC DEVELOPMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -771,8 +658,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ELECTION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -780,8 +667,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ELECTRIC POWER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -789,8 +676,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "EMERGENCY COMMAND CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -798,8 +685,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "EMERGENCY COMMUNICATIONS DISTRICT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -807,8 +694,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "EMPLOYEE ASSISTANCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -816,8 +703,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "EMPLOYEE BENEFIT BD TRUST FND",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -825,8 +712,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "EMPLOYEE BENEFIT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -834,8 +721,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "ENERGY PROD FACILITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -843,8 +730,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FAIRGROUNDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -852,8 +739,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -861,8 +748,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FAMILY SAFETY OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -870,8 +757,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FARMERS MARKET",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -879,8 +766,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -888,8 +775,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FINANCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -897,8 +784,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FIRE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -906,8 +793,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "FRANCHISE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -915,8 +802,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "GENERAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -924,8 +811,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "GENERAL SESSIONS COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -933,8 +820,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HEALTH",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -942,8 +829,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HEALTH AND EDUCATIONAL FACILITIES BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -951,8 +838,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HISTORICAL COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -960,8 +847,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HOSPITAL AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -969,8 +856,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HOSPITALS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -978,8 +865,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HOUSING TRUST FUND COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -987,8 +874,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HUMAN RELATIONS COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -996,8 +883,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "HUMAN RESOURCES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1005,8 +892,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "INDUSTRIAL DEVELOPMENT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1014,8 +901,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "INFORMATION TECHNOLOGY SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1023,8 +910,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "INTERNAL AUDIT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1032,8 +919,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "JEAN CROWE ADVOCACY CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1041,8 +928,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "JIS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1050,8 +937,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "JUVENILE COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1059,8 +946,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "JUVENILE COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1068,8 +955,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "JUVENILE JUSTICE CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1077,8 +964,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "LEGAL DEPARTMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1086,8 +973,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "LOCAL WORKFORCE DEVELOPMENT AREA 9",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1095,8 +982,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "LOCAL WORKFORCE INVESTMENT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1104,8 +991,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MAYORS OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1113,8 +1000,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MAYORS OFFICE CHILDREN AND YOUTH",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1122,8 +1009,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MAYORS YOUTH COUNCIL",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1131,8 +1018,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MDHA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1140,8 +1027,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MEDICAL EXAMINER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1149,8 +1036,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METRA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1158,8 +1045,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METRO ACTION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1167,8 +1054,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METRO CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1176,8 +1063,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METRO COUNCIL",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1185,8 +1072,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METRO NASHVILLE PUBLIC SCHOOLS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1194,8 +1081,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METRO WIDE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1203,8 +1090,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "METROPOLITAN GOVERNMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1212,8 +1099,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MUNICIPAL AUDITORIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1221,8 +1108,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "MUSIC CITY CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1230,8 +1117,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "NASHVILLE CAREER ADVANCEMENT CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1239,8 +1126,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "NASHVILLE CITY OF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1248,8 +1135,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "NASHVILLE CONVENTION CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1257,8 +1144,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "NASHVILLE ELECTRIC SERVICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1266,8 +1153,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "NDOT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1275,8 +1162,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "OFFICE OF EMERGENCY MANAGEMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1284,8 +1171,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "OFFICE OF HOMELESS SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1293,8 +1180,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PARKS AND RECREATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1302,8 +1189,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PARTNERSHIP 2000",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1311,8 +1198,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PLANNING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1320,8 +1207,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "POLICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1329,8 +1216,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PORT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1338,8 +1225,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PROBATE COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1347,8 +1234,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PUBLIC DEFENDER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1356,8 +1243,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PUBLIC LIBRARY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1365,8 +1252,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PUBLIC PROPERTY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1374,8 +1261,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PUBLIC WORKS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1383,8 +1270,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "PURCHASING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1392,8 +1279,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1401,8 +1288,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "REGISTER OF DEEDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1410,8 +1297,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "SHERIFF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1419,8 +1306,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "SOCIAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1428,8 +1315,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "SOIL AND WATER CONSERVATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1437,8 +1324,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "SPORTS AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1446,8 +1333,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "STADIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1455,8 +1342,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "STAHLMAN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1464,8 +1351,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "STATE TRIAL COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1473,8 +1360,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TAXI/WRECKER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1482,8 +1369,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TELECOMMUNICATIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1491,8 +1378,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TENNESSEE STATE FAIR",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1500,8 +1387,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "THERMAL TRANSFER CORP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1509,8 +1396,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TOURISM COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1518,8 +1405,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TRAFFIC AND PARKING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1527,8 +1414,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TRANSIT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1536,8 +1423,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TRANSPORTATION LICENSING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1545,8 +1432,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "TRUSTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1554,8 +1441,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "WASTE SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1563,17 +1450,96 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:15:15Z",
-      "run_id": "20261007T171515Z",
+      "at": "2026-10-07T17:27:15Z",
+      "run_id": "20261007T172715Z",
       "subject": "WATER SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
     },
     {
       "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "durable_home",
+      "subject": "epav-fetched.jsonl",
+      "grade": "ok",
+      "n": 0
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "deployed_present",
+      "subject": "data/deployed/",
+      "grade": "ok",
+      "n": 0
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "text_present",
+      "subject": "deployed extracted-text.txt",
+      "grade": "ok",
+      "n": 0
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "capacity_gaps",
+      "subject": "data/gaps.jsonl",
+      "grade": "defect",
+      "n": 1
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "manifest_record",
+      "subject": "data/epav-manifest.jsonl",
+      "grade": "ok",
+      "n": 0
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "duplicate_tokens",
+      "subject": "data/epav-fetched.jsonl",
+      "grade": "ok",
+      "n": 0
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "check": "surveillance_cardinality",
+      "subject": "data/surveillance-flags.jsonl",
+      "grade": "ok",
+      "n": 0
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "qc-run",
+      "at": "2026-10-07T17:30:05Z",
+      "run_id": "20261007T173005Z",
+      "checks": 7,
+      "defects": 1,
+      "suspicious": 0
+    },
+    {
+      "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -1581,8 +1547,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1590,8 +1556,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1599,8 +1565,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ARENA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1608,8 +1574,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ARTS COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1617,8 +1583,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ASSESSOR OF PROPERTY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1626,8 +1592,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "AUDIT COMMITTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1635,8 +1601,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "BEAUTIFICATION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1644,8 +1610,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "BEER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1653,8 +1619,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CARING FOR CHILDREN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1662,8 +1628,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CHANCERY COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1671,8 +1637,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CIRCUIT COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1680,8 +1646,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CLERK AND MASTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1689,8 +1655,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CODES ADMINISTRATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1698,8 +1664,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "COMMUNITY ACCESS TV",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1707,8 +1673,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "COMMUNITY CORRECTIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1716,8 +1682,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "COMMUNITY EDUCATION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1725,8 +1691,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "COMMUNITY OVERSIGHT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1734,8 +1700,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CONSTELLATION ENERGY SOURCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1743,8 +1709,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CONVENTION CENTER AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1752,8 +1718,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "COUNTY CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1761,8 +1727,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CRIMINAL COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1770,8 +1736,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "CRIMINAL JUSTICE PLANNING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1779,8 +1745,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "DATA PROCESSING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1788,8 +1754,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "DISTRICT ATTORNEY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1797,8 +1763,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "DISTRICT ENERGY SYSTEM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1806,8 +1772,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "DOWNTOWN PARTNERSHIP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1815,8 +1781,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "DRUG COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1824,8 +1790,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "DRUG POLICY OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1833,8 +1799,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "EAST BANK DEVELOPMENT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1842,8 +1808,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ECONOMIC DEVELOPMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1851,8 +1817,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ELECTION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1860,8 +1826,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ELECTRIC POWER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1869,8 +1835,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "EMERGENCY COMMAND CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1878,8 +1844,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "EMERGENCY COMMUNICATIONS DISTRICT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1887,8 +1853,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "EMPLOYEE ASSISTANCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1896,8 +1862,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "EMPLOYEE BENEFIT BD TRUST FND",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1905,8 +1871,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "EMPLOYEE BENEFIT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1914,8 +1880,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "ENERGY PROD FACILITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1923,8 +1889,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FAIRGROUNDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1932,8 +1898,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1941,8 +1907,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FAMILY SAFETY OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1950,8 +1916,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FARMERS MARKET",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1959,8 +1925,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -1968,8 +1934,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FINANCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1977,8 +1943,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FIRE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1986,8 +1952,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "FRANCHISE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -1995,8 +1961,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "GENERAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2004,8 +1970,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "GENERAL SESSIONS COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2013,8 +1979,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HEALTH",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2022,8 +1988,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HEALTH AND EDUCATIONAL FACILITIES BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2031,8 +1997,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HISTORICAL COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2040,8 +2006,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HOSPITAL AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2049,8 +2015,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HOSPITALS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2058,8 +2024,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HOUSING TRUST FUND COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2067,8 +2033,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HUMAN RELATIONS COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2076,8 +2042,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "HUMAN RESOURCES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2085,8 +2051,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "INDUSTRIAL DEVELOPMENT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2094,8 +2060,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "INFORMATION TECHNOLOGY SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2103,8 +2069,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "INTERNAL AUDIT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2112,8 +2078,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "JEAN CROWE ADVOCACY CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2121,8 +2087,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "JIS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2130,8 +2096,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "JUVENILE COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2139,8 +2105,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "JUVENILE COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2148,8 +2114,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "JUVENILE JUSTICE CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2157,8 +2123,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "LEGAL DEPARTMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2166,8 +2132,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "LOCAL WORKFORCE DEVELOPMENT AREA 9",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2175,8 +2141,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "LOCAL WORKFORCE INVESTMENT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2184,8 +2150,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MAYORS OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2193,8 +2159,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MAYORS OFFICE CHILDREN AND YOUTH",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2202,8 +2168,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MAYORS YOUTH COUNCIL",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2211,8 +2177,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MDHA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2220,8 +2186,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MEDICAL EXAMINER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2229,8 +2195,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METRA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2238,8 +2204,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METRO ACTION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2247,8 +2213,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METRO CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2256,8 +2222,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METRO COUNCIL",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2265,8 +2231,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METRO NASHVILLE PUBLIC SCHOOLS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2274,8 +2240,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METRO WIDE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2283,8 +2249,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "METROPOLITAN GOVERNMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2292,8 +2258,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MUNICIPAL AUDITORIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2301,8 +2267,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "MUSIC CITY CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2310,8 +2276,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "NASHVILLE CAREER ADVANCEMENT CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2319,8 +2285,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "NASHVILLE CITY OF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2328,8 +2294,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "NASHVILLE CONVENTION CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2337,8 +2303,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "NASHVILLE ELECTRIC SERVICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2346,8 +2312,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "NDOT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2355,8 +2321,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "OFFICE OF EMERGENCY MANAGEMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2364,8 +2330,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "OFFICE OF HOMELESS SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2373,8 +2339,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PARKS AND RECREATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2382,8 +2348,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PARTNERSHIP 2000",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2391,8 +2357,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PLANNING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2400,8 +2366,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "POLICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2409,8 +2375,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PORT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2418,8 +2384,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PROBATE COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2427,8 +2393,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PUBLIC DEFENDER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2436,8 +2402,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PUBLIC LIBRARY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2445,8 +2411,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PUBLIC PROPERTY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2454,8 +2420,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PUBLIC WORKS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2463,8 +2429,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "PURCHASING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2472,8 +2438,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2481,8 +2447,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "REGISTER OF DEEDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2490,8 +2456,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "SHERIFF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2499,8 +2465,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "SOCIAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2508,8 +2474,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "SOIL AND WATER CONSERVATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2517,8 +2483,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "SPORTS AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2526,8 +2492,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "STADIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2535,8 +2501,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "STAHLMAN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2544,8 +2510,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "STATE TRIAL COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2553,8 +2519,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TAXI/WRECKER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2562,8 +2528,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TELECOMMUNICATIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2571,8 +2537,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TENNESSEE STATE FAIR",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2580,8 +2546,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "THERMAL TRANSFER CORP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2589,8 +2555,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TOURISM COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2598,8 +2564,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TRAFFIC AND PARKING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2607,8 +2573,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TRANSIT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2616,8 +2582,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TRANSPORTATION LICENSING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2625,8 +2591,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "TRUSTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2634,8 +2600,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "WASTE SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2643,8 +2609,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:18:15Z",
-      "run_id": "20261007T171815Z",
+      "at": "2026-10-07T17:30:15Z",
+      "run_id": "20261007T173015Z",
       "subject": "WATER SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2652,8 +2618,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "AFFORDABLE HOUSING",
       "standing": "complete",
       "reason": "held tokens present, no standing gaps (offline provisional)"
@@ -2661,8 +2627,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "AGRICULTURAL EXTENSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2670,8 +2636,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "AIRPORT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2679,8 +2645,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ARENA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2688,8 +2654,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ARTS COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2697,8 +2663,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ASSESSOR OF PROPERTY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2706,8 +2672,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "AUDIT COMMITTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2715,8 +2681,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "BEAUTIFICATION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2724,8 +2690,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "BEER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2733,8 +2699,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CARING FOR CHILDREN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2742,8 +2708,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CHANCERY COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2751,8 +2717,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CIRCUIT COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2760,8 +2726,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CLERK AND MASTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2769,8 +2735,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CODES ADMINISTRATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2778,8 +2744,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "COMMUNITY ACCESS TV",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2787,8 +2753,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "COMMUNITY CORRECTIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2796,8 +2762,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "COMMUNITY EDUCATION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2805,8 +2771,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "COMMUNITY OVERSIGHT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2814,8 +2780,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CONSTELLATION ENERGY SOURCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2823,8 +2789,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CONVENTION CENTER AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2832,8 +2798,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "COUNTY CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2841,8 +2807,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CRIMINAL COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2850,8 +2816,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "CRIMINAL JUSTICE PLANNING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2859,8 +2825,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "DATA PROCESSING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2868,8 +2834,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "DISTRICT ATTORNEY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2877,8 +2843,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "DISTRICT ENERGY SYSTEM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2886,8 +2852,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "DOWNTOWN PARTNERSHIP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2895,8 +2861,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "DRUG COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2904,8 +2870,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "DRUG POLICY OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2913,8 +2879,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "EAST BANK DEVELOPMENT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2922,8 +2888,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ECONOMIC DEVELOPMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2931,8 +2897,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ELECTION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2940,8 +2906,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ELECTRIC POWER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2949,8 +2915,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "EMERGENCY COMMAND CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2958,8 +2924,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "EMERGENCY COMMUNICATIONS DISTRICT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2967,8 +2933,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "EMPLOYEE ASSISTANCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2976,8 +2942,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "EMPLOYEE BENEFIT BD TRUST FND",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2985,8 +2951,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "EMPLOYEE BENEFIT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -2994,8 +2960,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "ENERGY PROD FACILITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3003,8 +2969,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FAIRGROUNDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3012,8 +2978,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3021,8 +2987,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FAMILY SAFETY OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3030,8 +2996,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FARMERS MARKET",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3039,8 +3005,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FILM OFFICE",
       "standing": "incomplete",
       "reason": "standing capped-shard gap(s) for this department"
@@ -3048,8 +3014,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FINANCE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3057,8 +3023,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FIRE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3066,8 +3032,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "FRANCHISE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3075,8 +3041,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "GENERAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3084,8 +3050,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "GENERAL SESSIONS COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3093,8 +3059,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HEALTH",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3102,8 +3068,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HEALTH AND EDUCATIONAL FACILITIES BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3111,8 +3077,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HISTORICAL COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3120,8 +3086,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HOSPITAL AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3129,8 +3095,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HOSPITALS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3138,8 +3104,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HOUSING TRUST FUND COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3147,8 +3113,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HUMAN RELATIONS COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3156,8 +3122,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "HUMAN RESOURCES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3165,8 +3131,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "INDUSTRIAL DEVELOPMENT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3174,8 +3140,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "INFORMATION TECHNOLOGY SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3183,8 +3149,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "INTERNAL AUDIT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3192,8 +3158,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "JEAN CROWE ADVOCACY CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3201,8 +3167,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "JIS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3210,8 +3176,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "JUVENILE COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3219,8 +3185,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "JUVENILE COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3228,8 +3194,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "JUVENILE JUSTICE CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3237,8 +3203,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "LEGAL DEPARTMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3246,8 +3212,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "LOCAL WORKFORCE DEVELOPMENT AREA 9",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3255,8 +3221,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "LOCAL WORKFORCE INVESTMENT BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3264,8 +3230,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MAYORS OFFICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3273,8 +3239,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MAYORS OFFICE CHILDREN AND YOUTH",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3282,8 +3248,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MAYORS YOUTH COUNCIL",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3291,8 +3257,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MDHA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3300,8 +3266,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MEDICAL EXAMINER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3309,8 +3275,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METRA",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3318,8 +3284,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METRO ACTION COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3327,8 +3293,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METRO CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3336,8 +3302,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METRO COUNCIL",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3345,8 +3311,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METRO NASHVILLE PUBLIC SCHOOLS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3354,8 +3320,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METRO WIDE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3363,8 +3329,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "METROPOLITAN GOVERNMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3372,8 +3338,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MUNICIPAL AUDITORIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3381,8 +3347,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "MUSIC CITY CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3390,8 +3356,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "NASHVILLE CAREER ADVANCEMENT CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3399,8 +3365,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "NASHVILLE CITY OF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3408,8 +3374,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "NASHVILLE CONVENTION CENTER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3417,8 +3383,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "NASHVILLE ELECTRIC SERVICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3426,8 +3392,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "NDOT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3435,8 +3401,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "OFFICE OF EMERGENCY MANAGEMENT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3444,8 +3410,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "OFFICE OF HOMELESS SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3453,8 +3419,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PARKS AND RECREATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3462,8 +3428,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PARTNERSHIP 2000",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3471,8 +3437,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PLANNING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3480,8 +3446,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "POLICE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3489,8 +3455,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PORT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3498,8 +3464,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PROBATE COURT CLERK",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3507,8 +3473,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PUBLIC DEFENDER",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3516,8 +3482,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PUBLIC LIBRARY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3525,8 +3491,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PUBLIC PROPERTY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3534,8 +3500,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PUBLIC WORKS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3543,8 +3509,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "PURCHASING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3552,8 +3518,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3561,8 +3527,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "REGISTER OF DEEDS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3570,8 +3536,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "SHERIFF",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3579,8 +3545,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "SOCIAL SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3588,8 +3554,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "SOIL AND WATER CONSERVATION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3597,8 +3563,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "SPORTS AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3606,8 +3572,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "STADIUM",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3615,8 +3581,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "STAHLMAN",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3624,8 +3590,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "STATE TRIAL COURT",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3633,8 +3599,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TAXI/WRECKER BOARD",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3642,8 +3608,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TELECOMMUNICATIONS",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3651,8 +3617,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TENNESSEE STATE FAIR",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3660,8 +3626,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "THERMAL TRANSFER CORP",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3669,8 +3635,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TOURISM COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3678,8 +3644,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TRAFFIC AND PARKING",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3687,8 +3653,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TRANSIT AUTHORITY",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3696,8 +3662,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TRANSPORTATION LICENSING COMMISSION",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3705,8 +3671,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "TRUSTEE",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3714,8 +3680,8 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "WASTE SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
@@ -3723,30 +3689,232 @@
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
-      "at": "2026-10-07T17:21:15Z",
-      "run_id": "20261007T172115Z",
+      "at": "2026-10-07T17:33:15Z",
+      "run_id": "20261007T173315Z",
       "subject": "WATER SERVICES",
       "standing": "unexamined",
       "reason": "no held tokens and no gap -- never measured"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T17:36:15Z",
+      "run_id": "20261007T173615Z",
+      "subject": "AFFORDABLE HOUSING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T17:36:15Z",
+      "run_id": "20261007T173615Z",
+      "subject": "FILM OFFICE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-07T17:36:15Z",
+      "run_id": "20261007T173615Z",
+      "standing": "unexamined",
+      "n_unexamined": 118,
+      "subject": "MULTIPLE",
+      "reason": "118 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "departments": [
+        "AGRICULTURAL EXTENSION",
+        "AIRPORT AUTHORITY",
+        "ARENA",
+        "ARTS COMMISSION",
+        "ASSESSOR OF PROPERTY",
+        "AUDIT COMMITTEE",
+        "BEAUTIFICATION COMMISSION",
+        "BEER BOARD",
+        "CARING FOR CHILDREN",
+        "CHANCERY COURT",
+        "CIRCUIT COURT CLERK",
+        "CLERK AND MASTER",
+        "CODES ADMINISTRATION",
+        "COMMUNITY ACCESS TV",
+        "COMMUNITY CORRECTIONS",
+        "COMMUNITY EDUCATION COMMISSION",
+        "COMMUNITY OVERSIGHT BOARD",
+        "CONSTELLATION ENERGY SOURCE",
+        "CONVENTION CENTER AUTHORITY",
+        "COUNTY CLERK",
+        "CRIMINAL COURT CLERK",
+        "CRIMINAL JUSTICE PLANNING",
+        "DATA PROCESSING",
+        "DISTRICT ATTORNEY",
+        "DISTRICT ENERGY SYSTEM",
+        "DOWNTOWN PARTNERSHIP",
+        "DRUG COURT",
+        "DRUG POLICY OFFICE",
+        "EAST BANK DEVELOPMENT AUTHORITY",
+        "ECONOMIC DEVELOPMENT",
+        "ELECTION COMMISSION",
+        "ELECTRIC POWER BOARD",
+        "EMERGENCY COMMAND CENTER",
+        "EMERGENCY COMMUNICATIONS DISTRICT",
+        "EMPLOYEE ASSISTANCE",
+        "EMPLOYEE BENEFIT BD TRUST FND",
+        "EMPLOYEE BENEFIT BOARD",
+        "ENERGY PROD FACILITY",
+        "FAIRGROUNDS",
+        "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
+        "FAMILY SAFETY OFFICE",
+        "FARMERS MARKET",
+        "FINANCE",
+        "FIRE",
+        "FRANCHISE",
+        "GENERAL SERVICES",
+        "GENERAL SESSIONS COURT",
+        "HEALTH",
+        "HEALTH AND EDUCATIONAL FACILITIES BOARD",
+        "HISTORICAL COMMISSION",
+        "HOSPITAL AUTHORITY",
+        "HOSPITALS",
+        "HOUSING TRUST FUND COMMISSION",
+        "HUMAN RELATIONS COMMISSION",
+        "HUMAN RESOURCES",
+        "INDUSTRIAL DEVELOPMENT BOARD",
+        "INFORMATION TECHNOLOGY SERVICES",
+        "INTERNAL AUDIT",
+        "JEAN CROWE ADVOCACY CENTER",
+        "JIS",
+        "JUVENILE COURT",
+        "JUVENILE COURT CLERK",
+        "JUVENILE JUSTICE CENTER",
+        "LEGAL DEPARTMENT",
+        "LOCAL WORKFORCE DEVELOPMENT AREA 9",
+        "LOCAL WORKFORCE INVESTMENT BOARD",
+        "MAYORS OFFICE",
+        "MAYORS OFFICE CHILDREN AND YOUTH",
+        "MAYORS YOUTH COUNCIL",
+        "MDHA",
+        "MEDICAL EXAMINER",
+        "METRA",
+        "METRO ACTION COMMISSION",
+        "METRO CLERK",
+        "METRO COUNCIL",
+        "METRO NASHVILLE PUBLIC SCHOOLS",
+        "METRO WIDE",
+        "METROPOLITAN GOVERNMENT",
+        "MUNICIPAL AUDITORIUM",
+        "MUSIC CITY CENTER",
+        "NASHVILLE CAREER ADVANCEMENT CENTER",
+        "NASHVILLE CITY OF",
+        "NASHVILLE CONVENTION CENTER",
+        "NASHVILLE ELECTRIC SERVICE",
+        "NDOT",
+        "OFFICE OF EMERGENCY MANAGEMENT",
+        "OFFICE OF HOMELESS SERVICES",
+        "PARKS AND RECREATION",
+        "PARTNERSHIP 2000",
+        "PLANNING COMMISSION",
+        "POLICE",
+        "PORT AUTHORITY",
+        "PROBATE COURT CLERK",
+        "PUBLIC DEFENDER",
+        "PUBLIC LIBRARY",
+        "PUBLIC PROPERTY",
+        "PUBLIC WORKS",
+        "PURCHASING",
+        "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
+        "REGISTER OF DEEDS",
+        "SHERIFF",
+        "SOCIAL SERVICES",
+        "SOIL AND WATER CONSERVATION",
+        "SPORTS AUTHORITY",
+        "STADIUM",
+        "STAHLMAN",
+        "STATE TRIAL COURT",
+        "TAXI/WRECKER BOARD",
+        "TELECOMMUNICATIONS",
+        "TENNESSEE STATE FAIR",
+        "THERMAL TRANSFER CORP",
+        "TOURISM COMMISSION",
+        "TRAFFIC AND PARKING",
+        "TRANSIT AUTHORITY",
+        "TRANSPORTATION LICENSING COMMISSION",
+        "TRUSTEE",
+        "WASTE SERVICES",
+        "WATER SERVICES"
+      ]
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "missing",
+      "at": "2026-10-07T17:36:38Z",
+      "department": "FILM OFFICE",
+      "standing": "incomplete",
+      "missing": 848,
+      "reason": "recount at the 1000-row cap; missing >= cap - 3 (bound, not a count)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "missing",
+      "at": "2026-10-07T17:36:39Z",
+      "department": "FINANCE",
+      "standing": "incomplete",
+      "missing": 1000,
+      "reason": "recount at the 1000-row cap; missing >= cap - 0 (bound, not a count)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "missing",
+      "at": "2026-10-07T17:36:40Z",
+      "department": "AFFORDABLE HOUSING",
+      "standing": "incomplete",
+      "missing": 35,
+      "reason": "recount surfaced 35 token(s) not in the held set"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "missing",
+      "at": "2026-10-07T17:36:41Z",
+      "department": "GENERAL SERVICES",
+      "standing": "incomplete",
+      "missing": 1000,
+      "reason": "recount at the 1000-row cap; missing >= cap - 0 (bound, not a count)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "missing",
+      "at": "2026-10-07T17:36:42Z",
+      "department": "FIRE",
+      "standing": "incomplete",
+      "missing": 354,
+      "reason": "recount surfaced 354 token(s) not in the held set"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "missing",
+      "at": "2026-10-07T17:36:43Z",
+      "department": "WATER SERVICES",
+      "standing": "incomplete",
+      "missing": 1000,
+      "reason": "recount at the 1000-row cap; missing >= cap - 0 (bound, not a count)"
     },
     {
       "schema": "LiveEvent@1",
       "kind": "roundup",
-      "at": "2026-10-07T17:23:46Z",
+      "at": "2026-10-07T17:37:59Z",
       "range_hours": 24,
-      "since": "2026-10-07T17:23:46Z",
+      "since": "2026-10-07T17:37:59Z",
       "range": "24h",
       "hours": 24,
-      "contracts": 61,
+      "contracts": 63,
       "uploaded": 9,
       "departments": {
-        "AFFORDABLE HOUSING": 58,
+        "AFFORDABLE HOUSING": 60,
         "FILM OFFICE": 3
       },
       "vendors": {
         "URBAN HOUSING SOLUTIONS": 4,
+        "BE A HELPING HAND FOUNDATION": 4,
         "NASHVILLE HOUSING FUND": 3,
-        "BE A HELPING HAND FOUNDATION": 3,
         "HABITAT FOR HUMANITY OF GREATER NASHVILLE": 3,
         "VARIOUS": 2,
         "WESTMINSTER HOME CONNECTION": 2,
@@ -3756,7 +3924,7 @@
         "WEST NASHVILLE COMMUNITY DEV": 2
       },
       "by_day": {
-        "2026-10-07": 61
+        "2026-10-07": 63
       }
     }
   ]
