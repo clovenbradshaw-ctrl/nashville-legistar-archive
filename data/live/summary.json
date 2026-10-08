@@ -1,21 +1,21 @@
 {
   "schema": "LiveSummary@1",
-  "at": "2026-10-08T01:30:34Z",
+  "at": "2026-10-08T01:33:15Z",
   "state": {
     "counts": {
-      "fetched": 3495,
-      "staged": 3495,
-      "pending": 3121,
+      "fetched": 3497,
+      "staged": 3497,
+      "pending": 3123,
       "uploaded": 374,
-      "pulled_accounted": 3495,
-      "deployed": 3495,
+      "pulled_accounted": 3497,
+      "deployed": 3497,
       "read_done": 254,
       "fully_processed": 107,
       "gaps": 127,
       "legislation_changes": 0,
       "missing_total": 7679
     },
-    "phase": "we're pulling faster than archive.org can take it right now (3121 staged)",
+    "phase": "we're pulling faster than archive.org can take it right now (3123 staged)",
     "verdicts": {
       "complete": 39,
       "unexamined": 76,
@@ -100,14 +100,14 @@
       ]
     },
     "last24h": {
-      "pulled": 3495,
+      "pulled": 3497,
       "archived": 160
     },
     "last60": {
-      "pulled": 950,
+      "pulled": 905,
       "archived": 27,
-      "read": 506,
-      "failed": 24
+      "read": 505,
+      "failed": 29
     },
     "oversight": {
       "n": 14,
@@ -163,22 +163,22 @@
       ]
     },
     "prose": [
-      "Where we are: 3495 contracts pulled all-time (374 archived on archive.org, 3495 small-file sets on GitHub \u2014 earlier sessions' work included); 3121 staged and waiting on the drain. In the last 24h: 3495 pulled, 160 archived. we're pulling faster than archive.org can take it right now (3121 staged).",
+      "Where we are: 3497 contracts pulled all-time (374 archived on archive.org, 3497 small-file sets on GitHub \u2014 earlier sessions' work included); 3123 staged and waiting on the drain. In the last 24h: 3497 pulled, 160 archived. we're pulling faster than archive.org can take it right now (3123 staged).",
       "127 department(s) still sit behind the portal's 1,000-row search wall (the enumeration gaps) \u2014 completeness stays contested there until the deep lane subdivides past the cap.",
       "Completeness verdicts across departments: 39 complete, 5 incomplete, 0 contested, 76 unexamined (unexamined means not crawled yet \u2014 never counted as a pass).",
       "Last QC pass: flagging problems (87 clean, 0 suspicious, 46 defect).",
-      "Processing ladder: 107 of 3495 pulled are fully processed \u2014 PDF archived on archive.org, text extracted, read by eoreader7, small files on GitHub (374 archived, 254 read).",
+      "Processing ladder: 107 of 3497 pulled are fully processed \u2014 PDF archived on archive.org, text extracted, read by eoreader7, small files on GitHub (374 archived, 254 read).",
       "Missing: recount found 7679 contract(s) the portal still shows that we don't hold yet \u2014 FINANCE \u22122464; WATER SERVICES \u22122432; FILM OFFICE \u22121332; GENERAL SERVICES \u22121062; FIRE \u2212354; AFFORDABLE HOUSING \u221235. Every count is a concrete lower bound; caps are declared, never hidden.",
       "Self-healing: 14 oversight action(s) on record (restart/ream/timer arms, fetch pauses on disk pressure) \u2014 each with a falsifying control.",
       "Note: every total here is the live picture at this moment \u2014 they grow as the crawl discovers and archives more contracts.",
-      "Last 60 minutes: +950 pulled \u00b7 +27 archived \u00b7 +506 read \u00b7 +24 failed."
+      "Last 60 minutes: +905 pulled \u00b7 +27 archived \u00b7 +505 read \u00b7 +29 failed."
     ]
   },
   "periods": {
     "24h": {
       "range": "24h",
       "hours": 24,
-      "contracts": 3495,
+      "contracts": 3497,
       "uploaded": 160,
       "departments": {
         "ARTS COMMISSION": 998,
@@ -186,7 +186,7 @@
         "AIRPORT AUTHORITY": 710,
         "EMPLOYEE BENEFIT BOARD": 166,
         "AFFORDABLE HOUSING": 95,
-        "FAMILY SAFETY OFFICE": 74,
+        "FAMILY SAFETY OFFICE": 76,
         "DISTRICT ENERGY SYSTEM": 67,
         "ECONOMIC DEVELOPMENT": 45
       },
@@ -204,13 +204,13 @@
       },
       "by_day": {
         "2026-10-07": 2225,
-        "2026-10-08": 1270
+        "2026-10-08": 1272
       }
     },
     "168h": {
       "range": "168h",
       "hours": 168,
-      "contracts": 3495,
+      "contracts": 3497,
       "uploaded": 160,
       "departments": {
         "ARTS COMMISSION": 998,
@@ -218,7 +218,7 @@
         "AIRPORT AUTHORITY": 710,
         "EMPLOYEE BENEFIT BOARD": 166,
         "AFFORDABLE HOUSING": 95,
-        "FAMILY SAFETY OFFICE": 74,
+        "FAMILY SAFETY OFFICE": 76,
         "DISTRICT ENERGY SYSTEM": 67,
         "ECONOMIC DEVELOPMENT": 45
       },
@@ -236,13 +236,13 @@
       },
       "by_day": {
         "2026-10-07": 2225,
-        "2026-10-08": 1270
+        "2026-10-08": 1272
       }
     },
     "720h": {
       "range": "720h",
       "hours": 720,
-      "contracts": 3495,
+      "contracts": 3497,
       "uploaded": 374,
       "departments": {
         "ARTS COMMISSION": 998,
@@ -250,7 +250,7 @@
         "AIRPORT AUTHORITY": 710,
         "EMPLOYEE BENEFIT BOARD": 166,
         "AFFORDABLE HOUSING": 95,
-        "FAMILY SAFETY OFFICE": 74,
+        "FAMILY SAFETY OFFICE": 76,
         "DISTRICT ENERGY SYSTEM": 67,
         "ECONOMIC DEVELOPMENT": 45
       },
@@ -268,19 +268,19 @@
       },
       "by_day": {
         "2026-10-07": 2225,
-        "2026-10-08": 1270
+        "2026-10-08": 1272
       }
     }
   },
   "roundup": {
     "schema": "Roundup@1",
     "kind": "roundup",
-    "at": "2026-10-08T01:30:34Z",
+    "at": "2026-10-08T01:33:15Z",
     "range_hours": 24,
-    "since": "2026-10-08T01:30:34Z",
+    "since": "2026-10-08T01:33:15Z",
     "range": "24h",
     "hours": 24,
-    "contracts": 3495,
+    "contracts": 3497,
     "uploaded": 160,
     "departments": {
       "ARTS COMMISSION": 998,
@@ -288,7 +288,7 @@
       "AIRPORT AUTHORITY": 710,
       "EMPLOYEE BENEFIT BOARD": 166,
       "AFFORDABLE HOUSING": 95,
-      "FAMILY SAFETY OFFICE": 74,
+      "FAMILY SAFETY OFFICE": 76,
       "DISTRICT ENERGY SYSTEM": 67,
       "ECONOMIC DEVELOPMENT": 45
     },
@@ -306,704 +306,10 @@
     },
     "by_day": {
       "2026-10-07": 2225,
-      "2026-10-08": 1270
+      "2026-10-08": 1272
     }
   },
   "recent": [
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:18Z",
-      "epav_token": "WD10G16Q",
-      "contract_number": "L-6597",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:22Z",
-      "epav_token": "9yQ0mqjE",
-      "contract_number": "L-6607",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:25Z",
-      "epav_token": "2yBnxPy1",
-      "contract_number": "L-6574",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:28Z",
-      "epav_token": "aD2x3EyM",
-      "contract_number": "L-6701",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:32Z",
-      "epav_token": "A6OdAqDJ",
-      "contract_number": "L-6601",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:36Z",
-      "epav_token": "vjJKpGy1",
-      "contract_number": "L-6608",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:39Z",
-      "epav_token": "3Dq0LO6r",
-      "contract_number": "L-6702",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:43Z",
-      "epav_token": "MD8XJVDZ",
-      "contract_number": "L-6569",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:47Z",
-      "epav_token": "kyPOZmjN",
-      "contract_number": "L-6570",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:50Z",
-      "epav_token": "lj7An167",
-      "contract_number": "L-6565",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:53Z",
-      "epav_token": "aDXXAYDq",
-      "contract_number": "L-6564",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:18:58Z",
-      "epav_token": "5DebJkjM",
-      "contract_number": "L-6717",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:01Z",
-      "epav_token": "MDAkZqy7",
-      "contract_number": "L-6736",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:05Z",
-      "epav_token": "Yyz7G369",
-      "contract_number": "L-6723",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:08Z",
-      "epav_token": "xym4vejY",
-      "contract_number": "L-6738",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:11Z",
-      "epav_token": "aDXXMqDq",
-      "contract_number": "L-6737",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:15Z",
-      "epav_token": "5DebQkjM",
-      "contract_number": "L-6726",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:18Z",
-      "epav_token": "wjYmZQjZ",
-      "contract_number": "L-6741",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:22Z",
-      "epav_token": "lj7A9a67",
-      "contract_number": "L-6739",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:25Z",
-      "epav_token": "5Debo7jM",
-      "contract_number": "L-6734",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:28Z",
-      "epav_token": "3Dq0vg6r",
-      "contract_number": "L-6740",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:32Z",
-      "epav_token": "2yBnv4y1",
-      "contract_number": "L-6742",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:36Z",
-      "epav_token": "RjpOW9Dl",
-      "contract_number": "L-6743",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:40Z",
-      "epav_token": "MD8XL8DZ",
-      "contract_number": "L-6718",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:43Z",
-      "epav_token": "qDodAkjA",
-      "contract_number": "L-6721",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:47Z",
-      "epav_token": "ajak4E61",
-      "contract_number": "L-6720",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "upload-failed",
-      "at": "2026-10-08T01:19:47Z",
-      "epav_token": "aD2PNLyM",
-      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-aD2PNLyM/aD2PNLyM.pdf"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:51Z",
-      "epav_token": "Wj4vk86B",
-      "contract_number": "L-6719",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "heartbeat",
-      "at": "2026-10-08T01:19:51Z",
-      "scanned": 210,
-      "newly_fetched": 1426,
-      "staged": 3329,
-      "note": "fetch workers active"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:55Z",
-      "epav_token": "qDodOajA",
-      "contract_number": "L-6756",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:19:59Z",
-      "epav_token": "WD10al6Q",
-      "contract_number": "L-6782",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:02Z",
-      "epav_token": "Lyv2KXyA",
-      "contract_number": "L-6802",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:06Z",
-      "epav_token": "96Z7rVDO",
-      "contract_number": "L-6780",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:09Z",
-      "epav_token": "aD2xBxyM",
-      "contract_number": "L-6789",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:13Z",
-      "epav_token": "vDNP4wyx",
-      "contract_number": "L-6781",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:16Z",
-      "epav_token": "ajak7Q61",
-      "contract_number": "L-6776",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:20Z",
-      "epav_token": "njM4AbDG",
-      "contract_number": "L-6836",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:23Z",
-      "epav_token": "xym4dYjY",
-      "contract_number": "L-6823",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:27Z",
-      "epav_token": "bD59ONDd",
-      "contract_number": "L-6775",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:31Z",
-      "epav_token": "LDVorljk",
-      "contract_number": "L-6774",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:35Z",
-      "epav_token": "96Z7GGDO",
-      "contract_number": "L-6837",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:38Z",
-      "epav_token": "ajak3m61",
-      "contract_number": "L-6804",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:41Z",
-      "epav_token": "3Dq0aW6r",
-      "contract_number": "L-6835",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:45Z",
-      "epav_token": "njM4kbDG",
-      "contract_number": "L-6843",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:49Z",
-      "epav_token": "aDXXl9Dq",
-      "contract_number": "L-6822",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:54Z",
-      "epav_token": "a6bnLV6O",
-      "contract_number": "L-6849",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "read-failed",
-      "at": "2026-10-08T01:20:56Z",
-      "epav_token": "7yWOg1yw",
-      "department": "AFFORDABLE HOUSING"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:20:57Z",
-      "epav_token": "vDNPznyx",
-      "contract_number": "L-6859",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:21:02Z",
-      "epav_token": "pyglKr63",
-      "contract_number": "6601672",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:21:05Z",
-      "epav_token": "WD10886Q",
-      "contract_number": "L-6860",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:21:08Z",
-      "epav_token": "A6OdE7DJ",
-      "contract_number": "L-6852",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "fetched",
-      "at": "2026-10-08T01:21:13Z",
-      "epav_token": "a6Gle1Dm",
-      "contract_number": "6599060",
-      "department": "FAIRGROUNDS"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "AFFORDABLE HOUSING",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "AGRICULTURAL EXTENSION",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "AIRPORT AUTHORITY",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "ARENA",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "ARTS COMMISSION",
-      "standing": "incomplete",
-      "reason": "standing capped-shard gap(s) for this department"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "ASSESSOR OF PROPERTY",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "AUDIT COMMITTEE",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "BEAUTIFICATION COMMISSION",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CARING FOR CHILDREN",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CHANCERY COURT",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CIRCUIT COURT CLERK",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CLERK AND MASTER",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CODES ADMINISTRATION",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "COMMUNITY ACCESS TV",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "COMMUNITY CORRECTIONS",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "COMMUNITY EDUCATION COMMISSION",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "COMMUNITY OVERSIGHT BOARD",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CONSTELLATION ENERGY SOURCE",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CONVENTION CENTER AUTHORITY",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "COUNTY CLERK",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CRIMINAL COURT CLERK",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "CRIMINAL JUSTICE PLANNING",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "DATA PROCESSING",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "DISTRICT ATTORNEY",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "DISTRICT ENERGY SYSTEM",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "DOWNTOWN PARTNERSHIP",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "DRUG COURT",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "DRUG POLICY OFFICE",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "EAST BANK DEVELOPMENT AUTHORITY",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "ECONOMIC DEVELOPMENT",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
-    {
-      "schema": "LiveEvent@1",
-      "kind": "verdict",
-      "at": "2026-10-08T01:21:15Z",
-      "run_id": "20261008T012115Z",
-      "subject": "ELECTION COMMISSION",
-      "standing": "complete",
-      "reason": "held tokens present, no standing gaps (offline provisional)"
-    },
     {
       "schema": "LiveEvent@1",
       "kind": "verdict",
@@ -4104,6 +3410,822 @@
         "2026-10-07": 2225,
         "2026-10-08": 1270
       }
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:30:39Z",
+      "epav_token": "MD8PWqDZ",
+      "contract_number": "L-5090",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:30:41Z",
+      "epav_token": "Wj4KgXDB",
+      "contract_number": "L-5091",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:30:43Z",
+      "epav_token": "kyPo4wjN",
+      "contract_number": "L-5092",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:30:50Z",
+      "epav_token": "O6dY1YDE",
+      "contract_number": "L-5093",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:30:53Z",
+      "epav_token": "Zj0rdz6B",
+      "contract_number": "L-5095",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:30:53Z",
+      "epav_token": "A6O98QjJ",
+      "contract_number": "L-5094",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:08Z",
+      "epav_token": "byxAgX6R",
+      "contract_number": "L-5096",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:08Z",
+      "epav_token": "pygEn4D3",
+      "contract_number": "L-5097",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:09Z",
+      "epav_token": "Lyvx00DA",
+      "contract_number": "L-5098",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:21Z",
+      "epav_token": "3y9d2oje",
+      "contract_number": "L-5099",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:24Z",
+      "epav_token": "M6RopnDZ",
+      "contract_number": "L-5328",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:26Z",
+      "epav_token": "YyzxEXD9",
+      "contract_number": "L-5327",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:37Z",
+      "epav_token": "5DeZ4rjM",
+      "contract_number": "L-5330",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:38Z",
+      "epav_token": "vjKQlM65",
+      "contract_number": "L-5329",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:39Z",
+      "epav_token": "MD88JLDZ",
+      "contract_number": "L-5331",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:52Z",
+      "epav_token": "Wj4oPLDB",
+      "contract_number": "L-5332",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:57Z",
+      "epav_token": "Yyzv5by9",
+      "contract_number": "L-5981",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:31:59Z",
+      "epav_token": "M6ReGRyZ",
+      "contract_number": "L-5982",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:04Z",
+      "epav_token": "vjKGNnj5",
+      "contract_number": "L-5983",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-08T01:32:10Z",
+      "epav_token": "3DqR84jr",
+      "contract_number": "L-5817",
+      "department": "FAMILY SAFETY OFFICE"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "upload-failed",
+      "at": "2026-10-08T01:32:11Z",
+      "epav_token": "qjwRwVD5",
+      "error": "503 Server Error: Slow Down for url: https://s3.us.archive.org/nashville-epav-contract-qjwRwVD5/qjwRwVD5.pdf"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:13Z",
+      "epav_token": "5De19qDM",
+      "contract_number": "L-5984",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetched",
+      "at": "2026-10-08T01:32:14Z",
+      "epav_token": "njMQKQjG",
+      "contract_number": "L-5818",
+      "department": "FAMILY SAFETY OFFICE"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:18Z",
+      "epav_token": "MD8oen6Z",
+      "contract_number": "L-5985",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:21Z",
+      "epav_token": "Wj48mGjB",
+      "contract_number": "L-5986",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:32Z",
+      "epav_token": "A6Oz5oyJ",
+      "contract_number": "L-5989",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:32Z",
+      "epav_token": "kyPReGDN",
+      "contract_number": "L-5987",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:40Z",
+      "epav_token": "O6dN5RjE",
+      "contract_number": "L-5988",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:43Z",
+      "epav_token": "byxx3RyR",
+      "contract_number": "L-5991",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:44Z",
+      "epav_token": "Zj0zeM6B",
+      "contract_number": "L-5990",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-08T01:32:46Z",
+      "epav_token": "9yQQ3VyE",
+      "department": "FAMILY SAFETY OFFICE",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-08T01:32:46Z",
+      "epav_token": "LDVQPo6k",
+      "department": "FAMILY SAFETY OFFICE",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-08T01:32:46Z",
+      "epav_token": "qjwdary5",
+      "department": "FAMILY SAFETY OFFICE",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-08T01:32:50Z",
+      "epav_token": "kyPQwY6N",
+      "department": "FAMILY SAFETY OFFICE",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:56Z",
+      "epav_token": "pygkpgy3",
+      "contract_number": "L-6003",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "read",
+      "at": "2026-10-08T01:32:57Z",
+      "epav_token": "pygk8gy3",
+      "contract_number": "L-5992",
+      "department": "AFFORDABLE HOUSING"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "fetch-failed",
+      "at": "2026-10-08T01:33:10Z",
+      "epav_token": "lj7eLW67",
+      "department": "FAMILY SAFETY OFFICE",
+      "error": "HTTPConnectionPool(host='documents.nashville.gov', port=80): Read timed out. (read timeout=180)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "roundup",
+      "at": "2026-10-08T01:33:15Z",
+      "range_hours": 24,
+      "since": "2026-10-08T01:33:15Z",
+      "range": "24h",
+      "hours": 24,
+      "contracts": 3497,
+      "uploaded": 160,
+      "departments": {
+        "ARTS COMMISSION": 998,
+        "FAIRGROUNDS": 994,
+        "AIRPORT AUTHORITY": 710,
+        "EMPLOYEE BENEFIT BOARD": 166,
+        "AFFORDABLE HOUSING": 95,
+        "FAMILY SAFETY OFFICE": 76,
+        "DISTRICT ENERGY SYSTEM": 67,
+        "ECONOMIC DEVELOPMENT": 45
+      },
+      "vendors": {
+        "ROOKER RICHARD": 29,
+        "NASHVILLE SYMPHONY ASSOC": 25,
+        "CONSTELLATION ENERGY SOURCE": 22,
+        "GLOBAL EDUCATION CENTER": 19,
+        "CHINESE ARTS ALLIANCE OF NASHVILLE": 19,
+        "SOUTHERN WORD": 17,
+        "NASHVILLE BALLET": 16,
+        "ALIAS CHAMBER ENSEMBLE": 16,
+        "HEALING ARTS PROJECT": 16,
+        "BELCOURT THEATRE": 15
+      },
+      "by_day": {
+        "2026-10-07": 2225,
+        "2026-10-08": 1272
+      }
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "AFFORDABLE HOUSING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "AGRICULTURAL EXTENSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "AIRPORT AUTHORITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ARENA",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ARTS COMMISSION",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ASSESSOR OF PROPERTY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "AUDIT COMMITTEE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "BEAUTIFICATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CARING FOR CHILDREN",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CHANCERY COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CIRCUIT COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CLERK AND MASTER",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CODES ADMINISTRATION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "COMMUNITY ACCESS TV",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "COMMUNITY CORRECTIONS",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "COMMUNITY EDUCATION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "COMMUNITY OVERSIGHT BOARD",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CONSTELLATION ENERGY SOURCE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CONVENTION CENTER AUTHORITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "COUNTY CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CRIMINAL COURT CLERK",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "CRIMINAL JUSTICE PLANNING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "DATA PROCESSING",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "DISTRICT ATTORNEY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "DISTRICT ENERGY SYSTEM",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "DOWNTOWN PARTNERSHIP",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "DRUG COURT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "DRUG POLICY OFFICE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "EAST BANK DEVELOPMENT AUTHORITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ECONOMIC DEVELOPMENT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ELECTION COMMISSION",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ELECTRIC POWER BOARD",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "EMERGENCY COMMAND CENTER",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "EMERGENCY COMMUNICATIONS DISTRICT",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "EMPLOYEE ASSISTANCE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "EMPLOYEE BENEFIT BD TRUST FND",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "EMPLOYEE BENEFIT BOARD",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "ENERGY PROD FACILITY",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "FAIRGROUNDS",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "FAMILY JUSTICE CENTER/VICTIM RESOURCE CENTER",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "FAMILY SAFETY OFFICE",
+      "standing": "complete",
+      "reason": "held tokens present, no standing gaps (offline provisional)"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "FILM OFFICE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "FINANCE",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "subject": "WATER SERVICES",
+      "standing": "incomplete",
+      "reason": "standing capped-shard gap(s) for this department"
+    },
+    {
+      "schema": "LiveEvent@1",
+      "kind": "verdict",
+      "at": "2026-10-08T01:33:15Z",
+      "run_id": "20261008T013315Z",
+      "standing": "unexamined",
+      "n_unexamined": 76,
+      "subject": "MULTIPLE",
+      "reason": "76 department(s) not yet examined \u2014 nothing pulled from them, not counted complete",
+      "departments": [
+        "BEER BOARD",
+        "FARMERS MARKET",
+        "FIRE",
+        "FRANCHISE",
+        "GENERAL SERVICES",
+        "GENERAL SESSIONS COURT",
+        "HEALTH",
+        "HEALTH AND EDUCATIONAL FACILITIES BOARD",
+        "HISTORICAL COMMISSION",
+        "HOSPITAL AUTHORITY",
+        "HOSPITALS",
+        "HOUSING TRUST FUND COMMISSION",
+        "HUMAN RELATIONS COMMISSION",
+        "HUMAN RESOURCES",
+        "INDUSTRIAL DEVELOPMENT BOARD",
+        "INFORMATION TECHNOLOGY SERVICES",
+        "INTERNAL AUDIT",
+        "JEAN CROWE ADVOCACY CENTER",
+        "JIS",
+        "JUVENILE COURT",
+        "JUVENILE COURT CLERK",
+        "JUVENILE JUSTICE CENTER",
+        "LEGAL DEPARTMENT",
+        "LOCAL WORKFORCE DEVELOPMENT AREA 9",
+        "LOCAL WORKFORCE INVESTMENT BOARD",
+        "MAYORS OFFICE",
+        "MAYORS OFFICE CHILDREN AND YOUTH",
+        "MAYORS YOUTH COUNCIL",
+        "MDHA",
+        "MEDICAL EXAMINER",
+        "METRA",
+        "METRO ACTION COMMISSION",
+        "METRO CLERK",
+        "METRO COUNCIL",
+        "METRO NASHVILLE PUBLIC SCHOOLS",
+        "METRO WIDE",
+        "METROPOLITAN GOVERNMENT",
+        "MUNICIPAL AUDITORIUM",
+        "MUSIC CITY CENTER",
+        "NASHVILLE CAREER ADVANCEMENT CENTER",
+        "NASHVILLE CITY OF",
+        "NASHVILLE CONVENTION CENTER",
+        "NASHVILLE ELECTRIC SERVICE",
+        "NDOT",
+        "OFFICE OF EMERGENCY MANAGEMENT",
+        "OFFICE OF HOMELESS SERVICES",
+        "PARKS AND RECREATION",
+        "PARTNERSHIP 2000",
+        "PLANNING COMMISSION",
+        "POLICE",
+        "PORT AUTHORITY",
+        "PROBATE COURT CLERK",
+        "PUBLIC DEFENDER",
+        "PUBLIC LIBRARY",
+        "PUBLIC PROPERTY",
+        "PUBLIC WORKS",
+        "PURCHASING",
+        "REGIONAL TRANSPORTATION AUTHORITY (RTA)",
+        "REGISTER OF DEEDS",
+        "SHERIFF",
+        "SOCIAL SERVICES",
+        "SOIL AND WATER CONSERVATION",
+        "SPORTS AUTHORITY",
+        "STADIUM",
+        "STAHLMAN",
+        "STATE TRIAL COURT",
+        "TAXI/WRECKER BOARD",
+        "TELECOMMUNICATIONS",
+        "TENNESSEE STATE FAIR",
+        "THERMAL TRANSFER CORP",
+        "TOURISM COMMISSION",
+        "TRAFFIC AND PARKING",
+        "TRANSIT AUTHORITY",
+        "TRANSPORTATION LICENSING COMMISSION",
+        "TRUSTEE",
+        "WASTE SERVICES"
+      ]
     }
   ]
 }
