@@ -278,6 +278,30 @@ def state_summary(root: Path | None = None) -> dict:
         prose.append(f"Self-healing: {len(oversight)} oversight action(s) on record (restart/ream/timer arms, fetch pauses on disk pressure) — each with a falsifying control.")
     prose.append("Note: every total here is the live picture at this moment — they grow as the crawl discovers and archives more contracts.")
 
+    # Change in the last 60 minutes, from the event ledger (a faithful recount
+    # of what the pipeline actually did in the window).
+    cut = datetime.now(timezone.utc) - timedelta(minutes=60)
+    last60 = {"pulled": 0, "archived": 0, "read": 0, "failed": 0}
+    for ev in events:
+        d = _iso_dt(ev.get("at"))
+        if not d or d < cut:
+            continue
+        k = ev.get("kind")
+        if k in ("fetched", "destroyed-stub"):
+            last60["pulled"] += 1
+        elif k == "uploaded":
+            last60["archived"] += 1
+        elif k == "read":
+            last60["read"] += 1
+        elif k in ("upload-failed", "fetch-failed"):
+            last60["failed"] += 1
+    if any(last60.values()):
+        prose.append(
+            "Last 60 minutes: "
+            + " · ".join(f"+{v} {k}" for k, v in last60.items() if v)
+            + "."
+        )
+
     return {
         "counts": {"fetched": staged, "staged": staged, "pending": pending,
                    "uploaded": uploaded, "pulled_accounted": pulled_accounted,
@@ -291,6 +315,7 @@ def state_summary(root: Path | None = None) -> dict:
         "rules": {"adopted": len(adopted), "conceded": len(conceded)},
         "missing": missing,
         "last24h": {"pulled": p24.get("contracts", 0), "archived": p24.get("uploaded", 0)},
+        "last60": last60,
         "oversight": {"n": len(oversight), "latest": oversight[-6:]},
         "prose": prose,
         "latest": [event_summary(ev) for ev in events[-5:]],
