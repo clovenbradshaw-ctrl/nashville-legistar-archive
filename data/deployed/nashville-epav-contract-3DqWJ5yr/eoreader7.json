@@ -1,0 +1,2197 @@
+{
+  "schema": "EOReader7CLIRead@1",
+  "declared": {
+    "source": "file:nashville-epav-contract-3dqwj5yr.txt",
+    "encounters": 10,
+    "limit": 1500,
+    "canonicalizationFloor": 2,
+    "anchoring": {
+      "minActivation": 0.05,
+      "minMargin": 0.2
+    },
+    "giver": "reader:eoreader7-cli",
+    "priors": "cli/priors/pos-prior-en.json",
+    "recipe": "causalTextPerceiver_reviseTextFold_refresh1"
+  },
+  "holograph": {
+    "relationEdges": 0,
+    "referentBindings": 0,
+    "chainSites": 0,
+    "pairTypes": 0,
+    "repeatedPairTypes": 0,
+    "projectedBindings": 0,
+    "participantBindings": 0,
+    "graphEntries": [
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "9e56103b89affe5ae6956a0beac2360b",
+        "surfaceKey": "surface:airport",
+        "surface": "AIRPORT",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:0",
+        "offset": 29,
+        "witness": "ebea1ccd0e82389d81f428d133cb0e24"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "943e8baa01114cbdb53199f60b195e5d",
+        "surfaceKey": "surface:authority",
+        "surface": "AUTHORITY",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:0",
+        "offset": 37,
+        "witness": "b22b882f23672c8e19609f89663e68ff"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "4ec1ca09a5ea814c38d0a675b06437a8",
+        "surfaceKey": "surface:suite",
+        "surface": "SUITE",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:0",
+        "offset": 72,
+        "witness": "80b430221f5e207bffe5df750e16aaed"
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "3e76f1a1992bfece8b2e0016ba18263d",
+        "surface": "A METROPOLITAN",
+        "canonicalSurface": "a metropolitan",
+        "head": "metropolitan",
+        "determination": "indefinite",
+        "role": null,
+        "encounterRef": "encounter:0",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "ca65a4ab6ade2381d7254976f9d6de71",
+        "surface": "A METROPOLITAN",
+        "canonicalSurface": "a metropolitan",
+        "head": "metropolitan",
+        "determination": "indefinite",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:0",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:january",
+        "surfaces": [
+          "January"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:mrs",
+        "surfaces": [
+          "Mrs"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:nashville",
+        "surfaces": [
+          "NASHVILLE",
+          "Nashville"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 2,
+        "fedBy": [
+          "85d159665b15438d7aaf9606dde41264",
+          "gap:referent:ref_auto_nashville"
+        ]
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:suite",
+        "surfaces": [
+          "SUITE"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:tennessee",
+        "surfaces": [
+          "TENNESSEE"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOMention@1",
+        "id": "85d159665b15438d7aaf9606dde41264",
+        "referent": "ref:auto:nashville",
+        "encounterRef": "encounter:1",
+        "anchor": {
+          "start": 155,
+          "end": 327
+        },
+        "witness": "d2eea37e43d54e1b654754085f2dabc4",
+        "source": "file:nashville-epav-contract-3dqwj5yr.txt"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "1e5323b1d8a1405085cd14d1b9577031",
+        "surfaceKey": "surface:swing",
+        "surface": "Swing",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 8,
+        "witness": "4797a6a2cffbc5e1ef4d012988168568"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "f8e83c04b1c32135c4f95217b841a305",
+        "surfaceKey": "surface:clerk",
+        "surface": "Clerk",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 29,
+        "witness": "d91d8d7e18fc253bab0b9345e323a844"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "62e3e5916319be7519312396a4fbea8f",
+        "surfaceKey": "surface:house",
+        "surface": "House",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 56,
+        "witness": "47f38f8284c2cb01a86e0d544b989bb4"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "4a853e7a65ca1086ab17be850c9c6462",
+        "surfaceKey": "surface:p",
+        "surface": "P",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 64,
+        "witness": "075a933052f2a0c68d453a17bcd6d50a"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "d228fe710a0c85fe9b3268a432adb64e",
+        "surfaceKey": "surface:box",
+        "surface": "Box",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 70,
+        "witness": "a760799495e46357854e924d78143b93"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "a2e22020a6d719b1ad9449f11ad89e48",
+        "surfaceKey": "surface:termination",
+        "surface": "Termination",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 107,
+        "witness": "0404f48538386e068bea2358a13adb8e"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "32a8375d94057e2e42357f146d70e3c2",
+        "surfaceKey": "surface:lease",
+        "surface": "Lease",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 122,
+        "witness": "555aaf72ecfd28962600c6ad2856cca4"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "46f80de11516324525814ccccb34ca65",
+        "surfaceKey": "surface:agreements",
+        "surface": "Agreements",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 128,
+        "witness": "d7aacd4a53e06676c91e0abee7d14f84"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "aaacf82288fc2a9bf2938eb9e5d83388",
+        "surfaceKey": "surface:aviation",
+        "surface": "Aviation",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 147,
+        "witness": "9a6bc2eb7c5feff74b047af89e5a1b20"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "f368529358747457448fa5ba77d075ce",
+        "surfaceKey": "surface:administration",
+        "surface": "Administration",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:1",
+        "offset": 156,
+        "witness": "265b913c4bf0f0dff7478f78299bb528"
+      },
+      {
+        "schema": "EOReferentGap@1",
+        "id": "gap:referent:ref_auto_nashville",
+        "reason": "pronoun_and_descriptor_mentions_unresolved",
+        "referent": "ref:auto:nashville",
+        "tier": "model",
+        "needsWitness": true,
+        "detail": "name-variant coreference is engine-tier and complete; binding pronouns and definite descriptions to this referent is not derivable (eoreader5 measured distributional coref failing twice). Supply a per-text prior to close this gap."
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:a_metropolitan",
+        "surface": "a metropolitan",
+        "determinations": [
+          "indefinite"
+        ],
+        "occurrenceRefs": [
+          "3e76f1a1992bfece8b2e0016ba18263d",
+          "ca65a4ab6ade2381d7254976f9d6de71"
+        ],
+        "encounterRefs": [
+          "encounter:0",
+          "file:nashville-epav-contract-3dqwj5yr.txt:0"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:january",
+        "hypothesis": "ref:auto:january recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:january"
+        ],
+        "openedAt": 2,
+        "scope": {
+          "ref": "ref:auto:january"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:mrs",
+        "hypothesis": "ref:auto:mrs recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:mrs"
+        ],
+        "openedAt": 2,
+        "scope": {
+          "ref": "ref:auto:mrs"
+        },
+        "consequences": [],
+        "state": "fulfilled"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:nashville",
+        "hypothesis": "ref:auto:nashville recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:nashville"
+        ],
+        "openedAt": 2,
+        "scope": {
+          "ref": "ref:auto:nashville"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:suite",
+        "hypothesis": "ref:auto:suite recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:suite"
+        ],
+        "openedAt": 2,
+        "scope": {
+          "ref": "ref:auto:suite"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:tennessee",
+        "hypothesis": "ref:auto:tennessee recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:tennessee"
+        ],
+        "openedAt": 2,
+        "scope": {
+          "ref": "ref:auto:tennessee"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:lease_agreements_federal_aviation",
+        "surfaces": [
+          "Lease Agreements Federal Aviation",
+          "Lease Agreements Federal",
+          "Lease Agreements",
+          "Lease"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 4
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:metropolitan_court_house",
+        "surfaces": [
+          "Metropolitan Court House",
+          "Metropolitan Court"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 2
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:metropolitan_clerk",
+        "surfaces": [
+          "Metropolitan Clerk"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:box",
+        "surfaces": [
+          "Box"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:swing",
+        "surfaces": [
+          "Swing"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:termination",
+        "surfaces": [
+          "Termination"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:re",
+        "surfaces": [
+          "Re"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:tn",
+        "surfaces": [
+          "TN"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOMention@1",
+        "id": "9022dc68e60d8b8ce4598b981fa0a82f",
+        "referent": "ref:auto:mrs",
+        "encounterRef": "encounter:2",
+        "anchor": {
+          "start": 328,
+          "end": 337
+        },
+        "witness": "3f2796eac3e07f7f28da8746aef3bf1c",
+        "source": "file:nashville-epav-contract-3dqwj5yr.txt"
+      },
+      {
+        "schema": "EOReferentGap@1",
+        "id": "gap:referent:ref_auto_mrs",
+        "reason": "pronoun_and_descriptor_mentions_unresolved",
+        "referent": "ref:auto:mrs",
+        "tier": "model",
+        "needsWitness": true,
+        "detail": "name-variant coreference is engine-tier and complete; binding pronouns and definite descriptions to this referent is not derivable (eoreader5 measured distributional coref failing twice). Supply a per-text prior to close this gap."
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:lease_agreements_federal_aviation",
+        "hypothesis": "ref:auto:lease_agreements_federal_aviation recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:lease_agreements_federal_aviation"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:lease_agreements_federal_aviation"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:metropolitan_court_house",
+        "hypothesis": "ref:auto:metropolitan_court_house recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:metropolitan_court_house"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:metropolitan_court_house"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:metropolitan_clerk",
+        "hypothesis": "ref:auto:metropolitan_clerk recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:metropolitan_clerk"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:metropolitan_clerk"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:box",
+        "hypothesis": "ref:auto:box recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:box"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:box"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:swing",
+        "hypothesis": "ref:auto:swing recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:swing"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:swing"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:termination",
+        "hypothesis": "ref:auto:termination recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:termination"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:termination"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:re",
+        "hypothesis": "ref:auto:re recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:re"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:re"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:tn",
+        "hypothesis": "ref:auto:tn recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:tn"
+        ],
+        "openedAt": 3,
+        "scope": {
+          "ref": "ref:auto:tn"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "8430a554a3012844fdbded91b97949fa",
+        "surfaceKey": "surface:swing",
+        "surface": "Swing",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:3",
+        "offset": 0,
+        "witness": "4735095f8beb038df57f6547dafe1120"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "8f772c65153bae1c733d3d1ea8899296",
+        "surfaceKey": "surface:agreements",
+        "surface": "Agreements",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 37,
+        "witness": "d1f11cbc585c433208dd23d4ad91afd5"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "3d45046f1d053c4b0cdb5c9483ed9d5d",
+        "surfaceKey": "surface:airport",
+        "surface": "Airport",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 83,
+        "witness": "f40e919d1d69e787888723262fef0792"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "07f9a4a670d8b01702b6a575fde752f0",
+        "surfaceKey": "surface:authority",
+        "surface": "Authority",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 91,
+        "witness": "3be71211360c022357f153b68022a611"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "5d53db79d48d167a7efa4fd75eaa99d3",
+        "surfaceKey": "surface:aviation",
+        "surface": "Aviation",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 113,
+        "witness": "1d099b66ad30d5b3c06cc6649369c1c2"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "210ddb180deb1aac2a1216db7b0af1cf",
+        "surfaceKey": "surface:administration",
+        "surface": "Administration",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 122,
+        "witness": "02f7eaedee1d448f97cdffdf8e743f3b"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "520f16e9e348f27cbe5d7b195534b3fb",
+        "surfaceKey": "surface:agreement",
+        "surface": "Agreement",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 221,
+        "witness": "c58bd31a3e7b9ee76d0d66d2aaafbb0b"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "18b6f101673413fceef499216ccc8b45",
+        "surfaceKey": "surface:office",
+        "surface": "office",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 255,
+        "witness": "d10fe8e33b293b4fe1a4375288b84182"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "bbabd2d7e14a538dc4381910f3af0b09",
+        "surfaceKey": "surface:date",
+        "surface": "date",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 273,
+        "witness": "65f3853088b1e86f28822bea1439ee59"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "63218bb9d74d050c22ba6e250d6553cd",
+        "surfaceKey": "surface:records",
+        "surface": "records",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 461,
+        "witness": "1750dfb34142a2e2ccd8c20be3df956d"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "a160c5b88af4c24dffe0c1c74e6e6cbf",
+        "surfaceKey": "surface:offices",
+        "surface": "offices",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:4",
+        "offset": 496,
+        "witness": "49024b855b4e49d974424313b7fc6bc8"
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "ad18f6220c26be7390b59ac413f20b40",
+        "surface": "the Metropolitan",
+        "canonicalSurface": "the metropolitan",
+        "head": "metropolitan",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "encounter:4",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "0256e9bc8e034c5ebc0ee06f2c7b93d5",
+        "surface": "the Memorandum",
+        "canonicalSurface": "the memorandum",
+        "head": "memorandum",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "encounter:4",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "05c836ea2fda108aab87cbc25ad5dd33",
+        "surface": "your office",
+        "canonicalSurface": "your office",
+        "head": "office",
+        "determination": "possessive",
+        "role": null,
+        "encounterRef": "encounter:4",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "b73a305a0945c39adcd1c2f46fd1e0bf",
+        "surface": "this date",
+        "canonicalSurface": "this date",
+        "head": "date",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "encounter:4",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "efae074c65e8170b6fb30b45a37d19c6",
+        "surface": "your records",
+        "canonicalSurface": "your records",
+        "head": "records",
+        "determination": "possessive",
+        "role": null,
+        "encounterRef": "encounter:4",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "d9bf6835c1cdc501601ef6db73fd3376",
+        "surface": "our offices",
+        "canonicalSurface": "our offices",
+        "head": "offices",
+        "determination": "possessive",
+        "role": null,
+        "encounterRef": "encounter:4",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "91f7b73995e86b23d99ca5b0384de44e",
+        "surface": "that the",
+        "canonicalSurface": "that the",
+        "head": "the",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "7a9b3158aa1517fa419115d89b022014",
+        "surface": "the Metropolitan",
+        "canonicalSurface": "the metropolitan",
+        "head": "metropolitan",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "e9dde11c61cfaabd31707a30ccb8d97a",
+        "surface": "the Memorandum",
+        "canonicalSurface": "the memorandum",
+        "head": "memorandum",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "f139e482d54590ca451a13a8c7f5dbbe",
+        "surface": "your office",
+        "canonicalSurface": "your office",
+        "head": "office",
+        "determination": "possessive",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "4a67b74e9e61078580d4705923b660e1",
+        "surface": "this date",
+        "canonicalSurface": "this date",
+        "head": "date",
+        "determination": "definite",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "4918a425df388d3bde80cdf83f11690c",
+        "surface": "your records",
+        "canonicalSurface": "your records",
+        "head": "records",
+        "determination": "possessive",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "7929bca50023618ce8badd35aec9f49f",
+        "surface": "our offices",
+        "canonicalSurface": "our offices",
+        "head": "offices",
+        "determination": "possessive",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:347",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOIdentityAlternative@1",
+        "id": "identity:agreements:that_the_following",
+        "left": "agreements",
+        "right": "that the following",
+        "standing": "live_hypothesis",
+        "supportRefs": [
+          "observation:4:0"
+        ],
+        "attackRefs": [],
+        "giver": "lang/en:text-identity@1"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "expectation:identity:agreements:that_the_following",
+        "hypothesis": "corroboration expected: agreements <-> that the following",
+        "giver": "lang/en:text-identity@1",
+        "grounds": [
+          "identity:agreements:that_the_following"
+        ],
+        "openedAt": null,
+        "scope": null,
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOIdentityAlternative@1",
+        "id": "identity:agreements:the_following",
+        "left": "agreements",
+        "right": "the following",
+        "standing": "live_hypothesis",
+        "supportRefs": [
+          "observation:4:0"
+        ],
+        "attackRefs": [],
+        "giver": "lang/en:text-identity@1"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "expectation:identity:agreements:the_following",
+        "hypothesis": "corroboration expected: agreements <-> the following",
+        "giver": "lang/en:text-identity@1",
+        "grounds": [
+          "identity:agreements:the_following"
+        ],
+        "openedAt": null,
+        "scope": null,
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:metropolitan",
+        "surfaces": [
+          "Metropolitan"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "836093f581f5d4af4761d6ce9a65c1e1",
+        "surfaceKey": "surface:king",
+        "surface": "King",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:5",
+        "offset": 28,
+        "witness": "e9eb1afd28c6b81eaaa415be48a011c3"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "04adad0351534bfdb0a28e40e71a3d48",
+        "surfaceKey": "surface:properties",
+        "surface": "Properties",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:5",
+        "offset": 35,
+        "witness": "7b220d23675cd8b7915a5e7c04a760f8"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "309620bb788c1bc30e85062a24630866",
+        "surfaceKey": "surface:technician",
+        "surface": "Technician",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:5",
+        "offset": 46,
+        "witness": "f33739186da722320da560d58e9546ee"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "2c1b4415ea7a2599698244f21fa8fa6b",
+        "surfaceKey": "surface:cc",
+        "surface": "cc",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:5",
+        "offset": 70,
+        "witness": "129b8cb9fb2fec26e625fbf0e2804afc"
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:the_metropolitan",
+        "surface": "the metropolitan",
+        "determinations": [
+          "definite"
+        ],
+        "occurrenceRefs": [
+          "ad18f6220c26be7390b59ac413f20b40",
+          "7a9b3158aa1517fa419115d89b022014"
+        ],
+        "encounterRefs": [
+          "encounter:4",
+          "file:nashville-epav-contract-3dqwj5yr.txt:347"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:the_memorandum",
+        "surface": "the memorandum",
+        "determinations": [
+          "definite"
+        ],
+        "occurrenceRefs": [
+          "0256e9bc8e034c5ebc0ee06f2c7b93d5",
+          "e9dde11c61cfaabd31707a30ccb8d97a"
+        ],
+        "encounterRefs": [
+          "encounter:4",
+          "file:nashville-epav-contract-3dqwj5yr.txt:347"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:your_office",
+        "surface": "your office",
+        "determinations": [
+          "possessive"
+        ],
+        "occurrenceRefs": [
+          "05c836ea2fda108aab87cbc25ad5dd33",
+          "f139e482d54590ca451a13a8c7f5dbbe"
+        ],
+        "encounterRefs": [
+          "encounter:4",
+          "file:nashville-epav-contract-3dqwj5yr.txt:347"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:this_date",
+        "surface": "this date",
+        "determinations": [
+          "definite"
+        ],
+        "occurrenceRefs": [
+          "b73a305a0945c39adcd1c2f46fd1e0bf",
+          "4a67b74e9e61078580d4705923b660e1"
+        ],
+        "encounterRefs": [
+          "encounter:4",
+          "file:nashville-epav-contract-3dqwj5yr.txt:347"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:your_records",
+        "surface": "your records",
+        "determinations": [
+          "possessive"
+        ],
+        "occurrenceRefs": [
+          "efae074c65e8170b6fb30b45a37d19c6",
+          "4918a425df388d3bde80cdf83f11690c"
+        ],
+        "encounterRefs": [
+          "encounter:4",
+          "file:nashville-epav-contract-3dqwj5yr.txt:347"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOIdentityHypothesis@1",
+        "id": "identity:descriptor:our_offices",
+        "surface": "our offices",
+        "determinations": [
+          "possessive"
+        ],
+        "occurrenceRefs": [
+          "d9bf6835c1cdc501601ef6db73fd3376",
+          "7929bca50023618ce8badd35aec9f49f"
+        ],
+        "encounterRefs": [
+          "encounter:4",
+          "file:nashville-epav-contract-3dqwj5yr.txt:347"
+        ],
+        "relationContexts": [
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          },
+          {
+            "edge": null,
+            "relation": null,
+            "role": null
+          }
+        ],
+        "standing": "live_hypothesis",
+        "provenance": {
+          "giver": "text/individuation::descriptorHypotheses",
+          "basis": "same descriptor recurred across distinct encounters; identity remains defeasible"
+        }
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:metropolitan",
+        "hypothesis": "ref:auto:metropolitan recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:metropolitan"
+        ],
+        "openedAt": 6,
+        "scope": {
+          "ref": "ref:auto:metropolitan"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:federal_aviation_administration",
+        "surfaces": [
+          "Federal Aviation Administration"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:greg_gamer_jam",
+        "surfaces": [
+          "Greg Gamer JAM",
+          "Greg Gamer",
+          "Greg"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 3
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:metropolitan_nashville_airport_authority",
+        "surfaces": [
+          "Metropolitan Nashville Airport Authority",
+          "Metropolitan Nashville Airport",
+          "Metropolitan Nashville"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 3
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:rebecca_ramsey_bens",
+        "surfaces": [
+          "Rebecca Ramsey Bens",
+          "Rebecca Ramsey",
+          "Rebecca"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 3
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:properties_technician",
+        "surfaces": [
+          "Properties Technician",
+          "Properties"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 2
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:gienda",
+        "surfaces": [
+          "Gienda"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:agreement",
+        "surfaces": [
+          "Agreement"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:december",
+        "surfaces": [
+          "December"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:gan",
+        "surfaces": [
+          "Gan"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:king",
+        "surfaces": [
+          "King"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:memorandum",
+        "surfaces": [
+          "Memorandum"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "af92ae09c1684f474a77a4a5a06a7506",
+        "surfaceKey": "surface:clerk",
+        "surface": "CLERK",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:6",
+        "offset": 19,
+        "witness": "1886bce648358ae078c621181cc34b4e"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "25ea04a6656f77f4e83e958ddd9e4590",
+        "surfaceKey": "surface:commissioners",
+        "surface": "COMMISSIONERS",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:6",
+        "offset": 27,
+        "witness": "4c890e8457e0ab73d97514067c33b12c"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "a5feab6527422e75eebb7a6c92fab984",
+        "surfaceKey": "surface:ceo",
+        "surface": "CEO",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:6",
+        "offset": 55,
+        "witness": "3bae02676aa63abcd8856eb57c3ad726"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "1f72f811bdf71d33c693d57e61818582",
+        "surfaceKey": "surface:cheek",
+        "surface": "Cheek",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:6",
+        "offset": 68,
+        "witness": "630a90700beaa5cdea780d3b55a38c20"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "a76b580632e670d5683a0475f22fbf76",
+        "surfaceKey": "surface:chairman",
+        "surface": "Chairman",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:6",
+        "offset": 80,
+        "witness": "2b80e86949a50bb70e82c4c0ce8993ba"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:federal_aviation_administration",
+        "hypothesis": "ref:auto:federal_aviation_administration recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:federal_aviation_administration"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:federal_aviation_administration"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:greg_gamer_jam",
+        "hypothesis": "ref:auto:greg_gamer_jam recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:greg_gamer_jam"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:greg_gamer_jam"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:metropolitan_nashville_airport_authority",
+        "hypothesis": "ref:auto:metropolitan_nashville_airport_authority recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:metropolitan_nashville_airport_authority"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:metropolitan_nashville_airport_authority"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:rebecca_ramsey_bens",
+        "hypothesis": "ref:auto:rebecca_ramsey_bens recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:rebecca_ramsey_bens"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:rebecca_ramsey_bens"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:properties_technician",
+        "hypothesis": "ref:auto:properties_technician recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:properties_technician"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:properties_technician"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:gienda",
+        "hypothesis": "ref:auto:gienda recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:gienda"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:gienda"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:agreement",
+        "hypothesis": "ref:auto:agreement recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:agreement"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:agreement"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:december",
+        "hypothesis": "ref:auto:december recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:december"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:december"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:gan",
+        "hypothesis": "ref:auto:gan recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:gan"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:gan"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:king",
+        "hypothesis": "ref:auto:king recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:king"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:king"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:memorandum",
+        "hypothesis": "ref:auto:memorandum recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:memorandum"
+        ],
+        "openedAt": 7,
+        "scope": {
+          "ref": "ref:auto:memorandum"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:ceo_james",
+        "surfaces": [
+          "CEO James",
+          "CEO James H",
+          "CEO"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 3
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:chairman_jack",
+        "surfaces": [
+          "Chairman Jack",
+          "Chairman"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 2
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:cheek",
+        "surfaces": [
+          "Cheek"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:jr",
+        "surfaces": [
+          "Jr"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:se",
+        "surfaces": [
+          "Se"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 1
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "3d2898a552fbc13483a4fd92b0efc75e",
+        "surfaceKey": "surface:e",
+        "surface": "E",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:8",
+        "offset": 35,
+        "witness": "88c4588ed0bf7d638a39c9cef85ea4ef"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:ceo_james",
+        "hypothesis": "ref:auto:ceo_james recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:ceo_james"
+        ],
+        "openedAt": 9,
+        "scope": {
+          "ref": "ref:auto:ceo_james"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:chairman_jack",
+        "hypothesis": "ref:auto:chairman_jack recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:chairman_jack"
+        ],
+        "openedAt": 9,
+        "scope": {
+          "ref": "ref:auto:chairman_jack"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:cheek",
+        "hypothesis": "ref:auto:cheek recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:cheek"
+        ],
+        "openedAt": 9,
+        "scope": {
+          "ref": "ref:auto:cheek"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:jr",
+        "hypothesis": "ref:auto:jr recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:jr"
+        ],
+        "openedAt": 9,
+        "scope": {
+          "ref": "ref:auto:jr"
+        },
+        "consequences": [],
+        "state": "fulfilled"
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:se",
+        "hypothesis": "ref:auto:se recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:se"
+        ],
+        "openedAt": 9,
+        "scope": {
+          "ref": "ref:auto:se"
+        },
+        "consequences": [],
+        "state": "open"
+      },
+      {
+        "schema": "EOReferent@1",
+        "id": "ref:auto:mathews_raul_l_regaladgo",
+        "surfaces": [
+          "Mathews Raul L Regaladgo",
+          "Mathews Raul",
+          "Mathews"
+        ],
+        "provenance": [
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          },
+          {
+            "giver": "surfaces/discoverReferents",
+            "tier": "engine",
+            "basis": "name-variant coreference"
+          }
+        ],
+        "standing": "established_by_evidence",
+        "mentions": 3
+      },
+      {
+        "schema": "EOMention@1",
+        "id": "d783a92d17410f6edda95387e041a242",
+        "referent": "ref:auto:jr",
+        "encounterRef": "encounter:9",
+        "anchor": {
+          "start": 1135,
+          "end": 1305
+        },
+        "witness": "b15190b9f82740e79144e9db57704b57",
+        "source": "file:nashville-epav-contract-3dqwj5yr.txt"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "44889eb5bd83d6c1e055195aaef12876",
+        "surfaceKey": "surface:vice",
+        "surface": "Vice",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:9",
+        "offset": 17,
+        "witness": "3e304cb14a3f964038225a313625db86"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "14de4df910c7fbb20bbd4b5ac8a5480c",
+        "surfaceKey": "surface:carpenter",
+        "surface": "Carpenter",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:9",
+        "offset": 39,
+        "witness": "f8e3121f04b96f0a42102b342ad62e89"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "bbd57fe9051e8a0b507f0b025ce16580",
+        "surfaceKey": "surface:mayor",
+        "surface": "Mayor",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:9",
+        "offset": 152,
+        "witness": "ac4565d3d256ba03bb9cfb804fdcc154"
+      },
+      {
+        "schema": "EOLexicalOccurrence@1",
+        "id": "6151e2921d9c48274e183c5ec8733568",
+        "surfaceKey": "surface:cc",
+        "surface": "Cc",
+        "upos": "NOUN",
+        "standing": "occurrence",
+        "encounterRef": "encounter:9",
+        "offset": 162,
+        "witness": "1016e37afb111cf43357cf3c650216bb"
+      },
+      {
+        "schema": "EOReferentGap@1",
+        "id": "gap:referent:ref_auto_jr",
+        "reason": "pronoun_and_descriptor_mentions_unresolved",
+        "referent": "ref:auto:jr",
+        "tier": "model",
+        "needsWitness": true,
+        "detail": "name-variant coreference is engine-tier and complete; binding pronouns and definite descriptions to this referent is not derivable (eoreader5 measured distributional coref failing twice). Supply a per-text prior to close this gap."
+      },
+      {
+        "schema": "EOReferentOccurrence@1",
+        "id": "d65acd543c945e3b4c1759a23beab64d",
+        "surface": "A R",
+        "canonicalSurface": "a r",
+        "head": "r",
+        "determination": "indefinite",
+        "role": null,
+        "encounterRef": "file:nashville-epav-contract-3dqwj5yr.txt:1135",
+        "edge": null,
+        "relation": null,
+        "standing": "unresolved_identity",
+        "provenance": {
+          "giver": "text/individuation::directDescriptorOccurrences",
+          "basis": "closed-class determiner plus witnessed lexical form"
+        }
+      },
+      {
+        "schema": "EOExpectation@1",
+        "id": "exp:recur:ref:auto:mathews_raul_l_regaladgo",
+        "hypothesis": "ref:auto:mathews_raul_l_regaladgo recurs",
+        "giver": "bharata",
+        "grounds": [
+          "ref:auto:mathews_raul_l_regaladgo"
+        ],
+        "openedAt": 10,
+        "scope": {
+          "ref": "ref:auto:mathews_raul_l_regaladgo"
+        },
+        "consequences": [],
+        "state": "open"
+      }
+    ]
+  },
+  "hyperlexicon": {
+    "schema": "EOHyperlexicon@1",
+    "entries": 0,
+    "given": [],
+    "candidates": []
+  },
+  "taskLog": {
+    "entries": 0
+  },
+  "pathos": {
+    "schema": "EOPathosRead@1",
+    "forWhom": {
+      "who": "reader:eoreader7-cli",
+      "read": "file:nashville-epav-contract-3dqwj5yr.txt",
+      "revision": null
+    },
+    "strain": "standard",
+    "rhythm": {
+      "flatline": false,
+      "ratio": 1.36,
+      "mean": 11.4,
+      "blinks": 6,
+      "dense": 2,
+      "n": 18
+    },
+    "curve": {
+      "schema": "EOPathosCurve@1",
+      "measured": true,
+      "surprise": null,
+      "tension": {
+        "obligations": 31,
+        "interactionNetwork": 0,
+        "persistenceMax": 9,
+        "consequences": 31
+      },
+      "release": null
+    }
+  },
+  "reGround": null,
+  "antimatter": {
+    "schema": "EOSessionAntimatter@1",
+    "line": "terrains NOT touched: Kind  Field  Network  Atmosphere  Paradigm",
+    "untouchedTerrains": [
+      "Kind",
+      "Field",
+      "Network",
+      "Atmosphere",
+      "Paradigm"
+    ],
+    "questions": [],
+    "counted": {
+      "touched": 4,
+      "untouched": 5,
+      "questions": 0,
+      "unplaced": 0
+    },
+    "disclosure": "the record of holes is itself a hole — the terrains this log never raised are not on this list, and the questions the log never asked are not among these questions; unplaced operations are counted, never guessed into a terrain"
+  },
+  "intersection": {
+    "schema": "EOAntimatterIntersection@1",
+    "reader": "holder:reader",
+    "unsupported": [],
+    "undermined": [],
+    "counted": {
+      "unsupported": 0,
+      "undermined": 0
+    },
+    "note": "the misreading region — where the reader's hole and the material's hole overlap, the reading is wrong invisibly; a named misreading is a question, not a failure"
+  }
+}
