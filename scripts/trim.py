@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 JOBS = [
     ("data/live/events.jsonl", 4000),
     ("data/live/roundups.jsonl", 1000),
+    ("data/live/series.jsonl", 3000),
     ("data/live/oversize.jsonl", 2000),
     ("data/missing.jsonl", 20000),
     ("data/oversight/actions.jsonl", 5000),

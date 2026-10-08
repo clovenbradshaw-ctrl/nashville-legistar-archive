@@ -53,6 +53,7 @@ SMALL_PATHS = [
     "data/verdicts.jsonl",
     "data/live/summary.json",
     "data/live/recent.jsonl",
+    "data/live/series.jsonl",
     "data/live/roundups.jsonl",
     "data/learning",
     "data/legislation",

@@ -65,6 +65,14 @@ def main() -> int:
         for ev in recent:
             f.write(json.dumps(ev) + "\n")
 
+    # One cumulative time-series point so the dashboard chart and the
+    # last-60-min deltas have data even if the sampler was derailed.
+    try:
+        import record_series
+        record_series.main()
+    except Exception as e:  # noqa: BLE001 - the roundup stands without it
+        print(f"  record_series FAILED: {e}", file=sys.stderr)
+
     try:
         import push_small_files
         push_small_files.main(["run"])
