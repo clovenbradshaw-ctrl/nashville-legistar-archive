@@ -1,0 +1,2374 @@
+{
+ "schema": "TNCountyRegistry@1",
+ "source": "TN_county_legislation_and_contracts.xlsx",
+ "counties": [
+  {
+   "county": "Anderson",
+   "slug": "anderson",
+   "fips": "47001",
+   "site": "https://andersoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress, BidNet Direct, GovDeals",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://andersoncountytn.gov/county-commission-meeting-agendas/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://andersoncountyclerk.com/commission/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://andersoncountytn.gov/commission-motion-database/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://andersoncountytn.gov/purchasing/"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas: andersoncountytn.gov/county-commission-meeting-agendas/ ; Minutes: andersoncountyclerk.com/commission/ ; Motion database: andersoncountytn.gov/commission-motion-database/",
+    "contracts": "andersoncountytn.gov/purchasing/ ; bids on BidNet Direct ; surplus GovDeals",
+    "notes": "Agenda packets back to 2020. Minutes site (clerk) not fetched. No executed contracts or code found."
+   }
+  },
+  {
+   "county": "Bedford",
+   "slug": "bedford",
+   "fips": "47003",
+   "site": "https://www.bedfordcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Revize, PDFs, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://bedfordcountytn.gov/government/boards_and_members/county_board_meetings/board_of_commissioners_meetings.php"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://bedfordcountytn.gov/community/bid_opportunities.php"
+    }
+   ],
+   "raw": {
+    "legislation": "bedfordcountytn.gov/government/boards_and_members/county_board_meetings/board_of_commissioners_meetings.php (agendas, packets, minutes 2019 to date)",
+    "contracts": "bedfordcountytn.gov/community/bid_opportunities.php (lists awards back to 2020)",
+    "notes": "Minutes lag; older items are audio. No executed contracts; no code."
+   }
+  },
+  {
+   "county": "Benton",
+   "slug": "benton",
+   "fips": "47005",
+   "site": "https://bentoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Static HTML, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://bentoncountytn.gov/commission_agendas_minutes.html"
+    }
+   ],
+   "raw": {
+    "legislation": "bentoncountytn.gov/commission_agendas_minutes.html (2018 to 2026, no 2023 section)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Missing items marked Not Available."
+   }
+  },
+  {
+   "county": "Bledsoe",
+   "slug": "bledsoe",
+   "fips": "47007",
+   "site": "https://bledsoetn.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "WordPress-style, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://bledsoetn.com/county-commission-minutes-2/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://bledsoetn.com/public-notice/"
+    }
+   ],
+   "raw": {
+    "legislation": "Minutes: bledsoetn.com/county-commission-minutes-2/ (2021 to 2023 only) ; agendas: bledsoetn.com/public-notice/",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Official status of site unconfirmed."
+   }
+  },
+  {
+   "county": "Blount",
+   "slug": "blount",
+   "fips": "47009",
+   "site": "https://www.blounttn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "CivicPlus",
+   "seeds": [
+    {
+     "kind": "contracts",
+     "url": "https://blounttn.gov/165/Purchasing"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://blounttn.legistar.com/Calendar.aspx",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://blounttn.legistar.com/Legislation.aspx",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.blounttn.gov/Archive.aspx?AMID=41",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://www.blounttn.gov/2137/ARPA-Bids-GoBid",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "CivicPlus: Calendar, DocumentCenter, Archive Center (e.g. Archive.aspx?ADID=224). Exact current agenda page not captured",
+    "contracts": "blounttn.gov/165/Purchasing (Purchasing Agent; Purchasing Commission); no portal or open bids listed",
+    "notes": "CTAS lists blounttn.org, a different domain. Archive packets are scanned PDFs."
+   }
+  },
+  {
+   "county": "Bradley",
+   "slug": "bradley",
+   "fips": "47011",
+   "site": "https://www.bradleycountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress, PDFs, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://bradleycountytn.gov/county-government/county-commission/"
+    }
+   ],
+   "raw": {
+    "legislation": "bradleycountytn.gov/county-government/county-commission/ (agendas and minutes 4/2022 to 10/2026)",
+    "contracts": "NOT FOUND ONLINE (Accounting dept page is the closest)",
+    "notes": "Some minutes in pptx/docx; some 2025 agendas redacted."
+   }
+  },
+  {
+   "county": "Campbell",
+   "slug": "campbell",
+   "fips": "47013",
+   "site": "https://campbellcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress, Dropbox",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://campbellcountytn.gov/agendas-and-minutes/"
+    }
+   ],
+   "raw": {
+    "legislation": "campbellcountytn.gov/agendas-and-minutes/ (2026 only; packets on Dropbox)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "No minutes online; older records by request."
+   }
+  },
+  {
+   "county": "Cannon",
+   "slug": "cannon",
+   "fips": "47015",
+   "site": "https://www.cannoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://cannoncountytn.gov/recorded-county-meetings/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://cannoncountytn.gov/bids/"
+    }
+   ],
+   "raw": {
+    "legislation": "Video only: cannoncountytn.gov/recorded-county-meetings/ (YouTube from March 2023)",
+    "contracts": "cannoncountytn.gov/bids/ (4 PDFs, no platform)",
+    "notes": "No written agendas or minutes online."
+   }
+  },
+  {
+   "county": "Carroll",
+   "slug": "carroll",
+   "fips": "47017",
+   "site": "https://www.carrollcountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Static HTML",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://carrollcountytn.gov/county_commission.html"
+    }
+   ],
+   "raw": {
+    "legislation": "carrollcountytn.gov/county_commission.html (schedule only; no documents)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Carter",
+   "slug": "carter",
+   "fips": "47019",
+   "site": "https://www.cartercountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Revize",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://cartercountytn.gov/government/agendas_and_minutes/monthly_minutes_agenda.php"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://cartercountytn.gov/public_documents/bids.php"
+    }
+   ],
+   "raw": {
+    "legislation": "cartercountytn.gov/government/agendas_and_minutes/monthly_minutes_agenda.php",
+    "contracts": "cartercountytn.gov/public_documents/bids.php",
+    "notes": "Only one bid posted at time of check."
+   }
+  },
+  {
+   "county": "Cheatham",
+   "slug": "cheatham",
+   "fips": "47021",
+   "site": "https://www.cheathamcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Partial",
+   "platforms": "Static HTML, PDFs, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://cheathamcountytn.gov/minutes_agendas.html"
+    }
+   ],
+   "raw": {
+    "legislation": "cheathamcountytn.gov/minutes_agendas.html (2017 to 2027)",
+    "contracts": "Bid notice PDFs only (assets/pdfs/bid_notice.pdf); no portal page",
+    "notes": "Some minutes docx or marked draft."
+   }
+  },
+  {
+   "county": "Chester",
+   "slug": "chester",
+   "fips": "47023",
+   "site": "https://chestercountytn.org",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Static HTML, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://chestercountytn.org/county_commission.html"
+    }
+   ],
+   "raw": {
+    "legislation": "chestercountytn.org/county_commission.html (no documents linked)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Only a Budget Committee agenda PDF found."
+   }
+  },
+  {
+   "county": "Claiborne",
+   "slug": "claiborne",
+   "fips": "47025",
+   "site": "https://www.claibornecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://claibornecountytn.gov/countyoffices/county-commission/"
+    }
+   ],
+   "raw": {
+    "legislation": "claibornecountytn.gov/countyoffices/county-commission/ (current items; older on a Previous Commission Meetings page)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Clay",
+   "slug": "clay",
+   "fips": "47027",
+   "site": "https://www.claycountytngov.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Hosted site builder",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://claycountytngov.com/new-page"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas: claycountytngov.com/new-page ; minutes: /new-page-1 (not fetched)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Only the current agenda; no archive."
+   }
+  },
+  {
+   "county": "Cocke",
+   "slug": "cocke",
+   "fips": "47029",
+   "site": "https://www.cockecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Website builder, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://cockecountytn.gov/clb-1"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://cockecountytn.gov/bids"
+    }
+   ],
+   "raw": {
+    "legislation": "cockecountytn.gov/clb-1 (agendas Jan 2025 to Sep 2026; minutes 2025 only) ; resolutions: /proposed-ordinances ; /public-meetings",
+    "contracts": "cockecountytn.gov/bids (several bids and addenda)",
+    "notes": "No 2026 minutes."
+   }
+  },
+  {
+   "county": "Coffee",
+   "slug": "coffee",
+   "fips": "47031",
+   "site": "https://www.coffeecountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "CivicPlus, GovDeals",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://coffeecountytn.gov/AgendaCenter"
+    }
+   ],
+   "raw": {
+    "legislation": "CivicPlus AgendaCenter: coffeecountytn.gov/AgendaCenter (agendas 2025 to 2026)",
+    "contracts": "Likely CivicPlus Bids.aspx (unconfirmed); GovDeals surplus",
+    "notes": "CTAS lists coffeecountytn.org, not used."
+   }
+  },
+  {
+   "county": "Crockett",
+   "slug": "crockett",
+   "fips": "47033",
+   "site": null,
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "n/a",
+   "seeds": [],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "No county government site located."
+   }
+  },
+  {
+   "county": "Cumberland",
+   "slug": "cumberland",
+   "fips": "47035",
+   "site": "https://cumberlandcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://cumberlandcountytn.gov/document-category/documentsofinterest/"
+    }
+   ],
+   "raw": {
+    "legislation": "cumberlandcountytn.gov/document-category/documentsofinterest/ ; /documents/ (agenda PDFs with numbered resolutions)",
+    "contracts": "NOT FOUND ONLINE (Finance dept page link seen only)",
+    "notes": "Minutes page not confirmed."
+   }
+  },
+  {
+   "county": "Davidson",
+   "slug": "davidson",
+   "fips": "47037",
+   "site": "https://www.nashville.gov",
+   "legacy": true,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Legistar, Oracle Cloud, documents.nashville.gov",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://nashville.legistar.com"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://nashville.gov/departments/metro-clerk"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://legisarchive.nashville.gov"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://nashville.gov/departments/Finance/Procurement"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://nashville.gov/departments/finance/procurement/contract-and-po-award-info"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://documents.nashville.gov/Request/Form/Contracts"
+    }
+   ],
+   "raw": {
+    "legislation": "Legistar: nashville.legistar.com ; Metro Clerk: nashville.gov/departments/metro-clerk ; archive: legisarchive.nashville.gov ; Metro Code on Municode (URL not captured)",
+    "contracts": "Procurement: nashville.gov/departments/Finance/Procurement ; open solicitations in Oracle Cloud ; awards and PO info FY2016 to 2026: nashville.gov/departments/finance/procurement/contract-and-po-award-info ; contract copies request form: documents.nashville.gov/Request/Form/Contracts",
+    "notes": "Best contract transparency in the state; copies of contracts by request form, not a full search."
+   }
+  },
+  {
+   "county": "Decatur",
+   "slug": "decatur",
+   "fips": "47039",
+   "site": "https://decaturcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://decaturcountytn.gov/official-notices/"
+    }
+   ],
+   "raw": {
+    "legislation": "decaturcountytn.gov/official-notices/ (agenda PDFs 2023 to Sep 2026)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "CTAS .org URL is not the live site."
+   }
+  },
+  {
+   "county": "DeKalb",
+   "slug": "dekalb",
+   "fips": "47041",
+   "site": "https://www.dekalbtennessee.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Weebly-style, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://dekalbtennessee.com/commission-meetings.html"
+    }
+   ],
+   "raw": {
+    "legislation": "dekalbtennessee.com/commission-meetings.html (2026 agendas; minutes Feb and Mar 2026; older under Past Commission Meetings)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Minutes lag agendas."
+   }
+  },
+  {
+   "county": "Dickson",
+   "slug": "dickson",
+   "fips": "47043",
+   "site": "https://www.dicksoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Static HTML, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://dicksoncountytn.gov/minutes_agendas.html"
+    }
+   ],
+   "raw": {
+    "legislation": "dicksoncountytn.gov/minutes_agendas.html (2024 to 2026; PDFs back to 2019)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Some minutes Not Available; work-session minutes unavailable."
+   }
+  },
+  {
+   "county": "Dyer",
+   "slug": "dyer",
+   "fips": "47045",
+   "site": "https://www.dyercounty.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "County site PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://dyercounty.com/meeting-minutes"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://dyercounty.com/request-for-proposal"
+    }
+   ],
+   "raw": {
+    "legislation": "dyercounty.com/meeting-minutes (committee minutes 2025 to 2026) ; /empty-meeting-agendas",
+    "contracts": "dyercounty.com/request-for-proposal (six undated RFP PDFs)",
+    "notes": "CTAS domain dyercountygov.com is dead. Full-commission minutes not seen."
+   }
+  },
+  {
+   "county": "Fayette",
+   "slug": "fayette",
+   "fips": "47047",
+   "site": "https://fayettetn.us",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Partial",
+   "platforms": "CivicClerk, WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://fayettecotn.portal.civicclerk.com"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://fayettetn.us/county-commission/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://fayettetn.us/county-information/rfp-opportunities/"
+    }
+   ],
+   "raw": {
+    "legislation": "CivicClerk: fayettecotn.portal.civicclerk.com ; county page fayettetn.us/county-commission/ (PDFs 2022 to 2024)",
+    "contracts": "fayettetn.us/county-information/rfp-opportunities/ (one 2025 RFP)",
+    "notes": "CivicClerk link not opened."
+   }
+  },
+  {
+   "county": "Fentress",
+   "slug": "fentress",
+   "fips": "47049",
+   "site": "https://fentresscountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "WordPress, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://fentresscountytn.gov/minutes-and-resolutions/"
+    }
+   ],
+   "raw": {
+    "legislation": "fentresscountytn.gov/minutes-and-resolutions/ (year tabs; contents not visible) ; /county-notices/",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Unclear whether recent minutes are populated."
+   }
+  },
+  {
+   "county": "Franklin",
+   "slug": "franklin",
+   "fips": "47051",
+   "site": "https://www.franklincotn.us",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Static site, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://franklincotn.us/agendas_minutes_commission.html"
+    }
+   ],
+   "raw": {
+    "legislation": "franklincotn.us/agendas_minutes_commission.html (2024 to 2026)",
+    "contracts": "NOT FOUND ONLINE (Mayor's Office handles)",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Gibson",
+   "slug": "gibson",
+   "fips": "47053",
+   "site": "https://gibsontn.org",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://gibsontn.org/county-government/county-commission"
+    }
+   ],
+   "raw": {
+    "legislation": "gibsontn.org/county-government/county-commission (agendas Jan 2025 to May 2026)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "CTAS gibsoncountytn.com is the chamber. No minutes posted."
+   }
+  },
+  {
+   "county": "Giles",
+   "slug": "giles",
+   "fips": "47055",
+   "site": "https://gilescountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://gilescountytn.gov/news-meeting-minutes/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://gilescountytn.gov/category/bid-invitations/"
+    }
+   ],
+   "raw": {
+    "legislation": "Minutes as news posts: gilescountytn.gov/news-meeting-minutes/ ; /category/committee-minutes/",
+    "contracts": "gilescountytn.gov/category/bid-invitations/ (postings through Sep 2026)",
+    "notes": "Most active site in batch. Sealed bids, no portal."
+   }
+  },
+  {
+   "county": "Grainger",
+   "slug": "grainger",
+   "fips": "47057",
+   "site": "https://www.graingercountytn.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Two county sites",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://graingercountycommission.com"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://graingercountycommission.com/minutes/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "Separate site: graingercountycommission.com (agendas; /minutes/)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Minutes archive not opened."
+   }
+  },
+  {
+   "county": "Greene",
+   "slug": "greene",
+   "fips": "47059",
+   "site": "https://www.greenecountytngov.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress, PublicPurchase, GovDeals",
+   "seeds": [
+    {
+     "kind": "contracts",
+     "url": "https://greenecountytngov.com/purchasing/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.greenecountytngov.com/public-meetings-2026/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.greenecountytngov.com/public-meetings-2025/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://www.greenecountytngov.com/purchasing/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "WordPress PDFs (agendas, packets, minutes under /wp-content/uploads/); index page not located",
+    "contracts": "greenecountytngov.com/purchasing/ ; bids on PublicPurchase ; surplus GovDeals",
+    "notes": "Real purchasing office; sealed bids in person."
+   }
+  },
+  {
+   "county": "Grundy",
+   "slug": "grundy",
+   "fips": "47061",
+   "site": "https://www.grundycountytn.net",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "Static site",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://www.grundycountytn.net"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Only officials page."
+   }
+  },
+  {
+   "county": "Hamblen",
+   "slug": "hamblen",
+   "fips": "47063",
+   "site": "https://hamblencountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://hamblencountytn.gov/meeting-packets/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://hamblencountytn.gov/proposals-bids/"
+    }
+   ],
+   "raw": {
+    "legislation": "hamblencountytn.gov/meeting-packets/ (agendas only) ; /meeting-recordings/",
+    "contracts": "hamblencountytn.gov/proposals-bids/",
+    "notes": "No minutes or resolutions found."
+   }
+  },
+  {
+   "county": "Hamilton",
+   "slug": "hamilton",
+   "fips": "47065",
+   "site": "https://www.hamiltontn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "PlanetBids, ASP.NET, resolution database",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://hamiltontn.gov/CountyCommission_Minutes.aspx"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://resolutions.hamiltontn.gov/ResolutionSearch/ResolutionSearch.aspx"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://hamiltontn.gov/Department_Procurement.aspx"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://vendors.planetbids.com/portal/78083/portal-home"
+    }
+   ],
+   "raw": {
+    "legislation": "hamiltontn.gov/CountyCommission_Minutes.aspx (2025 to 2026, PDF plus MP3) ; resolution search: resolutions.hamiltontn.gov/ResolutionSearch/ResolutionSearch.aspx ; /CurrentAgenda.aspx",
+    "contracts": "hamiltontn.gov/Department_Procurement.aspx ; PlanetBids: vendors.planetbids.com/portal/78083/portal-home ; procurement rules PDF",
+    "notes": "Most developed county system. Awards posting not confirmed."
+   }
+  },
+  {
+   "county": "Hancock",
+   "slug": "hancock",
+   "fips": "47067",
+   "site": "https://www.hancockcountytn.com",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "PHP site",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://hancockcountytn.com/local_public_service_directory/county_commission.php"
+    }
+   ],
+   "raw": {
+    "legislation": "hancockcountytn.com/local_public_service_directory/county_commission.php (meeting dates only)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Hardeman",
+   "slug": "hardeman",
+   "fips": "47069",
+   "site": "https://hardemancounty.org",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://hardemancounty.org/government/agendas-minutes/"
+    }
+   ],
+   "raw": {
+    "legislation": "hardemancounty.org/government/agendas-minutes/ (2020 to 2026)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "2021 to 2023 incomplete."
+   }
+  },
+  {
+   "county": "Hardin",
+   "slug": "hardin",
+   "fips": "47071",
+   "site": "https://www.hardincogov.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "contracts",
+     "url": "https://hardincogov.com/hardin-county-accounting-department/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.hardincogov.com/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "No archive; sample agenda PDF in /wp-content/uploads/2024/05/ ; 2026 schedule PDF",
+    "contracts": "NOT FOUND ONLINE (Accounting page: hardincogov.com/hardin-county-accounting-department/)",
+    "notes": "CTAS tourhardincounty.org is tourism."
+   }
+  },
+  {
+   "county": "Hawkins",
+   "slug": "hawkins",
+   "fips": "47073",
+   "site": "https://www.hawkinscountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Static site plus separate Clerk site",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://hawkinscountytn.gov/minutes_agendas.html"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://hawkinscountyclerk.com/commission-information/"
+    }
+   ],
+   "raw": {
+    "legislation": "hawkinscountytn.gov/minutes_agendas.html ; Clerk site: hawkinscountyclerk.com/commission-information/ (minutes, agendas and resolutions by year 2007 to 2026)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Deepest archive in batch including resolutions."
+   }
+  },
+  {
+   "county": "Haywood",
+   "slug": "haywood",
+   "fips": "47075",
+   "site": "https://haywoodtn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://haywoodtn.gov/government/county-commission/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://haywoodtn.gov/news/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "haywoodtn.gov/government/county-commission/ ; meeting notice posts; committee minutes only",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Scanned images; full-commission minutes not found."
+   }
+  },
+  {
+   "county": "Henderson",
+   "slug": "henderson",
+   "fips": "47077",
+   "site": "https://www.hendersoncountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "SchoolBlocks CMS, Google Drive",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://drive.google.com/drive/folders/1blN8rLS_DJSjJPocfD5pNAABzXY9GMaQ"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://hendersoncountytn.gov/finance-department-f9304ed4/bid-opportunities-fdc85159"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas in Google Drive folder (drive.google.com/drive/folders/1blN8rLS_DJSjJPocfD5pNAABzXY9GMaQ) ; minutes likely via County Clerk page",
+    "contracts": "hendersoncountytn.gov/finance-department-f9304ed4/bid-opportunities-fdc85159 (paper bids; none listed)",
+    "notes": "Minutes location unconfirmed."
+   }
+  },
+  {
+   "county": "Henry",
+   "slug": "henry",
+   "fips": "47079",
+   "site": "https://henrycountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Unknown",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://henrycountytn.gov"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://henrycountytn.gov/news",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "site",
+     "url": "https://www.henrycountyclerktn.com/?page_id=109",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE (site says agendas exist; paths not captured)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Needs manual look. CTAS .org redirects to .gov."
+   }
+  },
+  {
+   "county": "Hickman",
+   "slug": "hickman",
+   "fips": "47081",
+   "site": "https://hickmancountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "County CMS, Dropbox",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://hickmancountytn.gov/government/agendas"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://hickmancountytn.gov/resources/rfp-bids"
+    }
+   ],
+   "raw": {
+    "legislation": "hickmancountytn.gov/government/agendas (packets mostly Dropbox links, 2023 to 2026)",
+    "contracts": "hickmancountytn.gov/resources/rfp-bids",
+    "notes": "Some Dropbox links broken. No minutes listed."
+   }
+  },
+  {
+   "county": "Houston",
+   "slug": "houston",
+   "fips": "47083",
+   "site": "https://www.houstoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Partial",
+   "platforms": "Wix, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://houstoncountytn.gov/legislative-body-meetings"
+    }
+   ],
+   "raw": {
+    "legislation": "houstoncountytn.gov/legislative-body-meetings (2023 to early 2025, spotty)",
+    "contracts": "Open Bids link points only to homepage; sample RFQ PDF",
+    "notes": "CTAS houstoncochamber.com is a chamber."
+   }
+  },
+  {
+   "county": "Humphreys",
+   "slug": "humphreys",
+   "fips": "47085",
+   "site": "https://www.humphreyscountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Static site, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://humphreyscountytn.gov/agendas.html"
+    }
+   ],
+   "raw": {
+    "legislation": "humphreyscountytn.gov/agendas.html (agendas 2023 to Oct 2026; no minutes)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Signed agendas by email to clerk."
+   }
+  },
+  {
+   "county": "Jackson",
+   "slug": "jackson",
+   "fips": "47087",
+   "site": "https://jacksoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Ravenflight CMS, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://jacksoncountytn.gov/government/commissioners/"
+    }
+   ],
+   "raw": {
+    "legislation": "jacksoncountytn.gov/government/commissioners/ (2026 agendas and minutes; YouTube)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Only 2026."
+   }
+  },
+  {
+   "county": "Jefferson",
+   "slug": "jefferson",
+   "fips": "47089",
+   "site": "https://jeffersoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress, Dropbox",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://jeffersoncountytn.gov/county-commission/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://jeffersoncountytn.gov/finance-department/#bids-rfps"
+    }
+   ],
+   "raw": {
+    "legislation": "jeffersoncountytn.gov/county-commission/ ; archive in a shared Dropbox folder; county says agendas and minutes available by records request",
+    "contracts": "jeffersoncountytn.gov/finance-department/#bids-rfps (paper bids)",
+    "notes": "Bid award section empty."
+   }
+  },
+  {
+   "county": "Johnson",
+   "slug": "johnson",
+   "fips": "47091",
+   "site": "https://www.johnsoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Wix, Vendor Registry, GovDeals",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://johnsoncountytn.gov/current-public-records"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://johnsoncountytn.gov/purchasing-department"
+    }
+   ],
+   "raw": {
+    "legislation": "johnsoncountytn.gov/current-public-records (2026) ; archives: /copy-of-public-records (2025), /copy-of-public-records-2023-archive (2024), /public-records (2022 to 2023)",
+    "contracts": "johnsoncountytn.gov/purchasing-department ; Vendor Registry bids list ; GovDeals surplus",
+    "notes": "Earlier years not available electronically."
+   }
+  },
+  {
+   "county": "Knox",
+   "slug": "knox",
+   "fips": "47093",
+   "site": "https://www.knoxcounty.org",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Destiny Hosted, BuySpeed, Municode (Charter only)",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://public.destinyhosted.com/agenda_publish.cfm?id=56691"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://knoxcounty.org/clerk/commission_minutes.php"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://KnoxCM.org"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://knoxcounty.org/apps/solicitations/solicitations.php"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://knoxcounty.org/purchasing/"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas: public.destinyhosted.com/agenda_publish.cfm?id=56691 ; minutes (Clerk): knoxcounty.org/clerk/commission_minutes.php (2007 to 2026, 1989 to 2006 archive) ; video KnoxCM.org ; Charter on Municode",
+    "contracts": "knoxcounty.org/apps/solicitations/solicitations.php ; awards: /apps/solicitations/recent_awards.php ; knoxcounty.org/purchasing/",
+    "notes": "Commission approves contracts over $100,000. No contract search found."
+   }
+  },
+  {
+   "county": "Lake",
+   "slug": "lake",
+   "fips": "47095",
+   "site": "https://lakecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Partial",
+   "platforms": "Tencom CMS",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://lakecountytn.gov/government/commissions-and-boards/county-commission"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://lakecountytn.gov/news/public-notices"
+    }
+   ],
+   "raw": {
+    "legislation": "Meeting schedule only: lakecountytn.gov/government/commissions-and-boards/county-commission",
+    "contracts": "Bids as PDFs on lakecountytn.gov/news/public-notices",
+    "notes": "No agendas or minutes online."
+   }
+  },
+  {
+   "county": "Lauderdale",
+   "slug": "lauderdale",
+   "fips": "47097",
+   "site": "https://lauderdaletn.gov",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "Unknown",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://lauderdaletn.com/county-documents",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Fetch of lauderdaletn.gov was blocked."
+   }
+  },
+  {
+   "county": "Lawrence",
+   "slug": "lawrence",
+   "fips": "47099",
+   "site": "https://lawrencecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress-style",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://lawrencecountytn.gov/government/open-records/meeting-minutes/"
+    }
+   ],
+   "raw": {
+    "legislation": "lawrencecountytn.gov/government/open-records/meeting-minutes/ (2025 by committee) ; agendas as news posts",
+    "contracts": "Bids as news posts; packets from Office of Accounts and Budgets",
+    "notes": "Paper bids."
+   }
+  },
+  {
+   "county": "Lewis",
+   "slug": "lewis",
+   "fips": "47101",
+   "site": "https://www.lewiscountytn.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Wix",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://www.lewiscountytn.com"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas as blog posts (Oct 2025 to Jul 2026); budgets on /county-commission",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Minutes not linked."
+   }
+  },
+  {
+   "county": "Lincoln",
+   "slug": "lincoln",
+   "fips": "47103",
+   "site": "https://lincolncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Revize, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://lincolncountytn.gov/document_hub/agendas_minutes.php"
+    }
+   ],
+   "raw": {
+    "legislation": "lincolncountytn.gov/document_hub/agendas_minutes.php (minutes about Jan 2025 to Aug 2026)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Loudon",
+   "slug": "loudon",
+   "fips": "47105",
+   "site": "https://loudoncounty-tn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://loudoncounty-tn.gov/meeting-documents/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://loudoncounty-tn.gov/purchasing/"
+    }
+   ],
+   "raw": {
+    "legislation": "loudoncounty-tn.gov/meeting-documents/ (packets 2008 to Oct 2026; minutes about 2023 on) ; /county-commission-meeting-minutes-archive/",
+    "contracts": "loudoncounty-tn.gov/purchasing/ (Bid Solicitations; page not opened)",
+    "notes": "Packets include resolutions."
+   }
+  },
+  {
+   "county": "McMinn",
+   "slug": "mcminn",
+   "fips": "47107",
+   "site": "https://www.mcminncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Static site, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://mcminncountytn.gov/county_commission_minutes.html"
+    }
+   ],
+   "raw": {
+    "legislation": "mcminncountytn.gov/county_commission_minutes.html (agendas and minutes; archive to 2015)",
+    "contracts": "NOT FOUND ONLINE (Mayor's Office)",
+    "notes": "Some 2025 agendas missing."
+   }
+  },
+  {
+   "county": "McNairy",
+   "slug": "mcnairy",
+   "fips": "47109",
+   "site": "https://www.mcnairycountytn.org",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Self-hosted",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://mcnairycountytn.org/news--agendas.html"
+    }
+   ],
+   "raw": {
+    "legislation": "mcnairycountytn.org/news--agendas.html (listing did not render) ; county-clerk.html",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Macon",
+   "slug": "macon",
+   "fips": "47111",
+   "site": "https://www.maconcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Revize",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://maconcountytn.gov/government/county_commission/minutes.php"
+    }
+   ],
+   "raw": {
+    "legislation": "maconcountytn.gov/government/county_commission/minutes.php (minutes 2023 to 2026; agendas 2024 to 2026)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Madison",
+   "slug": "madison",
+   "fips": "47113",
+   "site": "https://www.madisoncountytn.gov",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "Unknown",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://www.madisoncountytn.gov"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE (site fetch blocked by robots)",
+    "contracts": "NOT FOUND ONLINE (blocked)",
+    "notes": "Needs manual check in a browser."
+   }
+  },
+  {
+   "county": "Marion",
+   "slug": "marion",
+   "fips": "47115",
+   "site": "https://marioncountytn.net",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Squarespace",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://marioncountytn.net/agendas-minutes"
+    }
+   ],
+   "raw": {
+    "legislation": "marioncountytn.net/agendas-minutes (page fetch blocked; contents unseen)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Marshall",
+   "slug": "marshall",
+   "fips": "47117",
+   "site": "https://www.marshallcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "County site, TN county clerk minutes portal",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://marshallcountytn.gov/county-commission-minutes"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://secure.tncountyclerk.com"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://marshallcountytn.gov/bids"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.marshallcountytn.gov/agendas",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://www.marshallcountytn.gov/open-bids",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "marshallcountytn.gov/county-commission-minutes links to state clerk portal secure.tncountyclerk.com (county ID 59)",
+    "contracts": "marshallcountytn.gov/bids (Budget Office; none listed) ; Open Bids and Vendor Registration links not opened",
+    "notes": "Resolutions filed by clerk."
+   }
+  },
+  {
+   "county": "Maury",
+   "slug": "maury",
+   "fips": "47119",
+   "site": "https://www.maurycounty-tn.gov",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "Unknown",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://www.maurycounty-tn.gov"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE (site fetch blocked)",
+    "contracts": "NOT FOUND ONLINE (aggregators scrape Maury bids; no county portal seen)",
+    "notes": "Needs manual check in a browser."
+   }
+  },
+  {
+   "county": "Meigs",
+   "slug": "meigs",
+   "fips": "47121",
+   "site": "https://www.meigscountytn.org",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Google Sites, Google Drive, YouTube, state clerk portal",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://meigscountytn.org/county-commission/agenda-for-the-month"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://secure.tncountyclerk.com/minutesSearch/index.php"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://meigscountytn.org/directory-pages/finance/solicitations"
+    }
+   ],
+   "raw": {
+    "legislation": "meigscountytn.org/county-commission/agenda-for-the-month ; /commission-minutes (points to state clerk portal secure.tncountyclerk.com/minutesSearch/index.php) ; /commission-digital-archive ; /committee-agendas",
+    "contracts": "meigscountytn.org/directory-pages/finance/solicitations (Google Drive files)",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Monroe",
+   "slug": "monroe",
+   "fips": "47123",
+   "site": "https://monroetn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress, BidNet Direct, YouTube",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://monroetn.gov/county-commission-agenda/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://monroetn.gov/monroe-county-on-line-bid-system/"
+    }
+   ],
+   "raw": {
+    "legislation": "monroetn.gov/county-commission-agenda/ ; /county-commission-minutes/ (Aug 2024 to Aug 2026, older via Load More)",
+    "contracts": "monroetn.gov/monroe-county-on-line-bid-system/ (BidNet Direct)",
+    "notes": "CTAS monroetn.com not the live domain."
+   }
+  },
+  {
+   "county": "Montgomery",
+   "slug": "montgomery",
+   "fips": "47125",
+   "site": "https://montgomerytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Bonfire, BIS minutes search, Drupal",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://montgomerytn.gov/commission"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://montgomeryminutes.bisonline.com"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://montgomerytn.gov/purchasing"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://mcgtn.bonfirehub.com/portal/"
+    }
+   ],
+   "raw": {
+    "legislation": "montgomerytn.gov/commission ; /commission/agenda ; minutes search: montgomeryminutes.bisonline.com ; archive to 2016",
+    "contracts": "montgomerytn.gov/purchasing ; Bonfire: mcgtn.bonfirehub.com/portal/ ; Current and Past Bids archive",
+    "notes": "Old domain mcgtn.org also live. No codified code found."
+   }
+  },
+  {
+   "county": "Moore",
+   "slug": "moore",
+   "fips": "47127",
+   "site": "https://metromoorecounty.org",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Revize",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://metromoorecounty.org"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE (Archives page empty)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Local paper The Lynchburg Times covers council."
+   }
+  },
+  {
+   "county": "Morgan",
+   "slug": "morgan",
+   "fips": "47129",
+   "site": "https://www.morgancountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://morgancountytn.gov/county-commission/"
+    }
+   ],
+   "raw": {
+    "legislation": "morgancountytn.gov/county-commission/ (agenda links broken or draft)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Site states posting of minutes online has ceased; minutes only in person at County Clerk or County Executive."
+   }
+  },
+  {
+   "county": "Obion",
+   "slug": "obion",
+   "fips": "47131",
+   "site": "https://www.obioncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Self-hosted",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://obioncountytn.gov/county_commission.html"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.obioncountytn.gov/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "obioncountytn.gov/county_commission.html ; current agenda PDF only",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Overton",
+   "slug": "overton",
+   "fips": "47133",
+   "site": "https://overtoncountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "WordPress-style",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://overtoncountytn.gov/agenda-may2024/"
+    }
+   ],
+   "raw": {
+    "legislation": "Per-meeting agenda pages (e.g. overtoncountytn.gov/agenda-may2024/), back to 2022",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Site flagged under construction. No minutes."
+   }
+  },
+  {
+   "county": "Perry",
+   "slug": "perry",
+   "fips": "47135",
+   "site": "https://perrycountytn.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Joomla eDocman",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://perrycountytn.com"
+    }
+   ],
+   "raw": {
+    "legislation": "Joomla eDocman: Legislative Body Agendas (empty) ; Resolutions and Policies (2 documents)",
+    "contracts": "eDocman RFP/Bids category (empty)",
+    "notes": "Effectively nothing substantive online."
+   }
+  },
+  {
+   "county": "Pickett",
+   "slug": "pickett",
+   "fips": "47137",
+   "site": "https://dalehollow.com",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "n/a",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://dalehollow.com"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Likely clerk minute book; state clerk portal unverified for Pickett."
+   }
+  },
+  {
+   "county": "Polk",
+   "slug": "polk",
+   "fips": "47139",
+   "site": "https://polkcountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress-style, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://polkcountytn.gov/agendas-minutes-2/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://polkcountytn.gov/bids-rfps/"
+    }
+   ],
+   "raw": {
+    "legislation": "polkcountytn.gov/agendas-minutes-2/ ; /agendas-minutes/ (resolutions and documents)",
+    "contracts": "polkcountytn.gov/bids-rfps/ (empty)",
+    "notes": "About two years online."
+   }
+  },
+  {
+   "county": "Putnam",
+   "slug": "putnam",
+   "fips": "47141",
+   "site": "https://putnamcountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Drupal-style, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://putnamcountytn.gov"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://ada.putnamcountytn.gov"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://putnamcountytn.gov/commission-agenda",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://putnamcountytn.gov/commission-minutes",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas on putnamcountytn.gov ; minutes archive on ada.putnamcountytn.gov (back to 2012) ; County Ordinances menu not resolved",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Many minutes likely scanned."
+   }
+  },
+  {
+   "county": "Rhea",
+   "slug": "rhea",
+   "fips": "47143",
+   "site": "http://rheacountytn.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "Locable",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://rheacountytn.org/agendas-and-minutes/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas mirrored on Locable feed (locable.com/connections/54617-rhea-county-government/)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Official site shows 2017 content."
+   }
+  },
+  {
+   "county": "Roane",
+   "slug": "roane",
+   "fips": "47145",
+   "site": "https://roanecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "WordPress, Google Drive, BidNet Direct",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://roanecountytn.gov/county-commission/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://roanecountytn.gov/purchasing-department/"
+    }
+   ],
+   "raw": {
+    "legislation": "roanecountytn.gov/county-commission/ with Google Drive folders for agendas, minutes, packets",
+    "contracts": "roanecountytn.gov/purchasing-department/ ; BidNet Direct vendor registry",
+    "notes": "Drive contents not opened."
+   }
+  },
+  {
+   "county": "Robertson",
+   "slug": "robertson",
+   "fips": "47147",
+   "site": "http://www.robertsoncountytn.org",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "Unknown",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "http://www.robertsoncountytn.org"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Home page returned no usable links."
+   }
+  },
+  {
+   "county": "Rutherford",
+   "slug": "rutherford",
+   "fips": "47149",
+   "site": "https://rutherfordcountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Yes",
+   "platforms": "Document Manager, PDFs",
+   "seeds": [
+    {
+     "kind": "contracts",
+     "url": "https://rutherfordcountytn.gov/bid-opportunities"
+    }
+   ],
+   "raw": {
+    "legislation": "Commission agenda and minutes location not confirmed; committee PDFs in /uploads/dm/",
+    "contracts": "rutherfordcountytn.gov/bid-opportunities (sealed bids to Mayor's Office)",
+    "notes": "Initial fetch blocked by robots."
+   }
+  },
+  {
+   "county": "Scott",
+   "slug": "scott",
+   "fips": "47151",
+   "site": "https://scottcounty.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "County site, Vendor Registry, GovDeals",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://scottcounty.com/government/meeting-agendas/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://scottcounty.com/government/bids/"
+    }
+   ],
+   "raw": {
+    "legislation": "scottcounty.com/government/meeting-agendas/ (2026 agendas only)",
+    "contracts": "scottcounty.com/government/bids/ (none posted); Vendor Registry; GovDeals",
+    "notes": "No minutes."
+   }
+  },
+  {
+   "county": "Sequatchie",
+   "slug": "sequatchie",
+   "fips": "47153",
+   "site": "https://sequatchiecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "Custom site",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://sequatchiecountytn.gov/news.php",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "Agendas and minutes as news items: sequatchiecountytn.gov/news-notices/sequatchie-county-commission-minutes",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Sevier",
+   "slug": "sevier",
+   "fips": "47155",
+   "site": "https://seviercountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Partial",
+   "platforms": "Revize",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://seviercountytn.gov/government/county_officials/county_commissioners/county_commission_agenda.php"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://seviercountytn.gov/how_do_i/submit_a_bid.php"
+    }
+   ],
+   "raw": {
+    "legislation": "seviercountytn.gov/government/county_officials/county_commissioners/county_commission_agenda.php (2020 to 2026) ; committee page",
+    "contracts": "seviercountytn.gov/how_do_i/submit_a_bid.php (table empty)",
+    "notes": "PDFs hosted on cms3.revize.com."
+   }
+  },
+  {
+   "county": "Shelby",
+   "slug": "shelby",
+   "fips": "47157",
+   "site": "https://www.shelbycountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Yes",
+   "platforms": "CivicPlus, OnBase, Granicus, custom bids and contracts portals",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://shelbycountytn.gov/71/Shelby-County-Board-of-Commissioners"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://shelbycountytn.gov/72/Code-of-Ordinances"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://bids.shelbycountytn.gov"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://contracts.shelbycountytn.gov/PurchaseOrders"
+    }
+   ],
+   "raw": {
+    "legislation": "shelbycountytn.gov/71/Shelby-County-Board-of-Commissioners (OnBase documents, DocumentCenter PDFs) ; Code of Ordinances: shelbycountytn.gov/72/Code-of-Ordinances ; archived votes /3949 ; audio via Granicus",
+    "contracts": "bids.shelbycountytn.gov ; contracts and purchase orders: contracts.shelbycountytn.gov/PurchaseOrders (search result only) ; /203/Government-Purchases",
+    "notes": "No Legistar. Contracts portal needs a direct check. Minutes by request form."
+   }
+  },
+  {
+   "county": "Smith",
+   "slug": "smith",
+   "fips": "47159",
+   "site": "https://smithcotn.com",
+   "legacy": false,
+   "verification": "NOT FOUND",
+   "bids_online": "No",
+   "platforms": "Unknown",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://smithcotn.com"
+    }
+   ],
+   "raw": {
+    "legislation": "NOT FOUND ONLINE",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Official site identified via chamber menu."
+   }
+  },
+  {
+   "county": "Stewart",
+   "slug": "stewart",
+   "fips": "47161",
+   "site": "https://www.stewartcogov.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "County site",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://www.stewartcogov.com"
+    }
+   ],
+   "raw": {
+    "legislation": "Meeting notice PDFs only; minutes location not confirmed",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Sullivan",
+   "slug": "sullivan",
+   "fips": "47163",
+   "site": "https://sullivancountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "WordPress",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://sullivancountyclerktn.com"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://sullivancountyclerktn.com/commission-minutes/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "Agenda posts under Agendas category; final agendas on Clerk site sullivancountyclerktn.com (unverified)",
+    "contracts": "Purchasing department page in menu (URL not captured)",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Sumner",
+   "slug": "sumner",
+   "fips": "47165",
+   "site": "https://sumnercountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "County site, ConnectedViews video",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://sumnercountytn.gov/government/county-commission/"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://sumnercountytn.gov/departments/finance/purchasing/"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://sumnercountytn.gov/government/2026-committee-meetings/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://sumnercountytn.gov/agendas-minutes/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "sumnercountytn.gov/government/county-commission/ ; /agendas-minutes/ ; /government/2026-committee-meetings/",
+    "contracts": "sumnercountytn.gov/departments/finance/purchasing/ (open bids; bid minutes and awards FY2020 to FY2027; policy)",
+    "notes": "Resolutions available on request at County Clerk. Bid limit $25,000."
+   }
+  },
+  {
+   "county": "Tipton",
+   "slug": "tipton",
+   "fips": "47167",
+   "site": "https://tiptonco.com",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "Custom PHP",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://tiptonco.com"
+    }
+   ],
+   "raw": {
+    "legislation": "Government menu has Agendas and minutes (exact URL not seen)",
+    "contracts": "Bid notices as news items (e.g. news_detail_T34_R761.php)",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Trousdale",
+   "slug": "trousdale",
+   "fips": "47169",
+   "site": "http://www.trousdalecountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "Revize-style",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://trousdalecountytn.gov/government/local_government/commission_meeting_agendas_minutes.php"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://trousdalecountytn.gov/government/public_notices/bid_listing.php"
+    }
+   ],
+   "raw": {
+    "legislation": "trousdalecountytn.gov/government/local_government/commission_meeting_agendas_minutes.php ; resolutions and ordinances: /government/county_codes_ordinances/resolutions_ordinances.php ; codes index",
+    "contracts": "trousdalecountytn.gov/government/public_notices/bid_listing.php",
+    "notes": "Best legislation structure among small counties; subpages not individually fetched."
+   }
+  },
+  {
+   "county": "Unicoi",
+   "slug": "unicoi",
+   "fips": "47171",
+   "site": "https://unicoicountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "County site",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://unicoicountytn.gov"
+    }
+   ],
+   "raw": {
+    "legislation": "Commission page linked; minutes location not confirmed",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "Two domains; canonical unclear."
+   }
+  },
+  {
+   "county": "Union",
+   "slug": "union",
+   "fips": "47173",
+   "site": "https://www.unioncountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://historicunioncounty.com"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.unioncountytnclerk.com/minutes/",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "Not located on county site; historicunioncounty.com hosts commission binders 2019 to 2021",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": "historicunioncounty.com may be a tourism site."
+   }
+  },
+  {
+   "county": "Van Buren",
+   "slug": "van-buren",
+   "fips": "47175",
+   "site": "https://vanburencountytn.com",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Yes",
+   "platforms": "County site",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://vanburencountytn.com/agendas_minutes/index.html"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://vanburencountytn.com/bids/index.html"
+    }
+   ],
+   "raw": {
+    "legislation": "vanburencountytn.com/agendas_minutes/index.html",
+    "contracts": "vanburencountytn.com/bids/index.html",
+    "notes": "Subpages not fetched."
+   }
+  },
+  {
+   "county": "Warren",
+   "slug": "warren",
+   "fips": "47177",
+   "site": "https://www.warrencountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "County site",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "https://www.warrencountytn.gov"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.warrencountytn.gov/government/county_commission/index.php",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "http://warrencountytn.granicus.com/ViewPublisher.php?view_id=1",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://www.warrencountytn.gov/government/bid_opportunities/index.php",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "County Commission page linked (URL not seen) ; Downloads and County Archives",
+    "contracts": "Bid Opportunities page in menu (URL not seen)",
+    "notes": "Homepage claims agendas, minutes, resolutions, code links."
+   }
+  },
+  {
+   "county": "Washington",
+   "slug": "washington",
+   "fips": "47179",
+   "site": "https://www.washingtoncountytn.org",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "No",
+   "platforms": "CivicPlus",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://washingtoncountytn.org/129/Agendas-Minutes"
+    }
+   ],
+   "raw": {
+    "legislation": "washingtoncountytn.org/129/Agendas-Minutes",
+    "contracts": "NOT FOUND ONLINE (Online Services /331 unchecked)",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Wayne",
+   "slug": "wayne",
+   "fips": "47181",
+   "site": "http://www.waynecountytn.org",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "County site",
+   "seeds": [
+    {
+     "kind": "site",
+     "url": "http://www.waynecountytn.org"
+    }
+   ],
+   "raw": {
+    "legislation": "Commission and Official Documents pages linked (URLs not seen)",
+    "contracts": "NOT FOUND ONLINE",
+    "notes": ""
+   }
+  },
+  {
+   "county": "Weakley",
+   "slug": "weakley",
+   "fips": "47183",
+   "site": "https://weakleycountytn.gov",
+   "legacy": false,
+   "verification": "VERIFIED",
+   "bids_online": "Partial",
+   "platforms": "Weebly-style, PDFs",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://weakleycountytn.gov/agendas-minutes-resolutions.html"
+    }
+   ],
+   "raw": {
+    "legislation": "weakleycountytn.gov/agendas-minutes-resolutions.html (by fiscal year, numbered resolutions; back to 1970s)",
+    "contracts": "Bids and Purchasing page under Finance (URL not seen)",
+    "notes": "Strong archive; some minutes coming soon."
+   }
+  },
+  {
+   "county": "White",
+   "slug": "white",
+   "fips": "47185",
+   "site": "https://whitecountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Yes",
+   "platforms": "CivicPlus",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://whitecountytn.gov/AgendaCenter"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://whitecountytn.gov/316/Bids-Purchasing"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://whitecountytn.gov/government/county-commission-minutes",
+     "provenance": "researcher",
+     "verified": "unverified"
+    },
+    {
+     "kind": "contracts",
+     "url": "https://whitecountytn.gov/government/county-departments/department-finance/bids-and-purchasing",
+     "provenance": "researcher",
+     "verified": "unverified"
+    }
+   ],
+   "raw": {
+    "legislation": "whitecountytn.gov/AgendaCenter ; /262/County-Commission",
+    "contracts": "whitecountytn.gov/316/Bids-Purchasing ; /296/Purchasing-Committee",
+    "notes": "Resolutions and code not located."
+   }
+  },
+  {
+   "county": "Williamson",
+   "slug": "williamson",
+   "fips": "47187",
+   "site": "https://www.williamsoncounty-tn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "Partial",
+   "platforms": "CivicPlus",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://williamsoncounty-tn.gov/AgendaCenter"
+    }
+   ],
+   "raw": {
+    "legislation": "CivicPlus AgendaCenter: williamsoncounty-tn.gov/AgendaCenter",
+    "contracts": "Bids nav item (URL not seen)",
+    "notes": "Resolutions and code not located."
+   }
+  },
+  {
+   "county": "Wilson",
+   "slug": "wilson",
+   "fips": "47189",
+   "site": "https://www.wilsoncountytn.gov",
+   "legacy": false,
+   "verification": "PARTIAL",
+   "bids_online": "No",
+   "platforms": "CivicPlus",
+   "seeds": [
+    {
+     "kind": "legislation",
+     "url": "https://www.wilsoncountytn.gov/AgendaCenter",
+     "provenance": "researcher",
+     "verified": "fetched"
+    },
+    {
+     "kind": "legislation",
+     "url": "https://www.wilsoncountytn.gov/Archive.aspx",
+     "provenance": "researcher",
+     "verified": "fetched"
+    }
+   ],
+   "raw": {
+    "legislation": "CivicPlus Archive Center: wilsoncountytn.gov/Archive.aspx?ADID=168 (minutes with resolution numbers) ; /245/County-Commissioners",
+    "contracts": "NOT FOUND ONLINE (not checked)",
+    "notes": ""
+   }
+  }
+ ]
+}

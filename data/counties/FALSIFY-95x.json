@@ -1,0 +1,177 @@
+{
+ "schema": "Falsify95x@1",
+ "scale": 95,
+ "budgets": {
+  "server_p95_ms": 50.0,
+  "first_page_bytes": 20480
+ },
+ "built": {
+  "rows": 414485,
+  "build_s": 39.14,
+  "db_mb": 309.3
+ },
+ "shapes": [
+  {
+   "shape": "counties_list",
+   "n": 150,
+   "p50_ms": 0.99,
+   "p95_ms": 1.33,
+   "p99_ms": 1.42,
+   "max_ms": 1.47,
+   "median_bytes": 10819,
+   "max_bytes": 10819,
+   "budget_ok": true
+  },
+  {
+   "shape": "browse_county_first_page",
+   "n": 150,
+   "p50_ms": 1.1,
+   "p95_ms": 5.55,
+   "p99_ms": 11.63,
+   "max_ms": 13.05,
+   "median_bytes": 9186,
+   "max_bytes": 9286,
+   "budget_ok": true
+  },
+  {
+   "shape": "browse_county_deep_keyset",
+   "n": 150,
+   "p50_ms": 1.18,
+   "p95_ms": 2.43,
+   "p99_ms": 4.12,
+   "max_ms": 4.92,
+   "median_bytes": 9136,
+   "max_bytes": 9399,
+   "budget_ok": true
+  },
+  {
+   "shape": "search_county_common",
+   "n": 150,
+   "p50_ms": 2.76,
+   "p95_ms": 15.05,
+   "p99_ms": 19.67,
+   "max_ms": 21.18,
+   "median_bytes": 9243,
+   "max_bytes": 9893,
+   "budget_ok": true
+  },
+  {
+   "shape": "search_county_rare",
+   "n": 150,
+   "p50_ms": 0.95,
+   "p95_ms": 1.57,
+   "p99_ms": 10.88,
+   "max_ms": 40.17,
+   "median_bytes": 450,
+   "max_bytes": 9717,
+   "budget_ok": true
+  },
+  {
+   "shape": "search_all_counties_common",
+   "n": 150,
+   "p50_ms": 2.16,
+   "p95_ms": 11.46,
+   "p99_ms": 18.16,
+   "max_ms": 19.2,
+   "median_bytes": 9193,
+   "max_bytes": 9754,
+   "budget_ok": true
+  },
+  {
+   "shape": "search_all_counties_rare",
+   "n": 150,
+   "p50_ms": 1.32,
+   "p95_ms": 2.28,
+   "p99_ms": 2.73,
+   "max_ms": 4.59,
+   "median_bytes": 9158,
+   "max_bytes": 10711,
+   "budget_ok": true
+  },
+  {
+   "shape": "search_county_relevance_top50",
+   "n": 150,
+   "p50_ms": 4.32,
+   "p95_ms": 21.31,
+   "p99_ms": 34.95,
+   "max_ms": 43.64,
+   "median_bytes": 18036,
+   "max_bytes": 19120,
+   "budget_ok": true
+  },
+  {
+   "shape": "search_all_relevance_falls_back",
+   "n": 150,
+   "p50_ms": 2.41,
+   "p95_ms": 13.48,
+   "p99_ms": 17.7,
+   "max_ms": 18.33,
+   "median_bytes": 18379,
+   "max_bytes": 19230,
+   "budget_ok": true
+  },
+  {
+   "shape": "kind_filter_county",
+   "n": 150,
+   "p50_ms": 1.87,
+   "p95_ms": 2.53,
+   "p99_ms": 2.75,
+   "max_ms": 3.13,
+   "median_bytes": 9186,
+   "max_bytes": 9286,
+   "budget_ok": true
+  },
+  {
+   "shape": "kind_filter_all_counties",
+   "n": 150,
+   "p50_ms": 2.1,
+   "p95_ms": 8.76,
+   "p99_ms": 11.66,
+   "max_ms": 16.43,
+   "median_bytes": 9245,
+   "max_bytes": 9603,
+   "budget_ok": true
+  },
+  {
+   "shape": "two_word_all_counties",
+   "n": 150,
+   "p50_ms": 2.43,
+   "p95_ms": 9.22,
+   "p99_ms": 18.53,
+   "max_ms": 20.27,
+   "median_bytes": 39,
+   "max_bytes": 9903,
+   "budget_ok": true
+  }
+ ],
+ "concurrency": {
+  "clients": 8,
+  "requests": 480,
+  "errors": 0,
+  "p95_ms": 56.12,
+  "wall_s": 1.5,
+  "budget_ok": true
+ },
+ "control": {
+  "shape": "CONTROL naive LIKE scan",
+  "p50_ms": 52.3,
+  "p95_ms": 174.6,
+  "blows_budget": true
+ },
+ "null_arm": {
+  "shape": "NULL today: linear jsonl scan per lookup",
+  "ms_1x": 4.12,
+  "ms_95x_extrapolated": 391.6
+ },
+ "incremental_index": {
+  "new_rows_folded": 1,
+  "ms": 2.3,
+  "corpus_rows": 414586
+ },
+ "verdict": {
+  "all_shapes_within_budget": true,
+  "concurrency_within_budget": true,
+  "control_blew_budget_so_harness_can_see_slowness": true
+ },
+ "ran_at": "2026-10-13T19:42:40Z"
+}

@@ -1,0 +1,306 @@
+{
+ "schema": "CountySeedsDiscovered@1",
+ "note": "Sources found by researchers, not by the workbook. verified=fetched means the researcher fetched the page and saw documents; unverified means it appeared only in search results or was refused to the researcher. Nothing here is pullable until the probe from the VM confirms it.",
+ "found_at": "2026-10-13",
+ "added": [
+  {
+   "county": "Putnam",
+   "kind": "legislation",
+   "url": "https://putnamcountytn.gov/commission-agenda",
+   "verified": "fetched",
+   "note": "monthly agenda PDFs, Dec 2017 to Oct 2026, direct links under /sites/default/files/"
+  },
+  {
+   "county": "Putnam",
+   "kind": "legislation",
+   "url": "https://putnamcountytn.gov/commission-minutes",
+   "verified": "fetched",
+   "note": "monthly minutes PDFs, Jan 2007 to Sep 2026"
+  },
+  {
+   "county": "Warren",
+   "kind": "legislation",
+   "url": "https://www.warrencountytn.gov/government/county_commission/index.php",
+   "verified": "fetched",
+   "note": "Revize page with direct agenda PDF and a Drive folder for minutes"
+  },
+  {
+   "county": "Warren",
+   "kind": "legislation",
+   "url": "http://warrencountytn.granicus.com/ViewPublisher.php?view_id=1",
+   "verified": "fetched",
+   "note": "Granicus archive, 65 meetings Mar 2019 to Jun 2024 with agenda, minutes and packet"
+  },
+  {
+   "county": "Warren",
+   "kind": "contracts",
+   "url": "https://www.warrencountytn.gov/government/bid_opportunities/index.php",
+   "verified": "fetched",
+   "note": "four current bids with invitation and bid-form PDFs; no awards seen"
+  },
+  {
+   "county": "Rhea",
+   "kind": "legislation",
+   "url": "https://rheacountytn.org/agendas-and-minutes/",
+   "verified": "fetched",
+   "note": "63 PDF/DOCX links, Jul 2025 to Oct 2026; the county's own site (the registered source was a third-party directory)"
+  },
+  {
+   "county": "Sumner",
+   "kind": "legislation",
+   "url": "https://sumnercountytn.gov/government/2026-committee-meetings/",
+   "verified": "fetched",
+   "note": "about 200 agenda and minutes PDFs per body for 2026; returned 202 to the VM's network, normal to the researcher's"
+  },
+  {
+   "county": "Sumner",
+   "kind": "legislation",
+   "url": "https://sumnercountytn.gov/agendas-minutes/",
+   "verified": "fetched",
+   "note": "archive back to 2017 by body"
+  },
+  {
+   "county": "Hardin",
+   "kind": "legislation",
+   "url": "https://www.hardincogov.com/",
+   "verified": "fetched",
+   "note": "no index page; agendas and the schedule are linked PDFs from the home page under /wp-content/uploads/"
+  },
+  {
+   "county": "Henry",
+   "kind": "legislation",
+   "url": "https://henrycountytn.gov/news",
+   "verified": "fetched",
+   "note": "agenda and resolution PDFs for recent meetings; no archive"
+  },
+  {
+   "county": "Henry",
+   "kind": "site",
+   "url": "https://www.henrycountyclerktn.com/?page_id=109",
+   "verified": "fetched",
+   "note": "clerk site: budget PDFs for 12 fiscal years; links the state minutes search"
+  },
+  {
+   "county": "White",
+   "kind": "legislation",
+   "url": "https://whitecountytn.gov/government/county-commission-minutes",
+   "verified": "unverified",
+   "note": "seen only in search results; 403 to the researcher"
+  },
+  {
+   "county": "White",
+   "kind": "contracts",
+   "url": "https://whitecountytn.gov/government/county-departments/department-finance/bids-and-purchasing",
+   "verified": "unverified",
+   "note": "seen only in search results; 403 to the researcher"
+  },
+  {
+   "county": "Grainger",
+   "kind": "legislation",
+   "url": "https://graingercountycommission.com/minutes/",
+   "verified": "fetched",
+   "note": "13 monthly minutes entries on the county's own domain, each behind /download/<slug>/ with the real file URL hidden from a static fetch; agenda PDFs are direct under /wp-content/uploads/"
+  },
+  {
+   "county": "Haywood",
+   "kind": "legislation",
+   "url": "https://haywoodtn.gov/news/",
+   "verified": "fetched",
+   "note": "every agenda and minutes item is a news post, Oct 2023 to Oct 2026; attachments are direct PDF/DOCX under /wp-content/uploads/, several are image scans needing OCR"
+  },
+  {
+   "county": "Obion",
+   "kind": "legislation",
+   "url": "https://www.obioncountytn.gov/",
+   "verified": "fetched",
+   "note": "home-page notices link the current agenda at the fixed URL /pdfs/county_commission_agenda.pdf, which is overwritten monthly (no archive); a URL-deduplicating archive misses every later version"
+  },
+  {
+   "county": "Marshall",
+   "kind": "legislation",
+   "url": "https://www.marshallcountytn.gov/agendas",
+   "verified": "fetched",
+   "note": "current agenda PDFs as /a/uploads/<id> links (no file extension; 302 to a short-lived S3 URL)"
+  },
+  {
+   "county": "Marshall",
+   "kind": "contracts",
+   "url": "https://www.marshallcountytn.gov/open-bids",
+   "verified": "fetched",
+   "note": "open bid packages as /a/uploads/<id>; the redirect target expires in about 5 minutes, so it must be followed at once"
+  },
+  {
+   "county": "Sequatchie",
+   "kind": "legislation",
+   "url": "https://sequatchiecountytn.gov/news.php",
+   "verified": "fetched",
+   "note": "site rebuilt: agendas and minutes are news posts whose attachments are PNG images under /uploads/ (needs OCR); the registered /news-notices/ URL is gone"
+  },
+  {
+   "county": "Sullivan",
+   "kind": "legislation",
+   "url": "https://sullivancountyclerktn.com/commission-minutes/",
+   "verified": "fetched",
+   "note": "clerk site: one page per year, 2010-2026, each with direct PDF links"
+  },
+  {
+   "county": "Union",
+   "kind": "legislation",
+   "url": "https://www.unioncountytnclerk.com/minutes/",
+   "verified": "fetched",
+   "note": "clerk site: 149 direct minutes PDFs, 2015-2026; some over 10 MB"
+  },
+  {
+   "county": "Wilson",
+   "kind": "legislation",
+   "url": "https://www.wilsoncountytn.gov/AgendaCenter",
+   "verified": "fetched",
+   "note": "CivicPlus Agenda Center, server-rendered; County Commissioners agendas Jan to Oct 2026 as AgendaCenter/ViewFile links"
+  },
+  {
+   "county": "Wilson",
+   "kind": "legislation",
+   "url": "https://www.wilsoncountytn.gov/Archive.aspx",
+   "verified": "fetched",
+   "note": "Archive Center index; each Archive.aspx?ADID=n URL serves a PDF directly (the registered ADID=168 is itself a PDF, which is why it showed no links)"
+  },
+  {
+   "county": "Lauderdale",
+   "kind": "legislation",
+   "url": "https://lauderdaletn.com/county-documents",
+   "verified": "fetched",
+   "note": "the real domain is .com; 17 agendas and 17 minutes as direct PDFs on wsimg.com"
+  },
+  {
+   "county": "Blount",
+   "kind": "legislation",
+   "url": "https://blounttn.legistar.com/Calendar.aspx",
+   "verified": "fetched",
+   "note": "Legistar calendar for the Board of Commissioners and ~20 committees, 2015 to 2026; public API https://webapi.legistar.com/v1/blounttn (resolutions are matters with attachments: the same shape as Davidson)"
+  },
+  {
+   "county": "Blount",
+   "kind": "legislation",
+   "url": "https://blounttn.legistar.com/Legislation.aspx",
+   "verified": "fetched",
+   "note": "Legistar legislation search: resolutions, minutes items; earliest 16-029 (Oct 2016), latest 26-249; needs a search to list"
+  },
+  {
+   "county": "Blount",
+   "kind": "legislation",
+   "url": "https://www.blounttn.gov/Archive.aspx?AMID=41",
+   "verified": "fetched",
+   "note": "CivicPlus Archive Center, 236 commission meeting PDFs 2000 to 2016"
+  },
+  {
+   "county": "Blount",
+   "kind": "contracts",
+   "url": "https://www.blounttn.gov/2137/ARPA-Bids-GoBid",
+   "verified": "fetched",
+   "note": "one ARPA bid; other bids are on the IonWave portal (login screen), linked from /165/Purchasing"
+  },
+  {
+   "county": "Greene",
+   "kind": "legislation",
+   "url": "https://www.greenecountytngov.com/public-meetings-2026/",
+   "verified": "fetched",
+   "note": "researcher fetched this path on the WP Engine host it redirects to; 64 PDFs for 2026 (packets, agendas, minutes, voting records); year pages public-meetings-YYYY exist for 2009 to 2026"
+  },
+  {
+   "county": "Greene",
+   "kind": "legislation",
+   "url": "https://www.greenecountytngov.com/public-meetings-2025/",
+   "verified": "fetched",
+   "note": "83 PDF entries for 2025; resolutions appear only inside packets"
+  },
+  {
+   "county": "Greene",
+   "kind": "contracts",
+   "url": "https://www.greenecountytngov.com/purchasing/",
+   "verified": "fetched",
+   "note": "RFQ and bid PDFs; sealed paper bids only; PublicPurchase links (login wall)"
+  }
+ ],
+ "dropped": [
+  {
+   "county": "Rhea",
+   "url": "https://locable.com/connections/54617-rhea-county-government/",
+   "reason": "a third-party directory listing, not the county's own site"
+  },
+  {
+   "county": "Lauderdale",
+   "url": "https://lauderdaletn.gov",
+   "reason": "wrong domain: does not resolve; the county's site is lauderdaletn.com"
+  },
+  {
+   "county": "Wilson",
+   "url": "https://wilsoncountytn.gov/Archive.aspx?ADID=168",
+   "reason": "a single PDF, not an index page"
+  },
+  {
+   "county": "Sequatchie",
+   "url": "https://sequatchiecountytn.gov/news-notices/sequatchie-county-commission-minutes",
+   "reason": "404: the site was rebuilt and these URLs are gone"
+  }
+ ],
+ "not_found": [
+  {
+   "county": "Rutherford",
+   "why": "robots.txt disallows every page of the county site; the SharePoint folders were unreachable. Needs the county's permission or a records request."
+  },
+  {
+   "county": "Shelby",
+   "why": "every shelbycountytn.gov host returned 403 to the researcher; no hosted legislative system found."
+  },
+  {
+   "county": "McNairy",
+   "why": "behind a Cloudflare challenge; a search summary suggests minutes are not posted online."
+  },
+  {
+   "county": "Grundy",
+   "why": "site reachable but publishes no commission or bid documents; the County Clerk holds the records."
+  },
+  {
+   "county": "Clay",
+   "why": "agenda and minutes are plain HTML text on a Squarespace page, overwritten each meeting; no documents and no archive; no bids page found."
+  },
+  {
+   "county": "Henderson",
+   "why": "agendas are in a public Google Drive folder (3 subfolders) and one 2023 RFQ on Drive: share links, not fetchable by policy."
+  },
+  {
+   "county": "Meigs",
+   "why": "about 30 documents, all Google Drive files; minutes are said to be in the state clerk portal, unconfirmed."
+  },
+  {
+   "county": "Moore",
+   "why": "Metro Council agendas, minutes and bids are not on metromoorecounty.org; contact the Metro Clerk."
+  },
+  {
+   "county": "Pickett",
+   "why": "no county site: dalehollow.com is the Chamber of Commerce tourism site."
+  },
+  {
+   "county": "Crockett",
+   "why": "crockettcountytn.com (Wix) publishes no agendas, minutes or bids; minutes are held by the County Clerk and possibly the state clerk portal."
+  }
+ ],
+ "follow_ups": [
+  {
+   "county": "Sullivan",
+   "note": "217 documents are listed in https://sullivancountytn.gov/wp-sitemap-posts-dlp_document-1.xml; the crawler does not read sitemaps yet, and the library page is JavaScript-loaded."
+  },
+  {
+   "county": "Sullivan",
+   "note": "bids are on BidNet (bidnetdirect.com/tennessee/sullivancountytn), 403 to automated fetch."
+  },
+  {
+   "county": "Obion",
+   "note": "agenda lives at a fixed URL that is overwritten monthly: the archive must keep versions of one URL, which it does not yet."
+  },
+  {
+   "county": "Blount",
+   "note": "on Legistar: a generic Legistar adapter (the Davidson pipeline's client pointed at webapi.legistar.com/v1/blounttn) would give matters, resolutions and attachments directly, the real legislation-to-contract link."
+  }
+ ]
+}

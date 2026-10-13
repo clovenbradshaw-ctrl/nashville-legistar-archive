@@ -1,0 +1,3119 @@
+{
+ "schema": "CountyCoverage@1",
+ "probed_at": "2026-10-13T21:40:15Z",
+ "claim": "we hold the real database for every Tennessee county",
+ "falsified": true,
+ "tiers": {
+  "HAVE": 3,
+  "LISTS": 72,
+  "NONE": 5,
+  "BLOCKED": 8,
+  "POINTERS": 7
+ },
+ "counties_with_contract_docs_listed": [
+  "Anderson",
+  "Bedford",
+  "Blount",
+  "Cannon",
+  "Carter",
+  "Cocke",
+  "Davidson",
+  "Dyer",
+  "Fayette",
+  "Giles",
+  "Greene",
+  "Hamblen",
+  "Hamilton",
+  "Hickman",
+  "Jefferson",
+  "Johnson",
+  "Knox",
+  "Lake",
+  "Loudon",
+  "Marshall",
+  "Monroe",
+  "Roane",
+  "Trousdale",
+  "Van Buren"
+ ],
+ "elapsed_s": 72,
+ "counties": [
+  {
+   "county": "Anderson",
+   "fips": "47001",
+   "slug": "anderson",
+   "tier": "HAVE",
+   "have_rows": 8,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://andersoncountytn.gov/county-commission-meeting-agendas/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 303,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://andersoncountyclerk.com/commission/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 180,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://andersoncountytn.gov/commission-motion-database/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 2,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://andersoncountytn.gov/purchasing/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "bidnet",
+      "govdeals",
+      "wordpress"
+     ],
+     "docs": 11,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Bedford",
+   "fips": "47003",
+   "slug": "bedford",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://bedfordcountytn.gov/government/boards_and_members/county_board_meetings/board_of_commissioners_meetings.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 253,
+     "status": 200,
+     "pointers": 77
+    },
+    {
+     "url": "https://bedfordcountytn.gov/community/bid_opportunities.php",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 254,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Benton",
+   "fips": "47005",
+   "slug": "benton",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://bentoncountytn.gov/commission_agendas_minutes.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 135,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Bledsoe",
+   "fips": "47007",
+   "slug": "bledsoe",
+   "tier": "NONE",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://bledsoetn.com/county-commission-minutes-2/",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://bledsoetn.com/public-notice/",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Blount",
+   "fips": "47009",
+   "slug": "blount",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://blounttn.gov/165/Purchasing",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 4,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Bradley",
+   "fips": "47011",
+   "slug": "bradley",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://bradleycountytn.gov/county-government/county-commission/",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    }
+   ]
+  },
+  {
+   "county": "Campbell",
+   "fips": "47013",
+   "slug": "campbell",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://campbellcountytn.gov/agendas-and-minutes/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 7,
+     "status": 200,
+     "pointers": 14
+    }
+   ]
+  },
+  {
+   "county": "Cannon",
+   "fips": "47015",
+   "slug": "cannon",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://cannoncountytn.gov/recorded-county-meetings/",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://cannoncountytn.gov/bids/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 4,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Carroll",
+   "fips": "47017",
+   "slug": "carroll",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://carrollcountytn.gov/county_commission.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 3,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Carter",
+   "fips": "47019",
+   "slug": "carter",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://cartercountytn.gov/government/agendas_and_minutes/monthly_minutes_agenda.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 134,
+     "status": 200,
+     "pointers": 5
+    },
+    {
+     "url": "https://cartercountytn.gov/public_documents/bids.php",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 5
+    }
+   ]
+  },
+  {
+   "county": "Cheatham",
+   "fips": "47021",
+   "slug": "cheatham",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://cheathamcountytn.gov/minutes_agendas.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 125,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Chester",
+   "fips": "47023",
+   "slug": "chester",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://chestercountytn.org/county_commission.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 6,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Claiborne",
+   "fips": "47025",
+   "slug": "claiborne",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://claibornecountytn.gov/countyoffices/county-commission/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 8,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Clay",
+   "fips": "47027",
+   "slug": "clay",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://claycountytngov.com/new-page",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Cocke",
+   "fips": "47029",
+   "slug": "cocke",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://cockecountytn.gov/clb-1",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 53,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://cockecountytn.gov/bids",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 8,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Coffee",
+   "fips": "47031",
+   "slug": "coffee",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://coffeecountytn.gov/AgendaCenter",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 497,
+     "status": 200,
+     "pointers": 113
+    }
+   ]
+  },
+  {
+   "county": "Crockett",
+   "fips": "47033",
+   "slug": "crockett",
+   "tier": "NONE",
+   "have_rows": 0,
+   "unregistered": true,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": []
+  },
+  {
+   "county": "Cumberland",
+   "fips": "47035",
+   "slug": "cumberland",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://cumberlandcountytn.gov/document-category/documentsofinterest/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 37,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Davidson",
+   "fips": "47037",
+   "slug": "davidson",
+   "tier": "HAVE",
+   "have_rows": null,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://nashville.legistar.com",
+     "kind": "legislation",
+     "tier": "SYSTEM",
+     "platforms": [
+      "legistar"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://nashville.gov/departments/metro-clerk",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "granicus",
+      "legistar",
+      "municode"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://legisarchive.nashville.gov",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    },
+    {
+     "url": "https://nashville.gov/departments/Finance/Procurement",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "granicus",
+      "legistar"
+     ],
+     "docs": 2,
+     "status": 200,
+     "pointers": 3
+    },
+    {
+     "url": "https://nashville.gov/departments/finance/procurement/contract-and-po-award-info",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "granicus",
+      "legistar"
+     ],
+     "docs": 21,
+     "status": 200,
+     "pointers": 3
+    },
+    {
+     "url": "https://documents.nashville.gov/Request/Form/Contracts",
+     "kind": "contracts",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Decatur",
+   "fips": "47039",
+   "slug": "decatur",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://decaturcountytn.gov/official-notices/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 20,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "DeKalb",
+   "fips": "47041",
+   "slug": "dekalb",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://dekalbtennessee.com/commission-meetings.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 8,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Dickson",
+   "fips": "47043",
+   "slug": "dickson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://dicksoncountytn.gov/minutes_agendas.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 105,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Dyer",
+   "fips": "47045",
+   "slug": "dyer",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://dyercounty.com/meeting-minutes",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 22,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://dyercounty.com/request-for-proposal",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 6,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Fayette",
+   "fips": "47047",
+   "slug": "fayette",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://fayettecotn.portal.civicclerk.com",
+     "kind": "legislation",
+     "tier": "SYSTEM",
+     "platforms": [
+      "civicclerk"
+     ],
+     "docs": 0,
+     "status": null
+    },
+    {
+     "url": "https://fayettetn.us/county-commission/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "civicclerk",
+      "wordpress"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://fayettetn.us/county-information/rfp-opportunities/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "civicclerk",
+      "wordpress"
+     ],
+     "docs": 2,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Fentress",
+   "fips": "47049",
+   "slug": "fentress",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://fentresscountytn.gov/minutes-and-resolutions/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 14,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Franklin",
+   "fips": "47051",
+   "slug": "franklin",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://franklincotn.us/agendas_minutes_commission.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 65,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Gibson",
+   "fips": "47053",
+   "slug": "gibson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://gibsontn.org/county-government/county-commission",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 7,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Giles",
+   "fips": "47055",
+   "slug": "giles",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://gilescountytn.gov/news-meeting-minutes/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 10,
+     "status": 200,
+     "pointers": 4
+    },
+    {
+     "url": "https://gilescountytn.gov/category/bid-invitations/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 10,
+     "status": 200,
+     "pointers": 4
+    }
+   ]
+  },
+  {
+   "county": "Grainger",
+   "fips": "47057",
+   "slug": "grainger",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://graingercountycommission.com",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://graingercountycommission.com/minutes/",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Greene",
+   "fips": "47059",
+   "slug": "greene",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://greenecountytngov.com/purchasing/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "govdeals",
+      "publicpurchase",
+      "wordpress"
+     ],
+     "docs": 5,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Grundy",
+   "fips": "47061",
+   "slug": "grundy",
+   "tier": "NONE",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://www.grundycountytn.net",
+     "kind": "site",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Hamblen",
+   "fips": "47063",
+   "slug": "hamblen",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://hamblencountytn.gov/meeting-packets/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 25,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://hamblencountytn.gov/proposals-bids/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 7,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Hamilton",
+   "fips": "47065",
+   "slug": "hamilton",
+   "tier": "HAVE",
+   "have_rows": 24,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://hamiltontn.gov/CountyCommission_Minutes.aspx",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 2,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://resolutions.hamiltontn.gov/ResolutionSearch/ResolutionSearch.aspx",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://hamiltontn.gov/Department_Procurement.aspx",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "planetbids"
+     ],
+     "docs": 2,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://vendors.planetbids.com/portal/78083/portal-home",
+     "kind": "contracts",
+     "tier": "SYSTEM",
+     "platforms": [
+      "planetbids"
+     ],
+     "docs": 0,
+     "status": null
+    }
+   ]
+  },
+  {
+   "county": "Hancock",
+   "fips": "47067",
+   "slug": "hancock",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://hancockcountytn.com/local_public_service_directory/county_commission.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Hardeman",
+   "fips": "47069",
+   "slug": "hardeman",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://hardemancounty.org/government/agendas-minutes/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 119,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Hardin",
+   "fips": "47071",
+   "slug": "hardin",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://hardincogov.com/hardin-county-accounting-department/",
+     "kind": "contracts",
+     "tier": "NONE",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://www.hardincogov.com/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 4,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Hawkins",
+   "fips": "47073",
+   "slug": "hawkins",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://hawkinscountytn.gov/minutes_agendas.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 4,
+     "status": 200,
+     "pointers": 4
+    },
+    {
+     "url": "https://hawkinscountyclerk.com/commission-information/",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Haywood",
+   "fips": "47075",
+   "slug": "haywood",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://haywoodtn.gov/government/county-commission/",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://haywoodtn.gov/news/",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Henderson",
+   "fips": "47077",
+   "slug": "henderson",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://drive.google.com/drive/folders/1blN8rLS_DJSjJPocfD5pNAABzXY9GMaQ",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": null
+    },
+    {
+     "url": "https://hendersoncountytn.gov/finance-department-f9304ed4/bid-opportunities-fdc85159",
+     "kind": "contracts",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 5
+    }
+   ]
+  },
+  {
+   "county": "Henry",
+   "fips": "47079",
+   "slug": "henry",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://henrycountytn.gov",
+     "kind": "site",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://henrycountytn.gov/news",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://www.henrycountyclerktn.com/?page_id=109",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 12,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Hickman",
+   "fips": "47081",
+   "slug": "hickman",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://hickmancountytn.gov/government/agendas",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 44,
+     "status": 200,
+     "pointers": 35
+    },
+    {
+     "url": "https://hickmancountytn.gov/resources/rfp-bids",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 1,
+     "status": 200,
+     "pointers": 5
+    }
+   ]
+  },
+  {
+   "county": "Houston",
+   "fips": "47083",
+   "slug": "houston",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://houstoncountytn.gov/legislative-body-meetings",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wix"
+     ],
+     "docs": 16,
+     "status": 200,
+     "pointers": 21
+    }
+   ]
+  },
+  {
+   "county": "Humphreys",
+   "fips": "47085",
+   "slug": "humphreys",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://humphreyscountytn.gov/agendas.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 114,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Jackson",
+   "fips": "47087",
+   "slug": "jackson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://jacksoncountytn.gov/government/commissioners/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 13,
+     "status": 200,
+     "pointers": 4
+    }
+   ]
+  },
+  {
+   "county": "Jefferson",
+   "fips": "47089",
+   "slug": "jefferson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://jeffersoncountytn.gov/county-commission/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 7,
+     "status": 200,
+     "pointers": 5
+    },
+    {
+     "url": "https://jeffersoncountytn.gov/finance-department/#bids-rfps",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 23,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Johnson",
+   "fips": "47091",
+   "slug": "johnson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://johnsoncountytn.gov/current-public-records",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wix"
+     ],
+     "docs": 24,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://johnsoncountytn.gov/purchasing-department",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "govdeals",
+      "wix"
+     ],
+     "docs": 3,
+     "status": 200,
+     "pointers": 5
+    }
+   ]
+  },
+  {
+   "county": "Knox",
+   "fips": "47093",
+   "slug": "knox",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://public.destinyhosted.com/agenda_publish.cfm?id=56691",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://knoxcounty.org/clerk/commission_minutes.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 388,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://KnoxCM.org",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://knoxcounty.org/apps/solicitations/solicitations.php",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 1,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://knoxcounty.org/purchasing/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "govdeals"
+     ],
+     "docs": 6,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Lake",
+   "fips": "47095",
+   "slug": "lake",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://lakecountytn.gov/government/commissions-and-boards/county-commission",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://lakecountytn.gov/news/public-notices",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 2,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Lauderdale",
+   "fips": "47097",
+   "slug": "lauderdale",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://lauderdaletn.com/county-documents",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 53,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Lawrence",
+   "fips": "47099",
+   "slug": "lawrence",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://lawrencecountytn.gov/government/open-records/meeting-minutes/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 91,
+     "status": 200,
+     "pointers": 4
+    }
+   ]
+  },
+  {
+   "county": "Lewis",
+   "fips": "47101",
+   "slug": "lewis",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://www.lewiscountytn.com",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "wix"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Lincoln",
+   "fips": "47103",
+   "slug": "lincoln",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://lincolncountytn.gov/document_hub/agendas_minutes.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 123,
+     "status": 200,
+     "pointers": 25
+    }
+   ]
+  },
+  {
+   "county": "Loudon",
+   "fips": "47105",
+   "slug": "loudon",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://loudoncounty-tn.gov/meeting-documents/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 763,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://loudoncounty-tn.gov/purchasing/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "govdeals",
+      "wordpress"
+     ],
+     "docs": 15,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "McMinn",
+   "fips": "47107",
+   "slug": "mcminn",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://mcminncountytn.gov/county_commission_minutes.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 39,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "McNairy",
+   "fips": "47109",
+   "slug": "mcnairy",
+   "tier": "NONE",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://mcnairycountytn.org/news--agendas.html",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Macon",
+   "fips": "47111",
+   "slug": "macon",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://maconcountytn.gov/government/county_commission/minutes.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 160,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Madison",
+   "fips": "47113",
+   "slug": "madison",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://www.madisoncountytn.gov",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 3,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Marion",
+   "fips": "47115",
+   "slug": "marion",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://marioncountytn.net/agendas-minutes",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 1,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Marshall",
+   "fips": "47117",
+   "slug": "marshall",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://marshallcountytn.gov/county-commission-minutes",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://secure.tncountyclerk.com",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://marshallcountytn.gov/bids",
+     "kind": "contracts",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://www.marshallcountytn.gov/agendas",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 4,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://www.marshallcountytn.gov/open-bids",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 6,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Maury",
+   "fips": "47119",
+   "slug": "maury",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://www.maurycounty-tn.gov",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Meigs",
+   "fips": "47121",
+   "slug": "meigs",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://meigscountytn.org/county-commission/agenda-for-the-month",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 3
+    },
+    {
+     "url": "https://secure.tncountyclerk.com/minutesSearch/index.php",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://meigscountytn.org/directory-pages/finance/solicitations",
+     "kind": "contracts",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 4
+    }
+   ]
+  },
+  {
+   "county": "Monroe",
+   "fips": "47123",
+   "slug": "monroe",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://monroetn.gov/county-commission-agenda/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 30,
+     "status": 200,
+     "pointers": 3
+    },
+    {
+     "url": "https://monroetn.gov/monroe-county-on-line-bid-system/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "bidnet",
+      "wordpress"
+     ],
+     "docs": 6,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Montgomery",
+   "fips": "47125",
+   "slug": "montgomery",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://montgomerytn.gov/commission",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 27,
+     "status": 200,
+     "pointers": 4
+    },
+    {
+     "url": "https://montgomeryminutes.bisonline.com",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://montgomerytn.gov/purchasing",
+     "kind": "contracts",
+     "tier": "SYSTEM",
+     "platforms": [
+      "bonfire"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://mcgtn.bonfirehub.com/portal/",
+     "kind": "contracts",
+     "tier": "SYSTEM",
+     "platforms": [
+      "bonfire"
+     ],
+     "docs": 0,
+     "status": null
+    }
+   ]
+  },
+  {
+   "county": "Moore",
+   "fips": "47127",
+   "slug": "moore",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://metromoorecounty.org",
+     "kind": "site",
+     "tier": "POINTERS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Morgan",
+   "fips": "47129",
+   "slug": "morgan",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://morgancountytn.gov/county-commission/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Obion",
+   "fips": "47131",
+   "slug": "obion",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://obioncountytn.gov/county_commission.html",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://www.obioncountytn.gov/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 6,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Overton",
+   "fips": "47133",
+   "slug": "overton",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://overtoncountytn.gov/agenda-may2024/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 2,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Perry",
+   "fips": "47135",
+   "slug": "perry",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://perrycountytn.com",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 4,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Pickett",
+   "fips": "47137",
+   "slug": "pickett",
+   "tier": "POINTERS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://dalehollow.com",
+     "kind": "site",
+     "tier": "POINTERS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Polk",
+   "fips": "47139",
+   "slug": "polk",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://polkcountytn.gov/agendas-minutes-2/",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    },
+    {
+     "url": "https://polkcountytn.gov/bids-rfps/",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    }
+   ]
+  },
+  {
+   "county": "Putnam",
+   "fips": "47141",
+   "slug": "putnam",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://putnamcountytn.gov",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://ada.putnamcountytn.gov",
+     "kind": "legislation",
+     "tier": "POINTERS",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    },
+    {
+     "url": "https://putnamcountytn.gov/commission-agenda",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 108,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://putnamcountytn.gov/commission-minutes",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 237,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Rhea",
+   "fips": "47143",
+   "slug": "rhea",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://rheacountytn.org/agendas-and-minutes/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 63,
+     "status": 200,
+     "pointers": 5
+    }
+   ]
+  },
+  {
+   "county": "Roane",
+   "fips": "47145",
+   "slug": "roane",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://roanecountytn.gov/county-commission/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 3,
+     "status": 200,
+     "pointers": 8
+    },
+    {
+     "url": "https://roanecountytn.gov/purchasing-department/",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "bidnet",
+      "wordpress"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Robertson",
+   "fips": "47147",
+   "slug": "robertson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "http://www.robertsoncountytn.org",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Rutherford",
+   "fips": "47149",
+   "slug": "rutherford",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://rutherfordcountytn.gov/bid-opportunities",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": "robots"
+    }
+   ]
+  },
+  {
+   "county": "Scott",
+   "fips": "47151",
+   "slug": "scott",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://scottcounty.com/government/meeting-agendas/",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    },
+    {
+     "url": "https://scottcounty.com/government/bids/",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    }
+   ]
+  },
+  {
+   "county": "Sequatchie",
+   "fips": "47153",
+   "slug": "sequatchie",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://sequatchiecountytn.gov/news.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 7,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Sevier",
+   "fips": "47155",
+   "slug": "sevier",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://seviercountytn.gov/government/county_officials/county_commissioners/county_commission_agenda.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 94,
+     "status": 200,
+     "pointers": 3
+    },
+    {
+     "url": "https://seviercountytn.gov/how_do_i/submit_a_bid.php",
+     "kind": "contracts",
+     "tier": "POINTERS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Shelby",
+   "fips": "47157",
+   "slug": "shelby",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://shelbycountytn.gov/71/Shelby-County-Board-of-Commissioners",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    },
+    {
+     "url": "https://shelbycountytn.gov/72/Code-of-Ordinances",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    },
+    {
+     "url": "https://bids.shelbycountytn.gov",
+     "kind": "contracts",
+     "tier": "UNREACHED",
+     "platforms": [],
+     "docs": 0,
+     "status": "error:ConnectionError"
+    },
+    {
+     "url": "https://contracts.shelbycountytn.gov/PurchaseOrders",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    }
+   ]
+  },
+  {
+   "county": "Smith",
+   "fips": "47159",
+   "slug": "smith",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "NOT FOUND",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://smithcotn.com",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 5,
+     "status": 200,
+     "pointers": 6
+    }
+   ]
+  },
+  {
+   "county": "Stewart",
+   "fips": "47161",
+   "slug": "stewart",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://www.stewartcogov.com",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 12,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Sullivan",
+   "fips": "47163",
+   "slug": "sullivan",
+   "tier": "NONE",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://sullivancountyclerktn.com",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://sullivancountyclerktn.com/commission-minutes/",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Sumner",
+   "fips": "47165",
+   "slug": "sumner",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://sumnercountytn.gov/government/county-commission/",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    },
+    {
+     "url": "https://sumnercountytn.gov/departments/finance/purchasing/",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    },
+    {
+     "url": "https://sumnercountytn.gov/government/2026-committee-meetings/",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    },
+    {
+     "url": "https://sumnercountytn.gov/agendas-minutes/",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 202
+    }
+   ]
+  },
+  {
+   "county": "Tipton",
+   "fips": "47167",
+   "slug": "tipton",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://tiptonco.com",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 4,
+     "status": 200,
+     "pointers": 3
+    }
+   ]
+  },
+  {
+   "county": "Trousdale",
+   "fips": "47169",
+   "slug": "trousdale",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://trousdalecountytn.gov/government/local_government/commission_meeting_agendas_minutes.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 234,
+     "status": 200,
+     "pointers": 130
+    },
+    {
+     "url": "https://trousdalecountytn.gov/government/public_notices/bid_listing.php",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [
+      "bidnet",
+      "revize"
+     ],
+     "docs": 3,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  },
+  {
+   "county": "Unicoi",
+   "fips": "47171",
+   "slug": "unicoi",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://unicoicountytn.gov",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 1,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Union",
+   "fips": "47173",
+   "slug": "union",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://historicunioncounty.com",
+     "kind": "legislation",
+     "tier": "NONE",
+     "platforms": [],
+     "docs": 0,
+     "status": 200,
+     "pointers": 0
+    },
+    {
+     "url": "https://www.unioncountytnclerk.com/minutes/",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "wordpress"
+     ],
+     "docs": 153,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Van Buren",
+   "fips": "47175",
+   "slug": "van-buren",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": true,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://vanburencountytn.com/agendas_minutes/index.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 236,
+     "status": 200,
+     "pointers": 76
+    },
+    {
+     "url": "https://vanburencountytn.com/bids/index.html",
+     "kind": "contracts",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 2,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Warren",
+   "fips": "47177",
+   "slug": "warren",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://www.warrencountytn.gov",
+     "kind": "site",
+     "tier": "POINTERS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://www.warrencountytn.gov/government/county_commission/index.php",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "granicus",
+      "revize"
+     ],
+     "docs": 4,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "http://warrencountytn.granicus.com/ViewPublisher.php?view_id=1",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": "robots"
+    },
+    {
+     "url": "https://www.warrencountytn.gov/government/bid_opportunities/index.php",
+     "kind": "contracts",
+     "tier": "POINTERS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 0,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "Washington",
+   "fips": "47179",
+   "slug": "washington",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://washingtoncountytn.org/129/Agendas-Minutes",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    }
+   ]
+  },
+  {
+   "county": "Wayne",
+   "fips": "47181",
+   "slug": "wayne",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "http://www.waynecountytn.org",
+     "kind": "site",
+     "tier": "LISTS",
+     "platforms": [
+      "revize"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 0
+    }
+   ]
+  },
+  {
+   "county": "Weakley",
+   "fips": "47183",
+   "slug": "weakley",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "VERIFIED",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://weakleycountytn.gov/agendas-minutes-resolutions.html",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [],
+     "docs": 97,
+     "status": 200,
+     "pointers": 1
+    }
+   ]
+  },
+  {
+   "county": "White",
+   "fips": "47185",
+   "slug": "white",
+   "tier": "BLOCKED",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Yes"
+   },
+   "seeds": [
+    {
+     "url": "https://whitecountytn.gov/AgendaCenter",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    },
+    {
+     "url": "https://whitecountytn.gov/316/Bids-Purchasing",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    },
+    {
+     "url": "https://whitecountytn.gov/government/county-commission-minutes",
+     "kind": "legislation",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    },
+    {
+     "url": "https://whitecountytn.gov/government/county-departments/department-finance/bids-and-purchasing",
+     "kind": "contracts",
+     "tier": "BLOCKED",
+     "platforms": [],
+     "docs": 0,
+     "status": 403
+    }
+   ]
+  },
+  {
+   "county": "Williamson",
+   "fips": "47187",
+   "slug": "williamson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "Partial"
+   },
+   "seeds": [
+    {
+     "url": "https://williamsoncounty-tn.gov/AgendaCenter",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 380,
+     "status": 200,
+     "pointers": 94
+    }
+   ]
+  },
+  {
+   "county": "Wilson",
+   "fips": "47189",
+   "slug": "wilson",
+   "tier": "LISTS",
+   "have_rows": 0,
+   "unregistered": false,
+   "contracts_seed_listed": false,
+   "workbook": {
+    "verification": "PARTIAL",
+    "bids_online": "No"
+   },
+   "seeds": [
+    {
+     "url": "https://www.wilsoncountytn.gov/AgendaCenter",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 78,
+     "status": 200,
+     "pointers": 2
+    },
+    {
+     "url": "https://www.wilsoncountytn.gov/Archive.aspx",
+     "kind": "legislation",
+     "tier": "LISTS",
+     "platforms": [
+      "civicplus"
+     ],
+     "docs": 1,
+     "status": 200,
+     "pointers": 2
+    }
+   ]
+  }
+ ]
+}
