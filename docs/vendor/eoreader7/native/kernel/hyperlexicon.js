@@ -1,4 +1,4 @@
-/* Xushen speaks:
+/* Xushen — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “The aim of Hsii-shén was to impede any ulterior altera- 
 tion of the characters, by setting their authentical form before the eyes of all 
 

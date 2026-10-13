@@ -1,4 +1,4 @@
-/* Scheherazade speaks:
+/* Scheherazade — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “the  better  to  speed  our  waking  hours ; "  and  I  will  tell  thee  a  tale 
 which  shall  be  our  deliverance,  if  so  Allah  please,  and  which  shall 
 turn  the  King  from  his  blood-thirsty  custom."”

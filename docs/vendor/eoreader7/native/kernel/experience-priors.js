@@ -1,4 +1,4 @@
-/* Vasana speaks:
+/* Vasana — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “And  the  serial-order  (santana)  of  undifferentiated-consciousness  and  of  the 
 subconscious-impressions  (vasana)  is,  like  the  serial-order  of  seed  and  sprout, 
 without  beginning.”

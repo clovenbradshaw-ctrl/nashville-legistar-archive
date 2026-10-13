@@ -1,4 +1,4 @@
-/* Strunk & White speaks:
+/* Strunk & White — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Vigorous writing is concise. A sentence should contain no unnecessary
 words, a paragraph no unnecessary sentences, for the same reason that a
 drawing should have no unnecessary lines and a machine no unnecessary

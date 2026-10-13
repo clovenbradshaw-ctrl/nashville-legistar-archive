@@ -1,4 +1,4 @@
-/* Arokin speaks:
+/* Arokin — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “The  Arokins.  These  are  the  rhapsodists  or  national  historians, 
 an  hereditary  title  ;  they  have  an  apartment  to  themselves  where 
 they  repeat  daily  in  songs  the  genealogy  of  the  Kings,  the  principal 

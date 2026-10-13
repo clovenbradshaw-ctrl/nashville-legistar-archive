@@ -1,4 +1,4 @@
-/* Nagarjuna speaks:
+/* Nagarjuna — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “But can there be a more eloquent refutation of 
 an opponent than the proof that he is not capable of 
 establishing his own thesis”

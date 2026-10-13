@@ -1,4 +1,4 @@
-/* Dignaga speaks:
+/* Dignaga — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Therefore the meaning of a word 
 consists in a repudiation of the discrepant meaning".”
  *

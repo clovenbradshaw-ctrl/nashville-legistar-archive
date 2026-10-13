@@ -49,11 +49,20 @@
 import { STANCE } from "../../kernel/perspective.js";
 import { userOperation } from "../../kernel/theory-of-mind.js";
 
+// The chat medium's own tokenizer. Apostrophes stay INSIDE a word (so "don't",
+// "that's", "you're" are single tokens the closed classes can name), and
+// typographic quotes fold to the straight form. Splitting on apostrophes —
+// what this did before 2026-10-09 — made every contracted entry in
+// NEGATION_WORDS/ANAPHORIC_PRONOUNS unmatchable ("don't" became ["don","t"]),
+// which is exactly how casual turns ("don't think thats right") lost their
+// negation. `'s` is NOT stripped here: the classes name both "that" and
+// "that's", so the surface the person actually typed is the one matched.
 const tok = (s) =>
   String(s ?? "")
     .toLowerCase()
-    .replace(/['’]s\b/g, "")
-    .split(/[^\p{L}\p{N}]+/u)
+    .replace(/[’‘`´]/g, "'")
+    .split(/[^\p{L}\p{N}']+/u)
+    .map((t) => t.replace(/^'+|'+$/g, ""))
     .filter(Boolean);
 
 /**
@@ -68,9 +77,12 @@ const tok = (s) =>
  *   negation     Set<string>|null — priors.js's NEGATION_WORDS
  *   anaphoric    Set<string>|null — priors.js's ANAPHORIC_PRONOUNS (it/this/that/... — the pointing-back class)
  *   stop         Set<string>|null — closed-class tokens that carry no claim (tokenize's own STOPWORDS)
+ *   askMarks     RegExp|null — the script-neutral trailing ask-mark class
+ *   discourseMarkers Set<string>|null — casual lead-ins (hmm, so, wait, ...) that
+ *                do not change the turn's KIND and are skipped to find the head
  * @returns {{kind, claim, witness, op, mind, firstPerson}} or {gap:{type,detail}}
  */
-export function userTurnOperation(turn, { index = null, mind = null, firstPerson = null, interrogatives = null, negation = null, anaphoric = null, stop = null } = {}) {
+export function userTurnOperation(turn, { index = null, mind = null, firstPerson = null, interrogatives = null, negation = null, anaphoric = null, stop = null, askMarks = null, discourseMarkers = null } = {}) {
   const raw = typeof turn === "string" ? turn : String(turn?.text ?? "");
   const trimmed = raw.trim();
   if (!trimmed) {
@@ -89,14 +101,25 @@ export function userTurnOperation(turn, { index = null, mind = null, firstPerson
 
   const witness = `turn:${index}`;
   const isFirstPerson = firstPerson instanceof RegExp && tokens.some((t) => firstPerson.test(t));
-  const head = tokens[0];
+
+  // CASUAL LEAD-INS ARE NOT THE KIND. A turn opens with discourse markers as
+  // often as with its subject — "wait what", "so basically X", "hmm idk". The
+  // markers are a RECEIVED class (injected), and the head the shape is read
+  // from is the first non-marker token. Bounded so a turn that is ALL markers
+  // still reads from its first token rather than falling off the end.
+  const markers = discourseMarkers instanceof Set ? discourseMarkers : null;
+  let hi = 0;
+  if (markers) while (hi < tokens.length - 1 && markers.has(tokens[hi])) hi += 1;
+  const head = tokens[hi];
 
   // An ask is an interrogative SHAPE: a trailing mark, or an interrogative
-  // opening. Shape, never a word list. A rhetorical denial ("why would I do
-  // that?") reads as an ask too — the shape is all a mechanical read has,
-  // and the person's own words stay the claim either way (S3 is the model's
-  // and the reader's, never this file's).
-  const trailingAsk = /[?？]$/.test(trimmed);
+  // opening. Shape, never a word list. `askMarks` is the script-neutral
+  // trailing-mark class (turn-priors.js QUESTION_MARKS) when the caller
+  // supplies one; the ASCII/fullwidth default stands otherwise. A rhetorical
+  // denial ("why would I do that?") reads as an ask too — the shape is all a
+  // mechanical read has, and the person's own words stay the claim either way
+  // (S3 is the model's and the reader's, never this file's).
+  const trailingAsk = askMarks instanceof RegExp ? askMarks.test(trimmed) : /[?？]$/.test(trimmed);
   const openingAsk = interrogatives instanceof Map && interrogatives.has(head);
 
   // A re-zero opens with a negation AND points back at what was held — an

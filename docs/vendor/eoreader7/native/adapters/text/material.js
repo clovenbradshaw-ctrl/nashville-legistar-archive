@@ -22,12 +22,13 @@
 // one call site that actually needs it, so a host that never calls load()
 // never evaluates the import expression at all — Node resolves it exactly
 // as the static form did; nothing about the Node contract changes.
+import { hear } from "./active-ear.js";
 import { stripContainer } from "./spans.js";
 
 const WORD_RE = /[\p{L}\p{N}']+/gu;
 const MICROBITS = 1_000_000;
 
-export const tokenize = (text) => text.toLowerCase().match(WORD_RE) || [];
+export const tokenize = (text) => hear(text.toLowerCase()).match(WORD_RE) || [];
 
 export const buildFrequencyTable = (words) => {
   const freq = new Map();

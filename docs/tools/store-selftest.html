@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>holodeck-store selftest</title>
+<script type="module">
+import { openStore } from '../holodeck-store.js';
+const OLLAMA = 'http://127.0.0.1:11435';
+async function embed(text) {
+  const r = await fetch(`${OLLAMA}/api/embed`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: 'nomic-embed-text', input: ['search_query: ' + text] }) });
+  if (!r.ok) throw new Error('embed ' + r.status);
+  return new Float32Array((await r.json()).embeddings[0]);
+}
+window.__result = { status: 'running' };
+try {
+  const s = await openStore({ corpus: 'nashville' });
+  const lex = await s.searchLexical('MOTOROLA', { limit: 3 });
+  let idx = null;
+  try { idx = await s.searchIndex('motorola radio equipment for police', { embed, limit: 6 }); } catch (e) { idx = { error: String(e && e.message || e) }; }
+  window.__result = {
+    status: 'ok', count: s.count(), hasIndex: s.hasIndex(),
+    lexical: lex.map((h) => h.id),
+    index: idx,
+  };
+} catch (e) { window.__result = { status: 'error', error: String((e && e.message) || e) }; }
+</script>

@@ -1,4 +1,4 @@
-/* Zhengming speaks:
+/* Zhengming — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “If  names  be  not  correct,  language  is  not  in 
 accordance  with  the  truth  of  things.     If  language  be 
 not  in  accordance  with  the  truth  of  things,   affairs 
@@ -98,6 +98,10 @@ cannot  be  carried  on  to  success.”
  * its referent least ambiguously. Same organs, same discovery as the
  * resolver; the two cannot drift.
  */
+// A token long enough to individuate a name: three letters in an alphabet, two
+// characters in a script whose characters are morphemes (Han/Kana/Hangul).
+const individuatesName = (t) => t.length > (/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(t) ? 1 : 2);
+
 export function makeCastHandles({ splitSentences, extractSurfaces, discoverReferents, blankFurniture = null }) {
   return function handlesFor(passages) {
     const text = (passages ?? []).map((p) => (blankFurniture ? (p?.blanked ?? p?.text ?? "") : (p?.text ?? ""))).join("\n\n");
@@ -164,7 +168,7 @@ export function makeReferentIndex({ splitSentences, extractSurfaces, discoverRef
         }
         const admitted = [];
         for (const l of leadingSurfaces(sentences, {}) ?? []) {
-          const toks = diaNorm(l.surface).split(/\s+/).filter((t) => t.length > 2);
+          const toks = diaNorm(l.surface).split(/\s+/).filter(individuatesName);
           if (!toks.length) continue;
           // multi-word runs skip the physics filter exactly as surfacesFromEvidence
           // does (a lowercase form of "Thomas Edison" does not occur); a single
@@ -235,7 +239,7 @@ export function makeReferentIndex({ splitSentences, extractSurfaces, discoverRef
       // supplies it. This resolver is the seam where that prior will plug
       // in; it does not pretend to be the prior.
       const ids = new Set();
-      const parts = fold(name).split(/\s+/).filter((t) => t.length > 2);
+      const parts = fold(name).split(/\s+/).filter(individuatesName);
       if (!parts.length) return ids;
       for (const e of events) {
         if (!namesCorefer(name, e.surface, { fold })) continue;

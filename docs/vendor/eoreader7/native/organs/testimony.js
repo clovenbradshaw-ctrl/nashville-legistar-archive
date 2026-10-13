@@ -1,4 +1,4 @@
-/* Wigmore speaks:
+/* Wigmore — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “for  example,  the  statement  of  A 
 that  B  struck  X,  —  it  is  plain  that  at  least  three  distinct  elements  are 
 present ;  or,  put  in  another  way,  that  there  are  three  stages  to  the  process, 

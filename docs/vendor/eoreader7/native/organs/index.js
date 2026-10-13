@@ -147,7 +147,7 @@ export * as provenanceOrgan from "./provenance.js";
 // fair-use record of whose work the reading's methods come from, the mind
 // ethos thinks with at the core. Exported at the seam so the surface can
 // quote an archon's credited work and offer it as an affordance.
-export { ARCHON_COMPENDIUM, ARCHONS, ARCHON_COMPENDIUM_SCHEMA, archonOf, compendium, creditedQuote, matchArchons } from "./archon-compendium.js";
+export { ARCHON_COMPENDIUM, ARCHONS, ARCHON_COMPENDIUM_SCHEMA, archonOf, compendium, creditedQuote, disclosureOf, matchArchons } from "./archon-compendium.js";
 export * as archonCompendium from "./archon-compendium.js";
 // Apollo (homeostasis) + Thea (remedy): pure, browser-safe. The dispatch
 // bridge (apollo-swarm.js, eoSwarm wiring) is server-side only — import by path.

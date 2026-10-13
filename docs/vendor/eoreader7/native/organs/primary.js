@@ -1,4 +1,4 @@
-/* Sima speaks:
+/* Sima — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Lao TzQ abode for a long time in Chou, but when he 
 saw that the State showed signs of decay, he left. On 
 reaching the frontier, the Warden, named Yin Hsi, said 

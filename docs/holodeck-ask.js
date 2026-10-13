@@ -6,11 +6,15 @@
 // 400 is the summary, the records, and the last exchanges — never the transcript. Whatever the model is, it only
 // ever rides in as the mouth of this full pipeline — it never runs outside it.
 import * as FOLD from './vendor/the-fold/fold.js';
+import { mechanicalRefresh } from './holodeck-carry.js';
 import { chunkSource, retrieve, buildSourceBlock, openQuestions, readRange, tokenize, foldDiacritics } from './vendor/eoreader7/native/organs/source.js';
 import { meetingBoundaries } from './vendor/eoreader7/native/organs/speaker.js';
 import { buildFactBlock, dedupeSourceText } from './vendor/eoreader7/native/organs/fact-block.js';
 import { makeEngineRelationReader, readCorpus, blankMarkup } from './holodeck-reader.js';
 import * as HH from './holodeck-chat-lane.js';
+import { answerFromFold } from './holodeck-inquiry.js';
+import { mathInstance, aboutArithmetic } from './holodeck-math.js';
+import { activationRetrieval } from './holodeck-activation.js';
 let _reader = null; const reader = () => _reader || (_reader = makeEngineRelationReader());
 import { ladder, conclusionOf, select } from './holodeck-summary.js';
 // Gary, the prompt archon: he owns what the mouth is handed, in what order, and
@@ -176,7 +180,7 @@ async function chat(base, model, messages, opts = {}) {
 
 // One turn. `conv` = { summary, history, turns }. `computed` is an optional block of values computed from the
 // Records database (never asked of the model); it rides into the prompt as material and onto the record.
-export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_MODEL, computed = null, reading = null, retrievalQ = null, resolved = null, ctx = 4096, onToken, onStage, signal, deferFold = false, onFold = null, docs = null, summarize = true, privacy = 'local-raw' } = {}) {
+export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_MODEL, computed = null, reading = null, retrievalQ = null, resolved = null, ctx = 4096, onToken, onStage, signal, deferFold = false, onFold = null, docs = null, summarize = true, privacy = 'local-raw', rix = null, carry = 'model', declarations = null } = {}) {
   const t0 = Date.now(); const turnNo = (conv.summary.turnCount || 0) + 1;
   // THE SEALED BOUNDARY: an outside executor (heimdall frontier/remote model)
   // may only receive the projection the Fold builds. When the caller selects
@@ -187,7 +191,19 @@ export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_
   const folded = conv.summary.records.flatMap(r => r.refs || []);
   onStage && onStage('retrieving');
   const qTerms = [...new Set(tokenize(retrievalQ || question))];
-  const ranked = retrieve(IX.chunks, retrievalQ || question, 8, folded).map(c => narrow(c, qTerms));
+  // §7 MEANING ACTIVATION (holodeck-activation.js), composed, no second engine:
+// retrieve by the referents the reading ADMITTED (rix.cast → the engine's own
+// identity index via readingIndexFromLog), hop-0/structure over the mention
+// book. When the question resolves to no referent the term retriever stands —
+// the organ's own `basis` rule — and the method is disclosed either way on the
+// turn and the inquiry record (§16.6).
+  let activation = null;
+  try { activation = activationRetrieval({ rix, IX, question: retrievalQ || question, transcript: conv.turns, seen: folded, limit: 8 }); } catch { activation = null; }
+  const ranked0 = activation ? activation.passages : retrieve(IX.chunks, retrievalQ || question, 8, folded);
+  const retrievalMeta = activation
+    ? { basis: 'activation', source: 'meaning activation over the workspace cast', resolution: activation.meta.resolution, active: activation.meta.active.length, hop1: activation.meta.hop1.length, window: activation.meta.window, grain: activation.meta.grain, why: activation.meta.why, fallback: false }
+    : { basis: 'surface', source: 'workspace chunk index (term)', chunks: IX.chunks.length, why: 'meaning activation resolved no referent', fallback: true };
+  const ranked = ranked0.map(c => narrow(c, qTerms));
   const history = conv.history.slice(-2).map(m => ({ ...m, content: m.content.length > 1200 ? m.content.slice(0, 1200) + '…' : m.content }));
   // THE SURF AND FOLD (eoreader7 / the-fold holon.js): the passages are read by the engine's own relation reader,
   // and what the model receives is that reading as defeasible NOTES plus only the byte-addressed spans that bound
@@ -272,8 +288,32 @@ export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_
   const sentChars = FOLD.charCount(messages);
   const transcriptChars = conv.history.reduce((n, m) => n + (m.content || '').length, 0) + question.length;
   onStage && onStage('answering');
-  const res = await chat(base, model, messages, { onToken, signal, maxTokens: 700, sealed });
-  const answer = stripSelfCitations(res.text).text;
+  // THE FOLD ANSWERS FIRST (spec §9, "can the Fold answer?"): before any model
+  // draw, the exact, addressed doors answer from local evidence alone. When one
+  // fires, the model is not asked — a mechanical answer is never laundered
+  // through a mouth. Otherwise the turn proceeds to the model exactly as
+  // before. The attempt is recorded either way as a FoldInquiry@1
+  // (holodeck-inquiry.js), and its disposition rides on the turn.
+  // The computation door needs the math engine; it is loaded lazily, ONLY when
+  // the question looks arithmetic (aboutArithmetic), so non-numeric turns never
+  // pay the vendor load.
+  let math = null;
+  if (aboutArithmetic(question)) { try { math = await mathInstance(); } catch { math = null; } }
+  const foldInquiry = answerFromFold({
+    question,
+    passages: offered,
+    edges: (relations && relations.edges) || [],
+    math,
+    declarations,
+    retrieval: retrievalMeta,
+    transcript: conv.turns,
+    chunksByRef: new Map(IX.chunks.map((c) => [c.ref, c])),
+    cursor: turnNo,
+    workspace: IX.workspace ?? null,
+  });
+  let res = null, answer = null;
+  if (foldInquiry.answer) { answer = foldInquiry.answer.text; onStage && onStage('fold-answer'); }
+  else { res = await chat(base, model, messages, { onToken, signal, maxTokens: 700, sealed }); answer = stripSelfCitations(res.text).text; }
   onStage && onStage('checking');
   const attr = offered.length ? coverage(answer, offered, IX.chunks) : [];
   const castSet = new Set(((reading && reading.surfaces) || []).map(x => foldDiacritics(String(x).toLowerCase())));
@@ -282,14 +322,23 @@ export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_
   const unsupported = unsupportedClaims(grounding);
   const used = [...new Set(attr.map(a => a.ref).filter(Boolean))];
   const open = openQuestions(question, offered, used);
-  const channels = [synopsis && synopsis.text ? 'summary' : null, notes && !notes.empty ? 'notes' : null, offered.length ? 'material' : null, reading ? 'reading' : null, computed && computed.text ? 'records' : null, 'model'].filter(Boolean);
+  const channels = [synopsis && synopsis.text ? 'summary' : null, notes && !notes.empty ? 'notes' : null, offered.length ? 'material' : null, reading ? 'reading' : null, computed && computed.text ? 'records' : null, foldInquiry.answer ? 'fold' : null, foldInquiry.answer ? null : 'model'].filter(Boolean);
   const record = FOLD.buildWarrantRecord({ turn: turnNo, plane: 'world', gist: FOLD.mechanicalFoldLine(question, answer), channels, refs: used, unsupported, open });
   const withRecord = FOLD.addWarrantRecord(conv.summary, record);
   const foldLine = FOLD.mechanicalFoldLine(question, answer);
   // The turn is recorded the moment its answer and addressed record exist. The summary refresh (System 2's
   // discourse fold) is a SECOND model call, and it is never allowed to hold up the record or the next message:
   // when deferred it runs after this returns, and the caller folds its result back in when it lands.
+  // CARRY = 'mechanical' (THE-HOLOGRAPH §6): the discourse fields are COMPUTED from the history and the material's cast
+  // (holodeck-carry.js) — no second model call, no drift. Default stays 'model' until the mechanical carry has been measured
+  // against it; when the cast is empty the mechanical path says why and the model refresh below runs as before.
   const refreshSummary = async (from, sig) => {
+    if (carry === 'mechanical' && rix) {
+      try {
+        const m = mechanicalRefresh({ FOLD, from, foldLine, rix, history: conv.history, question, answer, used });
+        if (m.refresh.ok) return m;
+      } catch (e) { /* fall through to the model refresh */ }
+    }
     try {
       const up = FOLD.buildSummaryUpdatePrompt(from, [...(from.folds || []), foldLine]);
       const r2 = await chat(base, model, [{ role: 'system', content: FOLD.FOLD_SYSTEM_PROMPT }, { role: 'user', content: up }], { format: FOLD.FOLD_SCHEMA, maxTokens: 300, signal: sig, sealed });
@@ -304,7 +353,11 @@ export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_
   let summary = FOLD.advanceSummaryFold(withRecord, foldLine);
   let refresh = { ok: false, why: '', pending: !!deferFold };
   let fold = null;
-  if (deferFold) {
+  if (foldInquiry.answer) {
+    // The Fold answered exactly. No second model call is spent folding a turn
+    // that needed no mouth (spec §9: an exact answer is not laundered).
+    refresh = { ok: false, why: 'answered from the Fold — no model fold spent' };
+  } else if (deferFold) {
     const foldAc = new AbortController();
     const onOuterAbort = () => { try { foldAc.abort(); } catch (e) {} };
     if (signal) signal.addEventListener('abort', onOuterAbort, { once: true });
@@ -315,8 +368,8 @@ export async function turn(conv, IX, question, { base = OLLAMA, model = DEFAULT_
   }
   const t = { n: turnNo, question, answer, used: used.map(ref => ({ ref, text: String(readRange(IX.texts, ref) || '').trim().slice(0, 700) })), offered: offered.map(c => ({ ref: c.ref, source: c.source, start: c.start, end: c.end, label: c.label, text: c.text.slice(0, 700) })),
     attr: attr.map(a => ({ text: a.text, ref: a.ref || null, via: a.via || null })), findings: (grounding.findings || []).map(f => ({ text: f.text, kind: f.atomKind, start: f.start, end: f.end, echoesQuestion: !!f.echoesQuestion })),
-    examined: !!grounding.examined, record, foldLine, refresh, computed, synopsis, gary: garyCheck, reading: reading ? { lines: reading.lines } : null, notes, resolved: resolved && resolved.length ? resolved : null, sentChars, transcriptChars, messages, model, ms: Date.now() - t0,
-    tokens: res.stats ? { out: res.stats.eval_count, in: res.stats.prompt_eval_count, secs: res.stats.total_duration ? res.stats.total_duration / 1e9 : null } : null,
+    examined: !!grounding.examined, record, foldLine, refresh, computed, synopsis, gary: garyCheck, reading: reading ? { lines: reading.lines } : null, notes, resolved: resolved && resolved.length ? resolved : null, sentChars, transcriptChars, messages, model, ms: Date.now() - t0, foldInquiry, noModel: !!foldInquiry.answer, disposition: foldInquiry.disposition, retrieval: retrievalMeta,
+    tokens: res && res.stats ? { out: res.stats.eval_count, in: res.stats.prompt_eval_count, secs: res.stats.total_duration ? res.stats.total_duration / 1e9 : null } : null,
     sealed, rawWithheld: sealed ? (factBlock && factBlock.spans && factBlock.spans.length ? factBlock.spans.length : (offered.length || 0)) : 0 };
   return { conv: { summary, history: [...conv.history, { role: 'user', content: question }, { role: 'assistant', content: answer }], turns: [...conv.turns, t] }, turn: t, fold };
 }

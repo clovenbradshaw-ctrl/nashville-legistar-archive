@@ -1,0 +1,29 @@
+# /etc/systemd/system/holodeck-gate.service
+[Unit]
+Description=Holodeck login gate (password + authenticator in front of the Matrix login)
+After=network.target matrix-synapse.service
+
+[Service]
+Type=simple
+User=holodeck-gate
+Group=holodeck-gate
+WorkingDirectory=/opt/holodeck-gate
+# GATE_KEY=<32 bytes, base64>  — in this file only, mode 0600, owned by root
+EnvironmentFile=/etc/holodeck-gate/key.env
+ExecStart=/usr/bin/node /opt/holodeck-gate/tools/login-gate/cli.mjs serve /etc/holodeck-gate/gate.json
+Restart=always
+RestartSec=3
+# the gate needs to write exactly one file
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadWritePaths=/var/lib/holodeck-gate
+StateDirectory=holodeck-gate
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target

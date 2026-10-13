@@ -25,9 +25,15 @@
 #   GET /list?id=<id>&lang=<bcp47>    -> available tracks, manual and automatic
 #   GET /captions?id=<id>&lang=<bcp47>-> {title,author,lang,kind,segments:[{start,end,text}]}
 #   GET /audio?id=<id>                -> the best audio-only stream (m4a/webm), for Whisper
+#   GET /clip?id=&start=&end=&name=   -> one snipped mp4 (yt-dlp --download-sections)
+#   GET /stitch?id=&name=&seg=A-B&... -> segments joined into one mp4 (ffmpeg concat)
 #
-# Requires: yt-dlp (pipx/pip/homebrew). ffmpeg is only needed for /audio remuxing; a raw
-# audio-only stream is served without it when possible.
+# /clip and /stitch write named mp4 files under clips/ (the reading surface's static root),
+# so the browser plays them back at /clips/<name>.mp4. A clip is a cut of real bytes —
+# "a difference against a ground" — never a render of a transcript.
+#
+# Requires: yt-dlp (pipx/pip/homebrew). ffmpeg is needed for /audio remuxing, /clip cuts,
+# and /stitch joins; a raw audio-only stream is served without it when possible.
 
 import argparse
 import json
@@ -35,8 +41,17 @@ import mimetypes
 import os
 import re
 import shutil
+import subprocess
 import tempfile
 import threading
+
+# Where snipped/stitched mp4s land. The reading surface's static server (tools/serve.mjs)
+# serves the repo root, so a clip at clips/<name>.mp4 is player on the surface at
+# /clips/<name>.mp4. Point FOLD_CLIPS_DIR elsewhere to keep clips out of the repo.
+CLIPS_DIR = os.environ.get(
+    "FOLD_CLIPS_DIR",
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "clips"),
+)
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
@@ -199,6 +214,137 @@ def fetch_audio(video_id):
     return path, mime, tmp
 
 
+# --- snip / stitch -----------------------------------------------------------
+# The cut is real bytes: yt-dlp's --download-sections on the reader's own machine, then
+# ffmpeg only where a join needs one encoding. The model never invents a cut.
+
+def _to_seconds(t):
+    """'HH:MM:SS', 'MM:SS', or a bare second count -> float seconds; else None."""
+    t = str(t or "").strip()
+    if not t:
+        return None
+    if re.fullmatch(r"\d+(?:\.\d+)?", t):
+        n = float(t)
+        return round(n, 2) if n >= 0 else None
+    m = re.fullmatch(r"(\d{1,3}):([0-5]?\d)(?::([0-5]?\d))?", t)
+    if not m:
+        return None
+    h, mn, s = m.group(1), m.group(2), m.group(3)
+    secs = (int(h) * 3600 + int(mn) * 60 + int(s or 0)) if s is not None else (int(h) * 60 + int(mn))
+    return round(float(secs), 2)
+
+
+def _clock(sec):
+    h, rem = divmod(int(round(sec)), 3600)
+    m, s = divmod(rem, 60)
+    return "%02d:%02d:%02d" % (h, m, s)
+
+
+def _slug(name):
+    slug = re.sub(r"[^A-Za-z0-9._-]+", "-", str(name or "").strip().lower()).strip("-._")
+    return slug[:80] or "clip"
+
+
+def _probe_duration(video_id):
+    """(duration, title) or (None, '') — the bound is best-effort: a blocked probe must
+    never withhold a cut, only its range check."""
+    try:
+        info = _probe("https://www.youtube.com/watch?v=" + video_id)
+        return info.get("duration"), info.get("title") or ""
+    except Exception:
+        return None, ""
+
+
+def _download_section(video_id, start, end, outpath):
+    """One absolute range of one video, cut to keyframes, merged to an mp4. argv-bounded."""
+    cmd = [
+        "yt-dlp", "--no-warnings", "--force-overwrites", "--no-progress", "--quiet",
+        "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best",
+        "--download-sections", "*%s-%s" % (start, end),
+        "--force-keyframes-at-cuts",
+        "--merge-output-format", "mp4",
+    ]
+    # Optional: passing a browser name lets yt-dlp lift cookies for the bot wall the
+    # datacenter IP sometimes meets ("Sign in to confirm you're not a bot"). Off by default.
+    cookies = os.environ.get("FOLD_YTDL_COOKIES", "").strip()
+    if cookies:
+        cmd += ["--cookies-from-browser", cookies]
+    cmd += ["-o", outpath, "https://www.youtube.com/watch?v=" + video_id]
+    try:
+        subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=900)
+    except subprocess.CalledProcessError as e:
+        stderr = (e.stderr or "").strip() or str(e)
+        raise yt_dlp.utils.DownloadError(stderr.splitlines()[-1] if stderr.splitlines() else stderr)
+
+
+def _concat_parts(parts, final):
+    """Join pre-cut mp4s in order: every part narrowed to one frame size, frame rate and
+    channel layout, then concat — so a stitch is playable however the parts differ."""
+    inputs = []
+    for p in parts:
+        inputs += ["-i", p]
+    graph, joins = [], ""
+    for i in range(len(parts)):
+        graph.append(
+            "[%d:v]scale=1280:720:force_original_aspect_ratio=decrease,"
+            "pad=1280:720:(ow-iw)/2:(oh-ih)/2,fps=30,setsar=1[v%d];"
+            "[%d:a]aresample=44100,aformat=channel_layouts=stereo[a%d]" % (i, i, i, i)
+        )
+        joins += "[v%d][a%d]" % (i, i)
+    graph.append("%sconcat=n=%d:v=1:a=1[v][a]" % (joins, len(parts)))
+    cmd = ["ffmpeg", "-y", "-loglevel", "error"] + inputs + [
+        "-filter_complex", ";".join(graph),
+        "-map", "[v]", "-map", "[a]",
+        "-movflags", "+faststart",
+        final,
+    ]
+    subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=900)
+
+
+def fetch_clip(video_id, start, end, name, outdir):
+    os.makedirs(outdir, exist_ok=True)
+    slug = _slug(name) or ("clip-%s-%s-%s" % (video_id, start.replace(":", "-"), end.replace(":", "-")))
+    final = os.path.join(outdir, slug + ".mp4")
+    part = os.path.join(outdir, "." + slug + ".tmp.mp4")
+    _download_section(video_id, _clock(start), _clock(end), part)
+    os.replace(part, final)
+    return final
+
+
+def fetch_stitch(video_id, spans, name, outdir):
+    """Several ranges of one video joined in order into one mp4."""
+    os.makedirs(outdir, exist_ok=True)
+    slug = _slug(name) or ("stitch-%s-%d" % (video_id, len(spans)))
+    final = os.path.join(outdir, slug + ".mp4")
+    tmp = tempfile.mkdtemp(prefix="ytstitch-")
+    try:
+        parts = []
+        for i, (a, b) in enumerate(spans):
+            p = os.path.join(tmp, "part%d.mp4" % i)
+            _download_section(video_id, _clock(a), _clock(b), p)
+            parts.append(p)
+        _concat_parts(parts, final)
+        return final
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _clip_manifest(kind, video_id, title, name, segments_sec, path):
+    rel = "/clips/" + os.path.basename(path)
+    return {
+        "ok": True,
+        "kind": kind,
+        "id": video_id,
+        "title": title,
+        "name": _slug(name),
+        "url": rel,
+        "path": path,
+        "size": os.path.getsize(path) if os.path.exists(path) else 0,
+        "segments": [{"start": a, "end": b} for a, b in segments_sec],
+        "duration": round(sum(b - a for a, b in segments_sec), 2),
+    }
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "fold-ytdl-helper/1"
 
@@ -261,6 +407,34 @@ class Handler(BaseHTTPRequestHandler):
                 finally:
                     shutil.rmtree(tmp, ignore_errors=True)
                 return
+            if u.path == "/clip":
+                name = (q.get("name") or [""])[0].strip() or "clip"
+                a, b = _to_seconds((q.get("start") or [""])[0]), _to_seconds((q.get("end") or [""])[0])
+                if a is None or b is None or a >= b:
+                    return self._send(400, {"error": "start and end are required (hh:mm:ss or seconds) and start must precede end"})
+                dur, title = _probe_duration(vid)
+                if dur and b > dur:
+                    return self._send(400, {"error": "end is past the end of the video (%.0f s)" % dur})
+                path = fetch_clip(vid, a, b, name, CLIPS_DIR)
+                return self._send(200, _clip_manifest("clip", vid, title, name, [(a, b)], path))
+            if u.path == "/stitch":
+                name = (q.get("name") or [""])[0].strip() or "stitch"
+                spans = []
+                for seg in (q.get("seg") or []):
+                    lo, _, hi = str(seg).partition("-")
+                    a, b = _to_seconds(lo), _to_seconds(hi)
+                    if a is None or b is None or a >= b:
+                        return self._send(400, {"error": "each seg= must be a range start-end (hh:mm:ss or seconds)"})
+                    spans.append((a, b))
+                if not spans:
+                    return self._send(400, {"error": "a stitch needs at least one seg=start-end; repeat seg= for more parts"})
+                if len(spans) > 12:
+                    return self._send(400, {"error": "a stitch is capped at 12 parts"})
+                dur, title = _probe_duration(vid)
+                if dur and any(b > dur for _, b in spans):
+                    return self._send(400, {"error": "a stitch range runs past the end of the video (%.0f s)" % dur})
+                path = fetch_stitch(vid, spans, name, CLIPS_DIR)
+                return self._send(200, _clip_manifest("stitch", vid, title, name, spans, path))
             return self._send(404, {"error": "no such route"})
         except yt_dlp.utils.DownloadError as e:
             return self._send(502, {"error": "yt-dlp: " + str(e)})
@@ -269,14 +443,21 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="yt-dlp helper for the fold: captions and audio for a YouTube video, on your own machine.")
+    global CLIPS_DIR
+    ap = argparse.ArgumentParser(description="yt-dlp helper for the fold: captions, audio, and snip/stitch clips for a YouTube video, on your own machine.")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=11450)
+    ap.add_argument("--clips-dir", default=None)
     args = ap.parse_args()
+    if args.clips_dir:
+        CLIPS_DIR = args.clips_dir
+    os.makedirs(CLIPS_DIR, exist_ok=True)
     srv = ThreadingHTTPServer((args.host, args.port), Handler)
     srv.daemon_threads = True
     print("fold yt-dlp helper listening on http://%s:%d  (set localStorage hd:ytdl to change)" % (args.host, args.port))
     print("captions: /captions?id=<video-id>   audio: /audio?id=<video-id>   health: /health")
+    print("snip: /clip?id=<id>&start=<t>&end=<t>&name=<slug>   stitch: /stitch?id=<id>&name=<slug>&seg=<t>-<t>[&seg=...]")
+    print("clips are written to %s and served by the surface at /clips/<name>.mp4" % CLIPS_DIR)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

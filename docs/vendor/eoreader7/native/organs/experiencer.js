@@ -1,4 +1,4 @@
-/* Vivekananda speaks:
+/* Vivekananda — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Each soul is potentially divine. The goal is to 
 manifest this Divinity within, by controlling nature, external and internal. Do 
 this either by work, or worship, or psychic control, or philosophy — by one 

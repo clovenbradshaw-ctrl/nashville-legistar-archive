@@ -1,4 +1,4 @@
-/* Tala speaks:
+/* Tala — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “tatam  calvavanaddham  ca  [  ghanam  siisiram  eva  ca 
 caturvtdham  tu  vljneyam  |  atodyam  laksananvltam  (1) 
 tatam  tantrikrtam  jneyam  |  avanaddham  tu  pauskaram 

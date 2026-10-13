@@ -156,6 +156,12 @@ const applyProcliticPeel = (text, proclitics, posPrior) =>
     return peel ? [...peel.proclitics, peel.stem].join(" ") : word;
   });
 
+// A Han/Kana word carries a whole morpheme per character, so its floor is two
+// characters; every other script keeps the three-character floor that keeps
+// particles out. A fact about the script's information density, declared.
+const DENSE_SCRIPT = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+const minWordLength = (w) => (DENSE_SCRIPT.test(w) ? 2 : 3);
+
 /**
  * heardSurfaces(sentences, {minMentions, minShare, minMembers, nullArm})
  *
@@ -174,7 +180,7 @@ const applyProcliticPeel = (text, proclitics, posPrior) =>
  * or `Set` for this material's language. Omitted, behaviour is
  * byte-identical to before this existed (no caller currently supplies it).
  */
-export function heardSurfaces(sentences, { minMentions, minShare, minMembers, nullArm = null, clean, posPrior = null, classifyWord = null, dominantClass = null, classShare = GRAMMAR_MIN_SHARE, proclitics = null, index = null } = {}) {
+export function heardSurfaces(sentences, { minMentions, minShare, minMembers, nullArm = null, clean, posPrior = null, classifyWord = null, dominantClass = null, classShare = GRAMMAR_MIN_SHARE, proclitics = null, index = null, segment = null } = {}) {
   for (const [k, v] of Object.entries({ minMentions, minShare, minMembers }))
     if (!Number.isFinite(v)) throw new Error(`heardSurfaces: ${k} must be declared`);
   const gated = posPrior && classifyWord && dominantClass;
@@ -183,7 +189,11 @@ export function heardSurfaces(sentences, { minMentions, minShare, minMembers, nu
   // THE EAR HAS NO CASE. Folding here, not downstream, so nothing below can
   // accidentally recover a distinction a listener never had.
   const heard = (sentences ?? []).map((s) => {
-    const lower = String(s?.text ?? s ?? "").toLowerCase();
+    let lower = String(s?.text ?? s ?? "").toLowerCase();
+    // THE EAR OF AN UNSPACED SCRIPT: word boundaries from the language's own
+    // received prior (adapters/text/script-segment.js), never from spaces
+    // that script does not write.
+    if (segment) lower = segment(lower);
     return { text: procliticSet && posPrior ? applyProcliticPeel(lower, procliticSet, posPrior) : lower };
   });
 
@@ -206,7 +216,7 @@ export function heardSurfaces(sentences, { minMentions, minShare, minMembers, nu
     for (const s of heard) {
       const seen = new Set();
       for (const w of s.text.split(/[^\p{L}\p{N}']+/u)) {
-        if (w.length < 3) continue;
+        if (w.length < minWordLength(w)) continue;
         counts.set(w, (counts.get(w) ?? 0) + 1);
         if (!seen.has(w)) { seen.add(w); sentenceCounts.set(w, (sentenceCounts.get(w) ?? 0) + 1); }
       }

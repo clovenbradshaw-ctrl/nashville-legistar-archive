@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the fold — recurring tasks, on your own Cloudflare account</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0d0f12; color: #e8e8e8;
+         font: 15px/1.6 system-ui, -apple-system, Segoe UI, sans-serif; }
+  main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  h1 { font-size: 1.6rem; letter-spacing: -0.01em; margin: 0 0 .35rem; }
+  h2 { font-size: 1.05rem; margin: 2.2rem 0 .5rem; color: #fff; }
+  .sub { color: #9aa4af; margin: 0 0 2rem; }
+  .pledge { border: 1px solid #2a3138; background: #12161a; border-radius: 12px;
+            padding: 1rem 1.15rem; margin: 1.5rem 0; }
+  .pledge strong { color: #7fd1a0; }
+  a { color: #7fb0ff; }
+  code { background: #171b20; padding: .1rem .35rem; border-radius: 5px; font-size: .88em; }
+  pre { background: #12161a; border: 1px solid #232a31; border-radius: 10px;
+        padding: .9rem 1rem; overflow: auto; }
+  .btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none;
+         background: #f6821f; color: #1a1206; font-weight: 600; padding: .6rem 1rem;
+         border-radius: 9px; margin: .4rem 0; }
+  ol { padding-left: 1.2rem; } li { margin: .35rem 0; }
+  .muted { color: #9aa4af; font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Recurring tasks</h1>
+  <p class="sub">the fold can run a task on a schedule, on Cloudflare Workers. There is a version
+     that touches nothing of yours, and a version that lives entirely in your own account.</p>
+
+  <div class="pledge">
+    <strong>The fold holds no Cloudflare credential.</strong> No Cloudflare OAuth, no stored token,
+    no API access. The scheduler the fold runs can only make plain outbound HTTP calls; it cannot
+    reach your Cloudflare account or data. This is enforced by what the code <em>is</em>, not by a
+    promise — there is no grant anywhere for it to use.
+  </div>
+
+  <h2>Your tasks, in your hands</h2>
+  <p>Sign in with GitHub to keep your tasks private to you, and the fold runs them on a
+     one-minute heartbeat. Jobs are just HTTP calls, e.g.:</p>
+  <pre>{ "name": "ping", "url": "https://example.com/health", "intervalMinutes": 5 }</pre>
+  <p class="muted">The fold stores your GitHub identity and your job records. Nothing else.</p>
+
+  <h2>Need a task to touch your own Cloudflare account?</h2>
+  <p>Then run it where the credential is yours. Deploy the same scheduler into your own account,
+     give it your own scoped API token as a secret, and the fold is not in the loop at all:</p>
+
+  <!-- Replace <YOUR_PUBLIC_REPO_URL> with the repo you own; the button clones it to the
+       reader's GitHub and deploys to their Cloudflare account. -->
+  <a class="btn" href="https://deploy.workers.cloudflare.com/?url=https://github.com/<YOUR_ORG>/<YOUR_REPO>">
+    Deploy to Cloudflare
+  </a>
+  <ol>
+    <li>The button clones the repo to <em>your</em> GitHub and deploys a Worker to <em>your</em>
+        Cloudflare account.</li>
+    <li>Add a scoped API token as a secret:
+        <code>npx wrangler secret put CLOUDFLARE_API_TOKEN</code>.</li>
+    <li>Give a job a <code>cf:</code> target; the token is substituted inside your account.</li>
+  </ol>
+  <p class="muted">In this path the fold never sees a token, a job, or a byte of your account.</p>
+
+  <h2>Run it from the fold</h2>
+  <p>On the reading surface, one include gives you the sign-in control and the task API:</p>
+  <pre>&lt;script src="fold-scheduler-client.js"
+        data-api="https://fold-scheduler.&lt;your-subdomain&gt;.workers.dev"
+        data-ui&gt;&lt;/script&gt;</pre>
+
+  <p><a href="./">← back to the fold</a></p>
+</main>
+</body>
+</html>

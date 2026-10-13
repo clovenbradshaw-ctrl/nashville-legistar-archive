@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contract sync state</title>
+<style>
+  :root {
+    --bg: #f4f6f9; --surface: #ffffff; --text: #14181f; --muted: #4a5565; --border: #ccd3de;
+    --track: #dfe4ec; --fill-fetch: #1b5fc1; --fill-arch: #1c7a3c; --fill-inv: #5a4bb0;
+    --fill-warn: #a35a00; --fill-bad: #b3261e;
+    --ok-bg: #dff3e4; --ok-fg: #0b5f2a;
+    --warn-bg: #fdecc8; --warn-fg: #6b3f00;
+    --bad-bg: #fbdada; --bad-fg: #8f1d1d;
+    --info-bg: #dbe8fb; --info-fg: #14437f;
+    --neu-bg: #e6e9ee; --neu-fg: #333b47;
+    --focus: #1b5fc1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1218; --surface: #181c24; --text: #e8ebf0; --muted: #aab3c2; --border: #2e3541;
+      --track: #2a303b; --fill-fetch: #6aa3ff; --fill-arch: #5ccf86; --fill-inv: #a597f0;
+      --fill-warn: #e0a030; --fill-bad: #ff7a70;
+      --ok-bg: #14301e; --ok-fg: #8fe0a8;
+      --warn-bg: #3a2a0a; --warn-fg: #f2c36b;
+      --bad-bg: #3d1515; --bad-fg: #ffa6a6;
+      --info-bg: #12294a; --info-fg: #9cc2ff;
+      --neu-bg: #2a303b; --neu-fg: #c7cdd8;
+      --focus: #9cc2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 40px; }
+  header { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: flex-end; justify-content: space-between; margin-bottom: 16px; }
+  h1 { font-size: 22px; line-height: 1.2; margin: 0 0 2px; }
+  h2 { font-size: 15px; margin: 0 0 10px; letter-spacing: 0.01em; }
+  .sub { color: var(--muted); margin: 0; font-size: 14px; }
+  .controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .stamp { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .stamp.stale { color: var(--warn-fg); background: var(--warn-bg); padding: 1px 8px; border-radius: 10px; }
+  button {
+    font: inherit; font-weight: 600; color: var(--text); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; cursor: pointer; min-height: 38px;
+  }
+  button:hover:not([disabled]) { border-color: var(--text); }
+  button[disabled] { opacity: 0.6; cursor: progress; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .banner { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin: 0 0 16px; }
+  .banner strong { display: block; margin-bottom: 2px; }
+  .banner.error { background: var(--bad-bg); color: var(--bad-fg); border-color: var(--bad-fg); }
+  .banner.lower { background: var(--warn-bg); color: var(--warn-fg); border-color: var(--warn-fg); }
+  .banner.info { background: var(--info-bg); color: var(--info-fg); border-color: var(--info-fg); }
+  .banner.loading { background: var(--surface); color: var(--muted); }
+  .banner code { font: 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .card, .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .card .label { color: var(--muted); font-size: 13px; margin: 0; }
+  .card .num { font-size: 30px; line-height: 1.15; font-weight: 700; font-variant-numeric: tabular-nums; margin: 2px 0 4px; overflow-wrap: anywhere; }
+  .card .hint { color: var(--muted); font-size: 13px; margin: 0; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 4px; }
+  .badge.lower { background: var(--warn-bg); color: var(--warn-fg); border: 1px solid var(--warn-fg); }
+  .badge.complete { background: var(--ok-bg); color: var(--ok-fg); border: 1px solid var(--ok-fg); }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-bottom: 12px; }
+  .panel { margin-bottom: 12px; }
+  .grid2 .panel { margin-bottom: 0; }
+  .stack { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .stack .banner { margin: 0; }
+  .barrow { margin-bottom: 14px; }
+  .barrow:last-child { margin-bottom: 0; }
+  .barhead { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-bottom: 4px; }
+  .barhead .v { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .bar { height: 14px; background: var(--track); border-radius: 7px; overflow: hidden; }
+  .fill { height: 100%; width: 0; border-radius: 7px; transition: width 0.4s ease; }
+  .fill.fetch { background: var(--fill-fetch); }
+  .fill.arch { background: var(--fill-arch); }
+  .fill.inv { background: var(--fill-inv); }
+  .fill.warn { background: var(--fill-warn); }
+  .fill.bad { background: var(--fill-bad); }
+  .barnote { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+  .flag { font-weight: 700; }
+  .flag.warn { color: var(--warn-fg); background: var(--warn-bg); padding: 0 6px; border-radius: 6px; }
+  .flag.bad { color: var(--bad-fg); background: var(--bad-bg); padding: 0 6px; border-radius: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 13px; }
+  tr:last-child td { border-bottom: 0; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.u { font: 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+  .chip { display: inline-block; min-width: 84px; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; border: 1px solid transparent; }
+  .chip.ok { background: var(--ok-bg); color: var(--ok-fg); border-color: var(--ok-fg); }
+  .chip.info { background: var(--info-bg); color: var(--info-fg); border-color: var(--info-fg); }
+  .chip.neu { background: var(--neu-bg); color: var(--neu-fg); border-color: var(--neu-fg); }
+  .chip.bad { background: var(--bad-bg); color: var(--bad-fg); border-color: var(--bad-fg); }
+  /* by department */
+  .sr { position: absolute; left: -9999px; }
+  .deptbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
+  .deptbar input { font: inherit; padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); min-width: 220px; }
+  .deptwrap { max-height: 420px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+  .depttable { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .depttable th, .depttable td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  .depttable th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+  .depttable th button { all: unset; cursor: pointer; font-weight: 700; color: var(--text); }
+  .depttable th button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .depttable .n { text-align: right; font-variant-numeric: tabular-nums; }
+  .depttable th.n button { display: inline-block; }
+  .depttable .mini { display: inline-block; vertical-align: middle; width: 90px; height: 8px; border-radius: 4px; background: var(--track); margin-right: 8px; overflow: hidden; }
+  .depttable .mini i { display: block; height: 100%; background: var(--fill-arch); }
+  .crumbs { font-size: 14px; margin: 0 0 10px; color: var(--muted); }
+  .crumbs a { color: var(--info-fg); }
+  /* live activity */
+  .livebar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .livecounts, .livefilters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .lc { font-size: 12px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+  .lc b { font-variant-numeric: tabular-nums; }
+  .livefilters label { font-size: 12px; display: inline-flex; gap: 4px; align-items: center; cursor: pointer; color: var(--muted); }
+  .livefeed { list-style: none; margin: 0; padding: 0; max-height: 360px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .livefeed li { display: grid; grid-template-columns: 62px 128px minmax(0, 1fr); gap: 8px; padding: 3px 8px; border-bottom: 1px solid var(--border); align-items: baseline; }
+  .livefeed li:last-child { border-bottom: 0; }
+  .livefeed .k { font-weight: 700; }
+  .livefeed .k.ok { color: var(--ok-fg); } .livefeed .k.bad { color: var(--bad-fg); } .livefeed .k.info { color: var(--info-fg); } .livefeed .k.neu { color: var(--muted); } .livefeed .k.warn { color: var(--warn-fg); }
+  .livefeed .t { color: var(--muted); }
+  .livefeed .d { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  ul.reasons { margin: 0; padding: 0; list-style: none; }
+  ul.reasons li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  ul.reasons li:last-child { border-bottom: 0; }
+  ul.reasons .c { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .none { color: var(--muted); margin: 0; font-size: 14px; }
+  .foot { color: var(--muted); font-size: 13px; margin-top: 16px; overflow-wrap: anywhere; }
+  .foot p { margin: 2px 0; }
+  .foot code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  [hidden] { display: none !important; }
+  @media (max-width: 520px) {
+    .card .num { font-size: 26px; }
+    table { font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs" id="crumbs" aria-label="Breadcrumb" hidden><a href="index.html">Holodeck</a> <span aria-hidden="true">›</span> <span aria-current="page">Sync</span></nav>
+  <header>
+    <div>
+      <h1>Contract sync state</h1>
+      <p class="sub">Metro Nashville ePAV contracts: inventory, fetch, and archive.org upload</p>
+    </div>
+    <div class="controls">
+      <span class="stamp" id="stamp">Not updated yet</span>
+      <button type="button" id="refresh">Refresh</button>
+    </div>
+  </header>
+
+  <div class="banner loading" id="loading" role="status">Loading sync state from the VM. This takes a few seconds.</div>
+  <div class="banner error" id="error" role="alert" hidden>
+    <strong id="error-title">Could not reach the VM</strong>
+    <span id="error-msg"></span>
+    <span id="error-stale" hidden> The numbers below are from the last successful update and may be out of date.</span>
+  </div>
+
+  <div id="content" hidden>
+    <div class="banner lower" id="lower-banner" hidden>
+      <strong>The universe count is a lower bound</strong>
+      <span id="lower-text"></span>
+    </div>
+
+    <section class="cards" aria-label="Headline numbers">
+      <div class="card">
+        <p class="label">Universe found so far</p>
+        <p class="num" id="n-universe">-</p>
+        <span class="badge lower" id="universe-badge"></span>
+      </div>
+      <div class="card">
+        <p class="label">Fetched</p>
+        <p class="num" id="n-fetched">-</p>
+        <p class="hint">PDF downloaded from ePAV</p>
+      </div>
+      <div class="card">
+        <p class="label">Archived</p>
+        <p class="num" id="n-archived">-</p>
+        <p class="hint">In the archive.org manifest (done)</p>
+      </div>
+      <div class="card">
+        <p class="label">Queue</p>
+        <p class="num" id="n-queue">-</p>
+        <p class="hint">Fetched, not yet archived</p>
+      </div>
+      <div class="card">
+        <p class="label">Backlog</p>
+        <p class="num" id="n-backlog">-</p>
+        <p class="hint">Found, not yet fetched</p>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-progress">
+      <h2 id="h-progress">Progress through the contracts found so far</h2>
+      <div class="barrow">
+        <div class="barhead"><span>Fetched</span><span class="v" id="v-fetched">-</span></div>
+        <div class="bar" role="progressbar" id="bar-fetched" aria-label="Fetched, percent of contracts found so far" aria-valuemin="0" aria-valuemax="100"><div class="fill fetch" id="fill-fetched"></div></div>
+      </div>
+      <div class="barrow">
+        <div class="barhead"><span>Archived</span><span class="v" id="v-archived">-</span></div>
+        <div class="bar" role="progressbar" id="bar-archived" aria-label="Archived, percent of contracts found so far" aria-valuemin="0" aria-valuemax="100"><div class="fill arch" id="fill-archived"></div></div>
+      </div>
+      <p class="barnote" id="progress-note"></p>
+    </section>
+
+    <div class="grid2">
+      <section class="panel" aria-labelledby="h-inv">
+        <h2 id="h-inv">Inventory (finding contracts)</h2>
+        <div class="barrow">
+          <div class="barhead"><span>Departments done</span><span class="v" id="v-inv">-</span></div>
+          <div class="bar" role="progressbar" id="bar-inv" aria-label="Departments inventoried" aria-valuemin="0" aria-valuemax="120"><div class="fill inv" id="fill-inv"></div></div>
+        </div>
+        <p class="barnote" id="inv-running"></p>
+        <p class="barnote" id="inv-last"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-rates">
+        <h2 id="h-rates">Rates and time remaining</h2>
+        <table>
+          <thead><tr><th>Last 10 minutes</th><th class="n">Per minute</th><th class="n">Time left</th></tr></thead>
+          <tbody>
+            <tr><td>Fetch</td><td class="n" id="r-fetch">-</td><td class="n" id="eta-fetch">-</td></tr>
+            <tr><td>Upload to archive.org</td><td class="n" id="r-upload">-</td><td class="n" id="eta-upload">-</td></tr>
+            <tr><td>Upload failures</td><td class="n" id="r-upfail">-</td><td class="n"></td></tr>
+            <tr><td>Fetch failures</td><td class="n" id="r-fetfail">-</td><td class="n"></td></tr>
+          </tbody>
+        </table>
+        <p class="barnote" id="eta-note"></p>
+      </section>
+    </div>
+
+    <div class="grid2">
+      <section class="panel" aria-labelledby="h-units">
+        <h2 id="h-units">Services</h2>
+        <table>
+          <thead><tr><th>Unit</th><th>Role</th><th>Status</th></tr></thead>
+          <tbody id="units-body"></tbody>
+        </table>
+        <p class="barnote">Status is the systemd is-active value, shown as reported.</p>
+      </section>
+
+      <div class="stack">
+        <section class="panel" aria-labelledby="h-fail">
+          <h2 id="h-fail">Failures in the last 10 minutes</h2>
+          <ul class="reasons" id="fail-list"></ul>
+          <p class="none" id="fail-none" hidden>No failures logged in the last 10 minutes.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="h-disk">
+          <h2 id="h-disk">Disk</h2>
+          <div class="barrow">
+            <div class="barhead"><span>Root (/)</span><span class="v" id="v-root">-</span></div>
+            <div class="bar" role="progressbar" id="bar-root" aria-label="Root disk used" aria-valuemin="0" aria-valuemax="100"><div class="fill" id="fill-root"></div></div>
+          </div>
+          <div class="barrow">
+            <div class="barhead"><span>Data (/mnt)</span><span class="v" id="v-mnt">-</span></div>
+            <div class="bar" role="progressbar" id="bar-mnt" aria-label="Data disk used" aria-valuemin="0" aria-valuemax="100"><div class="fill" id="fill-mnt"></div></div>
+          </div>
+          <p class="barnote">A bar turns amber and is labelled "high" above 75 percent used.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="h-dept" id="dept">
+          <h2 id="h-dept">By department</h2>
+          <div class="deptbar">
+            <label for="dept-filter" class="sr">Filter departments</label>
+            <input type="search" id="dept-filter" placeholder="Filter departments" autocomplete="off">
+            <span class="barnote" id="dept-count"></span>
+          </div>
+          <div class="deptwrap">
+            <table class="depttable" id="dept-table">
+              <thead><tr>
+                <th><button type="button" data-k="department">Department</button></th>
+                <th class="n"><button type="button" data-k="found">Found</button></th>
+                <th class="n"><button type="button" data-k="archived">Archived</button></th>
+                <th class="n"><button type="button" data-k="queue">Queue</button></th>
+                <th class="n"><button type="button" data-k="backlog">Backlog</button></th>
+                <th><button type="button" data-k="percent_archived">Done</button></th>
+              </tr></thead>
+              <tbody id="dept-body"></tbody>
+            </table>
+          </div>
+          <p class="barnote">Each contract the inventory found is counted once, under the department it was found in. Done is archived over found. Click a heading to sort.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="h-live" id="live">
+          <h2 id="h-live">Live activity</h2>
+          <div class="livebar">
+            <span class="chip neu" id="live-state" role="status">Connecting</span>
+            <span class="barnote" id="live-note">Events from the pipeline on the VM, newest first.</span>
+          </div>
+          <ol class="livefeed" id="live-feed" aria-live="off"></ol>
+        </section>
+
+        <section class="banner info" id="gh-note" hidden>
+          <strong>GitHub pushing is intentionally off</strong>
+          The flag file is present on the VM, so pipeline output is not being pushed to GitHub. archive.org holds the PDFs.
+        </section>
+      </div>
+    </div>
+
+    <div class="foot">
+      <p>Snapshot taken <code id="f-generated">-</code> (VM clock, UTC). Most recent live event <code id="f-event">-</code>.</p>
+      <p>Counts are distinct contract tokens read from the VM ledgers. Done means present in the archive manifest.</p>
+      <p id="f-warn" hidden></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var POLL_MS = 30000;
+  var TIMEOUT_MS = 35000;
+  var lastOk = null;      // Date.now() of the last successful update
+  var data = null;
+  var inflight = false;
+
+  var $ = function (id) { return document.getElementById(id); };
+  // opened on its own, the page links back into the app; inside the app's screen the app's own trail is shown instead
+  try { if (window.top === window) $('crumbs').hidden = false; } catch (e) { $('crumbs').hidden = false; }
+  var fmt = function (n) { return (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('en-US') : 'n/a'; };
+  var dec = function (n, d) { return (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }) : 'n/a'; };
+  var set = function (id, t) { $(id).textContent = t; };
+
+  var ROLES = {
+    'mcdp-fetch.service': 'Fetch PDFs from ePAV',
+    'mcdp-fetch.timer': 'Schedules the fetch',
+    'mcdp-upload.service': 'Upload PDFs to archive.org',
+    'mcdp-upload.timer': 'Schedules the upload',
+    'mcdp-enumerate-universe-a.service': 'Inventory shard A',
+    'mcdp-enumerate-universe-b.service': 'Inventory shard B',
+    'mcdp-read.service': 'Reader',
+    'mcdp-live.service': 'Live event feed'
+  };
+
+  function chipClass(st) {
+    if (st === 'active') return 'ok';
+    if (st === 'activating' || st === 'reloading') return 'info';
+    if (st === 'failed') return 'bad';
+    return 'neu';
+  }
+
+  function hours(h) {
+    if (h === null || h === undefined) return 'no recent activity';
+    if (h < 1) return Math.max(1, Math.round(h * 60)) + ' min';
+    if (h < 48) return dec(h, 1) + ' h';
+    return dec(h / 24, 1) + ' days';
+  }
+
+  function setBar(prefix, value, max, kind, warnAt) {
+    var bar = $('bar-' + prefix), fill = $('fill-' + prefix);
+    var v = (typeof value === 'number' && isFinite(value)) ? value : 0;
+    var p = max ? Math.max(0, Math.min(100, 100 * v / max)) : 0;
+    fill.style.width = p + '%';
+    bar.setAttribute('aria-valuenow', String(Math.round(v * 10) / 10));
+    fill.className = 'fill ' + kind;
+    if (warnAt !== undefined) {
+      fill.className = 'fill ' + (v >= 90 ? 'bad' : v >= warnAt ? 'warn' : kind);
+    }
+  }
+
+  function render(d) {
+    var c = d.counts || {}, inv = d.inventory || {}, rates = d.rates_per_min || {};
+    var eta = d.eta_hours || {}, pc = d.percent || {}, disk = d.disk || {};
+    var lower = !inv.complete;
+
+    // lower-bound banner + badge
+    var depTxt = 'inventory ' + fmt(inv.departments_done) + ' of ' + fmt(inv.departments_total) + ' departments';
+    $('lower-banner').hidden = !lower;
+    set('lower-text', 'Only ' + fmt(inv.departments_done) + ' of ' + fmt(inv.departments_total) +
+      ' departments have finished inventory, so more contracts will be found. Percentages below are shares of the contracts found so far, not of all contracts.');
+    var badge = $('universe-badge');
+    badge.className = 'badge ' + (lower ? 'lower' : 'complete');
+    badge.textContent = lower ? 'lower bound: ' + depTxt : 'inventory complete: ' + depTxt;
+
+    set('n-universe', fmt(c.universe));
+    set('n-fetched', fmt(c.fetched));
+    set('n-archived', fmt(c.archived));
+    set('n-queue', fmt(c.queue_fetched_not_archived));
+    set('n-backlog', fmt(c.backlog_not_fetched));
+
+    // progress bars. The label always names its denominator so a bare
+    // percentage never appears while the universe is still growing.
+    var denom = lower ? 'of ' + fmt(c.universe) + ' found so far' : 'of ' + fmt(c.universe) + ' (inventory complete)';
+    set('v-fetched', dec(pc.fetched, 1) + '% ' + denom + ' (' + fmt(c.fetched) + ')');
+    set('v-archived', dec(pc.archived, 1) + '% ' + denom + ' (' + fmt(c.archived) + ')');
+    setBar('fetched', pc.fetched, 100, 'fetch');
+    setBar('archived', pc.archived, 100, 'arch');
+    set('progress-note', lower
+      ? 'These percentages will fall as the inventory finds more contracts. ' + fmt(c.destroyed_flagged) + ' fetched records are flagged as destroyed per the retention schedule.'
+      : fmt(c.destroyed_flagged) + ' fetched records are flagged as destroyed per the retention schedule.');
+
+    // inventory
+    set('v-inv', fmt(inv.departments_done) + ' / ' + fmt(inv.departments_total));
+    setBar('inv', inv.departments_done, inv.departments_total, 'inv');
+    var run = inv.running_units || [];
+    set('inv-running', run.length
+      ? 'Running now: ' + run.join(', ') + '.'
+      : (inv.complete ? 'No inventory job is running; all departments are done.' : 'No inventory job is running right now.'));
+    set('inv-last', inv.last_log_line ? 'Latest log line: ' + inv.last_log_line : '');
+
+    // rates and ETA
+    var cap = lower ? 'at least ' : '';
+    set('r-fetch', dec(rates.fetch_10m, 1));
+    set('r-upload', dec(rates.upload_10m, 1));
+    set('r-upfail', dec(rates.upload_fail_10m, 1));
+    set('r-fetfail', dec(rates.fetch_fail_10m, 1));
+    set('eta-fetch', (eta.fetch === null || eta.fetch === undefined) ? hours(null) : cap + hours(eta.fetch));
+    set('eta-upload', (eta.upload === null || eta.upload === undefined) ? hours(null) : cap + hours(eta.upload));
+    set('eta-note', eta.note || '');
+
+    // units
+    var body = $('units-body');
+    body.textContent = '';
+    var units = d.units || {};
+    Object.keys(units).forEach(function (u) {
+      var tr = document.createElement('tr');
+      var a = document.createElement('td'); a.className = 'u'; a.textContent = u;
+      var b = document.createElement('td'); b.textContent = ROLES[u] || '';
+      var s = document.createElement('td');
+      var chip = document.createElement('span');
+      chip.className = 'chip ' + chipClass(units[u]);
+      chip.textContent = units[u];
+      s.appendChild(chip);
+      tr.appendChild(a); tr.appendChild(b); tr.appendChild(s);
+      body.appendChild(tr);
+    });
+
+    // failures
+    var fl = $('fail-list');
+    fl.textContent = '';
+    var reasons = d.failure_reasons_10m || {};
+    var keys = Object.keys(reasons).sort(function (x, y) { return reasons[y] - reasons[x]; });
+    keys.forEach(function (k) {
+      var li = document.createElement('li');
+      var l = document.createElement('span'); l.textContent = k;
+      var n = document.createElement('span'); n.className = 'c'; n.textContent = fmt(reasons[k]);
+      li.appendChild(l); li.appendChild(n); fl.appendChild(li);
+    });
+    $('fail-none').hidden = keys.length > 0;
+    fl.hidden = keys.length === 0;
+
+    // disk
+    function diskRow(prefix, pct, freeText) {
+      var label = dec(pct, 1) + '% used, ' + freeText + ' free';
+      var el = $('v-' + prefix);
+      el.textContent = '';
+      el.appendChild(document.createTextNode(label));
+      if (typeof pct === 'number' && pct >= 75) {
+        var f = document.createElement('span');
+        f.className = 'flag ' + (pct >= 90 ? 'bad' : 'warn');
+        f.textContent = pct >= 90 ? 'critical' : 'high';
+        el.appendChild(document.createTextNode(' '));
+        el.appendChild(f);
+      }
+      setBar(prefix, pct, 100, 'fetch', 75);
+    }
+    diskRow('root', disk.root_used_pct, dec(disk.root_free_gb, 1) + ' GiB');
+    diskRow('mnt', disk.mnt_used_pct, dec(disk.mnt_free_tb, 2) + ' TiB');
+
+    $('gh-note').hidden = !(d.github_push && d.github_push.disabled);
+
+    set('f-generated', d.generated_at || 'unknown');
+    set('f-event', d.last_event_at || 'unknown');
+    var w = d.warnings || [];
+    $('f-warn').hidden = w.length === 0;
+    set('f-warn', w.length ? 'Collector warnings: ' + w.join('; ') : '');
+    deptRows = d.departments || [];
+    renderDepts();
+  }
+
+  // ---- by department: sortable, filterable pivot of the sync state ----
+  var deptRows = [], deptSort = { k: 'backlog', dir: -1 };
+  function renderDepts() {
+    var q = ($('dept-filter').value || '').trim().toLowerCase();
+    var rows = deptRows.filter(function (r) { return !q || r.department.toLowerCase().indexOf(q) >= 0; });
+    var k = deptSort.k, dir = deptSort.dir;
+    rows.sort(function (a, b) {
+      var x = a[k], y = b[k];
+      if (typeof x === 'string') return dir * x.localeCompare(y);
+      x = x == null ? -1 : x; y = y == null ? -1 : y;
+      return (x === y ? a.department.localeCompare(b.department) : (x < y ? -1 : 1) * dir);
+    });
+    var body = $('dept-body'); body.textContent = '';
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      function td(txt, cls) { var c = document.createElement('td'); if (cls) c.className = cls; c.textContent = txt; tr.appendChild(c); return c; }
+      td(r.department);
+      td(fmt(r.found), 'n'); td(fmt(r.archived), 'n'); td(fmt(r.queue), 'n'); td(fmt(r.backlog), 'n');
+      var c = document.createElement('td');
+      var mini = document.createElement('span'); mini.className = 'mini';
+      var fill = document.createElement('i'); fill.style.width = Math.min(100, r.percent_archived || 0) + '%'; mini.appendChild(fill);
+      c.appendChild(mini); c.appendChild(document.createTextNode(r.percent_archived == null ? 'n/a' : r.percent_archived.toFixed(1) + '%'));
+      tr.appendChild(c);
+      body.appendChild(tr);
+    });
+    set('dept-count', rows.length + ' of ' + deptRows.length + ' departments');
+    var hs = document.querySelectorAll('#dept-table th button');
+    for (var i = 0; i < hs.length; i++) {
+      var on = hs[i].getAttribute('data-k') === k;
+      hs[i].parentNode.setAttribute('aria-sort', on ? (dir > 0 ? 'ascending' : 'descending') : 'none');
+    }
+  }
+  document.getElementById('dept-filter').addEventListener('input', function () { renderDepts(); });
+  document.getElementById('dept-table').addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('button[data-k]') : null;
+    if (!b) return;
+    var k = b.getAttribute('data-k');
+    deptSort = { k: k, dir: deptSort.k === k ? -deptSort.dir : (k === 'department' ? 1 : -1) };
+    renderDepts();
+  });
+
+  // kind: 'server' = this page's own local Holodeck server did not answer (the VM may be perfectly fine);
+  //       'vm' = the server answered but could not reach the VM (HTTP 502)
+  function showError(msg, kind) {
+    $('error').hidden = false;
+    set('error-title', kind === 'vm' ? 'Could not reach the VM' : "The local Holodeck server isn't answering");
+    set('error-msg', kind === 'vm' ? msg : msg + ' This page is served by the local Holodeck server (node tools/serve.mjs); it is not running or not reachable, so nothing can be fetched. Start it again and the numbers resume.');
+    $('error-stale').hidden = !data;
+    $('loading').hidden = true;
+  }
+
+  function clearError() { $('error').hidden = true; }
+
+  function load() {
+    if (inflight) return;
+    inflight = true;
+    var btn = $('refresh');
+    btn.disabled = true;
+    btn.textContent = 'Refreshing';
+    var ctl = new AbortController();
+    var timer = setTimeout(function () { ctl.abort(); }, TIMEOUT_MS);
+    fetch('api/sync-status', { cache: 'no-store', signal: ctl.signal })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var j = null;
+          try { j = JSON.parse(t); } catch (e) { /* handled below */ }
+          if (!r.ok) { var er = new Error((j && j.error) || ('HTTP ' + r.status)); er.kind = (r.status === 502 ? 'vm' : 'server'); throw er; }
+          if (!j || !j.counts) throw new Error('Unexpected response from the server');
+          return j;
+        });
+      })
+      .then(function (j) {
+        data = j;
+        lastOk = Date.now();
+        clearError();
+        $('loading').hidden = true;
+        $('content').hidden = false;
+        render(j);
+      })
+      .catch(function (e) {
+        var m = (e && e.name === 'AbortError') ? 'The request timed out after ' + (TIMEOUT_MS / 1000) + ' seconds.' : String((e && e.message) || e);
+        // a timeout can be a slow VM behind a live server; a network failure or non-502 status means the server itself
+        showError(m, (e && e.kind) ? e.kind : (e && e.name === 'AbortError') ? 'vm' : 'server');
+      })
+      .then(function () {
+        clearTimeout(timer);
+        inflight = false;
+        btn.disabled = false;
+        btn.textContent = 'Refresh';
+        tick();
+      });
+  }
+
+  function tick() {
+    var el = $('stamp');
+    if (lastOk === null) { el.textContent = 'Not updated yet'; el.className = 'stamp'; return; }
+    var s = Math.max(0, Math.round((Date.now() - lastOk) / 1000));
+    var stale = s > 90;
+    el.textContent = 'Last updated ' + s + ' s ago' + (stale ? ' (stale)' : '');
+    el.className = 'stamp' + (stale ? ' stale' : '');
+  }
+
+  // ---- live activity: server-sent events from /api/live (the VM's events.jsonl) ----
+  (function live() {
+    // kind -> chip colour; the two bookkeeping kinds are not listed at all (one fires with every upload)
+    var CLS = { 'uploaded': 'ok', 'fetched': 'info', 'read': 'info', 'verdict': 'neu', 'destroyed-stub': 'warn',
+      'upload-failed': 'bad', 'fetch-failed': 'bad', 'read-failed': 'bad', 'missing-home': 'bad', 'skip-fetch': 'warn' };
+    var SKIP = { 'dropped-local-pdf': 1, 'heartbeat': 1 };
+    var KINDS = {};
+    Object.keys(CLS).forEach(function (k) { KINDS[k] = [CLS[k]]; });
+    var MAX_ROWS = 100;
+    var feed = $('live-feed'), stateEl = $('live-state');
+    var rows = [], es = null, dirty = false, lastEventAt = 0;
+
+    function rowFor(e) {
+      var li = document.createElement('li');
+      var t = document.createElement('span'); t.className = 't'; t.textContent = (e.at || '').slice(11, 19);
+      var k = document.createElement('span'); k.className = 'k ' + ((KINDS[e.kind] || ['neu'])[0]); k.textContent = e.kind || 'event';
+      var d = document.createElement('span'); d.className = 'd';
+      var bits = [];
+      if (e.contract_number) bits.push(e.contract_number);
+      if (e.department) bits.push(e.department);
+      if (e.epav_token) bits.push(e.epav_token);
+      if (e.error) bits.push(String(e.error).slice(0, 120));
+      if (e.reason) bits.push(String(e.reason).slice(0, 120));
+      if (e.scanned != null) bits.push('scanned ' + e.scanned + ', fetched ' + (e.newly_fetched == null ? '-' : e.newly_fetched));
+      d.textContent = bits.join(' · ');
+      li.appendChild(t); li.appendChild(k); li.appendChild(d);
+      return li;
+    }
+    function rebuild() {
+      feed.textContent = '';
+      for (var i = rows.length - 1, n = 0; i >= 0 && n < MAX_ROWS; i--, n++) feed.appendChild(rowFor(rows[i]));
+    }
+    function onLine(text) {
+      var e; try { e = JSON.parse(text); } catch (x) { return; }
+      if (SKIP[e.kind]) return;
+      lastEventAt = Date.now();
+      rows.push(e); if (rows.length > MAX_ROWS) rows.shift();
+      dirty = true;
+    }
+    function setState(txt, cls) { stateEl.textContent = txt; stateEl.className = 'chip ' + cls; }
+    function connect() {
+      if (!window.EventSource) { setState('Not supported', 'bad'); return; }
+      es = new EventSource('api/live');
+      es.onopen = function () { setState('Live', 'ok'); };
+      es.onmessage = function (m) { onLine(m.data); };
+      es.addEventListener('down', function () { setState('VM link dropped, reconnecting', 'warn'); });
+      es.onerror = function () { setState('Reconnecting', 'bad'); };
+    }
+    setInterval(function () {
+      if (dirty) { dirty = false; rebuild(); }
+      if (es && es.readyState === 1 && lastEventAt && Date.now() - lastEventAt > 45000) setState('Connected, quiet for ' + Math.round((Date.now() - lastEventAt) / 1000) + ' s', 'neu');
+    }, 500);
+    connect();
+  })();
+
+  $('refresh').addEventListener('click', load);
+  setInterval(tick, 1000);
+  setInterval(load, POLL_MS);
+  load();
+})();
+</script>
+</body>
+</html>

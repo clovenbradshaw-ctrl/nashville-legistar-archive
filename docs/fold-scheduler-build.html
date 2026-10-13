@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the fold — build an automation</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0d0f12; color: #e8e8e8; font: 14px/1.55 system-ui, -apple-system, Segoe UI, sans-serif; }
+  main { max-width: 52rem; margin: 0 auto; padding: 2.5rem 1.25rem 6rem; }
+  h1 { font-size: 1.4rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+  h2 { font-size: 1rem; margin: 2rem 0 .6rem; color: #fff; }
+  .sub { color: #9aa4af; margin: 0 0 1.5rem; }
+  .row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+  .card { border: 1px solid #232a31; background: #12161a; border-radius: 12px; padding: 1rem; margin: .8rem 0; }
+  label { display: block; color: #9aa4af; font-size: .82rem; margin: .5rem 0 .2rem; text-transform: uppercase; letter-spacing: .04em; }
+  input, select, textarea, button { font: inherit; color: #e8e8e8; background: #0b0e11;
+    border: 1px solid #2a3138; border-radius: 8px; padding: .5rem .6rem; }
+  input, select, textarea { width: 100%; box-sizing: border-box; }
+  textarea { min-height: 4.5rem; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; }
+  button { cursor: pointer; background: #1a2027; }
+  button.primary { background: #f6821f; color: #1a1206; border-color: #f6821f; font-weight: 600; }
+  button.ghost { background: transparent; }
+  .step-head { display: flex; justify-content: space-between; align-items: center; }
+  .step-head .idx { color: #9aa4af; font-size: .82rem; }
+  .muted { color: #9aa4af; }
+  .err { color: #ff9a9a; white-space: pre-wrap; font-size: .85rem; }
+  .ok { color: #7fd1a0; }
+  a { color: #7fb0ff; }
+  .job { display: flex; justify-content: space-between; gap: .6rem; align-items: baseline; }
+  .pill { font-size: .78rem; color: #9aa4af; border: 1px solid #2a3138; border-radius: 999px; padding: .1rem .5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Build an automation</h1>
+  <p class="sub">Compose a recurring automation here; the Worker is just the runner. Credentials are
+     referenced by name (<code>{{secret:NAME}}</code>) and never stored. A step may use
+     <code>{{prev}}</code> for the previous step's response body.</p>
+
+  <div class="card">
+    <label>Worker URL</label>
+    <div class="row">
+      <input id="api" placeholder="https://fold-scheduler.<your-subdomain>.workers.dev">
+      <button id="saveApi" class="ghost">Save</button>
+    </div>
+    <div class="row" style="margin-top:.7rem">
+      <span id="who" class="muted">checking…</span>
+      <span class="row" style="margin-left:auto"><button id="auth" class="ghost">Sign in</button></span>
+    </div>
+  </div>
+
+  <h2>Automation</h2>
+  <div class="card">
+    <div class="row">
+      <div style="flex:1 1 16rem">
+        <label>Name</label>
+        <input id="name" placeholder="Morning digest">
+      </div>
+      <div style="flex:0 0 10rem">
+        <label>Every (minutes)</label>
+        <input id="interval" type="number" min="1" value="60">
+      </div>
+      <div style="flex:0 0 9rem">
+        <label>Runner</label>
+        <select id="runner"><option value="cloudflare">cloudflare</option><option value="github">github</option></select>
+      </div>
+    </div>
+
+    <h2 style="margin-top:1.2rem">Steps</h2>
+    <div id="steps"></div>
+    <div class="row" style="margin-top:.4rem">
+      <button id="addStep" class="ghost">+ Add step</button>
+      <button id="create" class="primary" style="margin-left:auto">Create automation</button>
+    </div>
+    <p id="buildErr" class="err"></p>
+  </div>
+
+  <h2>Your automations</h2>
+  <div id="list" class="muted">Sign in to see your automations.</div>
+</main>
+
+<script>try { window.FOLD_SCHEDULER_URL = localStorage.getItem('fold:fs_api') || ''; } catch (e) {}</script>
+<script src="fold-scheduler-client.js"></script>
+<script>
+(function () {
+  'use strict';
+  var A = window.FoldScheduler;
+  var $ = function (id) { return document.getElementById(id); };
+  var actionNames = [];
+  var steps = [defaultStep()];
+  var editingBusy = false;
+
+  function defaultStep() { return { kind: 'request', method: 'GET', url: '', headers: '', body: '', action: '', params: '' }; }
+
+  // ── config / auth ──
+  $('api').value = A.api || '';
+  $('saveApi').onclick = function () { A.setApi($('api').value.trim()); };
+  $('auth').onclick = function () {
+    if (A.signedIn()) { A.signOut(); refreshAuth(); } else { A.signIn(location.href); }
+  };
+
+  function refreshAuth() {
+    if (!A.api) { $('who').textContent = 'Set the Worker URL first.'; $('auth').textContent = 'Sign in'; return; }
+    if (!A.signedIn()) { $('who').textContent = 'Not signed in.'; $('auth').textContent = 'Sign in with GitHub'; refreshList(); return; }
+    $('auth').textContent = 'Sign out';
+    $('who').textContent = 'Checking…';
+    A.me().then(function (m) { $('who').textContent = (m.name || m.email || m.sub); },
+      function () { $('who').textContent = 'Not signed in.'; });
+    refreshList();
+  }
+
+  // ── steps editor ──
+  function stepCard(s, i) {
+    var wrap = document.createElement('div'); wrap.className = 'card';
+    var head = document.createElement('div'); head.className = 'step-head';
+    var idx = document.createElement('span'); idx.className = 'idx'; idx.textContent = 'Step ' + (i + 1);
+    var right = document.createElement('span'); right.className = 'row';
+    var kind = document.createElement('select');
+    kind.innerHTML = '<option value="request">HTTP request</option><option value="action">Action</option>';
+    kind.value = s.kind;
+    kind.onchange = function () { s.kind = kind.value; renderSteps(); };
+    var del = document.createElement('button'); del.className = 'ghost'; del.textContent = 'Remove';
+    del.onclick = function () { steps.splice(i, 1); if (!steps.length) steps.push(defaultStep()); renderSteps(); };
+    right.appendChild(kind); right.appendChild(del);
+    head.appendChild(idx); head.appendChild(right); wrap.appendChild(head);
+
+    if (s.kind === 'action') {
+      wrap.appendChild(field('Action', selectEl(actionNames, s.action, function (v) { s.action = v; })));
+      wrap.appendChild(field('Params (JSON)', textarea(s.params, function (v) { s.params = v; }, '{"to":"you@example.com"}')));
+    } else {
+      var r = document.createElement('div'); r.className = 'row';
+      var mWrap = document.createElement('div'); mWrap.style.flex = '0 0 7rem';
+      mWrap.appendChild(field('Method', selectEl(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'], s.method, function (v) { s.method = v; })));
+      var uWrap = document.createElement('div'); uWrap.style.flex = '1 1 18rem';
+      uWrap.appendChild(field('URL', inputEl(s.url, function (v) { s.url = v; }, 'https://…')));
+      r.appendChild(mWrap); r.appendChild(uWrap); wrap.appendChild(r);
+      wrap.appendChild(field('Headers (JSON)', textarea(s.headers, function (v) { s.headers = v; }, '{"authorization":"Bearer {{secret:TOKEN}}"}')));
+      wrap.appendChild(field('Body', textarea(s.body, function (v) { s.body = v; }, '{"note":"see {{prev}}"}')));
+    }
+    return wrap;
+  }
+
+  function field(label, el) {
+    var d = document.createElement('div');
+    var l = document.createElement('label'); l.textContent = label;
+    d.appendChild(l); d.appendChild(el); return d;
+  }
+  function inputEl(val, on, ph) { var e = document.createElement('input'); e.value = val || ''; e.placeholder = ph || ''; e.oninput = function () { on(e.value); }; return e; }
+  function textarea(val, on, ph) { var e = document.createElement('textarea'); e.value = val || ''; e.placeholder = ph || ''; e.oninput = function () { on(e.value); }; return e; }
+  function selectEl(opts, val, on) {
+    var e = document.createElement('select');
+    opts.forEach(function (o) { var x = document.createElement('option'); x.value = o; x.textContent = o; e.appendChild(x); });
+    if (val) e.value = val;
+    e.onchange = function () { on(e.value); };
+    return e;
+  }
+  function renderSteps() {
+    var box = $('steps'); box.innerHTML = '';
+    steps.forEach(function (s, i) { box.appendChild(stepCard(s, i)); });
+  }
+  $('addStep').onclick = function () { steps.push(defaultStep()); renderSteps(); };
+
+  // ── build + submit ──
+  function jsonOr(v, what) {
+    if (!v || !v.trim()) return undefined;
+    try { return JSON.parse(v); } catch (e) { throw new Error(what + ' must be valid JSON'); }
+  }
+  function toStep(s) {
+    if (s.kind === 'action') {
+      if (!s.action) throw new Error('each action step needs an action');
+      return { action: s.action, params: jsonOr(s.params, 'params') || {} };
+    }
+    if (!s.url) throw new Error('each request step needs a URL');
+    var out = { method: s.method || 'GET', url: s.url };
+    var h = jsonOr(s.headers, 'headers'); if (h) out.headers = h;
+    if (s.body && s.method !== 'GET' && s.method !== 'HEAD') out.body = s.body;
+    return out;
+  }
+
+  $('create').onclick = function () {
+    $('buildErr').textContent = '';
+    if (!A.api) { $('buildErr').textContent = 'Set the Worker URL first.'; return; }
+    if (!A.signedIn()) { $('buildErr').textContent = 'Sign in first.'; return; }
+    var job;
+    try {
+      job = {
+        name: $('name').value.trim(),
+        intervalMinutes: parseInt($('interval').value, 10) || 60,
+        runner: $('runner').value,
+        steps: steps.map(toStep),
+      };
+      if (!job.name) throw new Error('the automation needs a name');
+    } catch (e) { $('buildErr').textContent = e.message; return; }
+
+    if (editingBusy) return; editingBusy = true;
+    A.createJob(job).then(function () {
+      editingBusy = false;
+      steps = [defaultStep()]; renderSteps(); $('name').value = '';
+      refreshList();
+    }, function (e) { editingBusy = false; $('buildErr').textContent = String(e.message || e); });
+  };
+
+  // ── list ──
+  function refreshList() {
+    var box = $('list');
+    if (!A.api || !A.signedIn()) { box.textContent = A.api ? 'Sign in to see your automations.' : 'Set the Worker URL first.'; return; }
+    box.textContent = 'Loading…';
+    A.listJobs().then(function (r) {
+      box.innerHTML = '';
+      var jobs = r.jobs || [];
+      if (!jobs.length) { box.textContent = 'No automations yet.'; return; }
+      jobs.forEach(function (j) { box.appendChild(jobRow(j)); });
+    }, function (e) { box.innerHTML = ''; box.textContent = 'Could not load: ' + (e.message || e); });
+  }
+  function jobRow(j) {
+    var card = document.createElement('div'); card.className = 'card';
+    var top = document.createElement('div'); top.className = 'job';
+    var left = document.createElement('div');
+    var n = document.createElement('strong'); n.textContent = j.name;
+    var meta = document.createElement('div'); meta.className = 'muted';
+    var stepsN = j.steps ? j.steps.length + ' steps' : (j.action || j.method);
+    meta.textContent = 'every ' + j.intervalMinutes + 'm · ' + j.runner + ' · ' + stepsN
+      + (j.lastStatus != null ? ' · last ' + j.lastStatus : '');
+    left.appendChild(n); left.appendChild(meta);
+    var actions = document.createElement('span'); actions.className = 'row';
+    var run = document.createElement('button'); run.className = 'ghost'; run.textContent = 'Run now';
+    run.onclick = function () { run.disabled = true; A.runJob(j.id).then(refreshList, function (e) { alert(e.message); run.disabled = false; }); };
+    var del = document.createElement('button'); del.className = 'ghost'; del.textContent = 'Delete';
+    del.onclick = function () { del.disabled = true; A.deleteJob(j.id).then(refreshList, function (e) { alert(e.message); del.disabled = false; }); };
+    actions.appendChild(run); actions.appendChild(del);
+    top.appendChild(left); top.appendChild(actions); card.appendChild(top);
+    return card;
+  }
+
+  // ── boot ──
+  renderSteps();
+  refreshAuth();
+  if (A.api) A.actions().then(function (r) { actionNames = r.actions || []; renderSteps(); }, function () {});
+})();
+</script>
+</body>
+</html>

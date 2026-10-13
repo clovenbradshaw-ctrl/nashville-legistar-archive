@@ -21,6 +21,29 @@ async function loadTess(base) {
   return (_tess = window.Tesseract);
 }
 
+// Faint or low-contrast scans read poorly. Grayscale + Otsu-binarize the page
+// before the eyes read it — but only when the page reads as a document (a light
+// background), so a dark/colourful UI screenshot is left alone. Measured on a
+// faded clinical form this took the read from 0 fields to several.
+function binarize(cv) {
+  // Optics live in Alhazen (scores-patch-points/Alhazen); use it when present.
+  if (typeof window !== "undefined" && window.Alhazen && window.Alhazen.binarizeCanvas) return window.Alhazen.binarizeCanvas(cv);
+  try {
+    const cx = cv.getContext('2d', { willReadFrequently: true });
+    const im = cx.getImageData(0, 0, cv.width, cv.height), d = im.data;
+    const hist = new Array(256).fill(0), gray = new Uint8ClampedArray(d.length / 4);
+    let sumL = 0;
+    for (let i = 0, j = 0; i < d.length; i += 4, j++) { const g = (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]) | 0; gray[j] = g; hist[g]++; sumL += g; }
+    if (sumL / gray.length < 120) return cv;
+    const total = gray.length; let sum = 0; for (let t = 0; t < 256; t++) sum += t * hist[t];
+    let sumB = 0, wB = 0, max = 0, thr = 127;
+    for (let t = 0; t < 256; t++) { wB += hist[t]; if (!wB) continue; const wF = total - wB; if (!wF) break; sumB += t * hist[t]; const mB = sumB / wB, mF = (sum - sumB) / wF, v = wB * wF * (mB - mF) * (mB - mF); if (v > max) { max = v; thr = t; } }
+    for (let i = 0, j = 0; i < d.length; i += 4, j++) { const v = gray[j] > thr ? 255 : 0; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
+    cx.putImageData(im, 0, 0);
+  } catch (e) {}
+  return cv;
+}
+
 // tesseract.js word → the pipeline's word shape ({ text, conf, bbox:{x0,y0,x1,y1} }).
 function wordsFromTess(data) {
   const words = [];
@@ -37,13 +60,16 @@ export async function readScreenImage(img, opts = {}) {
   if (!W || !H) return null;
   const cv = (typeof OffscreenCanvas !== 'undefined') ? new OffscreenCanvas(W, H) : Object.assign(document.createElement('canvas'), { width: W, height: H });
   const cx = cv.getContext('2d', { willReadFrequently: true }); cx.drawImage(img, 0, 0, W, H);
+  if (opts.binarize !== false) binarize(cv);
   const { data } = cx.getImageData(0, 0, W, H);
   tr('screen', 'decode', 'Decoded ' + W + ' × ' + H + ' pixels for the 2D model', { w: W, h: H });
-  let words = [];
+  let words = [], raw = '';
   try {
     const T = await loadTess(opts.tessSrc); tr('screen', 'ocr', 'Reading the image’s word boxes with tesseract');
     const r = await T.recognize(cv, 'eng', { logger: m => { if (opts.onProgress && m && m.status) opts.onProgress(m); } });
-    words = wordsFromTess((r && r.data) || {});
+    const data = (r && r.data) || {};
+    words = wordsFromTess(data);
+    raw = String(data.text || '').replace(/\s+\n/g, '\n').trim();
     tr('screen', 'ocr', 'Tesseract returned ' + words.length + ' word boxes', { words: words.length });
   } catch (e) { tr('screen', 'ocr-fail', 'No word boxes (OCR did not run: ' + e.message + ')'); }
   const model = buildScreenModel({ width: W, height: H, data }, words, opts.core || {});
@@ -53,7 +79,24 @@ export async function readScreenImage(img, opts = {}) {
   const gaps = gapsOf({ lines: wordsToLines(words), report: {} }, model, 1);
   const text = readingTextOf({ width: W, height: H, unit: model.unit, root: model.root, stats: model.stats, tokens, elements, source: {} }, {});
   const ledger = ledgerLinesOf({ source: { name: opts.name || 'image' }, elements }, { image: opts.name || 'image' });
-  return { schema: 'EOScreenLook@1', width: W, height: H, unit: model.unit, model, elements, tokens, gaps, text, ledger, words: words.length };
+  return { schema: 'EOScreenLook@1', width: W, height: H, unit: model.unit, model, elements, tokens, gaps, text, ledger, raw, words: words.length };
+}
+
+/** The page's CONTENT from the measured model: its text nodes in reading order, each with the
+ *  region [x,y,w,h] it was read from, and the page text they compose with each element's
+ *  [start,end) into it. `screen.text` is the LAYOUT reading ("Looking at the image…"); this is the
+ *  words themselves, positioned — what an overlay anchors to. Offsets are the model's own, so a
+ *  caller that builds the document text the same way (elements joined by '\n') can slice it. */
+export function contentOf(screen) {
+  const els = (screen.elements || []).filter(e => e.type === 'text' && e.text && e.text.trim() && e.region)
+    .slice().sort((a, b) => a.region[1] - b.region[1] || a.region[0] - b.region[0]);
+  let text = ''; const out = [];
+  for (const e of els) {
+    const t = e.text.trim(); if (text) text += '\n';
+    const start = text.length; out.push({ id: e.id, role: e.role, region: e.region, text: t, start, end: start + t.length });
+    text += t;
+  }
+  return { text, elements: out, width: screen.width, height: screen.height };
 }
 
 // OCR words → the line shape gapsOf expects (a line per distinct OCR line index is overkill here;

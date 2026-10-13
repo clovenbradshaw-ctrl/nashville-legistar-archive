@@ -1,4 +1,5 @@
 // fold-net.js — Matrix (hyphae.social) workspace rooms, hash-chained blocks, archive.org, search, in-browser Whisper.
+import { deviceKeyring, isSealed, anySealed, VaultError, CODE as VCODE, EPOCH_EVENT } from './holodeck-vault.js';
 const BLOCK = 'social.hyphae.fold.block', CONFIG = 'social.hyphae.fold.config', PRIV = 'social.hyphae.fold.private';
 const enc = new TextEncoder();
 export const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
@@ -34,6 +35,8 @@ export async function login(server, user, password) {
   const s = { ...d, token: j.access_token, user: j.user_id, guest: false }; saveSession(s); return s;
 }
 export function logout() { saveSession(null); }
+// Adopt a session made elsewhere (an account created from an invite link). The caller never passes a password.
+export function useSession(s) { saveSession(s); return s; }
 
 // ---------- share links with ready-made accounts ----------
 const rnd = n => { const a = new Uint8Array(n); crypto.getRandomValues(a); return [...a].map(b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join(''); };
@@ -77,6 +80,25 @@ export async function merge(temp, server, user, password, rooms, carry) {
   if (carry) { try { await carry(main); } catch (e) {} }
   try { await api(temp, 'POST', '/_matrix/client/v3/account/deactivate', { auth: { type: 'm.login.password', identifier: { type: 'm.id.user', user: temp.user }, password: temp.password }, erase: false }); } catch (e) {}
   saveSession(main); return main;
+}
+
+// ---------- share by email (the mailer on bcc.hyphae.social sends the code) ----------
+// The link carries a ticket (never a password); the recipient proves the mailbox
+// with a code sent by the mailer and is handed the disposable account's password.
+export function mailerBase() {
+  try { return (localStorage.getItem('hd:mail') || '').replace(/\/+$/, '') || 'https://bcc.hyphae.social'; } catch (e) { return 'https://bcc.hyphae.social'; }
+}
+export async function emailShareRequest(base, email, origin, rooms) {
+  const r = await fetch((base || mailerBase()) + '/api/fold/request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, origin, rooms }) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) { const e = new Error((j && j.error) || ('HTTP ' + r.status)); e.status = r.status; throw e; }
+  return j;
+}
+export async function emailShareConfirm(base, ticket, email, code) {
+  const r = await fetch((base || mailerBase()) + '/api/fold/confirm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ticket, email, code }) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) { const e = new Error((j && j.error) || ('HTTP ' + r.status)); e.status = r.status; throw e; }
+  return j;
 }
 
 // ---------- rooms ----------
@@ -132,8 +154,47 @@ export async function appendBlock(s, room, bytes, meta, head) {
 }
 
 // ---------- private room snapshots ----------
-export async function savePrivate(s, room, key, data) { return setState(s, room, PRIV, key, { v: 1, at: new Date().toISOString(), data }); }
-export async function loadPrivate(s, room, key) { const c = await getState(s, room, PRIV, key); return c && c.data; }
+// What a person pinned, drafted and read. It is SEALED on the device before it is sent (holodeck-vault.js), with a key
+// that is never sent to the homeserver: the server holds ciphertext it cannot open. A device that does not hold the
+// workspace key neither reads nor writes the snapshot — it does not fall back to plaintext — and only the workspace's
+// owner starts a key, so two devices never seal one workspace under two keys that cannot read each other.
+async function roomPeople(s, room) {       // who made the room, and who has moderator power in it (from its state)
+  const evs = await api(s, 'GET', '/_matrix/client/v3/rooms/' + encodeURIComponent(room) + '/state');
+  const create = (evs || []).find(e => e.type === 'm.room.create');
+  const pl = (evs || []).find(e => e.type === 'm.room.power_levels' && (e.state_key === '' || e.state_key === undefined));
+  const users = ((pl && pl.content) || {}).users || {};
+  return { creator: create ? create.sender : null, mods: Object.entries(users).filter(([, n]) => Number(n) >= 50).map(([u]) => u) };
+}
+async function absorbRotations(s, room, ring) {   // the next key, when the owner rotated it after removing someone
+  const [who, evs] = await Promise.all([roomPeople(s, room), events(s, room, EPOCH_EVENT)]);
+  return ring.absorb(room, evs.map(e => ({ type: e.type, sender: e.sender, content: e.content })), { trusted: u => u === who.creator || who.mods.includes(u) });
+}
+export async function savePrivate(s, room, key, data, ring = deviceKeyring(s && s.user)) {
+  if (!(await ring.has(room))) {
+    if (await anySealed((t, k) => getState(s, room, t, k))) throw new VaultError(VCODE.Locked, 'This device does not hold the workspace key, so it cannot save private work. Open the device link from the device that started the workspace, or ask the owner for a new invitation.');
+    const who = await roomPeople(s, room);
+    if (who.creator !== s.user) throw new VaultError(VCODE.NotOwner, 'Private work is saved sealed, and the key comes from the person who made the workspace. Open the invitation or device link they send.');
+    await ring.ensure(room);
+  }
+  const content = await ring.sealFor(room, { at: new Date().toISOString(), data }, { type: PRIV, key: key || '' });
+  return setState(s, room, PRIV, key, content);
+}
+export async function loadPrivate(s, room, key, ring = deviceKeyring(s && s.user)) {
+  const c = await getState(s, room, PRIV, key);
+  if (!c || (typeof c === 'object' && !Object.keys(c).length)) return null;
+  const ctx = { type: PRIV, key: key || '' };
+  if (isSealed(c)) {
+    try { return (await ring.openFor(room, c, ctx)).data; }
+    catch (e) {
+      if (e && e.code === VCODE.Locked && (await absorbRotations(s, room, ring).catch(() => 0))) return (await ring.openFor(room, c, ctx)).data;
+      throw e;
+    }
+  }
+  // Plaintext. A device that already holds the workspace key never takes it back: anyone who can write the room could
+  // put a forged snapshot there. A workspace with no key yet is read as it is, and its next save seals it.
+  if (await ring.has(room)) throw new VaultError(VCODE.Downgrade, 'The private snapshot is not sealed, so it was ignored.');
+  return c.data;
+}
 
 // ---------- archive.org ----------
 export function saveToArchive(url) { if (!/^https?:\/\//.test(url || '')) return Promise.resolve(false); return fetch('https://web.archive.org/save/' + url, { mode: 'no-cors' }).then(() => true, () => false); }
@@ -151,38 +212,51 @@ export async function fetchVia(proxyTpl, url) { const u = proxyTpl ? proxyTpl.re
 
 // ---------- in-browser Whisper ----------
 let _asr = null, _asrModel = null;
-// opts = { prompt, language }: the priors the transcriber listens with.
-// `prompt` becomes Whisper's initial-prompt tokens (the decoder prefix after the
-// start/language/task tokens — transformers.js doesn't wire this up itself, so the
-// prefix is built from the model's own _retrieve_init_tokens and the tokenizer).
-// `language` picks the decoder's language token; English-only (.en) models ignore it.
+// opts = { language }: `language` picks the decoder's language token; English-only (.en) models ignore it.
+// There is no vocabulary prior. A prefix of the workspace's names was once fed to the decoder through
+// `decoder_input_ids`; on the WebGPU path that threw ("Cannot convert [object Object] to a BigInt", and in the
+// app "Session mismatch"), so every transcription that listened with the default prior died in the decoder.
+// Plain transcription is what transformers.js supports, and it is what runs.
+//
+// Resumable: opts.onCheckpoint({ segs, upTo, total }) is called after every finished 30 s window with the raw
+// segments heard so far and the second they run up to; opts.resume = { segs, upTo } feeds that back in, and the
+// windows that end at or before `upTo` are not given to the recognizer again. A long run that dies (tab closed,
+// out of memory, a decoder error) therefore loses at most one window.
 export async function transcribe(fileOrBuf, onProgress, model, opts) {
   opts = opts || {}; model = model || 'onnx-community/whisper-base';
   onProgress && onProgress({ stage: 'loading model' });
   if (!_asr || _asrModel !== model) { _asr = null; _asrModel = model; const T = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.1.2'); const device = navigator.gpu ? 'webgpu' : 'wasm';
     _asr = await T.pipeline('automatic-speech-recognition', model, { device, dtype: device === 'webgpu' ? 'fp32' : 'q8', progress_callback: p => onProgress && p.progress != null && onProgress({ stage: 'downloading model', pct: Math.round(p.progress) }) }); }
   onProgress && onProgress({ stage: 'decoding audio' });
-  const buf = fileOrBuf instanceof ArrayBuffer ? fileOrBuf : await fileOrBuf.arrayBuffer();
-  const ctx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, 16000, 16000); const decoded = await ctx.decodeAudioData(buf.slice(0));
-  const off = new OfflineAudioContext(1, Math.ceil(decoded.duration * 16000), 16000); const src = off.createBufferSource(); src.buffer = decoded; src.connect(off.destination); src.start(); const pcm = (await off.startRendering()).getChannelData(0);
-  const CH = 30 * 16000, segs = [];
+  // The sound is streamed in 30 s windows (holodeck-pcm.js): decoding a long recording whole
+  // took the tab down (a three-hour file peaked at 8.3 GB and then failed to decode at all).
+  const P = await import(new URL('holodeck-pcm.js', import.meta.url).href);
+  const buf = fileOrBuf instanceof ArrayBuffer || ArrayBuffer.isView(fileOrBuf) ? fileOrBuf : await fileOrBuf.arrayBuffer();
+  const total = (await P.audioDuration(buf)) || null;
+  const CH = 30 * 16000;
+  const resume = opts.resume && Array.isArray(opts.resume.segs) && opts.resume.upTo > 0 ? opts.resume : null;
+  const segs = resume ? resume.segs.map(x => ({ ...x })) : [];
   const lang = opts.language && opts.language !== 'auto' ? opts.language : null;
   const englishOnly = /\.en$/.test(model);
-  let decPrefix = null;
-  if (opts.prompt || lang) {
-    try {
-      const g = await _asr.model._prepare_generation_config(null, { return_timestamps: true, ...(englishOnly ? {} : lang ? { language: lang } : {}) });
-      let init = _asr.model._retrieve_init_tokens ? _asr.model._retrieve_init_tokens(g) : null;
-      if (opts.prompt && _asr.tokenizer) { const tok = await _asr.tokenizer(opts.prompt, { add_special_tokens: false }); if (tok && tok.input_ids) init = [...init, ...tok.input_ids]; }
-      decPrefix = init;
-    } catch (e) { onProgress && onProgress({ stage: 'prior unavailable (' + (e && e.message || e) + ') — transcribing without it' }); }
-  }
   const extra = { return_timestamps: true, chunk_length_s: 30 };
-  if (decPrefix) extra.decoder_input_ids = decPrefix;
   if (lang && !englishOnly) extra.language = lang;
-  for (let o = 0; o < pcm.length; o += CH) { onProgress && onProgress({ stage: 'transcribing', pct: Math.round(o / pcm.length * 100) });
-    const r = await _asr(pcm.subarray(o, Math.min(pcm.length, o + CH)), extra);
-    const base = o / 16000; (r.chunks || [{ timestamp: [0, CH / 16000], text: r.text }]).forEach(c => { const t = (c.text || '').trim(); if (t) segs.push({ start: +(base + (c.timestamp[0] || 0)).toFixed(2), end: +(base + (c.timestamp[1] || c.timestamp[0] || 0)).toFixed(2), text: t }); }); }
-  onProgress && onProgress({ stage: 'done', pct: 100 });
-  return { source: 'in-browser-whisper', model, segments: segs, duration: decoded.duration, priors: { prompt: opts.prompt || null, language: englishOnly ? 'en' : (lang || 'auto') } };
+  // A recognizer that loses the signal writes the same word again until the window ends ("hum, hum, hum…" three hundred
+  // times). Nothing downstream should ever see that as something said: it is collapsed here, with the count kept.
+  const { collapseLoops } = await import(new URL('holodeck-loops.js', import.meta.url).href);
+  const nChunks = total ? Math.max(1, Math.ceil(total / 30)) : null; let ci = 0, heard = resume ? resume.upTo : 0;
+  onProgress && onProgress({ stage: 'transcribing', pct: total && resume ? Math.min(100, Math.round(heard / total * 100)) : 0, i: 1, n: nChunks, resumedAt: resume ? resume.upTo : null, partial: resume ? collapseLoops(segs).segs : undefined });
+  for await (const w of P.pcm16k(buf, { winSec: 30, signal: opts.signal })) {
+    // a window the earlier run already finished: stepped over, not heard twice
+    if (resume && w.start + w.pcm.length / 16000 <= resume.upTo + 0.01) { ci++; continue; }
+    const r = await _asr(w.pcm, extra); ci++;
+    const base = w.start; heard = w.start + w.pcm.length / 16000;
+    (r.chunks || [{ timestamp: [0, w.pcm.length / 16000], text: r.text }]).forEach(c => { const t = (c.text || '').trim(); if (t) segs.push({ start: +(base + (c.timestamp[0] || 0)).toFixed(2), end: +(base + (c.timestamp[1] || c.timestamp[0] || 0)).toFixed(2), text: t }); });
+    // The text is visible while it streams: each finished chunk hands back what has been
+    // heard so far (only the new segments — the caller keeps the list), so the surface can
+    // show the words appearing without copying a three-hour transcript every 30 seconds.
+    try { opts.onCheckpoint && opts.onCheckpoint({ segs, upTo: heard, total }); } catch (e) {}
+    onProgress && onProgress({ stage: 'transcribing', pct: total ? Math.min(100, Math.round(heard / total * 100)) : null, i: ci + (total && heard < total ? 1 : 0), n: nChunks || ci, partial: collapseLoops(segs).segs }); }
+  const clean = collapseLoops(segs);
+  onProgress && onProgress({ stage: 'done', pct: 100, partial: clean.segs });
+  return { source: 'in-browser-whisper', model, segments: clean.segs, loops: clean.loops, duration: heard, priors: { prompt: null, language: englishOnly ? 'en' : (lang || 'auto') } };
 }

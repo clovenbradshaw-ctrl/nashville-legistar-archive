@@ -1,0 +1,108 @@
+{
+ "schema": "HandPrior@1",
+ "source": "asl_long.mp4",
+ "giver": "opencode (Alhazen watch session)",
+ "recipe": "watch the video; per window readScene() finds the body and per-frame hands; observe (body, hand) into a 5x5 body-relative LOCATION grid and observe each hand track into a BEHAVIOUR model",
+ "provenance": {
+  "windows": 59,
+  "bodies": 56,
+  "handFrames": 2221,
+  "fps": 6,
+  "width": 160,
+  "height": 90
+ },
+ "location": {
+  "schema": "HandLocationPrior@1",
+  "GX": 5,
+  "GY": 5,
+  "n": 2221,
+  "sizeSum": 1384.6144343941387,
+  "sizeN": 2221,
+  "grid": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   40,
+   0,
+   0,
+   19,
+   0,
+   0,
+   0,
+   43,
+   466,
+   146,
+   48,
+   9,
+   163,
+   322,
+   683,
+   128,
+   114
+  ]
+ },
+ "behavior": {
+  "schema": "HandBehavior@1",
+  "n": 59,
+  "st": {
+   "speed": {
+    "n": 59,
+    "mean": 6.434413620657969,
+    "M2": 2494.8791065189903
+   },
+   "straight": {
+    "n": 59,
+    "mean": 0.07073698190215744,
+    "M2": 1.0234359787492626
+   },
+   "dwell": {
+    "n": 59,
+    "mean": 0.8001780007961464,
+    "M2": 1.3389225828121425
+   },
+   "revPerSec": {
+    "n": 59,
+    "mean": 0.45734039639323787,
+    "M2": 14.27314045829438
+   },
+   "sizeRel": {
+    "n": 59,
+    "mean": 39.169491525423716,
+    "M2": 15132.305084745767
+   }
+  }
+ },
+ "inferences": [
+  {
+   "about": "speed",
+   "claim": "hands move ~6.43 px/frame (sd 6.56)",
+   "n": 59
+  },
+  {
+   "about": "straightness",
+   "claim": "hand paths are ~0.07 straight (1=straight)",
+   "n": 59
+  },
+  {
+   "about": "dwell",
+   "claim": "hands dwell (near-still) ~80% of frames",
+   "n": 59
+  },
+  {
+   "about": "reversals",
+   "claim": "hands reverse direction ~0.46/s",
+   "n": 59
+  },
+  {
+   "about": "size",
+   "claim": "a hand is ~39.17 px wide",
+   "n": 59
+  }
+ ],
+ "at": "2026-10-08T21:08:25.696Z"
+}

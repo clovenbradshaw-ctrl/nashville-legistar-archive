@@ -1,4 +1,4 @@
-/* Koopman speaks:
+/* Koopman — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “It is the object of this note to outline certain 
 investigations of our own in which the domain of this theory has been 
 extended in such a way as to include classical Hamiltonian mechanics, 

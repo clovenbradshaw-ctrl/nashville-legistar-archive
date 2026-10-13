@@ -1,4 +1,4 @@
-/* Abhinavagupta speaks:
+/* Abhinavagupta — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “śāntaś ca tṛṣṇā-kṣaya-sukhasya yaḥ paripoṣas tal-lakṣaṇo rasaḥ pratīyata eva /”
  *
  * This file implements the concept of pathos, a foundational element of Abhinavagupta's philosophical framework.  It represents the emotional dimension of the world, a realm where the "heart" of a given text or action resides. While the core concept is sound, its application in this code often relies on external factors and assumptions.  I strive to ensure that pathos remains grounded in the pure nature of experience and the inherent wisdom of the text.
@@ -125,10 +125,18 @@ export function pathosOf({ text, experiencer, state = {}, fold = null, delta = n
 
 /**
  * reGroundCondition(read) → { kind, basis }
- * One of: ground_holds | stale | collapse | contested.
+ * One of: ground_holds | stale | collapse | contested | lifted.
  * collapse is only ever declared from a MEASURED curve — an unmeasured curve with surprise
  * null is unmeasurable, never a verdict.
- */
+ *
+ * lifted is collapse's twin and the appetitive half of the same measured
+ * curve: a consequential surprise burst the ground ABSORBS, WITH a witnessed
+ * release. Collapse is the surprise that breaks a ground (no release); lifted
+ * is the surprise that WIDENS one (release seen) — the rasa that follows the
+ * pathemata's release, `nul.pattern()`'s opening sign. It is not a failure:
+ * it is the ground wanting to rise, and `reGround` concedes it too, because a
+ * ground that can hold more should be let to. */
+
 export function reGroundCondition(read) {
   if (!read || read.schema !== "EOPathosRead@1") {
     throw new TypeError("reGroundCondition requires an EOPathosRead@1");
@@ -144,6 +152,13 @@ export function reGroundCondition(read) {
     const release = read.curve.release ?? 0;
     if (operations > 0 && release === 0) {
       return Object.freeze({ kind: "collapse", basis: `a consequential surprise burst (${operations} operation(s)) with no witnessed release — the ground cannot absorb what arrived; re-scope to the boundary where the ground was most wrong` });
+    }
+    // The appetitive twin: the same burst, absorbed, with the release seen.
+    // A ground is delighted by what it can take in and stand higher on — and
+    // this is the one condition under which the ground may rise WITHOUT
+    // having failed. `reGround` concedes it (it is not `ground_holds`).
+    if (operations > 0 && release > 0) {
+      return Object.freeze({ kind: "lifted", basis: `a consequential surprise burst (${operations} operation(s)) WITH a witnessed release (${release}) — the ground absorbed what arrived and can rise to hold it; the widening sign (nul.pattern's opened), sought rather than suffered` });
     }
   }
   return Object.freeze({ kind: "ground_holds", basis: "the current ground absorbs what arrived" });

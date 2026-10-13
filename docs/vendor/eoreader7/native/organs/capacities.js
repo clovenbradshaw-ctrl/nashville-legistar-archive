@@ -49,7 +49,7 @@ export const CAPACITIES = Object.freeze([
     op: "SIG+INS",
     module: "cast.js",
     fn: "makeReferentIndex",
-    what: "referent identity over a passage set — names resolve to who, not to byte strings (P11). One of two capacities that actually execute from the terminal (capacity-runner.js) — `relations` is the other; the remaining eight are reference-only.",
+    what: "referent identity over a passage set — names resolve to who, not to byte strings (P11). One of four capacities that execute from the terminal (capacity-runner.js) — `relations`, `unravel`, `witness` are the others; the rest are reference-only until they gain a handler in the runner's dispatch table.",
   }),
   Object.freeze({
     id: "relations",
@@ -177,7 +177,7 @@ export const CAPACITIES = Object.freeze([
     op: "EVA",
     module: "witness.js",
     fn: "witnessCode",
-    what: "does one landing actually compile — the structural half of the parliament build-log.js gates every patch through",
+    what: "does one landing actually compile — the structural half of the parliament build-log.js gates every patch through. Executes from the terminal (capacity-runner.js dispatch, 2026-10-08): the language is sniffed off the bytes (identifyMaterial), only html/js read; anything else is a typed unexamined gap.",
   }),
 
   // ── the connection pass (2026-08-29, P64) ─────────────────────────────
@@ -325,7 +325,7 @@ export const CAPACITIES = Object.freeze([
     op: "SEG",
     module: "unravel.js",
     fn: "unravel",
-    what: "cutting a pattern apart at its own seams — parameter-free separation at the network's bridges, parts each still readable, cut edges addressed by the caller's own indices; a 2-edge-connected network is a typed no_seam refusal, never a cut bought with an invented threshold. The plan's one no-candidate frontier cell, built. Cell stamped in the organ's own CELL export (SEG·Pattern).",
+    what: "cutting a pattern apart at its own seams — parameter-free separation at the network's bridges, parts each still readable, cut edges addressed by the caller's own indices; a 2-edge-connected network is a typed no_seam refusal, never a cut bought with an invented threshold. The plan's one no-candidate frontier cell, built. Cell stamped in the organ's own CELL export (SEG·Pattern). Executes from the terminal (capacity-runner.js dispatch, 2026-10-08): composes `relations` into the edge graph, then cuts it.",
   }),
   Object.freeze({
     id: "settle",

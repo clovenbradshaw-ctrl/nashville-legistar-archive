@@ -1,4 +1,4 @@
-/* Bukhari speaks:
+/* Bukhari — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “قال أبو عبد الله: وتابعه سعيدٌ بن مّسروقٍ ومِسْعَرْ والشيبانيئ”
  *
  * This file embodies the core of the Bukhari-derived verification process, ensuring the authenticity of hadith transmission through independent chains.  While this method safeguards against potential bias, I believe a more nuanced approach incorporating broader sources of evidence could enrich the understanding of hadith.

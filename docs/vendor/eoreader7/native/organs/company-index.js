@@ -27,6 +27,8 @@
 const DEFAULT_CLEAN = (t) => t.replace(/^[^\p{L}]+|[^\p{L}'’]+$/gu, "");
 const DEFAULT_COUNT_SPLIT = /[^\p{L}\p{N}']+/u;
 
+// a Han/Kana/Hangul word carries a morpheme per character: two-character floor
+const DENSE_SCRIPT = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
 export function createCompanyIndex({ clean = DEFAULT_CLEAN, countSplit = DEFAULT_COUNT_SPLIT, minCountLength = 3 } = {}) {
   const words = [];              // sentence -> cleaned whitespace tokens (contextVectors' own)
   const byWord = new Map();      // cleaned word -> [[sentence, position], ...]
@@ -52,7 +54,7 @@ export function createCompanyIndex({ clean = DEFAULT_CLEAN, countSplit = DEFAULT
     });
     const seen = new Set();
     for (const w of text.split(countSplit)) {
-      if (w.length < minCountLength) continue;
+      if (w.length < (DENSE_SCRIPT.test(w) ? Math.min(2, minCountLength) : minCountLength)) continue;
       counts.set(w, (counts.get(w) ?? 0) + 1);
       if (!seen.has(w)) { seen.add(w); sentenceCounts.set(w, (sentenceCounts.get(w) ?? 0) + 1); }
     }

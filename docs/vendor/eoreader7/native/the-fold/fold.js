@@ -476,7 +476,7 @@ export function buildRecordSystemMessage(summary, { window = RECORDS_IN_PROMPT }
  * second system message anywhere else, so the blocks are merged rather than
  * appended as separate messages.
  */
-export function buildTurnMessages({ basePrompt, summary, history, question, sourceBlock, recordWindow }) {
+export function buildTurnMessages({ basePrompt, summary, history, question, sourceBlock, recordWindow, recencyWindow }) {
   const systemParts = [];
   if (basePrompt) systemParts.push(basePrompt);
   const past = buildSummarySystemMessage(summary);
@@ -488,7 +488,12 @@ export function buildTurnMessages({ basePrompt, summary, history, question, sour
   const messages = [];
   if (systemParts.length)
     messages.push({ role: "system", content: systemParts.join("\n\n") });
-  for (const m of (history || []).slice(-RECENCY_WINDOW))
+  // The recency window is a CALLER's budget, not a fact: the default is the
+  // declared RECENCY_WINDOW, but a caller holding a conversation short enough
+  // to carry verbatim may pass a wider one (the bound is a budget, and a short
+  // exchange fits inside it). Never unbounded — the caller names the window.
+  const window = Number.isFinite(recencyWindow) && recencyWindow > 0 ? Math.floor(recencyWindow) : RECENCY_WINDOW;
+  for (const m of (history || []).slice(-window))
     messages.push({ role: m.role, content: m.content });
   messages.push({ role: "user", content: question });
   return messages;

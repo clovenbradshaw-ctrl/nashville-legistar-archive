@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alhazen · live document/vision reader</title>
+<style>
+  :root{--bg:#0c0e12;--panel:#141821;--line:#232a36;--ink:#e7edf5;--dim:#8b97a8;--hi:#7fd1ff;--warm:#ffb454;--good:#5ee6a8;--bad:#ff6b7a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+  h1{font-size:16px;margin:0;font-weight:650}
+  h1 b{color:var(--hi)}
+  .sub{color:var(--dim);font-size:12px}
+  main{display:grid;grid-template-columns:1.35fr .9fr;gap:14px;padding:14px;align-items:start}
+  @media(max-width:900px){main{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .pad{padding:12px 14px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  input[type=text]{flex:1;min-width:220px;background:#0b0e14;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 11px;font:inherit}
+  button{background:#1c2431;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 12px;font:inherit;cursor:pointer}
+  button:hover{border-color:#39506b}
+  button.hi{background:#13324a;border-color:#2a6b96;color:#dff2ff}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .stage{position:relative;background:#000;min-height:260px;display:flex;align-items:center;justify-content:center}
+  .stage video{width:100%;height:auto;display:block;background:#000}
+  .stage canvas.overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .stage .empty{color:#556;padding:40px;text-align:center}
+  #embedwrap{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+  #embedwrap iframe{width:100%;height:100%;border:0}
+  .hud{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .k{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  .v{font-size:15px;font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--line);font-size:12px;margin:2px 4px 2px 0}
+  .events{max-height:190px;overflow:auto;border-top:1px solid var(--line)}
+  .ev{padding:8px 14px;border-bottom:1px solid var(--line);font-size:13px;display:flex;gap:8px;align-items:center}
+  .ev .dot{width:8px;height:8px;border-radius:50%;flex:none}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--dim)}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:middle}
+  .note{color:var(--dim);font-size:12px;padding:10px 14px;border-top:1px solid var(--line)}
+  code{background:#0b0e14;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(127,209,255,.0)}50%{box-shadow:0 0 0 6px rgba(127,209,255,.35)}}
+  .pulse{animation:pulse 1s ease-in-out 6;border-color:var(--hi)!important;color:#dff2ff}
+</style>
+</head>
+<body>
+<header>
+  <h1>Alhazen <b>· live reader</b></h1>
+  <span class="sub">paste a video · watch the eyes run in real time · overlay: regions · layers · tracks · motion · depth · events</span>
+</header>
+
+<main>
+  <section class="card">
+    <div class="pad row">
+      <input id="url" type="text" placeholder="paste a YouTube link (or a direct .mp4/.webm URL)">
+      <button id="load" class="hi">Load</button>
+      <button id="demo" title="Load a built-in clip so you can see the reader work right away">Demo clip</button>
+      <button id="asl" title="Load a real ASL clip and watch the attention spotlight">ASL sample</button>
+      <button id="filebtn">Local file…</button>
+      <button id="cam">Webcam</button>
+      <button id="cap" title="Capture a tab/window/screen playing the video (reads pixels the page cannot)">Capture tab/screen</button>
+      <input id="file" type="file" accept="video/*" hidden>
+    </div>
+    <div class="pad" style="padding-top:0"><span id="status" style="color:var(--hi);font-size:13px">idle — press Demo clip, or Load a link</span></div>
+    <div class="stage" id="stage">
+      <div class="empty" id="empty">Paste a link or load a file, then press <b>Load</b>.</div>
+      <video id="src" playsinline muted style="display:none"></video>
+      <div id="embedwrap" style="display:none"><iframe id="embed" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+      <canvas id="overlay" class="overlay" style="display:none"></canvas>
+    </div>
+    <div class="pad legend">
+      <span><i style="background:#7fd1ff"></i>text/line</span>
+      <span><i style="background:#ffb454"></i>wash/colour</span>
+      <span><i style="background:#5ee6a8"></i>figure/block</span>
+      <span><i style="background:#c792ea"></i>track world-line</span>
+      <span><i style="background:#ff6b7a"></i>collision/merge/split</span>
+      <span><i style="background:#3a4a63"></i>rule/divider</span>
+    </div>
+    <div class="note" id="note">Reading pixels needs a source the page can reach. A YouTube embed is cross-origin (unreadable directly): press <b>Capture tab/screen</b> and pick the tab/window playing it — captured frames are canvas-safe. Direct video URLs and local files read in place.</div>
+  </section>
+
+  <aside class="card">
+    <div class="pad hud">
+      <div><div class="k">state</div><div class="v" id="h-state">idle</div></div>
+      <div><div class="k">fps</div><div class="v" id="h-fps">—</div></div>
+      <div><div class="k">scene</div><div class="v" id="h-scene">—</div></div>
+      <div><div class="k">regions</div><div class="v" id="h-regions">—</div></div>
+      <div><div class="k">tracks</div><div class="v" id="h-tracks">—</div></div>
+      <div><div class="k">motion</div><div class="v" id="h-motion">—</div></div>
+      <div><div class="k">blur axis</div><div class="v" id="h-blur">—</div></div>
+      <div><div class="k">near/far</div><div class="v" id="h-depth">—</div></div>
+    </div>
+    <div class="pad"><div class="k" style="margin-bottom:4px">layers (2D → z-planes)</div><div id="h-layers"></div></div>
+    <div class="k pad" style="padding-bottom:6px">events (collision · merge · split · occlusion)</div>
+    <div class="events" id="events"></div>
+  </aside>
+</main>
+
+<script src="./alhazen.js"></script>
+<script>
+(() => {
+  const A = window.Alhazen; if (!A) { document.getElementById('note').textContent = 'alhazen.js failed to load'; return; }
+  const $ = id => document.getElementById(id);
+  const src = $('src'), overlay = $('overlay'), embed = $('embed'), embedwrap = $('embedwrap'), empty = $('empty');
+  const PW = 192;                       // processing width (small = fast)
+  const proc = document.createElement('canvas');
+  const pctx = proc.getContext('2d', { willReadFrequently: true });
+  const octx = overlay.getContext('2d');
+  const ring = [], RING = 16;
+  let pw = PW, ph = Math.round(PW * 9 / 16), tick = 0, lastT = 0, active = false;
+  let tracks = [], events = [], eventStore = [], read = null, depth = null, blur = null, subjects = [], handBoxes = [], ignoredShare = 0, handTrack = [], handBeh = null;
+  fetch('./hand-prior.json').then(r => r.json()).then(p => { handBeh = A.createHandBehavior(p.behavior && p.behavior.st); }).catch(() => {});
+  let fpsAcc = 0, fpsN = 0, fpsShown = 0, lastFpsAt = 0;
+  let captureStream = null;
+
+  const status = (m) => { const s = $('status'); if (s) s.textContent = m; };
+  function useVideo(url, opts) {
+    opts = opts || {};
+    if (captureStream) { captureStream.getTracks().forEach(t => t.stop()); captureStream = null; }
+    show(embedwrap, false); empty.style.display = 'none';
+    src.srcObject = null;
+    if (opts.crossOrigin) src.crossOrigin = 'anonymous'; else src.removeAttribute('crossorigin');
+    src.src = url; src.style.display = ''; show(overlay, true);
+    status('loading…'); src.play().then(() => startLoop()).catch(e => status('play blocked: ' + e.message + ' (press play on the video)'));
+  }
+  src.addEventListener('error', () => { status('video failed to load — CORS or bad URL; try a local file'); $('h-state').textContent = 'load error'; });
+  src.addEventListener('loadeddata', () => { status('playing — reading pixels live'); });
+
+  const KIND_COLOR = { text:'#7fd1ff', rule:'#3a4a63', wash:'#ffb454', figure:'#5ee6a8', block:'#5ee6a8', mark:'#9aa7b8', ink:'#7fd1ff', faint:'#5b6b82', paper:'#26303f' };
+  const EV_COLOR = { collision:'#ff6b7a', merge:'#ffb454', split:'#c792ea', occlusion:'#5ee6a8' };
+
+  function parseYouTube(u){ const m = String(u).match(/^https?:\/\/(?:www\.|m\.|music\.)?(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/i); return m ? m[1] : null; }
+  function isDirectVideo(u){ return /\.(mp4|webm|ogg|ogv|m4v|mov)(\?|$)/i.test(u); }
+
+  function show(el, on){ el.style.display = on ? '' : 'none'; }
+  function startLoop(){ if (active) return; active = true; requestAnimationFrame(loop); $('h-state').textContent = 'reading'; }
+
+  $('load').onclick = () => {
+    const u = $('url').value.trim(); if (!u) return;
+    const yt = parseYouTube(u);
+    if (yt) {
+      show(src, false); show(overlay, false);
+      show(embedwrap, true); embed.src = 'https://www.youtube.com/embed/' + yt + '?autoplay=1&mute=0';
+      empty.style.display = 'none';
+      $('h-state').textContent = 'youtube embed';
+      status('YouTube loaded — now press Capture tab/screen and pick the tab/window playing it');
+      $('cap').classList.add('pulse');
+      $('note').innerHTML = 'YouTube is playing above (muted). Press <b>Capture tab/screen</b> and choose the tab/window playing it to read its pixels live. <b>Nothing overlays until you capture.</b>';
+      return;
+    }
+    if (!isDirectVideo(u)) { $('h-state').textContent = 'not a video link'; status('that is not a direct video link — paste a YouTube link, or a .mp4/.webm URL, or use Local file'); return; }
+    status('loading direct URL…');
+    useVideo(u, { crossOrigin: true });
+  };
+
+  $('filebtn').onclick = () => $('file').click();
+  $('demo').onclick = () => { status('loading built-in demo clip…'); useVideo('./alhazen-demo.mp4'); };
+  $('asl').onclick = () => { status('loading ASL sample — watch the spotlight attend the hands and fade the periphery…'); useVideo('./asl-sample.mp4'); };
+  $('file').onchange = e => {
+    const f = e.target.files && e.target.files[0]; if (!f) return;
+    status('reading local file: ' + f.name);
+    useVideo(URL.createObjectURL(f));
+  };
+  $('cam').onclick = async () => {
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 }, audio: false });
+      show(embedwrap, false); empty.style.display = 'none';
+      src.src = ''; src.srcObject = s; src.style.display = ''; show(overlay, true); src.play();
+      status('webcam live'); startLoop();
+    } catch (e) { status('webcam blocked: ' + e.message); }
+  };
+  $('cap').onclick = async () => {
+    $('cap').classList.remove('pulse');
+    try {
+      const s = await navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 30 }, audio: false, preferCurrentTab: false });
+      captureStream = s;
+      s.getVideoTracks()[0].addEventListener('ended', () => { $('h-state').textContent = 'capture ended'; status('capture ended'); });
+      src.src = ''; src.srcObject = s; src.style.display = ''; show(embedwrap, false); show(overlay, true); empty.style.display = 'none';
+      await src.play(); startLoop();
+      status('capturing a live surface — reading pixels');
+      $('note').innerHTML = 'Capturing a live surface. Captured frames are canvas-safe. Tip: capture a <em>separate</em> tab/window playing the video to avoid the overlay feeding back into itself.';
+    } catch (e) { status('capture cancelled'); $('h-state').textContent = 'capture cancelled'; }
+  };
+
+  function sizeProc(){
+    const vw = src.videoWidth || 16, vh = src.videoHeight || 9;
+    pw = PW; ph = Math.max(1, Math.round(PW * vh / vw));
+    proc.width = pw; proc.height = ph;
+  }
+
+  function loop(ts){
+    requestAnimationFrame(loop);
+    if (!src.videoWidth) return;
+    if (ts - lastT < 85) return;              // ~12 Hz processing
+    fpsAcc++; if (ts - lastFpsAt > 500) { fpsShown = Math.round(fpsAcc * 1000 / (ts - lastFpsAt)); fpsAcc = 0; lastFpsAt = ts; $('h-fps').textContent = fpsShown; }
+    lastT = ts; tick++;
+    sizeProc();
+    try { pctx.drawImage(src, 0, 0, pw, ph); } catch (e) { return; }
+    const data = pctx.getImageData(0, 0, pw, ph).data;
+    ring.push(new Uint8ClampedArray(data)); if (ring.length > RING) ring.shift();
+
+    read = A.readImage(data, pw, ph);
+    if (tick % 2 === 0) blur = A.motionBlurOfImage(data, pw, ph);
+    if (tick % 5 === 0 && ring.length >= 8) {
+      const frames = ring.slice(-10).map(d => ({ data: d, width: pw, height: ph }));
+      tracks = A.trackObjects(frames, { radius: Math.max(8, pw * 0.06), movingOnly: true });
+      if (tick % 10 === 0) { try { subjects = (A.learnSalience(frames) || {}).subjects || []; } catch (e) { subjects = []; }
+        try { const at = A.attention(frames, { budget: 0.06 }); ignoredShare = at.ignored ? at.ignored.share : 0; const hd = A.hands(frames, { budget: 0.06 }); const cur = (hd.current && hd.current.length) ? hd.current : (hd.latest || []);
+          const next = [];
+          for (const b of cur) { let bi = -1, bd = 1e9; handBoxes.forEach((h, i) => { const d = Math.hypot((h[0] + h[2] / 2) - (b[0] + b[2] / 2), (h[1] + h[3] / 2) - (b[1] + b[3] / 2)); if (d < bd) { bd = d; bi = i; } });
+            if (bi >= 0 && bd < 40) { const h = handBoxes[bi]; next.push([h[0] * .5 + b[0] * .5, h[1] * .5 + b[1] * .5, h[2] * .5 + b[2] * .5, h[3] * .5 + b[3] * .5]); } else next.push(b.slice()); }
+          if (next.length) { handBoxes = next; handTrack = next.map(b => ({ x: b[0] + b[2] / 2, y: b[1] + b[3] / 2, w: b[2], h: b[3] })); }
+          else if (handTrack.length && handBeh) { const nx = handBeh.predictNext(handTrack, 1); if (nx) handBoxes = [[nx.x - nx.w / 2, nx.y - nx.h / 2, nx.w, nx.h]]; }   // Janus prior extrapolates a hidden hand
+        } catch (e) { handBoxes = []; } }
+      const evs = tracks.events || [];
+      const newest = evs.filter(e => e.frame >= (evs.length ? Math.max(0, (evs[evs.length-1].frame||0) - 9) : 0));
+      for (const e of evs) if (!eventStore.some(x => x.key === (e.kind + e.frame + JSON.stringify(e.tracks || e.from)))) {
+        const rec = { ...e, key: e.kind + e.frame + JSON.stringify(e.tracks || e.from), at_wall: performance.now() };
+        eventStore.push(rec); if (eventStore.length > 60) eventStore.shift();
+      }
+      renderEvents();
+    }
+    if (tick % 6 === 0) depth = A.depthFromCues(data, pw, ph);
+    draw();
+    updateHud();
+  }
+
+  function dispScale(){ const r = overlay.getBoundingClientRect(); return { sx: r.width / pw, sy: r.height / ph, w: r.width, h: r.height }; }
+
+  function draw(){
+    const r = overlay.getBoundingClientRect();
+    overlay.width = Math.max(2, Math.round(r.width)); overlay.height = Math.max(2, Math.round(r.height));
+    octx.clearRect(0, 0, overlay.width, overlay.height);
+    if (!read) return;
+    const { sx, sy } = dispScale();
+
+    // regions
+    for (const g of (read.regions || [])) {
+      const [x, y, w, h] = g.region; const c = KIND_COLOR[g.kind] || '#9aa7b8';
+      if (g.kind === 'paper') continue;
+      octx.strokeStyle = c; octx.globalAlpha = 0.85; octx.lineWidth = 1.4;
+      octx.strokeRect(x * sx, y * sy, w * sx, h * sy);
+      if (w * sx > 34) { octx.globalAlpha = 0.9; octx.fillStyle = c; octx.font = '10px system-ui'; octx.fillText(g.kind, x * sx + 3, y * sy + 11); }
+    }
+    octx.globalAlpha = 1;
+
+    // depth tint (near warm) over region boxes
+    if (depth && depth.regions) for (const d of depth.regions) {
+      const [x, y, w, h] = d.region; const a = 0.05 + 0.22 * (d.depth || 0);
+      octx.fillStyle = (d.depth > 0.5 ? `rgba(255,140,60,${a})` : `rgba(90,140,255,${a})`);
+      octx.fillRect(x * sx, y * sy, w * sx, h * sy);
+    }
+
+    // tracks as world-lines
+    for (const t of (tracks || [])) {
+      if (!t.path || t.path.length < 2) continue;
+      octx.beginPath(); octx.moveTo(t.path[0][0] * sx, t.path[0][1] * sy);
+      for (const p of t.path) octx.lineTo(p[0] * sx, p[1] * sy);
+      octx.strokeStyle = '#c792ea'; octx.lineWidth = 2; octx.globalAlpha = t.hidden ? 0.4 : 0.95; octx.setLineDash(t.hidden ? [4, 4] : []);
+      octx.stroke(); octx.setLineDash([]);
+      const head = t.path[t.path.length - 1];
+      octx.globalAlpha = 1; octx.fillStyle = '#c792ea'; octx.beginPath(); octx.arc(head[0] * sx, head[1] * sy, 3.5, 0, 7); octx.fill();
+      octx.fillStyle = '#e7edf5'; octx.font = '11px system-ui'; octx.fillText('#' + t.id + (t.parents ? '*' : ''), head[0] * sx + 6, head[1] * sy - 4);
+    }
+
+    // motion vector
+    if (blur && blur.blurAxisDeg != null) {
+      const cx = overlay.width * 0.5, cy = overlay.height * 0.86, rad = blur.blurAxisDeg * Math.PI / 180, L = 34;
+      octx.strokeStyle = '#ff6b7a'; octx.lineWidth = 2; octx.beginPath(); octx.moveTo(cx, cy); octx.lineTo(cx + Math.cos(rad) * L, cy + Math.sin(rad) * L); octx.stroke();
+      octx.fillStyle = '#ff6b7a'; octx.font = '11px system-ui'; octx.fillText('motion axis', cx + 6, cy - 6);
+    }
+
+    // flash recent events
+    const now = performance.now();
+    for (const e of eventStore) {
+      const age = now - e.at_wall; if (age > 1400 || !e.at) continue; const a = 1 - age / 1400;
+      const x = e.at[0] * sx, y = e.at[1] * sy, c = EV_COLOR[e.kind] || '#fff';
+      octx.globalAlpha = a; octx.strokeStyle = c; octx.lineWidth = 2.5;
+      octx.beginPath(); octx.arc(x, y, 26 * (1 - a) + 10, 0, 7); octx.stroke();
+      octx.fillStyle = c; octx.font = 'bold 12px system-ui'; octx.fillText(e.kind, x + 12, y - 8);
+      octx.globalAlpha = 1;
+    }
+    // THE SPOTLIGHT — show ONLY what it thinks are hands; fade everything else.
+    if (handBoxes && handBoxes.length) {
+      octx.save();
+      octx.fillStyle = 'rgba(4,6,10,0.86)'; octx.fillRect(0, 0, overlay.width, overlay.height);
+      octx.globalCompositeOperation = 'destination-out';
+      for (const b of handBoxes) {
+        const cx = (b[0] + b[2] / 2) * sx, cy = (b[1] + b[3] / 2) * sy, r = Math.max(12, Math.max(b[2], b[3]) * sx * 0.9);
+        const g = octx.createRadialGradient(cx, cy, r * 0.55, cx, cy, r * 2.2);
+        g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+        octx.fillStyle = g; octx.beginPath(); octx.arc(cx, cy, r * 2.2, 0, 7); octx.fill();
+      }
+      octx.globalCompositeOperation = 'source-over'; octx.restore();
+      for (const b of handBoxes) { octx.strokeStyle = '#ffd76a'; octx.lineWidth = 2; octx.strokeRect(b[0] * sx, b[1] * sy, b[2] * sx, b[3] * sy); octx.fillStyle = '#ffd76a'; octx.font = 'bold 11px system-ui'; octx.fillText('hand', b[0] * sx + 3, b[1] * sy - 4); }
+    }
+  }
+
+  function updateHud(){
+    if (!read) return;
+    $('h-scene').textContent = read.sceneKind + '  · ignore ' + Math.round(ignoredShare * 100) + '%  · hands ' + (handBoxes ? handBoxes.length : 0);
+    $('h-regions').textContent = (read.regions || []).length;
+    $('h-tracks').textContent = (tracks || []).filter(t => t.path && t.path.length >= 2).length;
+    $('h-motion').textContent = blur && blur.blurAxisDeg != null ? blur.blurAxisDeg + '°' : '—';
+    $('h-blur').textContent = blur && blur.anisotropy != null ? (blur.blurred ? 'blurred ' : 'sharp ') + blur.anisotropy : '—';
+    $('h-depth').textContent = depth && depth.regions && depth.regions.length ? depth.regions.length + ' planes' : '—';
+    const L = A.layersOf(pctx.getImageData(0, 0, pw, ph).data, pw, ph);
+    $('h-layers').innerHTML = (L.layers || []).map(l => `<span class="pill" style="border-color:${KIND_COLOR[l.role] || '#333'}">${l.role} ${(l.share*100).toFixed(0)}%</span>`).join('') || '—';
+  }
+
+  function renderEvents(){
+    const box = $('events');
+    box.innerHTML = eventStore.slice(-14).reverse().map(e => {
+      const c = EV_COLOR[e.kind] || '#9aa7b8';
+      const detail = e.tracks ? 'tracks ' + JSON.stringify(e.tracks) : (e.from != null ? 'from #' + e.from + ' → ' + JSON.stringify(e.into) : '');
+      return `<div class="ev"><span class="dot" style="background:${c}"></span><b>${e.kind}</b> <span style="color:var(--dim)">frame ${e.frame} · ${detail}</span></div>`;
+    }).join('') || '<div class="ev"><span style="color:var(--dim)">no events yet — collisions, merges and splits will appear here</span></div>';
+  }
+
+  renderEvents();
+})();
+</script>
+</body>
+</html>

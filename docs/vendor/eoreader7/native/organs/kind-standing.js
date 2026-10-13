@@ -1,4 +1,4 @@
-/* Shizhen speaks:
+/* Shizhen — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Its 
 leaves are flat, narrow at the base, broad and lobed at the end. 
 The young leaves can be eaten. Deer are fond of the plant. 

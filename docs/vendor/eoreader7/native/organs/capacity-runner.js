@@ -102,8 +102,10 @@
 //    surviving SIG partner in the fold — the pair is not kept atomic
 //    under supersession. Not attempted here.
 
-import { chunkSource } from "./source.js";
+import { chunkSource, identifyMaterial } from "./source.js";
 import { withExperiencer } from "./experiencer.js";
+import { unravel as unravelOrg } from "../the-fold/unravel.js";
+import { witnessCode } from "../the-fold/witness.js";
 
 /**
  * `makeCapacityRunner({ referentIndexFor, relationsFor })` →
@@ -150,13 +152,108 @@ import { withExperiencer } from "./experiencer.js";
 // disclosure this file's header already makes about its own scope.
 const CAPACITY_TEXT_MAX_CHARS = 8000;
 
+// ── THE DISPATCH TABLE (2026-10-08) ───────────────────────────────────────
+// The runner was a hardcoded two-branch switch (`cast`, `relations`) and
+// every other registered capacity returned `not_yet_executable` before any
+// organ ran — 50 of 52 rows were staging, never measured. Now the runner is
+// keyed by id over a table of REAL organ adapters. A row that has no adapter
+// keeps the typed `not_yet_executable` gap — the registry is still honest
+// about what is wired. Adding a capacity is one adapter + one table row, not
+// a rewrite of the switch.
+//
+// Adapter contract:
+//   ({ boundedText, name, query, claim }) => result
+// `boundedText` is the material, already capped at CAPACITY_TEXT_MAX_CHARS
+// (the same bound cast/relations had). `result` carries `id`, `name`, and
+// anything the wr. Each adapter returns the REAL organ's product.
+const CAPACITY_HANDLERS = Object.freeze({
+  cast: ({ boundedText, referentIndexFor, name }) => {
+    // A "cast" is the set of referents the material's own name-resolution
+    // admits — who the passage speaks of, resolved to identity, not byte
+    // strings. Same as the original branch, byte-for-byte.
+    const index = referentIndexFor([{ text: boundedText }]);
+    const referents = [...index.referents]
+      .map((rid) => ({ id: rid, surface: index.represent(rid) }))
+      .sort((a, b) => a.surface.localeCompare(b.surface));
+    return { id: "cast", name: name ?? null, count: referents.length, referents };
+  },
+
+  relations: ({ boundedText, relationsFor, name, query, claim }) => {
+    if (!relationsFor) {
+      return { gap: "not_yet_executable", id: "relations", detail: '"relations" is registered but this page has not wired relationsFor in yet' };
+    }
+    // A "relations" result IS evidence — an edge or a filler with no address
+    // is a claim with nothing a reader can verify it against. chunkSource is
+    // the SAME chunker every attachment/preflight/priors source in this app
+    // already goes through (source.js) — one addressing scheme, not a second
+    // one invented for the terminal.
+    const reader = relationsFor(chunkSource(name ?? "material", boundedText));
+    if (!reader.examined) {
+      return { gap: "no_material", id: "relations", detail: `no relation vocabulary could be measured for "${name ?? "?"}"` };
+    }
+    // `claim` is EVA's own door: not a query over the graph (which/what
+    // filler for an open slot) but a JUDGMENT of one stated claim against
+    // it, via hypergraph.js's real `read(answer)` — the SAME judge() every
+    // material-grounded chat answer is already checked against, so an
+    // evaluate act gets no weaker a check than an ordinary turn does.
+    if (claim) {
+      const judged = reader.read(claim);
+      return { id: "relations", name: name ?? null, claim, claims: judged.claims, edges: judged.edges };
+    }
+    if (!query) return { id: "relations", name: name ?? null, count: reader.edges.length, edges: reader.edges };
+    const fillers = reader.queryReferents(query);
+    if (fillers === null) {
+      return { gap: "bad_query", id: "relations", detail: 'exactly one of subject/object must be left open — "who did X verb" or "who verb Y", never both pinned or both open' };
+    }
+    return { id: "relations", name: name ?? null, query, count: fillers.length, fillers };
+  },
+
+  unravel: ({ boundedText, relationsFor, name }) => {
+    // SEG·Pattern — cut the material's own relation network at its seams.
+    // Composes relations (the Figure) into an edge graph, then unravels it:
+    // bridges, articulation points, and the parts they separate. A plain
+    // prose passage (few or no relation edges) has nothing to cut — that is
+    // typed as no_material, never a fabricated seam.
+    if (!relationsFor) {
+      return { gap: "not_yet_executable", id: "unravel", detail: '"unravel" composes the relations reader — this page has not wired relationsFor in yet' };
+    }
+    const reader = relationsFor(chunkSource(name ?? "material", boundedText));
+    if (!reader.examined || !reader.edges.length) {
+      return { gap: "no_material", id: "unravel", detail: `no relation graph to cut for "${name ?? "?"}" — unravel needs the material's own edges, and none were extracted` };
+    }
+    // Hypergraph edges carry end1/end2 as the neutral arrangement; unravel
+    // speaks {a, b}. The map is the only translation, never a guess about
+    // what the graph says.
+    const edges = reader.edges
+      .map((e) => ({ a: e.end1 ?? e.subject, b: e.end2 ?? e.object }))
+      .filter((e) => e.a != null && e.b != null);
+    const out = unravelOrg(edges);
+    return { id: "unravel", name: name ?? null, edges, ...out };
+  },
+
+  witness: ({ boundedText, name, query }) => {
+    // EVA·Lens — does this artifact still hold together as an artifact? The
+    // language is sniffed off the bytes (identifyMaterial), not guessed by
+    // the caller; a material whose kind the witness cannot read is a typed
+    // unexamined gap, never a fabricated clean.
+    const kind = identifyMaterial(name ?? "?", boundedText).kind ?? null;
+    const lang = /^code:(m?js|mjs)$/.test(kind ?? "") ? "js" : kind === "html" ? "html" : null;
+    if (!lang) {
+      return { gap: "unexamined", id: "witness", detail: `"${name ?? "?"}" reads as ${kind ?? "unknown"} material — the witness only reads html/js code, and a material it cannot read is a typed gap, never a silent clean`, kind };
+    }
+    const out = witnessCode(lang, boundedText);
+    return { id: "witness", name: name ?? null, kind, lang, ...out };
+  },
+});
+
 export function makeCapacityRunner({ referentIndexFor, relationsFor }) {
   return function runCapacity(id, { text, name, query, claim } = {}) {
-    if (id !== "cast" && id !== "relations") {
+    const handler = CAPACITY_HANDLERS[id];
+    if (!handler) {
       return {
         gap: "not_yet_executable",
         id,
-        detail: `"${id}" is in the capacity registry but not yet wired to run from the terminal — only "cast" and "relations" execute this pass (capacities.js, CLAUDE.md: "the terminal language" section names the rest as open).`,
+        detail: `"${id}" is in the capacity registry but not yet wired to run — the wired set this pass is ${Object.keys(CAPACITY_HANDLERS).join(", ")} (capacities.js: a registry row becomes executable by gaining a handler here, nothing else).`,
       };
     }
     if (!text || !text.trim()) {
@@ -171,58 +268,7 @@ export function makeCapacityRunner({ referentIndexFor, relationsFor }) {
     const truncated = totalChars > CAPACITY_TEXT_MAX_CHARS;
     const boundedText = truncated ? text.slice(0, CAPACITY_TEXT_MAX_CHARS) : text;
     const bound = truncated ? { truncated: true, examinedChars: CAPACITY_TEXT_MAX_CHARS, totalChars } : { truncated: false };
-    if (id === "cast") {
-      const index = referentIndexFor([{ text: boundedText }]);
-      const referents = [...index.referents]
-        .map((rid) => ({ id: rid, surface: index.represent(rid) }))
-        .sort((a, b) => a.surface.localeCompare(b.surface));
-      return { id, name: name ?? null, count: referents.length, referents, ...bound };
-    }
-    if (!relationsFor) {
-      return { gap: "not_yet_executable", id, detail: `"relations" is registered but this page has not wired relationsFor in yet` };
-    }
-    // Real addresses, not a bare unaddressed blob: `cast` doesn't need refs
-    // (it reports referent identities, not evidence), but a "relations"
-    // result IS evidence — an edge or a filler with no address is a claim
-    // with nothing a reader can verify it against. chunkSource is the
-    // SAME chunker every attachment/preflight/priors source in this app
-    // already goes through (source.js) — one addressing scheme, not a
-    // second one invented for the terminal.
-    const reader = relationsFor(chunkSource(name ?? "material", boundedText));
-    if (!reader.examined) {
-      return { gap: "no_material", id, detail: `no relation vocabulary could be measured for "${name ?? "?"}"`, ...bound };
-    }
-    // `claim` is EVA's own door: not a query over the graph (which/what
-    // filler for an open slot) but a JUDGMENT of one stated claim against
-    // it, via hypergraph.js's real `read(answer)` — the SAME judge()
-    // every material-grounded chat answer is already checked against, so
-    // an evaluate act gets no weaker a check than an ordinary turn does.
-    // `claims` carries each sentence's own verdict (bound/contradicted/
-    // unbound/beyond-reach/unheard/competing) with its real provenance
-    // (`nearest`/`bound` edges, each an edgeFace carrying `refs`) — never
-    // collapsed here into a caller's yes/no; that collapse, and the
-    // deliberate refusal to guess on the three non-committal verdicts, is
-    // `landAct`'s job below, not this dispatch's.
-    if (claim) {
-      const judged = reader.read(claim);
-      // `edges` (the material's own real graph, not just this claim's
-      // verdict) rides along too — squaring checks POLARITY; a bound
-      // verdict can still be wrong in a second, different way a polarity
-      // check cannot see (see checkObjectSpecificity below), and that
-      // check needs the real matched edge's own object text, not just
-      // the collapsed bound/contradicted/unbound label.
-      return { id, name: name ?? null, claim, claims: judged.claims, edges: judged.edges, ...bound };
-    }
-    if (!query) return { id, name: name ?? null, count: reader.edges.length, edges: reader.edges, ...bound };
-    const fillers = reader.queryReferents(query);
-    if (fillers === null) {
-      return {
-        gap: "bad_query",
-        id,
-        detail: 'exactly one of subject/object must be left open — "who did X verb" or "who verb Y", never both pinned or both open',
-      };
-    }
-    return { id, name: name ?? null, query, count: fillers.length, fillers, ...bound };
+    return { ...handler({ boundedText, referentIndexFor, relationsFor, name, query, claim }), ...bound };
   };
 }
 

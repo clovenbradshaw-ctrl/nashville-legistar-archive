@@ -6,7 +6,8 @@ export { deriveOrientation } from "./orientation.js";
 export { perceive } from "./perception.js";
 export { witness, witnessVerbose } from "./witness.js";
 export { hyperedge, graphObject, indexHypergraphEntries, buildHypergraph, graphEntriesForIds, graphEdgesForRelation, graphEdgesAtSequence, relevantHypergraphNeighborhood } from "./hypergraph.js";
-export { identityAlternative, canonicalizeHyperedge, deriveIdentityRevision } from "./identity.js";
+export { identityAlternative, canonicalizeHyperedge, deriveIdentityRevision, deriveIdentityRevisionForWhom } from "./identity.js";
+export { relationOf, refsOf, relationOfPoints, survivingIdentity, survivingIdentityAtPoints } from "./identity-meet.js";
 export { addressOf, cubeAddresses, relevantNeighborhood, interrogateCube, deriveEOTransformations } from "./interrogation.js";
 export { deriveSurprise, deriveTension, deriveRelease } from "./dynamics.js";
 export { EXPECTATION_STATES, expectation, expectationTransition } from "./expectations.js";
@@ -20,6 +21,7 @@ export { mergeReceivedPriors, createPriorConditionedReader } from "./experienced
 export { deriveRhythmPrior, mergeRhythmPriors, composeExperience, scoreRhythmExpectations, readingGaps, medianOf } from "./rhythm-priors.js";
 export { createHyperlexicon, normalizeHyperlexicon, compositionAffordance, admitHyperlexiconCandidates, giveHyperlexiconAffordance, pairKey, HL_SCHEMA, HL } from "./hyperlexicon.js";
 export { ROUTE_SCHEMA, ROUTE_TYPES, KIND_PREFIX, LINK_VERB, TERM_KIND, TERM_PARAMETER, kindId, linkId, isTermKind, withTermStructure, kindNotes, parseRouteRequest, linkCurrent, currentLinkOf, buildRouteIndex, hop, routeAsk, serializeRoutes, loadRoutes } from "./hyperlexicon-routes.js";
+export { HL_ABSTRACTION_SCHEMA, ABSTRACTION_STANDINGS, META_VERB, abstractionId, createAbstractionRegistry, normalizeAbstractionRegistry, admitAbstraction, earnAbstraction, refuteAbstraction, abstractionAt, compositionCoords, withMetaMembership, releaseDecision, abstractionNotes, serializeAbstractions } from "./hyperlexicon-abstraction.js";
 export { TRAIL_HALF_LIFE_DAYS, STIGMERGY_SCHEMA, TRAIL_WINDOW, EXPLORE_EPSILON, ageDays, trailWeight, deposit, trailStats, routeOrderFor } from "./stigmergy.js";
 export { createRelationCompositionLedger, relationCompositionChains, acquireCompositionCandidates, evaluateRelationCompositions, consequentialWithheldCompositions } from "./relation-composition.js";
 export { TERRAINS, terrainOf, createTerrainIndex, indexTerrainEntries, snapshotTerrainState, snapshotTerrainReferents, projectTerrainState, terrainCounts } from "./terrain-state.js";
@@ -35,4 +37,5 @@ export { refuteRelation, auditChemistry, vetoedPairs, voidCandidatesFrom } from 
 export { assembly, createAssemblyRegistry, registerAssembly, resolveAssembly, registeredAssemblies, stampResult, absentAssemblies, contractViolations, stampDelta, contributionsOf, concedeAssembly, concededAssemblies, derivedUnderConceded } from "./assembly.js";
 export { sealArtifact, artifactTierViolations, producerMismatch, sameBody, materialHash, sealExperiencePrior, sealRhythmPrior, FORBIDDEN_BODY_KEYS } from "./artifact.js";
 export { deriveCastLedger, castLedgerConformance, sealCastLedger } from "./cast-ledger.js";
+export { SELF_RECORD_SCHEMA, LOG_ENTRY_SCHEMA, EVIDENCE_BAR, claimKey, emptyLog, appendEntry, readEntry, reviseEntry, projectEntries, adjudicated, createRecord, valueAt, distinguish } from "./self-record.js";
 export { CLASS_DOMAIN, CLASS_IDS, POSITIONS, PLACES, DECLARED_CROSSINGS, CROSSINGS, UNSUPPORTED_CROSSINGS, NO_CROSSINGS, terrainAt, placeOf, orderOf, positionOfOrder, ringOfOrder, profile as capacityProfile, describe as describeCapacity, label as labelCapacity, admissible as capacityAdmissible, space as capacitySpace, admissibleSpace as capacityAdmissibleSpace, spread as capacitySpread, countRoutes as countCapacityRoutes, routes as capacityRoutes, balancedRoutes as balancedCapacityRoutes, routeSpread, prerequisites as capacityPrerequisites, nextSteps as capacityNextSteps, placeReached, dressed as capacityDressed } from "./capacity-map.js";

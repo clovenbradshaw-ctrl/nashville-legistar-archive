@@ -8,6 +8,7 @@ const STAGES = {
   bytes: ['Bytes', '--dim'], decode: ['Decode', '--pink'], text: ['Text', '--blue'], sentences: ['Statements', '--ink2'],
   names: ['Names', '--acc'], figures: ['Figures', '--amber'], dates: ['Dates', '--date'], frame: ['Frame', '--green'],
    canon: ['Identity', '--acc2'], junk: ['Keep or set aside', '--mut'], echo: ['Echoes', '--blue'], store: ['Store', '--mut'], hang: ['Hang', '--date'],
+  screen: ['Visual model', '--pink'], activation: ['Activation', '--acc2'], ocr: ['OCR', '--ag'], ignore: ['Ignore', '--mut'],
   holograph: ['Holograph', '--acc'], null: ['Null', '--amber'], fort: ['Fort', '--amber'], paradigm: ['Paradigm', '--pink'], engine: ['Engine', '--acc2'],
 };
 const REAL_SPEEDS = [[1, '1×'], [0.1, '1/10×'], [0.01, '1/100×'], [0.001, '1/1,000×'], [1e-4, '1/10,000×'], [1e-5, '1/100,000×']];
@@ -58,19 +59,33 @@ const CSS = `
 .hdp-ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .hdp-ctl .rd{font:12px 'JetBrains Mono',monospace;color:var(--ink2);font-variant-numeric:tabular-nums;margin-left:auto}
 .hdp-seg{display:inline-flex;gap:2px;margin-left:10px}
+.hdp-livepill{display:none;align-items:center;gap:6px;font:600 11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--ok)}
+.hdp.live .hdp-livepill{display:inline-flex}
+.hdp-livepill i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:hdp-pulse 1.1s ease-in-out infinite}
+@keyframes hdp-pulse{0%,100%{opacity:.3}50%{opacity:1}}
+.hdp-exit{border:1px solid var(--line2)!important;border-radius:6px;padding:5px 11px!important;color:var(--ink)!important;font-weight:600}
+.hdp-stats{flex-basis:100%;font:12px 'JetBrains Mono',ui-monospace,monospace;color:var(--ink2);display:flex;gap:10px 16px;flex-wrap:wrap;padding-top:6px}
+.hdp-stats b{color:var(--ink);font-weight:600}
+.hdp-stats .g{color:var(--dim)}
+.hdp.live .hdp-ctl{opacity:.35;pointer-events:none}
+.hdp.live .hdp-rib{opacity:.45}
 @media (max-width:820px){.hdp-body{grid-template-columns:1fr;grid-template-rows:40% 60%}.hdp-log{border-right:0;border-bottom:1px solid var(--line)}}
 `;
 
 
 // Replay state is a pure fold of the trace: the same events 0..k always give the same picture, whichever way the playhead came.
-const fresh = () => ({ nodes: new Map(), edges: new Map(), marks: new Map(), paradigm: '', echo: new Map(), odd: new Map(), lastSt: new Map(), occ: new Map() });
+const fresh = () => ({ nodes: new Map(), edges: new Map(), marks: new Map(), paradigm: '', echo: new Map(), odd: new Map(), lastSt: new Map(), occ: new Map(), stNames: new Map(), prov: new Map() });
 const node = (S, n) => S.nodes.get(n) || (S.nodes.set(n, { n, c: 0, st: 'cand', mine: false }), S.nodes.get(n));
 const ek = (a, b) => a < b ? a + '\u0001' + b : b + '\u0001' + a;
 const mark = (S, e, cls) => { if (e.doc == null || e.s == null) return; (S.marks.get(e.doc) || (S.marks.set(e.doc, []), S.marks.get(e.doc))).push({ s: e.s, e: e.e, cls }); };
 function apply(S, e) {
   if (e.stage === 'sentences') { mark(S, e, e.kind === 'statement' ? 's' : e.kind === 'furniture' ? 'fu' : ''); if (e.kind === 'statement') S.lastSt.set(e.doc, e); }
   else if (e.kind === 'name') { mark(S, e, 'nm'); const x = node(S, e.name); if (x.st === 'cand') x.c++;
-    const ls = S.lastSt.get(e.doc); if (ls) { const L = S.occ.get(e.name) || (S.occ.set(e.name, []), S.occ.get(e.name)); if (!L.some(o => o.doc === e.doc && o.id === ls.id)) L.push({ doc: e.doc, id: ls.id, s: ls.s, e: ls.e }); } }
+    const ls = S.lastSt.get(e.doc); if (ls) { const L = S.occ.get(e.name) || (S.occ.set(e.name, []), S.occ.get(e.name)); if (!L.some(o => o.doc === e.doc && o.id === ls.id)) L.push({ doc: e.doc, id: ls.id, s: ls.s, e: ls.e });
+      // names read in one statement are provisionally tied the moment they are read, so the picture fills in as the
+      // reading goes; the admission that comes later keeps, merges or drops them and supplies the real pairs
+      const key = e.doc + '\u0001' + ls.id; const set = S.stNames.get(key) || (S.stNames.set(key, new Set()), S.stNames.get(key));
+      if (!set.has(e.name)) { set.forEach(o => { if (o === e.name) return; const k = ek(o, e.name); const E = S.prov.get(k) || { a: o, b: e.name, c: 0, neg: false, mine: false }; E.c++; S.prov.set(k, E); }); set.add(e.name); } } }
   else if (e.kind === 'figure') mark(S, e, 'fg');
   else if (e.kind === 'date') mark(S, e, 'dt');
   else if (e.kind === 'merge') { const f = S.nodes.get(e.from); if (f && f.st === 'cand') { S.nodes.delete(e.from); node(S, e.to).c += f.c; }
@@ -87,19 +102,25 @@ export function foldTrace(T, k = T.ev.length - 1) { const S = fresh(); for (let 
 
 let styled = false, current = null;
 export function open(T, opt = {}) {
-  if (current) current.close();
   if (!styled) { const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st); styled = true; }
+  if (current && current.T === T) { if (!opt.live) current.finish(); return current; }
+  if (current) current.close();
   current = mount(T, opt);
+  return current;
 }
 
 function mount(T, opt = {}) {
-  const ev = T.ev, N = ev.length, css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || '#888';
+  const ev = T.ev; let N = ev.length;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || '#888';
   const docs = new Map((T.docs || []).map(d => [d.id, d]));
-  const root = document.createElement('div'); root.className = 'hdp'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-label', 'Replay of how this was read');
+  let live = !!opt.live && !T.done;
+  const root = document.createElement('div'); root.className = 'hdp' + (live ? ' live' : ''); root.setAttribute('role', 'dialog'); root.setAttribute('aria-label', live ? 'Reading, live' : 'Replay of how this was read');
   root.innerHTML = `
     <div class="hdp-top"><h2>How “${esc(T.label)}” was read</h2>
-      <span class="meta" title="Real wall-clock time of the ingest. Timings include the cost of recording each event.">real run ${ms(T.ms || ev[N - 1].t)} ms · ${N.toLocaleString()} events</span><span class="sp"></span>
-      <button type="button" data-a="copy">Copy trace</button><button type="button" data-a="close" aria-label="Close replay" title="Close (Esc)">✕</button></div>
+      <span class="hdp-livepill"><i></i>LIVE</span>
+      <span class="meta" title="Real wall-clock time of the ingest. Timings include the cost of recording each event.">real run ${ms(T.ms || (N ? ev[N - 1].t : 0))} ms · ${N.toLocaleString()} events</span><span class="sp"></span>
+      <button type="button" data-a="copy">Copy trace</button><button type="button" class="hdp-exit" data-a="close" aria-label="Exit" title="Exit (Esc)">✕ Exit</button>
+      <span class="hdp-stats"></span></div>
     <div class="hdp-body">
       <div class="hdp-log" style="grid-template-rows:1fr auto"><div class="hdp-rows" tabindex="0"><div class="hdp-sz"></div></div><div class="hdp-now"></div></div>
       <div class="hdp-right"><div class="hdp-lens"></div>
@@ -119,6 +140,7 @@ function mount(T, opt = {}) {
   document.body.appendChild(root);
   const $ = s => root.querySelector(s);
   const rowsEl = $('.hdp-rows'), sz = $('.hdp-sz'), nowEl = $('.hdp-now'), lens = $('.hdp-lens'), par = $('.hdp-par');
+  const statsEl = $('.hdp-stats'), metaEl = $('.hdp-top .meta');
   const rc = $('.hdp-rib canvas'), rd = $('.rd'), speedSel = $('#hdp-speed');
 
   // ---------- clock ----------
@@ -176,7 +198,12 @@ function mount(T, opt = {}) {
   let dpr = 1;
   const map = mountMap($('.hdp-graph'), { padBottom: 30, wheelZoom: true, empty: 'Names appear here as they are found, then fold into the picture.', sentence: o => { const d = docs.get(o.doc); return d && d.text ? d.text.slice(o.s, o.e) : ''; } });
   function size() { dpr = window.devicePixelRatio || 1; const q = rc.getBoundingClientRect(); rc.width = q.width * dpr; rc.height = q.height * dpr; drawRibbon(); }
-  const mapData = S => { const e = ev[k]; return { nodes: [...S.nodes.values()], edges: [...S.edges.values()], docs: [...docs.values()], occ: S.occ, odd: S.odd, hot: new Set([e.name, e.to, ...(e.ns || [])].filter(Boolean)), hotPairs: e.pairs || [] }; };
+  // A name that has been read but not yet admitted is drawn with the others (as "found, not yet admitted") rather than
+  // held back until the end: the map says what has been read so far, and the admission step settles which stay.
+  const mapData = S => { const e = ev[k]; const nodes = [...S.nodes.values()].map(n => (n.st === 'cand' ? { ...n, st: 'read', color: 'var(--dim)' } : n)); const live = new Set(nodes.filter(n => n.st !== 'drop').map(n => n.n));
+    const edges = [...S.edges.values()]; const have = new Set(edges.map(E => ek(E.a, E.b)));
+    S.prov.forEach((E, key) => { if (!have.has(key) && live.has(E.a) && live.has(E.b)) edges.push(E); });
+    return { nodes, edges, docs: [...docs.values()], occ: S.occ, odd: S.odd, hot: new Set([e.name, e.to, ...(e.ns || [])].filter(Boolean)), hotPairs: e.pairs || [] }; };
 
   function drawRibbon() {
     const g = rc.getContext('2d'), w = rc.width, h = rc.height; g.clearRect(0, 0, w, h); const mp = maxPos();
@@ -188,14 +215,37 @@ function mount(T, opt = {}) {
   $('.hdp-rib').addEventListener('pointermove', e => { if (dragging) scrub(e); }); $('.hdp-rib').addEventListener('pointerup', () => { dragging = false; });
 
   function render(follow) {
-    const St = stateAt(k); renderLog(follow); renderLens(St); map.set(mapData(St)); par.textContent = St.paradigm; drawRibbon();
+    (T.docs || []).forEach(d => { if (d && !docs.has(d.id)) docs.set(d.id, d); });
+    const St = stateAt(k); renderLog(follow); renderLens(St); map.set(mapData(St)); par.textContent = St.paradigm; drawRibbon(); updateStats(St);
     rd.textContent = (real ? 't = ' + ms(pos) + ' of ' + ms(ev[N - 1].t) + ' ms' : 'event ' + (k + 1).toLocaleString() + ' of ' + N.toLocaleString()) + ' · real ' + ms(ev[k].t) + ' ms';
+  }
+  function updateStats(St) {
+    let stm = 0, fg = 0, dtN = 0; St.marks.forEach(arr => arr.forEach(m => { if (m.cls === 's') stm++; else if (m.cls === 'fg') fg++; else if (m.cls === 'dt') dtN++; }));
+    let names = 0, folded = 0; St.nodes.forEach(n => { names++; if (n.st === 'fold') folded++; });
+    const chars = [...docs.values()].reduce((a, d) => a + ((d.text || '').length), 0);
+    statsEl.innerHTML =
+      '<span>statements <b>' + stm.toLocaleString() + '</b></span>' +
+      '<span>names <b>' + names.toLocaleString() + '</b> <span class="g">(' + folded.toLocaleString() + ' folded)</span></span>' +
+      '<span>figures <b>' + fg.toLocaleString() + '</b></span>' +
+      '<span>dates <b>' + dtN.toLocaleString() + '</b></span>' +
+      (chars ? '<span class="g">text read <b>' + chars.toLocaleString() + '</b> chars</span>' : '') +
+      '<span class="g">event <b>' + (k + 1).toLocaleString() + '</b> / ' + N.toLocaleString() + '</span>';
+  }
+  function updateMeta() {
+    if (!metaEl) return; const t = T.done ? (T.ms || (N ? ev[N - 1].t : 0)) : (N ? ev[N - 1].t : 0);
+    metaEl.textContent = (T.done ? 'real run ' : 'elapsed ') + ms(t) + ' ms · ' + N.toLocaleString() + ' events';
   }
 
   // ---------- loop ----------
   let last = performance.now(), raf = 0, frame = 0;
   function loop(now) {
     const dt = Math.min(100, now - last); last = now;
+    if (live) {
+      const nn = ev.length;
+      if (nn !== N) { N = nn; k = N - 1; pos = clockOf(k); updateMeta(); render(true); }
+      if (T.done) finish();
+      raf = requestAnimationFrame(loop); return;
+    }
     if (dir && dt > 0) { pos += dir * (real ? dt * speed : dt / 1000 * speed);
       if (pos >= maxPos()) { pos = maxPos(); setDir(0); } else if (pos < 0) { pos = 0; setDir(0); }
       else { const nk = idxAt(pos); if (nk !== k) { k = nk; render(true); } else drawRibbon(); } }
@@ -210,14 +260,20 @@ function mount(T, opt = {}) {
     else if (act === 'copy') { const txt = JSON.stringify(T); navigator.clipboard && navigator.clipboard.writeText(txt).then(() => { a.textContent = 'Copied'; }, () => { a.textContent = 'Copy failed'; }); } });
   speedSel.addEventListener('change', () => { speed = +speedSel.value; });
   const onKey = e => { if (e.target.tagName === 'SELECT') return;
+    if (live) { if (e.key === 'Escape') close(); return; }
     if (e.key === 'Escape') close(); else if (e.key === ' ') { e.preventDefault(); setDir(dir ? 0 : 1); } else if (e.key === 'ArrowLeft') { setDir(0); seek(k - 1); } else if (e.key === 'ArrowRight') { setDir(0); seek(k + 1); }
     else if (e.key === 'j' || e.key === 'J') setDir(-1); else if (e.key === 'k' || e.key === 'K') setDir(0); else if (e.key === 'l' || e.key === 'L') setDir(1); else if (e.key === 'Home') { setDir(0); seek(0); } else if (e.key === 'End') { setDir(0); seek(N - 1); } };
   document.addEventListener('keydown', onKey);
   const ro = new ResizeObserver(() => { size(); render(false); }); ro.observe($('.hdp-right'));
+  function finish() {
+    if (!live) return; live = false; T.done = true; root.classList.remove('live'); root.setAttribute('aria-label', 'Replay of how this was read');
+    N = ev.length; k = Math.max(0, N - 1); pos = clockOf(k); updateMeta(); render(true);
+  }
   function close() { cancelAnimationFrame(raf); ro.disconnect(); map.destroy(); document.removeEventListener('keydown', onKey); root.remove(); if (current && current.root === root) current = null; }
 
-  fillSpeeds(); size(); seek(opt.seek != null ? opt.seek : 0);
-  if (opt.seek == null && !matchMedia('(prefers-reduced-motion: reduce)').matches) setDir(1);
+  fillSpeeds(); size();
+  if (live) { k = Math.max(0, N - 1); pos = clockOf(k); updateMeta(); render(true); }
+  else { seek(opt.seek != null ? opt.seek : 0); if (opt.seek == null && !matchMedia('(prefers-reduced-motion: reduce)').matches) setDir(1); }
   raf = requestAnimationFrame(loop);
-  return { root, close };
+  return { root, close, T, finish };
 }

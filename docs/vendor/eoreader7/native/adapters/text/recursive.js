@@ -7,8 +7,11 @@ import { splitSentences } from "./spans.js";
 import { createSurfaceEvidence, accumulateSurfaceEvidence, surfacesFromEvidence, discoverReferents, diaNorm } from "./surfaces.js";
 import { heardSurfaces } from "../../organs/heard-surfaces.js";
 import { createCompanyIndex } from "../../organs/company-index.js";
+import { createNominalIndex } from "./heard-nominals.js";
+import { makeEar } from "./ear.js";
+import { wordFloor } from "./script-floor.js";
 import { classifyWord, dominantClass } from "./wordclass.js";
-import { GRAMMAR_MIN_SHARE } from "./grain-typing.js";
+import { GRAMMAR_MIN_SHARE, grammarIsDominant } from "./grain-typing.js";
 import { relationExtractorsFor } from "./relations-language.js";
 import { fragmentRelations, FRAGMENT_DISCLOSURE } from "./fragment-relations.js";
 import { directDescriptorOccurrences, descriptorOccurrence } from "./individuation.js";
@@ -69,11 +72,26 @@ function referentObjects(events = []) {
 // Exported for cast-prior.js — one implementation of "does this material
 // attest this surface", not a second copy that can drift from the
 // perceiver's own reading of the same question.
-export function containsSurface(text, surface) {
+// A needle written in a script that puts NO space between words (Han, Kana, Thai…)
+// has no word boundary to find — its edges are matched as substrings. A needle
+// of a spaced script keeps the (^|non-alnum) boundary, and where a language
+// glues bound proclitics onto the word (Arabic وأرسطو = و + أرسطو) the caller
+// declares them and up to PROCLITIC_DEPTH of them may precede the needle. Both
+// are the language's own facts, received (script-segment.js, ProcliticPrior@1);
+// neither is a language name. Disclosed limit: an unspaced needle also matches
+// inside a longer word that contains it (北京 in 北京大学).
+const UNSPACED_EDGE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}]/u;
+const PROCLITIC_DEPTH = 3;
+const ENCLITIC_DEPTH = 2;
+const isUnspacedNeedle = (needle) => { const cs = [...needle]; return UNSPACED_EDGE.test(cs[0]) && UNSPACED_EDGE.test(cs[cs.length - 1]); };
+export function containsSurface(text, surface, { proclitics = null, enclitics = null } = {}) {
   const hay = diaNorm(text);
   const needle = diaNorm(surface);
   if (!needle) return false;
-  return new RegExp(`(^|[^\\p{L}\\p{N}])${escapeRe(needle)}([^\\p{L}\\p{N}]|$)`, "u").test(hay);
+  if (isUnspacedNeedle(needle)) return hay.includes(needle);
+  const fused = proclitics && proclitics.size ? `(?:[${[...proclitics].map(escapeRe).join("")}]{0,${PROCLITIC_DEPTH}})` : "";
+  const bound = enclitics && enclitics.size ? `(?:${[...enclitics].sort((a, b) => b.length - a.length).map(escapeRe).join("|")}){0,${ENCLITIC_DEPTH}}` : "";
+  return new RegExp(`(^|[^\\p{L}\\p{N}])${fused}${escapeRe(needle)}${bound}([^\\p{L}\\p{N}]|$)`, "u").test(hay);
 }
 
 // ── EVERY KNOWN SURFACE IN ONE PASS (2026-09-07) ─────────────────────────
@@ -96,20 +114,28 @@ export function containsSurface(text, surface) {
 const ALNUM_RE = /[\p{L}\p{N}]/u;
 const WORD_START_RE = /[\p{L}\p{N}]+/gu;
 const alnumAt = (s, i) => i < s.length && ALNUM_RE.test(String.fromCodePoint(s.codePointAt(i)));
-export function surfaceIndex(surfaces) {
+// the rest of a word after a needle is bound particles only (≤ ENCLITIC_DEPTH of them)
+function onlyEnclitics(hay, at, restLen, enclitics) {
+  const rest = hay.slice(at, at + restLen);
+  const go = (r, depth) => r === "" || (depth < ENCLITIC_DEPTH && [...enclitics].some((e) => r.startsWith(e) && go(r.slice(e.length), depth + 1)));
+  return rest.length > 0 && go(rest, 0);
+}
+export function surfaceIndex(surfaces, { proclitics = null, enclitics = null } = {}) {
   const byFirst = new Map();   // first token -> [needle]
   const fallback = [];         // needles not beginning with a letter/digit: the regex path
+  const unspaced = [];         // needles of a script with no word spaces: substring path
   const order = new Map();     // needle -> position in the given order
   for (const surface of surfaces) {
     const needle = diaNorm(surface);
     if (!needle || order.has(needle)) continue;
     order.set(needle, order.size);
+    if (isUnspacedNeedle(needle)) { unspaced.push(needle); continue; }
     const m = needle.match(/^[\p{L}\p{N}]+/u);
     if (!m) { fallback.push(needle); continue; }
     if (!byFirst.has(m[0])) byFirst.set(m[0], []);
     byFirst.get(m[0]).push(needle);
   }
-  return Object.freeze({ byFirst, fallback, order });
+  return Object.freeze({ byFirst, fallback, unspaced, order, proclitics: proclitics && proclitics.size ? proclitics : null, enclitics: enclitics && enclitics.size ? enclitics : null });
 }
 /** The needles (diaNorm'd surfaces) present in `text`, in the index's own order. */
 export function surfacesIn(text, index) {
@@ -122,15 +148,34 @@ export function surfacesIn(text, index) {
     if (!cands) continue;
     for (const needle of cands) {
       if (present.has(needle)) continue;
-      if (hay.startsWith(needle, m.index) && !alnumAt(hay, m.index + needle.length)) present.add(needle);
+      if (!hay.startsWith(needle, m.index)) continue;
+      const after = m.index + needle.length;
+      if (!alnumAt(hay, after) || (index.enclitics && onlyEnclitics(hay, after, m[0].length - needle.length, index.enclitics))) present.add(needle);
     }
   }
   for (const needle of index.fallback) if (containsSurface(hay, needle)) present.add(needle);
+  for (const needle of index.unspaced ?? []) if (hay.includes(needle)) present.add(needle);
+  // a word that begins with up to PROCLITIC_DEPTH declared proclitics: the stem behind them is the word
+  if (index.proclitics) {
+    WORD_START_RE.lastIndex = 0;
+    while ((m = WORD_START_RE.exec(hay))) {
+      const word = m[0];
+      for (let k = 1; k <= PROCLITIC_DEPTH && k < word.length; k++) {
+        if (!index.proclitics.has(word[k - 1])) break;
+        const cands = index.byFirst.get(word.slice(k));
+        if (!cands) continue;
+        for (const needle of cands) {
+          if (present.has(needle)) continue;
+          if (hay.startsWith(needle, m.index + k) && !alnumAt(hay, m.index + k + needle.length)) present.add(needle);
+        }
+      }
+    }
+  }
   return [...present].sort((a, b) => index.order.get(a) - index.order.get(b));
 }
 /** The per-refresh matcher: the index over the surface map, and each referent's own needles. */
-function surfaceMatcher(map, referents) {
-  return Object.freeze({ index: surfaceIndex(map.keys()), map, referents: referents.map((ref) => ({ ref, needles: new Set(ref.surfaces.map(diaNorm).filter(Boolean)) })) });
+function surfaceMatcher(map, referents, bound = {}) {
+  return Object.freeze({ index: surfaceIndex(map.keys(), bound), map, referents: referents.map((ref) => ({ ref, needles: new Set(ref.surfaces.map(diaNorm).filter(Boolean)) })) });
 }
 
 function currentReferents(text, matcher) {
@@ -138,7 +183,7 @@ function currentReferents(text, matcher) {
   const present = new Set(surfacesIn(text, matcher.index));
   // The referent's own surfaces may not all be keys of the map (the map is
   // surface -> id after coreference); those are asked one by one, as before.
-  return matcher.referents.filter(({ ref, needles }) => [...needles].some((n) => present.has(n) || (!matcher.index.order.has(n) && containsSurface(text, n)))).map(({ ref }) => ref);
+  return matcher.referents.filter(({ ref, needles }) => [...needles].some((n) => present.has(n) || (!matcher.index.order.has(n) && containsSurface(text, n, { proclitics: matcher.index.proclitics, enclitics: matcher.index.enclitics })))).map(({ ref }) => ref);
 }
 
 function referentsInSpan(span, matcher) {
@@ -253,7 +298,7 @@ function lexicalNounOccurrences(text, sequencePosition, encounterRef, posPrior, 
     if (!counts) continue;
     const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
     const nounShare = total ? (counts.NOUN ?? 0) / total : 0;
-    if (nounShare <= GRAMMAR_MIN_SHARE) continue;
+    if (Number.isFinite(GRAMMAR_MIN_SHARE) && nounShare <= GRAMMAR_MIN_SHARE) continue;
     const surfaceKey = `surface:${slug(raw) || "unknown"}`;
     // A4 (THE-ADDRESS.md): a lexical occurrence is content — the id hashes
     // the source, the byte span and the surface itself, so a re-read of the
@@ -391,7 +436,7 @@ function receivedVerbTier(posPrior) {
     const total = counts.reduce((a, b) => a + b, 0);
     if (!total) continue;
     const verbish = (tags.VERB ?? 0) + (tags.AUX ?? 0);
-    if (verbish / total >= GRAMMAR_MIN_SHARE) tier.push(form);
+    if (grammarIsDominant(verbish / total)) tier.push(form);
   }
   RECEIVED_VERB_TIERS.set(posPrior, tier);
   return tier;
@@ -422,7 +467,7 @@ function witnessRelatedPairs(store, sentences, refs, matcher = null) {
   }
 }
 
-export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEvery = 1, reprojectEvery = null, posPrior = null, descriptorAnchoring = null, addresses = "birth", idFactory = null, recipe = null, language = null, roleConfig = null, parseModel = null, fragmentSeam = true } = {}) {
+export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEvery = 1, reprojectEvery = null, posPrior = null, descriptorAnchoring = null, addresses = "birth", idFactory = null, recipe = null, language = null, roleConfig = null, parseModel = null, fragmentSeam = true, framePrior = null, proclitics = null, enclitics = null, contractions = null } = {}) {
   // `refreshEvery` (2026-09-09): 1 is the default now — batching is an
   // engineering compromise, never a model of how reading works ("people
   // don't read in 25-sentence batches" — user direction, verbatim, the
@@ -490,6 +535,9 @@ export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEver
   // RoleConfig@1) comes online ONLY when `roleConfig` is declared for the
   // language (relations-language.js). `language` names the material for the
   // record; it does not BY ITSELF bring SVO online — only a RoleConfig does.
+  // THE EAR (2026-10-05): this language's own word boundaries and bound
+  // proclitics, from its received priors — never from capital letters.
+  const ear = makeEar({ posPrior, proclitics, enclitics, contractions });
   const { mode, discoverRelationVocab, extractRelations } = relationExtractorsFor({ language, roleConfig, posPrior, classifyWord, dominantClass });
   // CONTENT-ADDRESSED IDENTITY (2026-09-13, S114 — the git object model,
   // GitHub-inspired). The perceiver's edge ids were position-derived and
@@ -535,7 +583,7 @@ export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEver
   let relationRefreshFrom = 0;
   let reprojectedTo = 0;
   const relationEvidence = new Map();
-  let cache = { closed: new Set(), refs: new Map(), referents: [], matcher: surfaceMatcher(new Map(), []), gaps: [], merges: [], reassignments: [], verbs: new Set() };
+  let cache = { closed: new Set(), refs: new Map(), referents: [], matcher: surfaceMatcher(new Map(), [], { proclitics: ear.proclitics, enclitics: ear.enclitics }), gaps: [], merges: [], reassignments: [], verbs: new Set() };
   // discoverReferents re-clusters everything on every refresh, so the same
   // merge is rediscovered each time. It lands ONCE, in the observation of the
   // sentence whose refresh first proved it.
@@ -584,7 +632,7 @@ export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEver
     const figures = new Set();
     for (const [w, c] of runningFreq) {
       const lower = w.toLowerCase();
-      if (c < minFigureRec || lower.length < 3) continue;
+      if (c < minFigureRec || lower.length < wordFloor(lower, 3)) continue;
       if (closed.has(lower)) continue;
       if (posPrior?.forms?.[lower]) {
         const counts = posPrior.forms[lower];
@@ -627,15 +675,29 @@ export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEver
         surfaces = surfaces.filter((s) => (s.surface.toLowerCase().match(WORD_RE) ?? []).some((w) => synPropnSeen.has(w)));
       }
       let heard = [];
-      if (posPrior) {
+      if (posPrior && framePrior) {
+        // THE CASELESS BEING TIER (heard-nominals.js): recurring words the
+        // language's own grammar reads as nominal — attested by the POS prior,
+        // or, if unseen, by the frame they sit in. Capitalisation is one
+        // witness (surfaces above); this is the one that holds for Chinese,
+        // Arabic, SMS English and every lowercased text.
+        if (!cache.nominalIndex) cache = { ...cache, nominalIndex: createNominalIndex({ posPrior, framePrior, segment: ear.segment, peel: ear.peel }) };
+        try {
+          for (let i = cache.nominalIndex.size; i < priorSentences.length; i += 1) cache.nominalIndex.add(priorSentences[i]);
+          heard = cache.nominalIndex.beings({ minMentions: 2 });
+        } catch { heard = []; }
+      } else if (posPrior) {
         // The past is read once (organs/company-index.js): the index lives in
         // the cache and heardSurfaces adds only the sentences it has not seen.
         if (!cache.companyIndex) cache = { ...cache, companyIndex: createCompanyIndex() };
-        try { heard = heardSurfaces(priorSentences, { minMentions: 2, minShare: 0.3, minMembers: 2, posPrior, classifyWord, dominantClass, index: cache.companyIndex }); }
+        try { heard = heardSurfaces(priorSentences, { minMentions: 2, minShare: 0.3, minMembers: 2, posPrior, classifyWord, dominantClass, index: cache.companyIndex, segment: ear.segment, proclitics: ear.proclitics }); }
         catch { heard = []; }
       }
       if (heard.length && process.env.ER7_DEBUG_READER === "1") console.error(`[recursive] heardSurfaces added ${heard.length}: ${heard.map((h)=>h.surface).join(',')}`);
-      const combinedSurfaces = [...surfaces, ...heard];
+      // one piece of evidence is counted once: a caseless surface whose folded
+      // form a capitalised surface already carries is not a second witness
+      const capitalised = new Set(surfaces.map((x) => diaNorm(x.surface)));
+      const combinedSurfaces = [...surfaces, ...heard.filter((h) => !capitalised.has(diaNorm(h.surface)))];
       discovered = discoverReferents(combinedSurfaces, addresses === "birth" ? { prior: { refs: cache.refs, born: cache.born ?? new Map(), next: cache.bornNext ?? 0 } } : {});
       // REASSIGNMENT ACROSS REPROJECTIONS, RECORDED (P165). discoverReferents
       // re-clusters from scratch every reprojection, longest surface first. A
@@ -668,7 +730,7 @@ export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEver
     }
     // Fold-conditioned evidence, over the SAME new batch the vocabulary scan
     // uses — never a rescan of everything read so far.
-    const matcher = surfaceMatcher(nextRefs, referents);
+    const matcher = surfaceMatcher(nextRefs, referents, { proclitics: ear.proclitics, enclitics: ear.enclitics });
     witnessRelatedPairs(relationEvidence, batchSentences, nextRefs, matcher);
     relationRefreshFrom = priorSentences.length;
     cache = {
@@ -689,6 +751,7 @@ export function createCausalTextPerceiver({ minRelationSurfaces = 2, refreshEver
       bornNext: discovered?.addresses?.next ?? cache.bornNext,
       verbs: admittedRelationVerbs(relationEvidence, minRelationSurfaces, posPrior, language),
       companyIndex: cache.companyIndex,
+      nominalIndex: cache.nominalIndex,
     };
   };
 

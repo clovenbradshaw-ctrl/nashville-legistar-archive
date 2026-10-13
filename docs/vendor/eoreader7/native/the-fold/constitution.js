@@ -103,7 +103,7 @@ export const ENFORCEMENT = [
   {
     article: "II.9 mouth — no model-authored value ships unchecked",
     holds: "checkGrounding (figures/names vs bytes); attribute (null-gated); checkCitations (addresses vs offered); tables.js computes state answers instead of asking",
-    where: "grounding.js, cite.js, source.js, tables.js",
+    where: "organs/grounding.js, organs/cite.js, source.js, tables.js",
     enforced: true,
   },
   {
@@ -114,14 +114,19 @@ export const ENFORCEMENT = [
   },
   {
     article: "II.13 local — the computation runs on the machine that has the data",
-    holds: "the only network host in app.js is localhost; the model is Ollama; no hosted path exists",
-    where: "app.js",
-    enforced: true,
+    // Downgraded to partial 2026-10-05, by the assay: the row named app.js,
+    // which is not in this repo. The loopback posture holds here (the proxy
+    // and heimdall bind 127.0.0.1), but the page-level non-local-host scan
+    // this article names lives in the chat app's own assay, not in khora —
+    // a cross-repo claim, disclosed as partial rather than asserted as wired.
+    holds: "khora's only model path is the loopback-bound proxy/heimdall; the page-level non-local-host scan lives in the chat app's assay, not this repo",
+    where: null,
+    enforced: "partial",
   },
   {
     article: "III.3 absent — the missing thing is on screen",
     holds: "openQuestions types every gap; records render 'left open' lines; a part that produces no text says so in place",
-    where: "source.js, holon.js, app.js",
+    where: "source.js, holon.js",
     enforced: true,
   },
   {
@@ -139,7 +144,7 @@ export const ENFORCEMENT = [
   {
     article: "IV.4 shown is typed, never blocked — measured and shown never render alike",
     holds: "provenance.js classifies every sentence onto material or model ground from checks already run; the renderer draws model-ground dotted, absent-claim sentences striped, material plain with its address",
-    where: "provenance.js, app.js, index.html",
+    where: "organs/provenance.js",
     enforced: true,
   },
   {
@@ -151,7 +156,7 @@ export const ENFORCEMENT = [
   {
     article: "P244 socrates — a non-AGREE standing ships with its standing question; no live claim in view refuses the oracle default",
     holds: "elenchus questionFor + gateCrown, enforced at the render seam by assertCrownShippable (crown.js); gary no-oracle-mode via checkOracleMode, enforced before any model call (twoPassTurn) and at the task door (runHolonicTask)",
-    where: "elenchus.js, crown.js (socratesGate), gary.js (no-oracle-mode), crown.test.mjs, gary.test.mjs",
+    where: "organs/elenchus.js, crown.js (socratesGate), organs/gary.js (no-oracle-mode); constitution.test.mjs walks this row",
     enforced: true,
   },
   {
@@ -170,6 +175,30 @@ export const ENFORCEMENT = [
     where: null,
     enforced: null,
   },
+  // ── Articles the map did not represent at all, added 2026-10-05 ───────────
+  // VI.3's failure mode is not only a wired row that is not wired; it is an
+  // article that is neither wired NOR listed as unwired, and so is invisible.
+  // These rows were absent from this table before the assay was written.
+  // `null` here is not a claim that nothing enforces them anywhere in the
+  // lineage — it is the honest standing until each is probed against an organ
+  // present in this repo, one row at a time, exactly as the rows above are.
+  { article: "I.1 measured — a finding carries a ground, a descent, and a price", holds: null, where: null, enforced: null },
+  { article: "I.2 received — a prior is a gift and names its giver", holds: null, where: null, enforced: null },
+  { article: "I.3 shown — raw output, owned and permanently typed", holds: null, where: null, enforced: null },
+  { article: "I.4 refused — the list is closed; everything else is permitted", holds: null, where: null, enforced: null },
+  { article: "I.5 the record is the floor under all four standings", holds: null, where: null, enforced: null },
+  { article: "II.1 giver test — told to us, or made up", holds: null, where: null, enforced: null },
+  { article: "II.2 two-tier refusal — type error before null", holds: null, where: null, enforced: null },
+  { article: "II.4 commensurability — the null is the same computation re-run", holds: null, where: null, enforced: null },
+  { article: "II.6 revision — does this move the picture, or merely look odd", holds: null, where: null, enforced: null },
+  { article: "II.7 consequence — same thing, or look alike", holds: null, where: null, enforced: null },
+  { article: "II.8 lens — at what position, and out of what", holds: null, where: null, enforced: null },
+  { article: "II.10 falsifiability — has this check ever rejected anything", holds: null, where: null, enforced: null },
+  { article: "II.12 address — who said this was a kind", holds: null, where: null, enforced: null },
+  { article: "II.14 non-consuming read — asking never changes the answer", holds: null, where: null, enforced: null },
+  { article: "III.2 frequency — the plain register is stated in counts", holds: null, where: null, enforced: null },
+  { article: "III.6 aperture — does this widen or narrow what could still refute", holds: null, where: null, enforced: null },
+  { article: "IV.2 pure vs host — seed, clock, entropy, I/O come from the host", holds: null, where: null, enforced: null },
 ];
 
 /** The articles this app claims to enforce, for the assay to walk. */

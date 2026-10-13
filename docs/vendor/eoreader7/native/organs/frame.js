@@ -1,4 +1,4 @@
-/* Alhazen speaks:
+/* Alhazen — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “إن المتقدمين من أهل النظر قد أمعنوا البحث عن كيفية إحساس البصر وأعملوا فيه أفكارهم وبذلوا فيه اجتهادهم وانتهوا منه إلى الحد الذي وصل النظر إليه ووقفوا منه على ما وقفهم البحث والتمييز عليه. 
  ومع هذه الحال فآرائهم في حقيقة الإبصار مختلفة ومذاهبهم في هيئة الإحساس غير متفقة فالحيرة متوجهة واليقين متعذر والمطلوب غير موثوق بالوصول إليه.”
  *

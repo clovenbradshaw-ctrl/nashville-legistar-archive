@@ -13,7 +13,7 @@ const fs=require('fs'),path=require('path'),assert=require('node:assert/strict')
 await page.evaluate(()=>{localStorage.setItem('fold-explorer-theme','light');window.__app.setState({theme:'light',corpus:'custom',view:'summary',railOpen:true,added:{custom:[{id:1001,title:'A note on reading',type:'Text',text:'Reading is not the same as believing. A source can state a figure plainly. Pin the passages that matter and the Draft keeps their source.',year:2026}]}})});
   await page.getByRole('heading',{name:'Your content',exact:true}).waitFor();
   const nav=page.getByRole('navigation',{name:'Workspace navigation'});
-  assert.deepEqual((await nav.locator('.hd-primary button').allTextContents()).map(s=>s.replace(/\s/g,'')),['Overview','Ask','Draft']);
+  assert.deepEqual((await nav.locator('.hd-primary button').allTextContents()).map(s=>s.replace(/\s/g,'')),['Sources','Ask','Draft']);
  assert.equal(await nav.getByText('Topics',{exact:true}).isVisible(),true,'Topics remains a first-class section');
  assert.equal(await nav.getByRole('button',{name:'Names',exact:false}).isVisible(),false);
  assert.equal(await page.getByText('When it happened',{exact:true}).isVisible(),false);

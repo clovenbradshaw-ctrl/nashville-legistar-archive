@@ -4,7 +4,8 @@
   "type": "module",
   "description": "the fold \u2014 the reading/research surface of The Fold. No build step; index.html is the app. Playwright is installed only for driving the live page (drive-holodeck.mjs).",
   "scripts": {
-    "serve": "python3 -m http.server 8813 --bind 127.0.0.1",
+    "serve": "node tools/serve.mjs 8813",
+    "asr": "../.whisper-venv/bin/python tools/asr-server.py",
     "vendor:chat": "node vendor-chat.mjs",
     "vendor:chat:check": "node vendor-chat.mjs --check",
     "vendor:check": "node vendor-sync.mjs --check && node vendor-chat.mjs --check",
