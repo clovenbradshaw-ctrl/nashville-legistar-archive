@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tennessee County Records</title>
+<style>
+  :root { --bg:#fff; --panel:#f5f6f8; --ink:#14171f; --dim:#5b6475; --line:#dfe3ea; --accent:#2457d6; --chip:#e8ecf4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0c0d12; --panel:#151824; --ink:#e2e8f0; --dim:#8a93a6; --line:#232a3b; --accent:#60a5fa; --chip:#1d2335; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:16px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+         padding:0 max(16px, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(16px, env(safe-area-inset-left)); }
+  header { position:sticky; top:0; z-index:5; background:var(--bg); padding:12px 0 8px; border-bottom:1px solid var(--line); }
+  h1 { font-size:17px; margin:0 0 8px; font-weight:650; }
+  h1 small { font-weight:400; color:var(--dim); font-size:13px; margin-left:6px; }
+  .row { display:flex; gap:8px; }
+  input[type=search], select { font:inherit; font-size:16px; /* 16px: iOS does not zoom the page on focus */
+    min-height:44px; padding:0 12px; border:1px solid var(--line); border-radius:10px; background:var(--panel); color:var(--ink); }
+  input[type=search] { flex:1 1 auto; min-width:0; }
+  select { flex:0 0 42%; min-width:0; max-width:50%; }
+  .chips { display:flex; gap:8px; overflow-x:auto; padding:8px 0 2px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; min-height:44px; padding:0 14px; border-radius:22px; border:1px solid var(--line);
+          background:var(--chip); color:var(--ink); font:inherit; font-size:14px; cursor:pointer; }
+  .chip[aria-pressed=true] { background:var(--accent); border-color:var(--accent); color:#fff; }
+  #status { color:var(--dim); font-size:13px; padding:10px 0 4px; min-height:30px; }
+  ul { list-style:none; margin:0; padding:0; }
+  li { content-visibility:auto; contain-intrinsic-size:auto 92px; border-bottom:1px solid var(--line); }
+  li a { display:block; padding:12px 2px; color:inherit; text-decoration:none; min-height:44px; }
+  .t { font-weight:600; overflow-wrap:anywhere; }
+  .m { color:var(--dim); font-size:13px; margin-top:2px; overflow-wrap:anywhere; }
+  .k { display:inline-block; font-size:11px; letter-spacing:.04em; text-transform:uppercase; padding:1px 6px;
+       border-radius:4px; background:var(--chip); color:var(--dim); margin-right:6px; }
+  #more { height:1px; }
+  details { border-bottom:1px solid var(--line); padding:6px 0; }
+  summary { min-height:44px; display:flex; align-items:center; cursor:pointer; font-weight:600; }
+  details li { padding:10px 0; content-visibility:visible; }
+  details a { color:var(--accent); display:inline-block; min-height:44px; padding:10px 0; overflow-wrap:anywhere; }
+  .empty { color:var(--dim); padding:24px 0; }
+  .sk { height:64px; margin:10px 0; border-radius:8px; background:linear-gradient(90deg,var(--panel),var(--chip),var(--panel));
+        background-size:200% 100%; animation:sh 1.2s linear infinite; }
+  @keyframes sh { to { background-position:-200% 0; } }
+  @media (prefers-reduced-motion: reduce) { .sk { animation:none; } }
+  main { max-width:760px; margin:0 auto; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Tennessee County Records <small id="total"></small></h1>
+  <div class="row">
+    <input id="q" type="search" inputmode="search" enterkeyhint="search" placeholder="Search records" aria-label="Search records" autocomplete="off">
+    <select id="county" aria-label="County"><option value="">All counties</option></select>
+  </div>
+  <div class="chips" id="kinds" role="group" aria-label="Record kind"></div>
+</header>
+<details id="human" hidden>
+  <summary id="humanSummary"></summary>
+  <p class="m">These sites put a bot check in front of public records. We do not get past it ourselves.
+     Open one, clear the check in your own browser, and the records can be added by hand.</p>
+  <ul id="humanList"></ul>
+</details>
+<div id="status" role="status" aria-live="polite"></div>
+<ul id="list"></ul>
+<div id="more"></div>
+</main>
+<script>
+(() => {
+  // API base: same origin by default (nginx or the service itself); ?api= for static hosting elsewhere.
+  const API = (new URLSearchParams(location.search).get('api') || 'api').replace(/\/$/, '');
+  const KINDS = ['all','contract','agenda','minutes','bid','award','resolution','budget'];
+  const $ = id => document.getElementById(id);
+  const state = { q:'', county:'', kind:'', next:null, loading:false, gen:0 };
+  const cache = new Map();                 // url -> in-flight or settled promise: a page is requested once, however it is reached
+
+  const fmtDate = s => (s || '').slice(0, 10);
+  const fmtBytes = n => !n ? '' : n > 1048576 ? (n/1048576).toFixed(1)+' MB' : Math.max(1, Math.round(n/1024))+' KB';
+
+  // No AbortSignal on the shared fetch: aborting it would poison the cached promise for the next caller.
+  // Staleness is handled by the generation counter in load(), not by cancelling the network.
+  function getJSON(url) {
+    let p = cache.get(url);
+    if (!p) {
+      p = fetch(url).then(r => { if (!r.ok) throw new Error('http ' + r.status); return r.json(); });
+      p.catch(() => cache.delete(url));
+      cache.set(url, p);
+      if (cache.size > 80) cache.delete(cache.keys().next().value);
+    }
+    return p;
+  }
+
+  function card(r) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = /^https?:/.test(r.url || '') ? r.url : '#';
+    a.rel = 'noopener'; a.target = '_blank';
+    const t = document.createElement('div'); t.className = 't'; t.textContent = r.title || r.number || '(untitled)';
+    const m = document.createElement('div'); m.className = 'm';
+    const k = document.createElement('span'); k.className = 'k'; k.textContent = r.kind || 'other';
+    const bits = [r.county, r.party && r.party !== r.title ? r.party : null, r.dept, fmtDate(r.expires || r.fetched_at), fmtBytes(r.bytes)].filter(Boolean);
+    m.append(k, bits.join(' · '));
+    a.append(t, m); li.append(a);
+    return li;
+  }
+
+  function url(after) {
+    const p = new URLSearchParams();
+    if (state.q) p.set('q', state.q);
+    if (state.county) p.set('county', state.county);
+    if (state.kind) p.set('kind', state.kind);
+    if (state.q && state.county) p.set('sort', 'relevance');
+    if (after) p.set('after', after);
+    p.set('limit', '25');
+    return `${API}/search?${p}`;
+  }
+
+  async function load(reset) {
+    if (state.loading && !reset) return;
+    if (reset) { state.gen++; state.next = null; $('list').replaceChildren(); showSkeleton(); }
+    else if (state.next == null) return;
+    const gen = state.gen;
+    state.loading = true;
+    const t0 = performance.now();
+    try {
+      const j = await getJSON(url(reset ? 0 : state.next));
+      if (gen !== state.gen) return;
+      $('list').querySelectorAll('.sk').forEach(n => n.remove());
+      const frag = document.createDocumentFragment();
+      j.rows.forEach(r => frag.append(card(r)));
+      $('list').append(frag);
+      state.next = j.next;
+      const n = $('list').children.length;
+      $('status').textContent = n === 0 ? '' : `${n}${j.next ? '+' : ''} records · ${Math.round(performance.now() - t0)} ms` +
+        (state.q && !state.county ? ' · pick a county to rank by relevance' : '');
+      if (n === 0) { const e = document.createElement('li'); e.className = 'empty'; e.textContent = 'No records match.'; $('list').append(e); }
+      if (j.next) prefetch(j.next);
+    } catch (e) {
+      if (gen !== state.gen) return;
+      $('list').querySelectorAll('.sk').forEach(n => n.remove());
+      $('status').textContent = 'Could not reach the record service. Pull to retry.';
+    } finally {
+      if (gen === state.gen) {
+        state.loading = false;
+        // An IntersectionObserver only reports a *change*. If this page landed and the sentinel is still
+        // inside the margin there is no change, so nothing would ever ask for the next page. Re-arming
+        // makes it report the current state again.
+        io.unobserve($('more')); io.observe($('more'));
+      }
+    }
+  }
+
+  function showSkeleton() { for (let i = 0; i < 4; i++) { const s = document.createElement('li'); s.className = 'sk'; $('list').append(s); } }
+  function prefetch(after) { getJSON(url(after)).catch(() => {}); }
+
+  function sync() {
+    const p = new URLSearchParams();
+    if (state.q) p.set('q', state.q);
+    if (state.county) p.set('county', state.county);
+    if (state.kind) p.set('kind', state.kind);
+    if (new URLSearchParams(location.search).get('api')) p.set('api', API);
+    history.replaceState(null, '', p.toString() ? '?' + p : location.pathname);
+  }
+  const go = () => { sync(); load(true); };
+
+  let deb;
+  $('q').addEventListener('input', e => { clearTimeout(deb); deb = setTimeout(() => { state.q = e.target.value.trim(); go(); }, 40); });
+  $('county').addEventListener('change', e => { state.county = e.target.value; go(); });
+
+  KINDS.forEach(k => {
+    const b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.textContent = k === 'all' ? 'All kinds' : k;
+    b.setAttribute('aria-pressed', k === 'all'); b.dataset.k = k;
+    b.addEventListener('click', () => {
+      state.kind = k === 'all' ? '' : k;
+      $('kinds').querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.k === k));
+      go();
+    });
+    $('kinds').append(b);
+  });
+
+  // lazy: the next page is requested when the sentinel is within ~1.5 screens of the viewport
+  const io = new IntersectionObserver(es => { if (es[0].isIntersecting && state.next != null) load(false); },
+    { rootMargin: '0px 0px 1200px 0px' });
+  io.observe($('more'));
+
+  // counties: paint from the last visit instantly, refresh behind it
+  function fillCounties(list) {
+    const sel = $('county'), cur = state.county;
+    sel.replaceChildren(new Option('All counties', ''));
+    let total = 0;
+    let have = 0;
+    list.forEach(c => {
+      total += c.n_docs; if (c.n_docs) have++;
+      // say what we hold, not what we hope to: a county with no records is labelled with why
+      const label = c.n_docs ? `${c.county} (${c.n_docs.toLocaleString()})` : `${c.county} — none yet${c.coverage ? ' · ' + c.coverage.toLowerCase() : ''}`;
+      sel.append(new Option(label, c.fips));
+    });
+    sel.value = cur;
+    $('total').textContent = `${total.toLocaleString()} records · ${have} of ${list.length} counties`;
+  }
+  try { const c = JSON.parse(localStorage.getItem('tn-counties') || 'null'); if (c) fillCounties(c); } catch (_) {}
+  fetch(`${API}/counties`).then(r => r.json()).then(j => {
+    fillCounties(j.counties);
+    try { localStorage.setItem('tn-counties', JSON.stringify(j.counties)); } catch (_) {}
+  }).catch(() => {});
+
+  fetch(`${API}/needs-human`).then(r => r.json()).then(j => {
+    if (!j.items || !j.items.length) return;
+    const by = {};
+    j.items.forEach(i => (by[i.county] = by[i.county] || []).push(i));
+    $('humanSummary').textContent = `Needs a person · ${Object.keys(by).length} counties`;
+    Object.keys(by).forEach(c => by[c].forEach(i => {
+      const li = document.createElement('li'), a = document.createElement('a');
+      a.href = i.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = `${c} — ${i.url.replace(/^https?:\/\//, '')} ↗`;
+      li.append(a); $('humanList').append(li);
+    }));
+    $('human').hidden = false;
+  }).catch(() => {});
+
+  const sp = new URLSearchParams(location.search);
+  state.q = sp.get('q') || ''; state.county = sp.get('county') || ''; state.kind = sp.get('kind') || '';
+  $('q').value = state.q; $('county').value = state.county;
+  $('kinds').querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', (c.dataset.k === 'all' ? '' : c.dataset.k) === state.kind));
+  load(true);
+})();
+</script>
+</body>
+</html>

@@ -7,3 +7,12 @@ data/.epav-local/
 # the fetch queue is regenerable working state (enumeration rebuilds it); the
 # durable records are the manifests/ledgers/deployed tree which stay committed
 data/epav-fetched.jsonl
+
+# county pull (95 Tennessee counties): bytes, per-county logs, the derived query DB and generated
+# scoreboard snapshots live on the VM, never in git. Only the registry, the researcher-found sources,
+# the lists, the evidence files and the source workbook are committed.
+data/counties/*/
+data/counties/*.sqlite*
+data/counties/scoreboard*.json*
+data/counties/FALSIFY-coverage.json
+!data/counties/source/
