@@ -1,4 +1,4 @@
-/* Synapse speaks:
+/* Synapse — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “A subminimal stimulus at one point in the 
 field favours response to a subsequent stimulus at a second point 
 in the field even 8 centimeters distant — so long as the second 

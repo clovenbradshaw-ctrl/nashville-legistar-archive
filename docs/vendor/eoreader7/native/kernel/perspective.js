@@ -1,4 +1,4 @@
-/* Mahavira speaks:
+/* Mahavira — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “the Syddvdda declares that ‘you can afhrm the 
 existence of a thing from one point of view (syad asti), 
 deny it from another (syad nasti) ; and affirm both exis- 

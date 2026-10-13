@@ -1,4 +1,4 @@
-/* Brahmagupta speaks:
+/* Brahmagupta — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “The  sum  of  two  affirmative  quantities  is  affinnative;  of  two  negative 
 is  negative;  of  an  affirmative  and  a  negative  is  their  difference;  or,  if  they 
 be  equal,  nought.  The  sum  of  cipher  and  negative  is  negative;  of  affirma- 

@@ -45,3 +45,27 @@ if (location.hash.indexOf('fold-capture') >= 0) arm();
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg && msg.type === 'fold-capture-now') { arm(); sendResponse({ ok: true }); }
 });
+
+// ── Captions bridge ──────────────────────────────────────────────────────────────────────────────
+// The fold's page cannot read a YouTube caption track itself. It asks here, by window.postMessage, and
+// the background reads it on this browser's own address. Answered only for the fold's own origins and
+// only for an 11-character video id; a ping lets the page learn at once whether this extension is here.
+const FOLD_ORIGINS = ['https://scores-patch-points.github.io', 'http://127.0.0.1', 'http://localhost'];
+const FOLD_PAGE = FOLD_ORIGINS.some(o => location.origin === o || location.origin.indexOf(o + ':') === 0);
+
+if (FOLD_PAGE) {
+  window.addEventListener('message', e => {
+    const d = e.data;
+    if (e.source !== window || !d || typeof d.rid !== 'string') return;
+    const reply = body => window.postMessage({ rid: d.rid, ...body }, location.origin);
+    if (d.type === 'fold-captions-ping') { reply({ type: 'fold-captions-here', version: '0.2.0' }); return; }
+    if (d.type !== 'fold-captions-request') return;
+    if (!/^[\w-]{11}$/.test(String(d.id || ''))) { reply({ type: 'fold-captions-result', ok: false, error: 'id must be an 11-character video id' }); return; }
+    try {
+      chrome.runtime.sendMessage({ type: 'fold-captions', id: d.id, lang: d.lang || 'en' }, res => {
+        const lastErr = chrome.runtime.lastError;
+        reply({ type: 'fold-captions-result', ...(res || { ok: false, error: (lastErr && lastErr.message) || 'the extension did not answer' }) });
+      });
+    } catch (err) { reply({ type: 'fold-captions-result', ok: false, error: String((err && err.message) || err) }); }
+  });
+}

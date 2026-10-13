@@ -841,7 +841,7 @@ export const resolvePronouns = (
 export const resolvePronounsByActivation = (
   sentences,
   referentSurfaces,
-  { window, minActivation, minMargin, language = "en", nonPersonal, createActivation, pronounClass = undefined } = {},
+  { window, minActivation, minMargin, language = "en", nonPersonal, createActivation, pronounClass = undefined, namedScope = "nameless" } = {},
 ) => {
   if (typeof createActivation !== "function")
     throw new TypeError("resolvePronounsByActivation: createActivation is injected — the kernel's own gradient, never a private reimplementation (S6)");
@@ -849,6 +849,8 @@ export const resolvePronounsByActivation = (
     throw new TypeError("resolvePronounsByActivation: minActivation is declared — how faint still binds is never a default");
   if (!Number.isFinite(minMargin) || minMargin < 0 || minMargin > 1)
     throw new TypeError("resolvePronounsByActivation: minMargin is declared — how far a candidate must lead is never a default");
+  if (namedScope !== "nameless" && namedScope !== "local")
+    throw new TypeError(`resolvePronounsByActivation: namedScope is "${namedScope}" — only "nameless" (a pronoun is attempted only in a sentence with no named referent) and "local" (a same-clause antecedent resolves before activation does; otherwise the activation ladder still runs) are declared`);
 
   // See resolvePronouns's own comment on this exact check: one typed gap
   // for the whole call, never a silent per-sentence non-match.
@@ -895,9 +897,47 @@ export const resolvePronounsByActivation = (
     const named = new Set(namedMatches.map((n) => n.ref));
     const pronounHits = findInClass(sentence.text, cls);
 
-    if (named.size === 0 && pronounHits.length > 0) {
+    if (pronounHits.length > 0 && (named.size === 0 || namedScope === "local")) {
       for (const hit of pronounHits) {
         const offset = (sentence.offset ?? 0) + hit.index;
+        // namedScope:"local" — a pronoun is attempted in a sentence that DOES
+        // name someone, because pro-drop/anaphoric languages (Greek, Japanese,
+        // Russian) run the article or pronoun in the same clause as a noun
+        // all the time. The English rule ("no name in the sentence") would
+        // defer everything and bind nothing. Locality resolves first (Principle
+        // B: a sole same-clause antecedent of compatible gender decides, no
+        // activation arithmetic — it is present, not recalled); only when the
+        // pronoun's own clause names nobody compatible does the decayed-
+        // activation ladder run, on exactly the same floor/margin terms.
+        let localRef = null;
+        let refsInClause = 0;
+        let vetoedLocally = false;
+        if (namedScope === "local" && named.size > 0) {
+          refsInClause = new Set(
+            namedMatches
+              .filter((n) => sameClause(sentence.text, n.index, hit.index))
+              .map((n) => n.ref),
+          ).size;
+          if (refsInClause === 1) {
+            const sole = [...new Set(namedMatches.filter((n) => sameClause(sentence.text, n.index, hit.index)).map((n) => n.ref))][0];
+            if (!nonPersonalSet.has(sole)) {
+              const g = referentGender(sole);
+              const compatible = !hit.clean || g === "unknown" || g === hit.gender;
+              if (compatible) localRef = sole;
+              else vetoedLocally = true;
+            }
+          }
+        }
+        if (localRef) {
+          bindings.push({
+            referentId: localRef, sentenceOrder: sentence.order, offset, pronoun: hit.token, gender: hit.gender,
+            activation: null, margin: null,
+            provenance: { mechanism: "locality: sole same-clause antecedent (namedScope:local)" },
+          });
+          continue;
+        }
+        const activationScopeOk = namedScope === "nameless" ? named.size === 0 : (named.size === 0 || refsInClause !== 1 || vetoedLocally);
+        if (!activationScopeOk) continue;
         const candidates = [...seen]
           .filter((r) => !nonPersonalSet.has(r))
           .filter((r) => { if (!hit.clean) return true; const g = referentGender(r); return g === "unknown" || g === hit.gender; })

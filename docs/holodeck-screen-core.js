@@ -405,4 +405,4 @@ export function ledgerLinesOf(sidecar, { image = 'image' } = {}) {
 
 export function htmlOf(sidecar, opts = {}) { return ''; } // HTML rendering is not needed in the reading path; the pipeline's screen-sidecar owns it.
 
-export { PILL, toHex };
+export { PILL, toHex, dominant, segment };

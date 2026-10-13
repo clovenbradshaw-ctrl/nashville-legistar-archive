@@ -1015,7 +1015,68 @@ export function whatWouldSettle(loop) {
       lookFirst: Object.freeze([...(c.refs ?? [])]),
     }));
   }
+  // 4. THE RECAST — the appetite for a higher ground. When the DECLARATION
+  //    itself is what stands between the loop and what it could ask, the
+  //    re-zero stops being a repair and becomes a THING TO WANT: change
+  //    everything it believed, so the refused are askable again. Last because
+  //    it is the deepest move — it concedes the ground every question above
+  //    rests on — and it is still a question, with its own ask and its own
+  //    would-settle. Placing it here is what makes the loop *curious about
+  //    its own ground* rather than only about the world.
+  const appetite = recastAppetite(loop);
+  if (appetite.length) {
+    out.push(Object.freeze({
+      type: "recast_ground",
+      about: appetite,
+      ask: `what declaration of «${anchor}» would let me ask what the present one forbids?`,
+      wouldSettle: `${appetite.map((v) => `«${v}»`).join(", ")} stand refused by the declaration alone — a wider ground re-opens them`,
+      lookFirst: Object.freeze([]),
+    }));
+  }
   return Object.freeze(out);
+}
+
+/**
+ * recastAppetite(loop) — the candidates the DECLARATION alone refuses: a
+ * filler whose span the extent excluded without ever reading it (admit's own
+ * arithmetic refusal, `refusedBy: "extensional"`). These are exactly what
+ * `reshape` returns to `wish` — its `reopened` set — so this is the appetite
+ * a recast would satisfy: what "changing everything it knew" would buy.
+ *
+ * An `undetermined` candidate is deliberately NOT here. Nothing was excluded
+ * for it; a source said nothing, which is a `settle_undetermined` question
+ * about the world, not a reason to concede the ground. The appetite is for
+ * what the FRAME forbids, never for what the material has not yet said.
+ */
+export function recastAppetite(loop) {
+  if (loop?.schema !== "EOVoidLoop@1") return Object.freeze([]);
+  return Object.freeze(
+    loop.candidates.filter((c) => c.standing === "refused" && c.refusedBy === "extensional").map((c) => c.value),
+  );
+}
+
+/** True when a recast would re-open something the declaration refused. */
+export function wantsToRise(loop) {
+  return recastAppetite(loop).length > 0;
+}
+
+/**
+ * altitude(loop) — how much a ground currently holds: what it has EARNED
+ * (testimony) plus what it still WANTS (wishes and evaluated-undetermined).
+ * A reshape that RAISES altitude is a lift (the delight); one that leaves it
+ * flat is the churn `reshape` already refuses (`no_change`); one that lowers
+ * it gave something up. The loop's appetite for the re-zero is grounded here:
+ * the re-zero is where altitude is won, and it is wanted for the winning.
+ *
+ * Deliberately not a score over the material — it counts only the loop's own
+ * standing, so a lifted ground is one that can ask MORE than the last, never
+ * one that "did better".
+ */
+export function altitude(loop) {
+  if (loop?.schema !== "EOVoidLoop@1") return 0;
+  const held = loop.candidates.filter((c) => c.standing === "testimony").length;
+  const wanted = loop.candidates.filter((c) => c.standing === "wish" || c.standing === "undetermined").length;
+  return held + wanted;
 }
 
 /**

@@ -1,4 +1,4 @@
-/* Liu Hui speaks:
+/* Liu Hui — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “doubling and doubling the number of sides, and if we proceed 
 until we can no more continue the process of doubling, the perimeter 
 ultimately comes to coincide with the circumference of the circle, so 

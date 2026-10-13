@@ -7,6 +7,11 @@ new tab; this extension hands the rendered page back to the fold — automatical
 It only reads a page in two explicit cases: a page the fold opened as `<url>#fold-capture`, or the
 page you are on when you press the toolbar button. It never prowls on its own.
 
+**Captions (0.2.0).** A hosted copy of the fold cannot read a YouTube caption track: from a web page
+the body comes back empty, and the player API sends no CORS header. When the fold is given a YouTube
+link it asks this extension, which reads that one video's captions from your own browser and address
+and hands them back — no server in between, nothing to run on your machine. See `captions.js`.
+
 ## Install (Chrome / Edge / Brave / Chromium)
 
 1. Open `chrome://extensions` (or the browser's extensions page).
@@ -27,6 +32,16 @@ reload the extension, and repeat step 3.
   result — the "prove you are human" loop completes without another click.
 - **Manual fallback.** Press the toolbar button on any page to capture it into the fold's open tab.
   This also covers sites that rewrite or strip the `#fold-capture` fragment (some SPAs).
+
+## Captions — how it works and what it can see
+
+- The fold page posts `{type:'fold-captions-request', id}` to its own window; `content.js` (which
+  answers only on the fold's origins) relays it to `background.js`, which reads that one video's
+  caption track from youtube.com and returns the segments the same way.
+- It answers only for an 11-character video id, only to the fold's own origins, and only fetches
+  `youtube.com`. It stores nothing and sends nothing to a server of ours.
+- If the extension is not installed the fold notices within a second and falls back to the local
+  helper (`tools/ytdl-helper.py`) as before.
 
 ## Privacy
 

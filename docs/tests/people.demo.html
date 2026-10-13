@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Holodeck people — local demo</title>
+<style>
+  :root{--s1:#14131a;--s2:#1c1b24;--ink:#ecebf3;--ink2:#cfcde0;--mut:#9a97ab;--line:#2a2833;--line2:#34323f;--acc:#8a7cf0;--acc2:#5b4bd6;--ok:#5fbf8a;--bad:#e5707a;--sans:system-ui,sans-serif;--mono:ui-monospace,monospace;--serif:Georgia,serif}
+  body{margin:0;background:#0e0d13;color:var(--ink);font:14px/1.5 var(--sans)}
+  main{max-width:520px;padding:20px}
+  button{cursor:pointer;border-radius:8px;padding:6px 12px;border:1px solid var(--line2);background:none;color:var(--ink);margin:2px}
+  code{font:600 13px var(--mono)} h3{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+</style></head>
+<body>
+<main>
+  <h1 style="font:500 20px var(--serif)">People — local demo</h1>
+  <p style="color:var(--mut)">A throwaway homeserver and the real login gate on this computer (<code>node tests/people-stack.mjs</code>). Each person below is their own instance of the panel, as on their own computer.</p>
+  <h3>Show</h3><div id="who"></div>
+</main>
+<script type="module">
+import { registerAccount } from './people.demo.lib.js';
+await registerAccount();
+</script>
+</body></html>

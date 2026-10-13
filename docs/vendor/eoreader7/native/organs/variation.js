@@ -1,4 +1,4 @@
-/* Brillat-Savarin speaks:
+/* Brillat-Savarin — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Tell me what kind of food you eat, and I will tell you what
 kind of man you are.”
  *

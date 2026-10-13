@@ -16,6 +16,11 @@
 //     2D spectrum. The echo of a dog is "soft, mid-low spatial frequencies,
 //     nothing sharp"; the echo of a picket fence is "a sharp high line".
 //
+//   IMPRESSION — the echo of a thing in MOTION: the same spectral ring, taken
+//     over a series (audio, video, any 1D byte stream) and not a still. A
+//     still rings once (echo); a moving thing leaves an impression — what it
+//     rang like, and when. Series face: `descriptorFromSeries`.
+//
 // A concept's DMD framework is what things OF THAT CONCEPT have in common:
 // the examples are a trajectory (teaching order), decomposed by the same
 // Dynamic Mode Decomposition kernel/dmd.js already carries. The modes with
@@ -525,7 +530,7 @@ export function descriptorOf(grid, w, h, crop = null, rgb = null) {
 
 // ── the series face (audio, video, any 1D byte stream) ────────────────────
 // SHADOW of a series = its RMS envelope profile (where the energy is, in
-// time); ECHO of a series = its log-bin spectrum (what frequencies it rings
+// time); IMPRESSION of a series (the echo of a thing in motion) = its spectrum (what frequencies it rings
 // at) + centroid/rolloff — the timbre numbers audio/moments.js already
 // carries. Same contract, same framework. `segment` ([start, length], in
 // samples) ties the descriptor to a SPECIFIC PART of the series — the child
@@ -533,7 +538,7 @@ export function descriptorOf(grid, w, h, crop = null, rgb = null) {
 export const SERIES_WINDOW_BINS = 24;
 export const SERIES_LEN = SERIES_WINDOW_BINS + 4; // envelope + support + flatness + rolloff + log-crest
 
-// ── the series echo: pitch-INVARIANT spectral statistics ─────────────────
+// ── the series impression: pitch-INVARIANT spectral statistics ─────────────────
 // Measured, mnemonic.test.mjs: log-bin spectra move 0.5+ per 1% pitch
 // shift, and even a one-octave chroma fold rotates with the harmonic comb
 // (harmonics sit at k·j, so folding by octaves shifts by log2(k)). A memory
@@ -549,7 +554,7 @@ export const SERIES_LEN = SERIES_WINDOW_BINS + 4; // envelope + support + flatne
 //               comb's modest
 // The shadow (RMS envelope) carries WHERE in time the energy is; these four
 // carry WHAT kind of signal it is, at any pitch.
-export function seriesEchoStatistics(mag) {
+export function seriesImpressionStatistics(mag) {
   const half = Math.max(1, mag.length >> 1);
   let max = 0;
   let arith = 0;
@@ -605,7 +610,7 @@ export function descriptorFromSeries(series, { windowBins = SERIES_WINDOW_BINS, 
   padded.set(data.subarray(0, n));
   const mag = fftMagnitude(padded);
   // the four pitch-invariant spectral statistics — the timbre tell
-  const stats = seriesEchoStatistics(mag);
+  const stats = seriesImpressionStatistics(mag);
   out.push(stats.support, stats.flatness, stats.rolloff, stats.logCrest);
   const shadow = normalize(Float64Array.from(out.slice(0, windowBins)));
   const echo = normalize(Float64Array.from(out.slice(windowBins)));

@@ -1,4 +1,4 @@
-/* Nadim speaks:
+/* Nadim — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “هذا فهرست كتب جميع الأمم، من العرب والعجم، الموجود منها بلغة العرب وقلمها، في أصناف العلوم وأخبار مصنفيها، وطبقات مؤلفيها، وأنسابهم وتاريخ مواليدهم، ومبلغ أعمارهم وأوقات وفاتهم، وأماكن بلدانهم ومناقبهم ومثالبهم، منذ ابتداء كل علم اخترع إلى عصرنا هذا، وهو سنة سبع وسبعين وثلاثمائة للهجرة.”
  *
  * This file, 'source.js', is a repository of verified words, a record of what has been definitively verified.  It serves as a foundation for understanding the world, not by imposing judgments upon it, but by presenting the world as it is.  The use of this file should not be a matter of opinion, but of objective truth.
@@ -21,6 +21,7 @@
 //   - Whatever cannot be addressed is a typed gap, never a guess. A chunk with
 //     no term overlap is simply absent; nothing is invented to fill it.
 
+import { hear } from "../adapters/text/active-ear.js";
 import { sniffContainer } from "./measure.js";
 
 const STOPWORDS = new Set(
@@ -121,7 +122,7 @@ export function foldTypography(s) {
 }
 
 export function tokenize(text) {
-  return foldDiacritics(text)
+  return hear(foldDiacritics(text))
     .toLowerCase()
     // Unicode word/number classes, not `[a-z0-9]` — the same boundary
     // `foldTypography` already splits on, two functions up in this file, and

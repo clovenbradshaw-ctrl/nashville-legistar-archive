@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-04T00:46:17.434Z",
+  "at": "2026-10-11T05:00:54.864Z",
   "src": "/Users/mlacy/Documents/3.0/khora",
-  "copied": 1883,
-  "skipped": 108,
+  "copied": 3286,
+  "skipped": 130,
   "skips": [
     {
       "rel": "organs/analysis-store.js",
@@ -120,6 +120,11 @@
       "why": "node builtin — cannot run in the browser until guarded"
     },
     {
+      "rel": "organs/language-training.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
       "rel": "organs/long-form.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
@@ -156,6 +161,11 @@
     },
     {
       "rel": "organs/reasoning-record.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "organs/school-runner.mjs",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
     },
@@ -225,6 +235,26 @@
       "why": "node builtin — cannot run in the browser until guarded"
     },
     {
+      "rel": "adapters/code/edges.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/code/identify.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/code/lex.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/code/name-gate.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
       "rel": "adapters/code/py-engine.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
@@ -241,6 +271,46 @@
     },
     {
       "rel": "adapters/image/screen-sidecar.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/chem_smiles.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/chess_pgn.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/closed_codes.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/genetic.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/ipa.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/music_abc.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/taxonomy.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "adapters/notation/uml_bpmn.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
     },
@@ -280,11 +350,6 @@
       "why": "node builtin — cannot run in the browser until guarded"
     },
     {
-      "rel": "kernel/for-whom.js",
-      "import": "from \"node:",
-      "why": "node builtin — cannot run in the browser until guarded"
-    },
-    {
       "rel": "kernel/foreclosing-kinds.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
@@ -305,7 +370,17 @@
       "why": "node builtin — cannot run in the browser until guarded"
     },
     {
+      "rel": "kernel/prior-broker.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
       "rel": "kernel/prior-query.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "kernel/reading-rules.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
     },
@@ -336,6 +411,11 @@
     },
     {
       "rel": "the-fold/code-loop.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/corpus-session.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
     },
@@ -380,7 +460,22 @@
       "why": "node builtin — cannot run in the browser until guarded"
     },
     {
+      "rel": "the-fold/langid.mjs",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/language-grammar.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
       "rel": "the-fold/lesson-atoms.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/material-doorway.js",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
     },
@@ -420,7 +515,17 @@
       "why": "node builtin — cannot run in the browser until guarded"
     },
     {
+      "rel": "the-fold/priors-home.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
       "rel": "the-fold/prose-prior.js",
+      "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "the-fold/read-door.mjs",
       "import": "from \"node:",
       "why": "node builtin — cannot run in the browser until guarded"
     },
@@ -542,6 +647,11 @@
     {
       "rel": "the-fold/surface/skills-surface.mjs",
       "import": "from \"node:",
+      "why": "node builtin — cannot run in the browser until guarded"
+    },
+    {
+      "rel": "priors/tschichold-bench-v1.json",
+      "import": "from 'node:",
       "why": "node builtin — cannot run in the browser until guarded"
     }
   ]

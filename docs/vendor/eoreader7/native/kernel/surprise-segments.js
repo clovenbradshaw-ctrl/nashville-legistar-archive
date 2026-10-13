@@ -1,4 +1,4 @@
-/* Rubin speaks:
+/* Rubin — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Es  ist  dieser  Unterschied,  hier  der  Unter- 
 schied zwischen  Figur  und  Grund  benannt,  den  ich  zu  unter- 
 suchen mich  bemüht  habe.”

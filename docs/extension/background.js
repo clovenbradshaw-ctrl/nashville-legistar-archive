@@ -8,6 +8,8 @@
 // FOLD_URL below to the real address. The content script on the fold page (when it is open) is what
 // turns the capture into an ingest; if the fold is not open we open it and retry delivery.
 
+import { readCaptions, VIDEO_ID } from './captions.js';
+
 const FOLD_URL = 'https://scores-patch-points.github.io/the-fold/index.html'; // adjust to where the fold is served
 
 function isFoldUrl(u) {
@@ -40,8 +42,16 @@ async function route(data) {
   return true;
 }
 
-chrome.runtime.onMessage.addListener((msg, _sender, _sendResponse) => {
+chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg && msg.type === 'fold-capture' && msg.data) route(msg.data);
+  // Captions: the page asked (through its content script) for one video's caption track. The read is made
+  // here, on the person's own browser and address — extension fetches are not under the page's CORS rules.
+  if (msg && msg.type === 'fold-captions') {
+    if (!VIDEO_ID.test(String(msg.id || ''))) { sendResponse({ ok: false, error: 'id must be an 11-character video id' }); return false; }
+    readCaptions(msg.id, msg.lang || 'en').then(sendResponse, e => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+    return true; // the answer comes asynchronously
+  }
+  return false;
 });
 
 chrome.action.onClicked.addListener(async tab => {

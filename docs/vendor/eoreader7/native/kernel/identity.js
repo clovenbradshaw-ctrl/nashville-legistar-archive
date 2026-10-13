@@ -1,4 +1,4 @@
-/* Ise speaks:
+/* Ise — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “No.  24)  is  a  very  short  formula.  It  announces  to  the  Sun- 
 Goddess  the  rebuilding  of  her  shrine,  which  took  place  every 
 twentieth  year.”
@@ -11,6 +11,7 @@ twentieth  year.”
 
 import { eoOperation, deltaFold, chainView } from "./fold.js";
 import { expectation, expectationTransition, openExpectation } from "./expectations.js";
+import { gateForWhom } from "./for-whom.js";
 
 const norm = (x) => String(x ?? "").toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 const stablePair = (a, b) => [norm(a), norm(b)].sort();
@@ -193,7 +194,7 @@ function recanonicalizationOperations(fold, extraEntries, alternatives, touchedI
  * records refusal of the prior identity reading. Canonical relation projections
  * are then REC-written; raw witnessed edges remain untouched.
  */
-export function deriveIdentityRevision({ fold = {}, extraEntries = [], supports = [], attacks = [], witness = null, giver = null, canonicalizationFloor = undefined } = {}) {
+export function deriveIdentityRevision({ fold = {}, extraEntries = [], supports = [], attacks = [], witness = null, giver = null, canonicalizationFloor = undefined, forWhom = null } = {}) {
   if (canonicalizationFloor !== undefined && (!Number.isInteger(canonicalizationFloor) || canonicalizationFloor < 1))
     throw new TypeError("deriveIdentityRevision: canonicalizationFloor, when declared, is a positive integer — how much corroboration licenses canonical projection is never a fraction or a guess");
   const operations = [];
@@ -277,5 +278,75 @@ export function deriveIdentityRevision({ fold = {}, extraEntries = [], supports 
     operations.push(...recanonicalizationOperations(fold, extraEntries, [...working.values()], next, ref, canonicalizationFloor));
   }
 
-  return deltaFold(operations, { schemaVersion: "EOIdentityRevision@1" });
+  return deltaFold(operations, {
+    schemaVersion: "EOIdentityRevision@1",
+    // S113 / S42: a claim without a frame is a view from nowhere. When the
+    // revision is made FOR a for-whom, the delta carries the frame it was read
+    // under — absent when unsupplied, so every existing delta is byte-identical.
+    ...(forWhom ? { forWhom: forWhom.id, frame: Object.freeze({ giver: forWhom.giver ?? null, question: forWhom.question ?? null }) } : {}),
+  });
+}
+
+// ── THE FRAME IS THE OUTER BOUND (2026-10-07) ─────────────────────────────
+// identity-at-a-point.md: identity exists only for-whom (S113). The identity
+// decision was frame-free — it took supports/attacks and nothing else — so it
+// could not be for-whom-relative, and the doc's four seats did not compose.
+// This is the join: the record the identity would ride on is read THROUGH the
+// for-whom's own gate first (DMD coherence + material + question relevance);
+// a revision is emitted only if that reading is admitted, and it carries the
+// frame. Two for-whoms over the same material can therefore differ — the
+// falsifier being a second for-whom that refuses (or splits) where the first
+// admitted, with no new material.
+
+/** The edges of the record that touch the identity's two forms — the mentions
+ *  the identity rides on, as for-whom entries (the read is off the fold at a
+ *  point, not off the bare strings). */
+const encounterOf = (edge) => {
+  const at = edge?.scope?.byteOffset;
+  const w = edge?.witness ?? edge?.provenance?.sourceRef ?? "unknown";
+  return at != null ? `${w}#${at}` : String(w);
+};
+function evidenceEntries(fold, extraEntries, supports, attacks) {
+  const forms = new Set();
+  for (const e of [...(supports ?? []), ...(attacks ?? [])]) {
+    if (e?.left) forms.add(norm(e.left));
+    if (e?.right) forms.add(norm(e.right));
+  }
+  if (!forms.size) return [];
+  return [...(fold?.graphEntries ?? []), ...(extraEntries ?? [])]
+    .filter((x) => x?.schema === "EOHyperedge@1")
+    .filter((x) => (x.participants ?? []).some((p) => forms.has(norm(p?.surface)) || forms.has(participantValue(p))))
+    .map((x) => Object.freeze({
+      schema: "EOHyperedge@1",
+      id: x.id,
+      encounterRef: encounterOf(x),
+      relation: x.relation ?? null,
+      referent: x.referent ?? null,
+      participants: Object.freeze((x.participants ?? []).map((p) => Object.freeze({ surface: p?.surface ?? p?.ref ?? null, ref: p?.ref ?? null }))),
+    }));
+}
+
+/**
+ * deriveIdentityRevisionForWhom(forWhom, ctx) — the identity decision read FOR a
+ * for-whom. The for-whom's gate is the outer bound over the record the identity
+ * rides on: an admitted frame emits a frame-stamped revision; an unadmitted one
+ * is a TYPED REFUSAL (no operations), never a silent frame-free revision.
+ * @returns { schema:"EOIdentityRevisionForWhom@1", forWhom, admitted, gate, delta|null, reason? }
+ */
+export function deriveIdentityRevisionForWhom(forWhom, { fold = {}, extraEntries = [], supports = [], attacks = [], witness = null, canonicalizationFloor = undefined, gateOpts = undefined } = {}) {
+  if (!forWhom || !forWhom.id) throw new TypeError("deriveIdentityRevisionForWhom requires a for-whom — identity exists only for-whom (S113)");
+  const heard = evidenceEntries(fold, extraEntries, supports, attacks);
+  const gate = gateForWhom(forWhom, heard, gateOpts ?? {});
+  if (!gate.admitted) {
+    return Object.freeze({
+      schema: "EOIdentityRevisionForWhom@1",
+      forWhom: forWhom.id,
+      admitted: false,
+      gate,
+      delta: null,
+      reason: "the record this identity would ride on makes no admitted difference to this for-whom (coherence, material, or question relevance)",
+    });
+  }
+  const delta = deriveIdentityRevision({ fold, extraEntries, supports, attacks, witness, giver: forWhom.giver, canonicalizationFloor, forWhom });
+  return Object.freeze({ schema: "EOIdentityRevisionForWhom@1", forWhom: forWhom.id, admitted: true, gate, delta });
 }

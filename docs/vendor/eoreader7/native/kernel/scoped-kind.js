@@ -1,4 +1,4 @@
-/* Frege speaks:
+/* Frege — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Dies erklärt, weshalb die Höhlung mit dem hinein- 
 geschriebenen deutschen Buchstaben nöthig ist: sie grenzt das 
 Gebiet ab, auf welches sich die durch den Buchstaben bezeich- 

@@ -1,4 +1,4 @@
-/* Sockeye speaks:
+/* Sockeye — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “the  majority  were  four  years  old  and 
 hence  in  accord  with  the  theory.  But  the  smallest  members  of  the  run  (almost  invariably 
 males)  were  but  three  years  old,  while  a  considerable  number  of  the  larger  fish  were 

@@ -42,6 +42,8 @@
 // question touches, each with its credit — so relevant ground wisdom gets
 // priority in being quoted, and the response always credits it.
 
+import { ARCHON_DOSSIERS, ARCHON_DOSSIERS_DIGEST } from "./archon-dossiers.js";
+
 export const ARCHON_COMPENDIUM_SCHEMA = "ArchonCompendium@1";
 export const ARCHON_COMPENDIUM_GIVER = "eoreader7:organs/archon-compendium.js";
 
@@ -91,9 +93,9 @@ export const ARCHONS = Object.freeze([
     name: "John Henry Wigmore",
     organ: "organs/testimony.js",
     role: "ask the witness twice, swapped twin, verdict from the pair",
-    pdStatus: "fair-use",
+    pdStatus: "public-domain",
     work: "The great American evidence scholar. His Science of Judicial Proof treats proof as a process of reasoning over testimony, and cross-examination as asking the witness more than once — the twin-sentence verdict drawn from the pair, never from a single unchallenged answer.",
-    source: "The Science of Judicial Proof (1913; 3rd ed. 1937)",
+    source: "Principles of Judicial Proof (1913, public domain); the 1937 retitled edition is The Science of Judicial Proof (not the 1913 work)",
     credit: "John Henry Wigmore — proof as a process of reasoning over testimony; ask the witness twice, verdict from the pair.",
     topics: ["testimony", "witness", "evidence", "cross-exam", "proof", "sworn"],
   },
@@ -168,7 +170,7 @@ export const ARCHONS = Object.freeze([
     name: "Dai Zhen",
     organ: "organs/quotes.js",
     role: "a quotation is verified to its source or not printed as one",
-    pdStatus: "public-domain",
+    pdStatus: "fair-use",
     work: "The leading scholar of the evidential-research (kaozheng) school. His discipline: no word is taken on another's say-so — a quotation is traced to and verified against its actual source, or it is not printed as a quotation.",
     source: "The evidential-research (kaozheng) corpus, 18th century",
     credit: "Dai Zhen — evidential research: a quotation is verified to its source or not printed as one.",
@@ -968,10 +970,10 @@ export const ARCHONS = Object.freeze([
     name: "Stephen Cole Kleene (via the Kleene star)",
     organ: "the-fold (code inspection)",
     role: "the regex-removal archon — a pattern is a TABLE wearing regex clothes when it enumerates a closed list; state the list, drop the pattern",
-    pdStatus: "public-domain",
+    pdStatus: "nomination",
     work: "Kleene gave regular expressions their star — the operation that says 'the thing, repeated any number of times' — and in doing so gave the field the exact boundary of when a pattern is the right tool. A regex is the right tool when it describes a SHAPE (any number, any letter, any structure). It is the wrong tool when it enumerates a CLOSED LIST — one/two/three/four..., dr/mr/mrs/ms..., the entire vocabulary of a hedge — because a closed list is not a shape, it is a table, and a table is stated as a Set, a Map, a lookup, plain logic the next reader can edit. KleeneUp's patrol: find the alternation that lists words, the lookahead that guards abbreviations, the character-class walk that is really a tokenizer — and state them plainly. The pattern is not deleted; it is dissolved into its honest form, and the shape-regexes that remain are the ones that could not be a table.",
-    source: "S. C. Kleene, 'Representation of Events in Nerve Nets and Finite Automata' (1951); the Kleene star as the boundary between shape and list",
-    credit: "KleeneUp — the Kleene star marks where a pattern is a shape; a closed list is a table, and a table is stated, not matched.",
+    source: "our own rule, named for the Kleene star. Kleene's 1951/1956 work defines regular events; it does not argue this shape-versus-closed-list rule (see archon dossier)",
+    credit: "KleeneUp — our name for a rule: a pattern that generalizes is a shape, a closed list is a table. Named for the Kleene star; the rule is ours, not Kleene's.",
     topics: ["regex", "regular expression", "pattern", "table", "lookup", "kleene", "star", "tokenizer", "alternation", "shape", "list", "code", "inspection"],
   },
 ]);
@@ -1000,7 +1002,19 @@ export function archonOf(handle) {
  */
 export function creditedQuote(handle) {
   const a = archonOf(handle);
-  return a ? a.credit : null;
+  if (!a) return null;
+  const d = disclosureOf(a.handle);
+  return d?.disclosure ? `${a.credit} [${d.disclosure}]` : a.credit;
+}
+
+/**
+ * AntiStrauss's disclosure for one archon (docs/archons/dossier, generated into archon-dossiers.js): the verdict on whether our use
+ * matches what the author argued, whether the name may be credited as scholarship, and every bend (ours vs theirs). null only for an
+ * archon with no dossier, which the conformance test refuses — so a credit can never carry an author's authority undisclosed.
+ */
+export function disclosureOf(handle) {
+  const a = archonOf(handle);
+  return a ? ARCHON_DOSSIERS[a.handle] ?? null : null;
 }
 
 /**
@@ -1024,7 +1038,7 @@ export function matchArchons(text, { stem = defaultStem } = {}) {
     const top = (a.topics ?? []).map((t) => stem(t));
     let overlap = 0;
     for (const t of top) if (words.has(t) || s.toLowerCase().includes(t)) overlap++;
-    if (overlap) hits.push({ handle: a.handle, name: a.name, organ: a.organ, role: a.role, pdStatus: a.pdStatus, work: a.work, source: a.source, credit: a.credit, relevance: overlap });
+    if (overlap) hits.push({ handle: a.handle, name: a.name, organ: a.organ, role: a.role, pdStatus: a.pdStatus, work: a.work, source: a.source, credit: a.credit, disclosure: ARCHON_DOSSIERS[a.handle]?.disclosure ?? null, verdict: ARCHON_DOSSIERS[a.handle]?.verdict ?? null, creditAsScholarship: ARCHON_DOSSIERS[a.handle]?.creditAsScholarship ?? false, relevance: overlap });
   }
   hits.sort((x, y) => y.relevance - x.relevance);
   return hits;
@@ -1040,5 +1054,6 @@ export const ARCHON_COMPENDIUM = {
   schema: ARCHON_COMPENDIUM_SCHEMA,
   giver: ARCHON_COMPENDIUM_GIVER,
   count: ARCHONS.length,
-  rule: "always credited in a response",
+  rule: "always credited in a response — and never undisclosed: every credit carries the dossier's verdict and bends",
+  dossiersDigest: ARCHON_DOSSIERS_DIGEST,
 };

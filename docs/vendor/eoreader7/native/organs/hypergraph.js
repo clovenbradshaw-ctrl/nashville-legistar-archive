@@ -165,7 +165,7 @@ import { blankStructure, numberSet } from "./grounding.js";
 import { commonTerms, CORPUS_MINIMUM } from "./cite.js";
 import { foldDiacritics } from "./source.js";
 import { orderArm, standingOf } from "./asserted.js";
-import { GRAMMAR_MIN_SHARE } from "../adapters/text/grain-typing.js";
+import { GRAMMAR_MIN_SHARE, grammarIsDominant } from "../adapters/text/grain-typing.js";
 export { GRAMMAR_MIN_SHARE };
 
 // ── declared numbers, each with its justification ───────────────────────────
@@ -1613,8 +1613,8 @@ export function makeRelationReader(organs) {
     // A shape neither rule fits keeps P43's typed refusal, unchanged.
     const posPriorNow = organs.posPriorFor ? organs.posPriorFor() : null;
     const shareOf = (w, tags) => { const att = posPriorNow?.forms?.[String(w).toLowerCase()]; if (!att) return null; const total = Object.values(att).reduce((a, b) => a + b, 0); return total > 0 ? tags.reduce((a, k) => a + (att[k] ?? 0), 0) / total : null; };
-    const auxDominant = (w) => (shareOf(w, ["AUX"]) ?? 0) >= GRAMMAR_MIN_SHARE;
-    const verbAttested = (w) => { const lw = String(w).toLowerCase(); return verbs.has(lw) || Boolean(organs.verbForms?.has?.(lw)) || (shareOf(lw, ["VERB", "AUX"]) ?? 0) >= GRAMMAR_MIN_SHARE; };
+    const auxDominant = (w) => grammarIsDominant(shareOf(w, ["AUX"]) ?? 0);
+    const verbAttested = (w) => { const lw = String(w).toLowerCase(); return verbs.has(lw) || Boolean(organs.verbForms?.has?.(lw)) || grammarIsDominant(shareOf(lw, ["VERB", "AUX"]) ?? 0); };
     // THE ARRANGEMENT IS THE CONTRACT (Chomsky, 2026-09-20 — the language-
     // universality archon): the reader's constructed edges and claims carry
     // ONLY the earned names end1/label/end2, and a raw extractor triple may

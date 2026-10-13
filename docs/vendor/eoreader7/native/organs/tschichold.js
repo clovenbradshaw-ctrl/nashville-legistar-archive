@@ -655,7 +655,7 @@ export function competency(looks, bench = { rules: SEED_RULES }) {
 export async function loadBench({ path = null } = {}) {
   let fsMod, pathMod;
   try { fsMod = await import("node:fs"); pathMod = await import("node:path"); } catch { return { schema: BENCH_SCHEMA, rules: SEED_RULES, gap: "no filesystem here — the seed rules alone" }; }
-  const root = globalThis.process?.env?.LIVE_PRIORS_DIR ?? pathMod.join(pathMod.dirname(new URL(import.meta.url).pathname), "..", "..", "..", "live_priors");
+  const root = globalThis.process?.env?.LIVE_PRIORS_DIR ?? pathMod.join(pathMod.dirname(new URL(import.meta.url).pathname), "..", "..", "..", "Zenodotus");
   const file = path ?? pathMod.join(root, "derived-priors", "typography-priors", "tschichold-bench-v1.json");
   if (!fsMod.existsSync(file)) return { schema: BENCH_SCHEMA, rules: SEED_RULES, gap: `bench not found at ${file} — the seed rules alone` };
   const bench = JSON.parse(fsMod.readFileSync(file, "utf8"));

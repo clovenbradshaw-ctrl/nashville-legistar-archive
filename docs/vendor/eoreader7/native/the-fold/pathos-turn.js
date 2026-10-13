@@ -54,6 +54,8 @@ export function pathosCueFor(condition) {
       return "This conversation keeps returning to the same unresolved disagreement.";
     case "collapse":
       return "Something in this conversation broke the ground it was standing on, and nothing released it.";
+    case "lifted":
+      return "This conversation took in something larger than it was holding and let it move — it can stand higher than it did.";
     default:
       return null;
   }

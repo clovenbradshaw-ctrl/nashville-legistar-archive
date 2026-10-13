@@ -34,7 +34,7 @@ const SRC = process.argv.includes("--src")
 const DEST = path.join(FOLD, "vendor", "eoreader7");
 const DRY = process.argv.includes("--dry");
 
-const SUBSETS = ["organs", "adapters", "kernel", "the-fold", "priors"];
+const SUBSETS = ["organs", "adapters", "kernel", "the-fold", "priors", "interpretation"];
 const NODE_IMPORT = /\bfrom\s+["']node:|import\s+["']node:|require\(["']node:/;
 const SKIP_EXT = /\.(test|falsify)\.(js|mjs)$/;
 // A node-only module whose ONLY importers defer it behind an isNode guard is

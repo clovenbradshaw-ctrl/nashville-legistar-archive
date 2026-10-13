@@ -232,7 +232,7 @@ export const normaliseNewlines = (text) => {
   return { text: out.join(""), toRaw };
 };
 
-import { SENTENCE_TERMINATORS, CLOSING_QUOTES } from "./priors.js";
+import { SENTENCE_TERMINATORS, CLOSING_QUOTES, UNSPACED_TERMINATORS } from "./priors.js";
 
 /**
  * detectFrontMatterRun(text, {maxScanChars, tocLineMax, tocRunMin,
@@ -474,7 +474,7 @@ const splitSentencesInRange = (s, rangeStart, rangeEnd, out, abbreviations) => {
     if (!SENTENCE_TERMINATORS.has(s[i])) continue;
     let end = i + 1;
     while (end < rangeEnd && CLOSING_QUOTES.has(s[end])) end += 1;
-    if (end < rangeEnd && !/\s/.test(s[end])) continue; // a decimal point, not a stop
+    if (end < rangeEnd && !/\s/.test(s[end]) && !UNSPACED_TERMINATORS.has(s[i])) continue; // a decimal point, not a stop (an unspaced script's own full stop is a stop)
     if (s[i] === "." && abbreviations.has(tokenEndingAt(s, i))) continue; // a title, not a stop
     if (s[i] === "." && end === i + 1 && isNameInitial(s, i, rangeStart, rangeEnd)) continue; // an initial, not a stop
     pushSentence(s, start, end, out);

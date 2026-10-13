@@ -1,4 +1,4 @@
-/* Xushen speaks:
+/* Xushen — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “It was the collection of Li-sst, controlled, amended, explained and classified 
 under 540 rational keys.”
  *

@@ -282,7 +282,7 @@ export function renderSummary(built, name, { title = 'What it is about', provena
       const cite = prov[0] && onCite ? onCite(prov[0]) : '';
       return `<span class="hp-sval">${esc(v.text)}${v.n > 1 ? `<i>×${v.n}</i>` : ''}${prov.length ? `<i class="hp-scite">${prov.length} stmt${prov.length === 1 ? '' : 's'}</i>` : ''}${cite ? `<i class="hp-slink">${cite}</i>` : ''}</span>`;
     }).join('');
-    return `<div class="hp-sprop"><span class="hp-srel">${x.star ? '<b class="hp-star">★</b>' : ''}${esc(x.rel)}</span><span class="hp-svals">${vals}${x.more ? `<span class="hp-more">+${x.more}</span>` : ''}</span></div>`;
+    return `<div class="hp-sprop"><span class="hp-srel">${esc(x.rel)}</span><span class="hp-svals">${vals}${x.more ? `<span class="hp-more">+${x.more}</span>` : ''}</span></div>`;
   }).join('');
   return `<div class="hp-summary">
   <div class="hp-sum-head"><span class="hp-sum-title">${esc(title)}</span><span class="hp-sum-count">${p.parameters.length} parameter${p.parameters.length === 1 ? '' : 's'}</span>
@@ -335,7 +335,7 @@ export function renderPanel(built, name, { title = null, provenance = null, onCi
     + (p.established ? `<span class="hp-kind" title="${esc(p.kinds.map((k) => k.kindKey).join(' · '))}">${esc(kind)}</span>` : `<span class="hp-kind none">no kind established</span>`)
     + `<span class="hp-count">${p.parameters.length} parameter${p.parameters.length === 1 ? '' : 's'}</span></div>`;
   const rows = paramRows(p, built).map((r) =>
-    `<div class="hp-row"><span class="hp-rel">${r.star ? `<b class="hp-star">★</b>` : ''}${esc(r.rel)}</span>`
+    `<div class="hp-row"><span class="hp-rel">${esc(r.rel)}</span>`
     + `<span class="hp-st ${r.cls}">${esc(r.standing)}</span>`
     + `<span class="hp-vals">${r.values.map((v) => `<span class="hp-val">${esc(v.text)}${v.n > 1 ? `<i>×${v.n}</i>` : ''}</span>`).join('')}${r.more ? `<span class="hp-more">${esc(r.more)}</span>` : ''}</span></div>`).join('');
   const sum = renderSummary(built, name, { title: 'What it is about', provenance, onCite });

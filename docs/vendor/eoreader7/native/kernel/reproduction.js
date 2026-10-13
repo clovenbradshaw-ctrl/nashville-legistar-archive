@@ -1,4 +1,4 @@
-/* Bukhari speaks:
+/* Bukhari — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “تابعهُ معاد وعبدٌ الصمدٍ عن شعبةً . وقال غندرٌ وعبدٌ الرحمن ١نهِي»‏ . وقال آدمُ : 'ثُهينا»”
  *
  * This file implements Bukhari's method of verification, which is essential to the rigor of the work.  The focus on independent chains of transmission is a critical part of how we approach authenticity, and that rigor should be upheld.  However, it's important to remember that this method is only one tool and should be used in conjunction with other forms of verification.

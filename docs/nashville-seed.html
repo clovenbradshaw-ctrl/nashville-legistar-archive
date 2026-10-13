@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>seeding the fold — Metro Nashville contracts…</title>
+<script>
+// Seed the Metro Nashville ePAV contract corpus and open the app.
+//
+// The corpus is stored compact and binary: the docs are gzipped into IndexedDB
+// (key 'added2:custom') and localStorage keeps only a pointer, so the browser
+// quota is never touched by the raw text and the app hydrates the workspace from
+// the blob. PDFs and images are never stored — the reader pulls them on demand.
+(async () => {
+  const idbPut = (k, v) => new Promise((res, rej) => {
+    const r = indexedDB.open('fold-explorer', 2);
+    r.onupgradeneeded = () => { const db = r.result; if (!db.objectStoreNames.contains('blobs')) db.createObjectStore('blobs'); };
+    r.onsuccess = () => { const db = r.result; const tx = db.transaction('blobs', 'readwrite'); tx.objectStore('blobs').put(v, k); tx.oncomplete = () => res(); tx.onerror = () => rej(tx.error); };
+    r.onerror = () => rej(r.error);
+  });
+  try {
+    const docs = await (await fetch('nashville-contracts-seed.json')).json();
+    const buf = await new Response(new Blob([JSON.stringify(docs)]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer();
+    await idbPut('added2:custom', buf);
+    localStorage.setItem('fold-explorer-added', JSON.stringify({ custom: { __idb: 1 } }));
+    localStorage.setItem('holodeck-purged-legacy', '1');
+    location.replace('index.html');
+  } catch (e) {
+    document.body = document.createElement('body');
+    document.body.textContent = 'Seed failed: ' + e.message;
+  }
+})();
+</script>

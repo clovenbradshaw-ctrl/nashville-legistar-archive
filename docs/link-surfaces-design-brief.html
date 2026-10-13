@@ -1,0 +1,251 @@
+<title>Link Surfaces Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: one reading column for the principle and the test record, then a two-up grid of view cards, then a reference table. A working brief, not a pitch. */
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --ink: #1b1f27;
+  --ink2: #3b4250;
+  --mut: #667085;
+  --line: #dde1e8;
+  --acc: #2a4fd6;
+  --bad: #b3261e;
+  --amber: #9a5b00;
+  --bad-bg: #fbeceb;
+  --amber-bg: #fbf1de;
+  --acc-bg: #e8edfc;
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --panel: #1b1f27; --ink: #eceff4; --ink2: #c9cfda; --mut: #98a1b2; --line: #2d3340;
+    --acc: #8aa4ff; --bad: #ff8a80; --amber: #f0b45a; --bad-bg: #3a1f1d; --amber-bg: #372a12; --acc-bg: #1f2745; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --panel: #1b1f27; --ink: #eceff4; --ink2: #c9cfda; --mut: #98a1b2; --line: #2d3340;
+  --acc: #8aa4ff; --bad: #ff8a80; --amber: #f0b45a; --bad-bg: #3a1f1d; --amber-bg: #372a12; --acc-bg: #1f2745; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--sans); padding-inline: 20px; padding-block: 36px 72px; }
+main { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+h1 { font: 700 30px/1.15 var(--sans); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+h2 { font: 700 20px/1.25 var(--sans); margin: 0 0 14px; text-wrap: balance; }
+h3 { font: 600 16px/1.3 var(--sans); margin: 0; }
+p { margin: 0; max-width: 68ch; text-wrap: pretty; }
+.lab { font: 600 11px var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--mut); }
+.lede { font-size: 17px; color: var(--ink2); margin-top: 10px; }
+.rule { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--acc); border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+.rule p { font-size: 18px; line-height: 1.5; color: var(--ink); font-weight: 500; }
+ol.goals { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 12px; }
+ol.goals li { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+ol.goals b { display: block; margin-bottom: 4px; }
+ol.goals span { color: var(--ink2); font-size: 14px; }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 700px; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font: 600 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mut); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+.chip { display: inline-block; font: 600 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; white-space: nowrap; color: var(--ink2); }
+.chip.bad { color: var(--bad); border-color: var(--bad); background: var(--bad-bg); }
+.chip.amb { color: var(--amber); border-color: var(--amber); background: var(--amber-bg); }
+.chip.acc { color: var(--acc); border-color: var(--acc); background: var(--acc-bg); }
+.case { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+.find { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.find > .chip { align-self: flex-start; }
+.find q { quotes: none; display: block; border-left: 3px solid var(--line); padding-left: 10px; color: var(--ink2); font-size: 14px; }
+mark { background: var(--amber-bg); color: var(--ink); border-radius: 2px; padding: 0 2px; font-weight: 600; }
+mark.bad { background: var(--bad-bg); }
+.srcs { display: flex; flex-wrap: wrap; gap: 8px; }
+.srcs span { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; background: var(--panel); }
+.views { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 16px; }
+.view { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.view header { display: flex; flex-direction: column; gap: 4px; }
+.view .q { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.view dl { margin: 0; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 8px 14px; font-size: 14px; }
+.view dt { font: 600 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mut); padding-top: 3px; }
+.view dd { margin: 0; color: var(--ink2); min-width: 0; }
+.view dd ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 3px; }
+@media print { body { background: #fff; padding-block: 0; } .tablewrap { overflow: visible; } table { min-width: 0; } }
+@media (max-width: 420px) { .view dl { grid-template-columns: 1fr; gap: 2px; } .view dd { margin-bottom: 8px; } }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.note { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-size: 14px; color: var(--ink2); }
+.note b { color: var(--ink); }
+ul.plain { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--ink2); }
+</style>
+
+<main>
+  <header>
+    <div class="lab">Holodeck · Links</div>
+    <h1>Link surfaces: what each view is for</h1>
+    <p class="lede">Six views read the same set of links between sources. This brief states what each one has to accomplish, so the layout can be redesigned around those jobs. It leads with the one rule they all share.</p>
+  </header>
+
+  <section aria-labelledby="rule">
+    <div class="rule">
+      <span class="lab" id="rule">The rule</span>
+      <p>A link is useless unless it says what came to light. Every view leads with the finding: what the two passages establish together, with the exact words marked. The relation name and the provenance come second.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="every">
+    <h2 id="every">What every view has to do</h2>
+    <ol class="goals">
+      <li><b>Lead with the finding</b><span>A kind label, one sentence saying what is established, and the words themselves marked in both passages. “Related” and “says about” are not findings.</span></li>
+      <li><b>Say how sure it is</b><span>Inferred, computed, from a file, or confirmed by a person must look different at a glance. A pair that does not beat chance is shown as such, never asserted.</span></li>
+      <li><b>Show what is missing</b><span>Silence is information: a passage nothing answers, a heading the resolution never names, a document that is not on file. These need a place in every view, not only in a list.</span></li>
+      <li><b>Let sources switch on and off in place</b><span>One click on a source removes it from every view and every count. Nothing reloads, nothing is lost, and the same switch state holds when the person moves to another view.</span></li>
+      <li><b>Reach the words in one step</b><span>From any finding, one click opens the passage in the reader with the marked words underlined. The gutter in the reader says the same thing as the views.</span></li>
+      <li><b>Stay read-only</b><span>Only Review writes a link. Everywhere else a person can look, filter and open, and cannot change a link by accident.</span></li>
+      <li><b>Scale without a hairball</b><span>From two sources to fifty, from twenty links to two thousand. When there are too many to draw, show ranked groups and counts, led by the findings that matter.</span></li>
+      <li><b>Work in a narrow column</b><span>The Holodeck sits beside other panes and on a phone. Nothing may depend on a wide canvas to be understood.</span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="kinds">
+    <h2 id="kinds">The kinds of finding a layout has to tell apart</h2>
+    <p style="margin-bottom:14px">Findings come from the engine’s own reading across the sources, not from phrases written into the interface. Each is either <b>licensed</b>, because it cleared a null, or <b>possible</b>, a candidate the engine holds below the line. The layout must make that difference visible on every card, every line and every underline.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Label</th><th>What it says</th><th>Marked words</th><th>Weight</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip bad">Different figures</span></td><td>The same thing is stated with two different numbers or dates.</td><td>Both figures.</td><td>Highest. Act on it.</td></tr>
+          <tr><td><span class="chip bad">Denied</span></td><td>One source denies what the other states, over the same subject.</td><td>The negation and the subject words, both sides.</td><td>Highest.</td></tr>
+          <tr><td><span class="chip amb">Spoken of, not held</span></td><td>A source speaks of a thing in several differently-modified ways (the existing contract, the new contract), and no source says any of them.</td><td>The modified phrases.</td><td>High interest, but never licensed: the engine can only say it is a candidate. It needs its own visual place, because the thing has no passage to point at.</td></tr>
+          <tr><td><span class="chip amb">Not named</span></td><td>A source names another source (by carrying its title), and that source holds words the naming source never writes while two or more other sources return to them.</td><td>The word in the named text, and where the other source raised it.</td><td>High. Licensed only when the set beats chance; otherwise shown as “possible”. A whole-source relation with a few marks on one side.</td></tr>
+          <tr><td><span class="chip">Refers to</span></td><td>One passage carries most of another source’s title, so it names that source without any cue phrase.</td><td>The title words inside the passage.</td><td>Structural. It is what makes the “Not named” finding possible.</td></tr>
+          <tr><td><span class="chip acc">Defined as</span></td><td>A phrase is named inside the definition of a term in another source (an ordinance defining “surveillance technology”).</td><td>The phrase, and the definition.</td><td>Medium.</td></tr>
+          <tr><td><span class="chip">Both state</span></td><td>The same figure or date appears in both.</td><td>The figure.</td><td>Confirms. Quiet.</td></tr>
+          <tr><td><span class="chip">Same subject</span></td><td>The two share distinctive words and nothing stronger.</td><td>The shared words.</td><td>Lowest. Never leads.</td></tr>
+          <tr><td><span class="chip">Cites</span></td><td>One source cites a section of another, and the citation lands on a passage.</td><td>The citation and the passage it lands on.</td><td>Structural.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="case">
+    <h2 id="case">The test record: Motorola contract RS2026-2264</h2>
+    <p style="margin-bottom:14px">Four sources are loaded: the council debate record of 6 October 2026, Metro Code 13.08.080 on surveillance technology, the resolution with its cooperative-purchase certification, and the Sourcewell master agreement 030425-MOT with Motorola Solutions. A redesign passes when a person who has never seen the record can state both findings below within ten seconds of opening any one view.</p>
+    <div class="srcs" style="margin-bottom:16px"><span>Council debate 2026-10-06</span><span>Metro Code 13.08.080</span><span>Resolution and certification</span><span>Sourcewell agreement 030425-MOT</span></div>
+    <div class="case">
+      <article class="find">
+        <span class="chip amb">Not named</span>
+        <h3>The resolution did not match what the exhibit said</h3>
+        <p>The resolution approves the attached agreement as public safety software for Emergency Communications, and the certification justifies it as dispatch. The attached agreement also lists <mark>Drone Software and Hardware</mark>, video surveillance solutions and more. The resolution never names any of them, and the certification answers the surveillance question <mark class="bad">No</mark>.</p>
+        <q>“In this exhibit, there are drones that may be purchased with this.” <small>public comment, debate record</small></q>
+        <p style="font-size:13.5px;color:var(--mut)">Four sources are involved: the resolution, the attachment, the certification and the debate. One finding needs to connect all four.</p>
+      </article>
+      <article class="find">
+        <span class="chip amb">Spoken of, not held</span>
+        <h3>There was no prior contract on file</h3>
+        <p>Council members asked for the <mark>existing contract</mark> to compare with the new one, and it was <mark>not on a government website</mark>. The last one on the portal dates from 2009, and the record shows work continuing without a contract since June. The only Motorola contract in this workspace is the new one.</p>
+        <q>“I don't feel comfortable right now having not reviewed the existing contract because it's not available.” <small>council member, debate record</small></q>
+        <p style="font-size:13.5px;color:var(--mut)">The absent thing has no passage to point at. The layout has to give an absence a visible place.</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="views">
+    <h2 id="views">The six views</h2>
+    <p style="margin-bottom:16px">Each card gives the question the view answers, what it has to show, what it must not do, and the layout problems to solve. The order in the navigation today is Lanes, Margin, Seam, Orbit, Fields, Review, with a count of 91 on Review for links waiting for a decision.</p>
+    <div class="views">
+
+      <article class="view">
+        <header><span class="lab">Lanes</span><div class="q">How are these sources related, and where do they touch?</div></header>
+        <dl>
+          <dt>Goal</dt><dd>One overview of every source on a shared axis: media time for recordings, document order for text. A line joins two passages and says what it establishes.</dd>
+          <dt>Must show</dt><dd><ul><li>Which source pairs are tied, and how densely.</li><li>Where the findings are (differences, denials, left out) before the ordinary links.</li><li>Which links are inferred, which are confirmed.</li></ul></dd>
+          <dt>Must not</dt><dd>Turn into a hairball at a few hundred links, or hide a whole-source finding because it has no position on the axis.</dd>
+          <dt>Open problem</dt><dd>A finding such as “Not named” joins a passage to a whole document and has no place on a lane. The Ground, Figure and Pattern control (ambient field, each specific link, recurring structure) works, but its meaning is not obvious from the labels.</dd>
+        </dl>
+      </article>
+
+      <article class="view">
+        <header><span class="lab">Margin</span><div class="q">Is what I am about to say supported, contradicted, or unanswered?</div></header>
+        <dl>
+          <dt>Goal</dt><dd>A person writes or pastes a draft. Each sentence shows what the sources say about it, and what nothing in the workspace answers.</dd>
+          <dt>Must show</dt><dd><ul><li>A contradiction before a support.</li><li>Unanswered sentences as clearly as answered ones.</li><li>The words that matched, in the sentence and in the source.</li></ul></dd>
+          <dt>Must not</dt><dd>Save or send the draft, or write to a source. The draft stays in the browser.</dd>
+          <dt>Open problem</dt><dd>A fixed 250px side gutter cramps long quotes and collapses on a phone. Several partners per sentence need a way to be ranked and folded.</dd>
+        </dl>
+      </article>
+
+      <article class="view">
+        <header><span class="lab">Seam</span><div class="q">Where do these two sources disagree, and what does one leave out?</div></header>
+        <dl>
+          <dt>Goal</dt><dd>Two chosen sources aligned side by side. Each passage sits beside its partner, or beside nothing. Nothing is merged.</dd>
+          <dt>Must show</dt><dd><ul><li>Same, differs, extends or alone for every row, and the finding sentence for every row that has one.</li><li>What came to light between exactly these two, including the whole-source findings that are not row pairs.</li><li>A denial against the several statements it denies, which is one-to-many.</li></ul></dd>
+          <dt>Must not</dt><dd>Imply a pair is a match because it sits in the same row. A weak pair must say so.</dd>
+          <dt>Open problem</dt><dd>The three-column grid has a very narrow middle column. Long statements and the “Differences only” and “Overprint” modes need a clearer relationship to the default view.</dd>
+        </dl>
+      </article>
+
+      <article class="view">
+        <header><span class="lab">Orbit</span><div class="q">What is the centre of this record, and what hangs off it?</div></header>
+        <dl>
+          <dt>Goal</dt><dd>A map where sources are planets and linked passages are moons. The nearer a body sits, the more strongly it is tied. Click a body to make it the centre.</dd>
+          <dt>Must show</dt><dd><ul><li>Findings as visibly different ties (red for differs or denied, amber for left out), not only as a heavier line.</li><li>Sources that are tied to nothing, so their isolation is seen.</li><li>The same source switches as the other views.</li></ul></dd>
+          <dt>Must not</dt><dd>Show a physics toy. The distance has to mean something a reader can state.</dd>
+          <dt>Open problem</dt><dd>Moon labels collide. There is no cue that a click re-centres, and no way to read the finding behind a tie without leaving the map.</dd>
+        </dl>
+      </article>
+
+      <article class="view">
+        <header><span class="lab">Fields</span><div class="q">What has nothing to say to anything else?</div></header>
+        <dl>
+          <dt>Goal</dt><dd>Coverage. Each source as a strip of its passages: linked, linked and differing, linked only by inference, or touching nothing.</dd>
+          <dt>Must show</dt><dd><ul><li>The share of each source that is silent.</li><li>Citations that point at nothing, such as a section number with no source behind it.</li><li>Which silent passages are likely to matter, so that “untouched” is not just a count.</li></ul></dd>
+          <dt>Must not</dt><dd>Treat silence as a fault. Some sources are meant to stand alone.</dd>
+          <dt>Open problem</dt><dd>A source with two thousand passages reduces to an unreadable bar. The unresolved citations are a list at the bottom, far from the strip they belong to.</dd>
+        </dl>
+      </article>
+
+      <article class="view">
+        <header><span class="lab">Review</span><div class="q">What should I decide next?</div></header>
+        <dl>
+          <dt>Goal</dt><dd>The one place a link is written. Inferred links wait here. Confirm turns a dotted line solid everywhere. Reject removes it. Change relation corrects its type. Every decision records who and when.</dd>
+          <dt>Must show</dt><dd><ul><li>The queue ranked by what each link establishes, with differences, denials and left-out items first.</li><li>The finding and the marked words on the card, so a decision can be made without opening anything.</li><li>Progress: decided today, confirmed, still waiting.</li></ul></dd>
+          <dt>Must not</dt><dd>Present ninety-one cards as one flat scroll, or let a decision be made without seeing both passages.</dd>
+          <dt>Open problem</dt><dd>Queue length. It needs grouping (by source pair, by kind), a way to decide several at once when they say the same thing, and keyboard decisions.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="furniture">
+    <h2 id="furniture">Shared furniture that belongs to every view</h2>
+    <div class="two">
+      <div class="note"><b>Sources bar.</b> One chip per source with its colour, a single click to switch it off or on, double-click to keep only that one, and a panel with search for a long list (All, None, Only linked). It has to stay quick at fifty sources and be reachable in the narrow column.</div>
+      <div class="note"><b>Grain control.</b> Ground shows how sources are tied, Figure shows each specific link, Pattern shows only what recurs. It appears on Lanes and Orbit only. The words need to mean something to a person who does not know the model.</div>
+      <div class="note"><b>Filters.</b> By kind of relation and by how sure (confirmed and computed only, or everything including inferred). The counts beside each chip must follow the source switches.</div>
+      <div class="note"><b>Passage card.</b> A read-only side panel for one span and every link that touches it: the finding, both passages with their marks, and a button to open each in the reader.</div>
+      <div class="note"><b>Reader gutter.</b> In the reader, only the words that carry a finding are underlined, with a column of notes at the height of each. Red for differs and denied, amber for left out. Click for the card.</div>
+      <div class="note"><b>Navigation.</b> The Links group in the sidebar, with a count on Review. The order and grouping are open: Review might lead, and the count might say how many are findings rather than all inferred.</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="constraints">
+    <h2 id="constraints">Constraints</h2>
+    <ul class="plain">
+      <li>Dark and light themes. The app's graphite neutrals stay. The only added colour is one hue per source, plus red for differs and denied and amber for left out. Colour is never the only signal: use form, weight or a label as well.</li>
+      <li>Body text no smaller than 13px. Quotes are in a serif face, interface text in a sans, identifiers and labels in a monospace.</li>
+      <li>Works at 400px wide with no sideways scroll. The two-passage layout stacks.</li>
+      <li>No internal terminology on screen. The words are source, link, finding, passage and review.</li>
+      <li>The views are read-only; only Review writes. Any new control that edits a link belongs in Review or the passage card's decision buttons, nowhere else.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="ask">
+    <h2 id="ask">What to explore</h2>
+    <ul class="plain">
+      <li>A shared “findings” strip that appears in the same position in every view, so the same finding is recognised wherever the person is.</li>
+      <li>A visual form for an absence: a document that is not on file, a heading that is not named, a passage nothing answers.</li>
+      <li>How a finding that connects four sources (resolution, attachment, certification, debate) is drawn once and not four times.</li>
+      <li>Whether Seam, Lanes and Orbit are three views or one view with three lenses, given they share sources, filters and the passage card.</li>
+      <li>A Review queue that can be cleared in a sitting: grouping, batch decisions, and a clear finish.</li>
+    </ul>
+  </section>
+</main>

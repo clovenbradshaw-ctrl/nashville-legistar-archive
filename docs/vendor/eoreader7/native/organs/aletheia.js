@@ -1,4 +1,4 @@
-/* Aletheia speaks:
+/* Aletheia — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Tis necessary for thee to 
 learn all things, both the abiding essence of per- 
 suasive truth, and men’s opinions in which rests 

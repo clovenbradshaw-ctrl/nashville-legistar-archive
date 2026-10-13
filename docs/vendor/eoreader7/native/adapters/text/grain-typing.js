@@ -26,7 +26,23 @@ import * as cube from "../../kernel/cube.js";
 // `>= GRAMMAR_MIN_SHARE` elsewhere — three spellings of one number, the
 // drift class this project's postmortems keep naming (P22/P24).
 // "the production sidecar recipe's own value, matched not chosen"
-export const GRAMMAR_MIN_SHARE = 0.5;
+//
+// 2026-10-08 — THE NUMBER MOVED TO RELATE (the receptacle rule): its one
+// home is janus/priors/reading-rules.json; khora reads it here as data. An
+// absent rule makes the constant `null` — the bare read applies NO share
+// gate (the arithmetic sites guard with Number.isFinite) and says so on the
+// record, never a guessed number in khora.
+import { loadReadingRules } from "../../kernel/reading-rules.js";
+
+const _readShare = loadReadingRules().rules?.grammarMinShare;
+export const GRAMMAR_MIN_SHARE = Number.isFinite(_readShare) ? _readShare : null;
+
+/** grammarIsDominant(share) — whether a (VERB+AUX)-share clears the received
+ *  floor. With NO received rule (a bare read) EVERY share passes: a gate is
+ *  never synthesized by the khora, and an absent floor is a typed gap, not a
+ *  number khora chooses. The `<=`-shaped revocations (recursive.js's noun
+ *  tier) guard with `Number.isFinite(GRAMMAR_MIN_SHARE)` instead. */
+export const grammarIsDominant = (share) => (Number.isFinite(GRAMMAR_MIN_SHARE) ? share >= GRAMMAR_MIN_SHARE : true);
 
 export const GRAIN_BY_THRAX = Object.freeze({
   verb: { op: "CON", grain: "Figure" },

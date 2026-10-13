@@ -1,4 +1,4 @@
-/* Xunzi speaks:
+/* Xunzi — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Then in accordance with that, names are given to things. 
 "When things are alike, they are named alike ; when 
 difierent, they are named differently.”

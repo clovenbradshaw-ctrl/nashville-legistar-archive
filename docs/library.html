@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Library search — holodeck</title>
+<style>
+  /* aligned to the canonical fold (scores-patch-points/the-fold): graphite + one calm blue, local fonts only */
+  :root { color-scheme: dark; --page:#17171a; --surface:#1c1c20; --ink:#f4f4f6; --mut:#9d9da8; --line:#2e2e33; --acc:#8ab4ff; --ok:#56d364; --warn:#f0b429;
+    --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --serif:Georgia,"Times New Roman",serif; }
+  * { box-sizing:border-box } body { margin:0; background:var(--page); color:var(--ink); font:400 15px/1.5 var(--sans) }
+  header { padding:18px 22px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--page); z-index:2 }
+  h1 { font:600 16px var(--sans); margin:0 0 2px } .sub { color:var(--mut); font:400 12px var(--mono) }
+  form { display:flex; gap:8px; margin-top:12px }
+  input { flex:1; background:var(--surface); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:9px 12px; font:500 14px var(--mono); outline:none }
+  button { background:var(--acc); border:0; color:var(--page); border-radius:8px; padding:9px 16px; font:600 14px var(--sans); cursor:pointer }
+  main { padding:16px 22px 60px; max-width:900px }
+  h2 { font:600 13px var(--mono); color:var(--mut); text-transform:uppercase; letter-spacing:.06em; margin:22px 0 8px }
+  .hit { border:1px solid var(--line); border-radius:10px; padding:11px 13px; margin-bottom:9px; background:var(--surface) }
+  .hit .t { font:600 14px var(--sans) } .hit .s { color:var(--mut); font:400 12.5px var(--mono); margin-top:4px }
+  .hit .q { color:var(--ink); margin-top:7px; font:400 13.5px/1.45 var(--serif) }
+  .badge { font:500 11px var(--mono); padding:1px 6px; border-radius:5px; margin-left:7px }
+  .num { color:var(--acc) } .null { color:var(--mut) } a { color:var(--acc) } mark { background:#243b6b; color:#fff }
+  .note { color:var(--mut); font:400 12.5px var(--mono) }
+</style>
+</head>
+<body>
+<header>
+  <h1>Library search</h1>
+  <div class="sub" id="status">loading store…</div>
+  <form id="f"><input id="q" placeholder="search the library — a term, or a meaning" autocomplete="off"><button>Search</button></form>
+</header>
+<main><div id="out"></div></main>
+<script type="module">
+import { openStore } from './holodeck-store.js';
+
+const OLLAMA = 'http://127.0.0.1:11435';
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const mark = (s, q) => esc(s).replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>');
+async function embed(text) {
+  const r = await fetch(`${OLLAMA}/api/embed`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: 'nomic-embed-text', input: ['search_query: ' + text] }) });
+  if (!r.ok) throw new Error('embed ' + r.status);
+  return new Float32Array((await r.json()).embeddings[0]);
+}
+
+let store = null;
+openStore({ corpus: 'nashville' }).then((s) => {
+  store = s;
+  $('#status').textContent = `${s.count().toLocaleString()} sources · ${s.hasIndex() ? 'chunk index ready' : 'no index'} · lexical baseline + semantic proposer (lift vs null)`;
+}).catch((e) => { $('#status').textContent = 'store failed: ' + e.message; });
+
+$('#f').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!store) return;
+  const q = $('#q').value.trim();
+  if (!q) return;
+  $('#status').textContent = 'searching…';
+  const out = $('#out'); out.innerHTML = '';
+
+  const lex = await store.searchLexical(q, { limit: 10 });
+  out.innerHTML += `<h2>Lexical baseline · ${lex.length} hit(s)</h2>` + (lex.length ? lex.map((h) => `
+    <div class="hit"><div class="t">${esc(h.title)}</div>
+      <div class="q">…${mark(h.snippet, q)}…</div>
+      <div class="s">span ${h.start}–${h.end}${h.pointer ? ` · <a href="${esc(h.pointer.url || h.pointer.archive || '#')}" target="_blank" rel="noopener">open source ↗</a>` : ''}</div>
+    </div>`).join('') : '<div class="note">no lexical hit — the words asked for are not in the text</div>');
+
+  let ix = null;
+  try { ix = await store.searchIndex(q, { embed, limit: 10 }); } catch (e) { ix = { error: e.message }; }
+  if (ix && ix.hits) {
+    const uniq = []; const seen = new Set();
+    for (const h of ix.hits) { if (seen.has(h.id)) continue; seen.add(h.id); uniq.push(h); }
+    out.innerHTML += `<h2>Semantic proposer · top ${ix.topHit} vs null ${ix.topNull} (lift ${ix.lift})</h2>` +
+      ix.hits.map((h) => `<div class="hit"><div class="t">${esc(h.title || h.id)}
+        <span class="badge num">${h.score}</span></div>
+        <div class="s">chunk span ${h.span[0]}–${h.span[1]} · proposal — confirm by reading</div></div>`).join('') +
+      `<div class="note" style="margin-top:6px">${uniq.length} distinct source(s) among ${ix.hits.length} chunks · ${ix.null ? 'null: ' + ix.null.slice(0, 3).join(', ') : ''}</div>`;
+  } else if (ix) {
+    out.innerHTML += `<h2>Semantic proposer</h2><div class="note">unavailable: ${esc(ix.error || 'no index')}</div>`;
+  }
+  $('#status').textContent = `“${q}” — ${lex.length} lexical, ${ix && ix.hits ? ix.hits.length : 0} semantic`;
+});
+</script>
+</body>
+</html>

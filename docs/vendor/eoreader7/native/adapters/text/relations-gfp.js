@@ -32,6 +32,8 @@
 // an options bag. The perceiver reads `end1`/`label`/`end2`/`cell`/
 // `grain`/`polarity`/`offset` — never subject/verb/object.
 
+import { hear } from "./active-ear.js";
+import { wordFloor } from "./script-floor.js";
 import { cellLabelOf, makeGrainTyper } from "./grain-typing.js";
 import { classifyWord, dominantClass } from "./wordclass.js";
 import { splitSentences } from "./spans.js";
@@ -72,6 +74,11 @@ const dominant = (tags) => {
  * settle to grain_gap (kept, never guessed).
  */
 export function extractGfpRelations(text, { posPrior = null, functionWords = null, minRec = 2, figures = null, clauseAware = false } = {}) {
+  // THE ACTIVE EAR (active-ear.js): a language that writes no word spaces, or
+  // glues bound proclitics onto its words, is read in the form its own grammar
+  // hears. Every offset below is into this heard text, consistently. No ear
+  // active (English and every spaced, unbound language): the text is unchanged.
+  text = hear(text);
   const typer = posPrior ? makeGrainTyper(posPrior) : null;
   const isFunction = (tok) => {
     if (functionWords?.has(tok.toLowerCase())) return true;
@@ -100,7 +107,7 @@ export function extractGfpRelations(text, { posPrior = null, functionWords = nul
   for (const { tok } of tokens) counts.set(tok.toLowerCase(), (counts.get(tok.toLowerCase()) ?? 0) + 1);
   const figureSet = figures ?? new Set(
     [...counts.entries()]
-      .filter(([t, c]) => c >= minRec && t.length >= 3 && !isFunction(t))
+      .filter(([t, c]) => c >= minRec && t.length >= wordFloor(t, 3) && !isFunction(t))
       .map(([t]) => t),
   );
   if (figureSet.size === 0) return [];
@@ -207,6 +214,7 @@ export function extractGfpRelations(text, { posPrior = null, functionWords = nul
  * admittedRelationVerbs swallow it unchanged and hand the figure set back
  * to extractGfpRelations as `figures`. */
 export function discoverGfpVocabulary(text, { figures = null, minRec = null, minSurfaces = null, posPrior = null, functionWords = null } = {}) {
+  text = hear(text);
   const floor = minRec ?? minSurfaces ?? 2;
   const isFunction = (tok) => {
     if (functionWords?.has(tok.toLowerCase())) return true;
@@ -225,7 +233,7 @@ export function discoverGfpVocabulary(text, { figures = null, minRec = null, min
     for (const f of figures) candidates.push({ verb: f, surfaceForms: [f], verbDominant: true });
   } else {
     for (const [t, c] of counts) {
-      if (c >= floor && t.length >= 3 && !isFunction(t)) candidates.push({ verb: t, surfaceForms: [t], verbDominant: true });
+      if (c >= floor && t.length >= wordFloor(t, 3) && !isFunction(t)) candidates.push({ verb: t, surfaceForms: [t], verbDominant: true });
     }
   }
   return { verbs, candidates };

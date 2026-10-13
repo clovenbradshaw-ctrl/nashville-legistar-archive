@@ -1,4 +1,4 @@
-/* Ibn Khaldun speaks:
+/* Ibn Khaldun — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “وكثيرا ما وقع للمؤرّخين والمفسّرين وأئمّة النّقل من المغالط في الحكايات والوقائع لاعتمادهم فيها على مجرّد النّقل غثّا أو سمينا ولم يعرضوها على أصولها ولا قاسوها بأشباهها ولا سبروها بمعيار الحكمة والوقوف على طبائع الكائنات وتحكيم النّظر والبصيرة في الأخبار فضلّوا عن الحق وتاهوا في بيداء الوهم والغلط”
  *
  * This file explores the inherent challenges of historical interpretation, as exemplified by Ibn Khaldun's critique of those who blindly repeat previous chronicles.  While his work provides a framework for understanding the complexities of history, the file's focus on the voices of the past demands a critical and discerning approach to historical claims.

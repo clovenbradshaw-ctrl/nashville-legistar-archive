@@ -85,7 +85,7 @@ import {
   AUXILIARY_VERBS, DEFINITE_DETERMINERS, INDEFINITE_DETERMINERS,
   POSSESSIVE_DETERMINERS, NP_COORDINATORS,
 } from "./priors.js";
-import { GRAMMAR_MIN_SHARE } from "./grain-typing.js";
+import { GRAMMAR_MIN_SHARE, grammarIsDominant } from "./grain-typing.js";
 
 // The cell this organ occupies on the operator grid (engine/operators.js):
 // CON · Link · Binding — subject · verb · object triples; the graph's
@@ -512,7 +512,7 @@ export const discoverRelationVocab = (text, { surfaces, functionWords = null, mi
     // standing says which door it came through. Without a lexicon the old
     // asymmetric posture stands, byte-identical.
     const lexiconKnows = verbForms ? verbForms.has(token) : null;
-    const verbDominant = !posPrior ? true : !attested ? (lexiconKnows !== false) : verbShare >= GRAMMAR_MIN_SHARE;
+    const verbDominant = !posPrior ? true : !attested ? (lexiconKnows !== false) : grammarIsDominant(verbShare);
     const posStanding = !posPrior ? "not_supplied" : !attested ? (lexiconKnows === null ? "gap" : lexiconKnows ? "gap_lexicon_admits" : "gap_lexicon_refuses") : verbDominant ? "verb_dominant" : "nonverb_dominant";
     candidates.push({ verb: token, surfaces: seenAfter.size, surfaceForms: Array.from(seenAfter), verbDominant, verbShare, posStanding, upos: attested });
     if (seenAfter.size >= minSurfaces && verbDominant) verbs.add(token);

@@ -1,0 +1,18 @@
+{
+  "port": 8791,
+  "host": "127.0.0.1",
+  "upstream": "http://127.0.0.1:8008",
+  "serverName": "matrix.example.org",
+  "admins": [
+    "@you:matrix.example.org"
+  ],
+  "enforce": "enrolled",
+  "allowUnenrolled": [],
+  "registration": "optional",
+  "allowOtherLoginTypes": [
+    "m.login.application_service"
+  ],
+  "storePath": "/var/lib/holodeck-gate/store.bin",
+  "issuer": "Holodeck",
+  "trustProxy": true
+}

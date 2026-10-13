@@ -29,6 +29,9 @@
 import { createHolograph, admit, predict } from './vendor/eoreader7/native/kernel/bayes-surprise.js';
 import { STANCE, BASIS, perspectiveOperation, projectPerspectives, divergence } from './vendor/eoreader7/native/kernel/perspective.js';
 import * as PR from './vendor/eoreader7/native/adapters/text/priors.js';
+// The for-whom's own conclusion (the fold at an identity) — the surface's
+// existing "no view from nowhere" machinery, reused rather than re-derived.
+import { conclusionOf } from './holodeck-summary.js';
 
 export const GENRES = [
   { id: 'lit', label: 'Literature', desc: 'how a novel proceeds' },
@@ -238,6 +241,78 @@ export async function buildAllGenres(lpSets, onProgress) {
   return out;
 }
 
+/** Build one reader from in-memory texts — the SAME factsAlong -> admit ->
+ *  notableBits pipeline the genre readers use, but the material is the content
+ *  in view, not a shipped corpus. The text is read, turned into events and
+ *  discarded; the reader that survives is Dirichlet counts only. */
+export function buildReaderFromTexts(texts, window = PICTURE_WINDOW) {
+  const holo = createHolograph({ alpha: 1, gamma: 1 });
+  const combos = new Map();
+  let sentences = 0, files = 0;
+  for (const text of texts || []) {
+    files++;
+    const sents = (String(text || '').match(SENT_RE) || []).map((s) => s.trim()).filter((s) => s.length >= MIN_SENTENCE_CHARS);
+    for (const f of factsAlong(sents, window)) {
+      admit(holo, f);
+      const k = JSON.stringify(f); const c = combos.get(k);
+      if (c) c.n++; else combos.set(k, { f, n: 1 });
+      sentences++;
+    }
+  }
+  return { holo, files, sentences, notableBits: notableBitsOf(holo, combos) };
+}
+
+const slug = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'source';
+
+/** The perspectives THEMSELVES — a perspective is a FOR WHOM: a standpoint, a
+ *  party/voice the content is written for or about, never a topic and never a
+ *  type, and never a view from nowhere. Each is an identity with its own held
+ *  picture (the material that names it here), and its own "notable" line — the
+ *  top 15% of what IT has itself read. So the standpoints are drawn from the
+ *  content's own cast, not a shipped corpus.
+ *
+ *  (The deeper form of this — folding at the identity's own conclusion, so what
+ *  is notable is what makes a difference TO that identity — is
+ *  holodeck-summary.js::worth(A, docId, { forWhom: conclusion }), the same fold
+ *  the surface already uses for its for-whom at position 3. This keeps each
+ *  for-whom's held material as its reader; the conclusion ride along on
+ *  reader.forWhom so that fold can be applied where a statement is judged.) */
+export function derivePerspectives(A, onProgress) {
+  const docs = (A && A.docs) || [];
+  const parties = [];
+  const seen = new Set();
+  (A && A.sts ? A.sts : []).forEach(st => (st.names || []).forEach(n => {
+    const r = A.names && A.names[n];
+    if (!r || (r.type !== 'person' && r.type !== 'organisation')) return;
+    if (seen.has(n)) return; seen.add(n);
+    parties.push({ name: n, n: (r.sts || []).length });
+  }));
+  parties.sort((a, b) => b.n - a.n);
+  const top = parties.slice(0, 6);
+
+  const list = []; const readers = {};
+  if (top.length) {
+    let i = 0;
+    for (const p of top) {
+      i++; if (onProgress) onProgress(i, top.length, p.name, p.n);
+      const claims = (A.sts || []).filter(st => (st.names || []).includes(p.name));
+      const texts = claims.map(st => st.text).filter(Boolean);
+      const id = slug(p.name);
+      let conclusion = null; try { conclusion = conclusionOf(claims, A); } catch (e) {}
+      readers[id] = { ...buildReaderFromTexts(texts), forWhom: { giver: p.name, question: 'what does “' + p.name + '” hold, and what changes it?', conclusion } };
+      list.push({ id, label: p.name, desc: 'read for ' + p.name + ' · ' + p.n + ' statement' + (p.n === 1 ? '' : 's') + ' name it' });
+    }
+  } else {
+    // No party to read for (nothing named): fall back to each kind of source in view, still a named for-whom.
+    const groups = new Map();
+    for (const d of docs) { const kind = String(d.kind || d.type || 'Source'); if (!String(d.text || '').trim()) continue; if (!groups.has(kind)) groups.set(kind, []); groups.get(kind).push(d.text); }
+    let i = 0;
+    for (const [kind, texts] of groups) { i++; if (onProgress) onProgress(i, groups.size, kind, texts.length); const id = slug(kind); readers[id] = { ...buildReaderFromTexts(texts), forWhom: { giver: kind } }; list.push({ id, label: kind, desc: 'read for ' + kind + ' · ' + texts.length + ' source' + (texts.length === 1 ? '' : 's') }); }
+  }
+  list.sort((a, b) => (readers[b.id].sentences - readers[a.id].sentences || a.label.localeCompare(b.label)));
+  return { list, readers };
+}
+
 /** Read-only: a workspace statement's facts against one reader, WITHOUT
  *  admitting it. predict() never mutates the holograph — the leak wall. */
 export function scoreAgainstGenre(holo, facts, notableBits = Infinity) {
@@ -249,19 +324,21 @@ export function scoreAgainstGenre(holo, facts, notableBits = Infinity) {
   return { bits, perSlot, notableBits, notable: bits > notableBits };
 }
 
-export function scorePerspectives(holos, facts) {
+export function scorePerspectives(holos, facts, list) {
+  const L = (list && list.length) ? list : GENRES;
   const out = {};
-  for (const g of GENRES) { const r = holos && holos[g.id]; if (r && r.holo) out[g.id] = scoreAgainstGenre(r.holo, facts, r.notableBits); }
+  for (const g of L) { const r = holos && holos[g.id]; if (r && r.holo) out[g.id] = scoreAgainstGenre(r.holo, facts, r.notableBits); }
   return out;
 }
 
 /** The append-only perspective log: one operation per (reader, statement),
  *  landing that reader's own stance on "this statement is notable".
  *  `scored` is [{ id, byGenre }]. */
-export function buildPerspectiveLog(scored) {
+export function buildPerspectiveLog(scored, list) {
+  const L = (list && list.length) ? list : GENRES;
   const log = [];
   for (const item of scored || []) {
-    for (const g of GENRES) {
+    for (const g of L) {
       const s = item.byGenre && item.byGenre[g.id];
       if (!s) continue;
       log.push(perspectiveOperation({ holder: g.id, claim: 'notable:' + item.id, stance: s.notable ? STANCE.HOLDS : STANCE.DOUBTS, basis: BASIS.INHERITED }));
@@ -273,12 +350,13 @@ export function buildPerspectiveLog(scored) {
 /** Projects the log and computes divergence in BOTH directions of every
  *  pair: a mismatch only shows from whichever reader HOLDS the claim
  *  (heldSet), so one direction alone would half-see it. */
-export function projectAndDiverge(log) {
+export function projectAndDiverge(log, list) {
+  const L = (list && list.length) ? list : GENRES;
   const projected = projectPerspectives(log);
   const pairs = [];
-  for (let i = 0; i < GENRES.length; i++) {
-    for (let j = i + 1; j < GENRES.length; j++) {
-      const a = GENRES[i].id, b = GENRES[j].id;
+  for (let i = 0; i < L.length; i++) {
+    for (let j = i + 1; j < L.length; j++) {
+      const a = L[i].id, b = L[j].id;
       const ab = divergence(projected, a, b), ba = divergence(projected, b, a);
       const seen = new Set(); const conflicting = [];
       [...ab.conflicting, ...ba.conflicting].forEach((c) => { if (seen.has(c.claim)) return; seen.add(c.claim); conflicting.push(c); });

@@ -1,4 +1,4 @@
-/* Kanada speaks:
+/* Kanada — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “The notions, Genus and Species, are relative to the 
 Understanding.”
  *
@@ -10,6 +10,7 @@ Understanding.”
 
 import { createKindGraphStructureLedger } from "./kind-graph-structure.js";
 import { induceEntityKindCandidates } from "./entity-kind-induction.js";
+import { createAbstractionRegistry, admitAbstraction, releaseDecision } from "./hyperlexicon-abstraction.js";
 
 const freeze = (value) => Object.freeze(value);
 
@@ -316,10 +317,37 @@ function computeSnapshot(index) {
     populationKindCandidates: freeze(index.populationKindCandidates.slice(0, 12).map((candidate) => freeze({
       id: candidate.id, kindKey: candidate.kindKey, standing: candidate.standing, mechanism: candidate.mechanism, memberCount: candidate.memberCount, memberRefs: candidate.memberRefs, cohesion: candidate.cohesion,
       bindingEnergy: candidate.field?.bindingEnergy ?? null, cohesionPassed: candidate.cohesionNull?.passed ?? false, fallbackNomination: candidate.fallbackNomination === true, distinguishingParameters: candidate.distinguishingParameters,
+      // THE STANDING GATE, IN THE DATA PATH (2026-10-10). Every induced
+      // population Kind is reported through releaseDecision: discovered, not
+      // validated, so by default released:false, standing:candidate — a
+      // surface may present it as a proposal, never as a fact, unless a
+      // measured consequence has been earned upstream.
+      ...gateCandidate(candidate),
     }))),
   });
   index.snapshot = freeze([...received, ...index.earnedProjections]);
   return index.snapshot;
+}
+
+// THE STANDING GATE IN THE KERNEL'S OWN DIAGNOSTICS. Population Kind
+// candidates are hypotheses, not findings: each is reported with its
+// releaseDecision standing, and by default a discovered basin is WITHHELD
+// (coherence alone earns nothing — the fold self-audit ruling). Consumers
+// that read kindDiagnostics() inherit the discipline with no per-surface
+// change; a pipeline that has independently validated a candidate promotes
+// it upstream (earned) and it alone is released.
+function gateCandidate(candidate) {
+  const registry = admitAbstraction(createAbstractionRegistry(), {
+    id: candidate.kindKey,
+    op: "SIG",
+    grain: "Pattern",
+    terrain: "Kind",
+    label: candidate.kindKey,
+    depth: 0,
+    memberRefs: candidate.memberRefs ?? [],
+  });
+  const verdict = releaseDecision(registry, { id: candidate.kindKey });
+  return freeze({ released: verdict.released, standing: verdict.standing, releaseWhy: verdict.why });
 }
 
 export function snapshotKindState(index, { ids = null } = {}) {

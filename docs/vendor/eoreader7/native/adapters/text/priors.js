@@ -34,6 +34,23 @@ export const NEGATION_WORDS = Object.freeze(new Set([
 export const NEGATION_WORDS_META = Object.freeze({ giver: "lang/en", scope: null });
 
 /**
+ * The chat turn's re-zero opening — the negators a person opens a CORRECTION
+ * with. The general adverbial negators above, PLUS the bare interjective
+ * negations ("no", "nope", "nah") that are determiners/interjections rather
+ * than the adverbs NEGATION_WORDS carries, so they are a class of their own.
+ * Found live (2026-10-09): adapters/chat/user-turns.js is DOCUMENTED to read
+ * "no, that's wrong" as a re-zero and "No problem, thanks!" as an
+ * acknowledgment, but the class it was wired with (NEGATION_WORDS) lacked
+ * "no", so its own motivating example never fired. The adapter still requires
+ * a point-back (an anaphor or a first-person claim), so an acknowledgment
+ * that merely opens with "no" and points at nothing stays an assertion.
+ */
+export const CHAT_REZERO_NEGATION = Object.freeze(new Set([
+  ...NEGATION_WORDS, "no", "nope", "nah", "naw",
+]));
+export const CHAT_REZERO_NEGATION_META = Object.freeze({ giver: "lang/en (interjective negation class, re-zero openings)", scope: "adapters/chat/user-turns" });
+
+/**
  * Negation correlatives — the closed set of adverbs that, immediately after
  * a standalone "not", turn it from a negator into an affirmative correlative
  * conjunction: "not only X but also Y", "not just X but also Y" both assert
@@ -267,11 +284,24 @@ export const INFLECTIONAL_SUFFIXES_META = Object.freeze({ giver: "lang/en", scop
 // ── script/latn — Latin-script typographic conventions ──────────────────────
 
 /** Sentence-ending punctuation marks. */
-export const SENTENCE_TERMINATORS = Object.freeze(new Set([".", "!", "?", "…"]));
-export const SENTENCE_TERMINATORS_META = Object.freeze({ giver: "script/latn", scope: null });
+export const SENTENCE_TERMINATORS = Object.freeze(new Set([
+  ".", "!", "?", "…",
+  // Other scripts' own terminators, declared by the script they belong to
+  // (Unicode block names, not a language list): CJK ideographic and
+  // halfwidth full stop / question / exclamation, Arabic question mark and
+  // full stop (Urdu), Devanagari danda / double danda, Armenian full stop,
+  // Ethiopic full stop.
+  "。", "！", "？", "｡", "؟", "۔", "।", "॥", "։", "።",
+]));
+export const SENTENCE_TERMINATORS_META = Object.freeze({ giver: "script/latn + script/hani,jpan,arab,deva,armn,ethi (Unicode terminator characters)", scope: null });
+
+/** Terminators of scripts that write NO space after a sentence (CJK). Latin
+ * `.` followed by a non-space is a decimal point or an abbreviation; an
+ * ideographic full stop followed by the next sentence is a boundary. */
+export const UNSPACED_TERMINATORS = Object.freeze(new Set(["。", "！", "？", "｡"]));
 
 /** Closing quote marks. */
-export const CLOSING_QUOTES = Object.freeze(new Set(['"', "'", "”", "’"]));
+export const CLOSING_QUOTES = Object.freeze(new Set(['"', "'", "”", "’", "」", "』", "”", "）", "»"]));
 export const CLOSING_QUOTES_META = Object.freeze({ giver: "script/latn", scope: null });
 
 /**

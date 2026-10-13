@@ -1,4 +1,4 @@
-/* Thrax speaks:
+/* Thrax — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “A  Sentence  is  combination  of  words,  either  in  prose  or 
 in  verse,  making  complete  sense.  There  are  eight  parts  of 
 speech :  Noun,  Verb,  Participle,  Article,  Pronoun,  Preposi- 

@@ -1,4 +1,4 @@
-/* Grotius speaks:
+/* Grotius — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “Now any thing is unjust,
 which is repugnant to the nature of society, established among rational
 creatures. Thus for instance, to deprive another of what belongs to

@@ -1,4 +1,4 @@
-/* Kairos speaks:
+/* Kairos — GENERATED EPIGRAPH AND COMMENTARY, NOT THE AUTHOR'S WORDS except text inside quotation marks, and only where the archon's dossier (the-fold docs/archons/dossier) verifies that quote:
  * “why, in Heaven’s name, is the back of thy head 
 bald? B. Because none whom I have once raced 
 by on my winged feet will now, though he wishes it 

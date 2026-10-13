@@ -1,0 +1,8 @@
+name = "holodeck-captions"
+main = "worker.mjs"
+compatibility_date = "2026-10-01"
+
+# Origins allowed to call the worker, comma separated. An entry also matches itself plus a port
+# (http://localhost covers every localhost port). Nothing secret belongs in this file.
+[vars]
+ALLOW_ORIGINS = "https://scores-patch-points.github.io,http://127.0.0.1,http://localhost"

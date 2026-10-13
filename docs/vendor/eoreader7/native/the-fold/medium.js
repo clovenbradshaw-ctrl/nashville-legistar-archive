@@ -28,6 +28,7 @@
 import { syllables, rhymeKeys } from "./sound.js";
 import { permutationCount } from "../kernel/nullcheck.js";
 import { createSeededRng } from "../kernel/rng.js";
+import { loadReadingRules } from "../kernel/reading-rules.js";
 
 export const MEDIUM_SCHEMA = "EOMedium@1";
 
@@ -279,13 +280,15 @@ export function collectionCandidates(elements) {
 }
 
 /** The level a candidate's uniformity p must reach for the collection to be
- *  cut there. DECLARED, not measured: 0.05 is the level this reader has
- *  always cut at, kept so earlier readings keep their meaning — the one
- *  hand-set number here, named so it is not mistaken for a measurement. It
- *  is a level PER CANDIDATE: a text whose many recurring skeletons are tried
- *  in turn has that many chances to clear it by accident (READING-SPEC S136
- *  measures how often). A caller testing under its own T passes its own. */
-export const SEGMENT_LEVEL = 0.05;
+ *  cut there. The number is RECEIVED, not owned (2026-10-08): its one home is
+ *  janus/priors/reading-rules.json (`segmentLevel`); khora reads it here as
+ *  data, and an absent rule leaves the reader bare — segmentCollection then
+ *  refuses with a typed gap, never a khora-invented 0.05. It is a level PER
+ *  CANDIDATE: a text whose many recurring skeletons are tried in turn has
+ *  that many chances to clear it by accident (READING-SPEC S136 measures how
+ *  often). A caller testing under its own T passes its own. */
+const _segmentLevel = loadReadingRules().rules?.segmentLevel;
+export const SEGMENT_LEVEL = Number.isFinite(_segmentLevel) ? _segmentLevel : undefined;
 
 /**
  * segmentCollection(text, { level, rnd }) → { units: [{ id, elements }], separator, basis }
@@ -302,7 +305,7 @@ export const SEGMENT_LEVEL = 0.05;
  * cut the same way; a caller's `rnd` is one stream shared by every candidate.
  */
 export function segmentCollection(text, { level = SEGMENT_LEVEL, rnd } = {}) {
-  if (!(level > 0 && level <= 1)) throw new RangeError(`segmentCollection: level must be in (0, 1], got ${level}`);
+  if (!(level > 0 && level <= 1)) throw new RangeError(`segmentCollection: level must be in (0, 1], got ${level}${level === undefined ? " — the reading-rule file is absent (janus/priors/reading-rules.json); pass a level or supply the rule; the khora never invents one" : ""}`);
   const { elements, markup } = elementsOf(text);
   const cands = collectionCandidates(elements);
   if (!cands.length) return { units: [{ id: "whole", elements }], separator: null, markup, basis: "no label or heading recurs three times: the text is one unit" };
